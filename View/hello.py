@@ -1,1 +1,0 @@
-print("Mai Wai Laew")
