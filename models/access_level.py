@@ -8,13 +8,13 @@ class Access_level(ABC):
         pass
 
 
-class Admin_level(Access_level):
+class Admin_access(Access_level):
 
     def get_access_level() -> str:
         return "Admin"
 
 
-class Employee_level(Access_level):
+class Employee_access(Access_level):
 
     def get_access_level() -> str:
         return "Employee"
