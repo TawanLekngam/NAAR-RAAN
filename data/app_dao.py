@@ -17,6 +17,18 @@ class AppDAO:
     def close_database(self) -> None:
         self.connection.close()
 
+    def add_user(self, user: User) -> None:
+        self.__user_dao.add_user(user)
+
+    def get_all_users(self) -> list[User]:
+        return self.__user_dao.get_all_users()
+
+    def get_user_by_id(self, id: int) -> User:
+        return self.__user_dao.get_user_by_id(id)
+
+    def get_user_by_username(self, username: str) -> User:
+        return self.__user_dao.get_user_by_username(username)
+
 
 class UserDAO:
 
@@ -46,12 +58,12 @@ class UserDAO:
         )""")
         self.__connection.commit()
 
-
     def __convert_to_object(self) -> None:
         # convert raw data in query to User object
         convert_data = list()
         for data in self.__query:
-            access_level = AdminAccess() if data[6] == "Admin" else EmployeeAccess()
+            access_level = AdminAccess(
+            ) if data[6] == "Admin" else EmployeeAccess()
             user = User(data[0], data[1], data[2], data[3],
                         data[4], data[5], access_level)
             convert_data.append(user)
@@ -69,7 +81,8 @@ class UserDAO:
         data = self.__curcor.fetchall()
         if data is None:
             return None
-        access_level = AdminAccess() if data[6] == "Admin" else EmployeeAccess()
+        access_level = AdminAccess(
+        ) if data[6] == "Admin" else EmployeeAccess()
         return User(data[0], data[1], data[2], data[3],
                     data[4], data[5], access_level)
 
@@ -79,7 +92,8 @@ class UserDAO:
         data = self.__curcor.fetchall()
         if data is None:
             return None
-        access_level = AdminAccess() if data[6] == "Admin" else EmployeeAccess()
+        access_level = AdminAccess(
+        ) if data[6] == "Admin" else EmployeeAccess()
         return User(data[0], data[1], data[2], data[3],
                     data[4], data[5], access_level)
 
@@ -120,4 +134,6 @@ class StockDAO:
 
 if __name__ == "__main__":
     app = AppDAO()
+    user = User(1,"natcha","teekayu","snowball","fay","0000000000",AdminAccess())
+    app.add_user(user)
     app.close_database()
