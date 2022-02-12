@@ -37,7 +37,7 @@ class UserDAO:
         # convert raw data to User object
         convert_data = list()
         for data in self.__query:
-            access_level = AdminAccess() if data[6] else EmployeeAccess()
+            access_level = AdminAccess() if data[6] == "Admin" else EmployeeAccess()
             user = User(data[0], data[1], data[2], data[3],
                         data[4], data[5], access_level)
             convert_data.append(user)
