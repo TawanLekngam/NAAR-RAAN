@@ -26,7 +26,7 @@ class UserDAO:
     __COLUMN_USERNAME = "username"                 # str
     __COLUMN_PASSWORD = "password"                 # str
     __COLUMN_PHONE_NUMBER = "phone_number"         # str
-    __COLUMN_ADMINISTRATOR = "administrator"       # bool
+    __COLUMN_ACCESSLEVEL = "access_level"          # str
 
     def __init__(self, connection: sqlite3.Connection) -> None:
         self.__connection = connection
@@ -55,7 +55,7 @@ class UserDAO:
         data = self.__curcor.fetchall()
         if data is None:
             return None
-        access_level = AdminAccess() if data[6] else EmployeeAccess()
+        access_level = AdminAccess() if data[6] == "Admin" else EmployeeAccess()
         return User(data[0], data[1], data[2], data[3],
                     data[4], data[5], access_level)
 
@@ -65,13 +65,13 @@ class UserDAO:
         data = self.__curcor.fetchall()
         if data is None:
             return None
-        access_level = AdminAccess() if data[6] else EmployeeAccess()
+        access_level = AdminAccess() if data[6] == "Admin" else EmployeeAccess()
         return User(data[0], data[1], data[2], data[3],
                     data[4], data[5], access_level)
 
     def add_user(self, user: User) -> None:
-        access_level = True if isinstance(
-            user.get_access_level(), AdminAccess) else False
+        access_level = "Admin" if isinstance(
+            user.get_access_level(), AdminAccess) else "Employee"
 
         self.__curcor.execute(
             f"""INSERT INTO {UserDAO.__table_name}(
@@ -80,7 +80,7 @@ class UserDAO:
             {UserDAO.__COLUMN_USERNAME},
             {UserDAO.__COLUMN_PASSWORD},
             {UserDAO.__COLUMN_PHONE_NUMBER},
-            {UserDAO.__COLUMN_ADMINISTRATOR})
+            {UserDAO.__COLUMN_ACCESSLEVEL})
             VALUES
             ('{user.get_firstname()}',
             '{user.get_lastname()}',
@@ -98,7 +98,7 @@ class ProductDAO:
 
 class LogEntryDAO:
     __table_name = "LOGENTRIES"
-    
+
 
 class StockDAO:
     __table_name = "STOCKS"
