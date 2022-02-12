@@ -1,20 +1,20 @@
 from abc import ABC, abstractmethod
 
 
-class Access_level(ABC):
+class AccessLevel(ABC):
 
     @abstractmethod
     def get_access_level() -> str:
         pass
 
 
-class Admin_access(Access_level):
+class AdminAccess(AccessLevel):
 
     def get_access_level() -> str:
         return "Admin"
 
 
-class Employee_access(Access_level):
+class EmployeeAccess(AccessLevel):
 
     def get_access_level() -> str:
         return "Employee"
