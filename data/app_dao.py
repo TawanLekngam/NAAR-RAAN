@@ -12,6 +12,7 @@ class AppDAO:
     def __init__(self) -> None:
         self.connection = sqlite3.connect(AppDAO.__DB_PATH)
         self.__user_dao = UserDAO(self.connection)
+        self.__user_dao.create_table()
 
     def close_database(self) -> None:
         self.connection.close()
@@ -33,8 +34,21 @@ class UserDAO:
         self.__curcor = self.__connection.cursor()
         self.__query = list()
 
+    def create_table(self) -> None:
+        self.__curcor.execute(f"""CREATE TABLE IF NOT EXISTS {self.__table_name} (
+            {self.__COLUMN_ID} INTEGER PRIMARY KEY,
+            {self.__COLUMN_FIRSTNAME} TEXT,
+            {self.__COLUMN_LASTNAME} TEXT,
+            {self.__COLUMN_USERNAME} TEXT,
+            {self.__COLUMN_PASSWORD} TEXT,
+            {self.__COLUMN_PHONE_NUMBER} TEXT,
+            {self.__COLUMN_ACCESSLEVEL} TEXT
+        )""")
+        self.__connection.commit()
+
+
     def __convert_to_object(self) -> None:
-        # convert raw data to User object
+        # convert raw data in query to User object
         convert_data = list()
         for data in self.__query:
             access_level = AdminAccess() if data[6] == "Admin" else EmployeeAccess()
