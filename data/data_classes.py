@@ -1,5 +1,4 @@
-
-
+from datetime import datetime
 from dataclasses import dataclass
 from access_level import AccessLevel
 
@@ -63,3 +62,27 @@ class Product:
 class ProductAddon:
 
     pass
+
+
+@dataclass
+class LogEntry:
+
+    __id: int
+    __date_time: datetime
+    __operator: User
+    __description: str
+
+    def get_id(self) -> int:
+        return self.__id
+
+    def get_date(self) -> str:
+        return self.__date_time.strftime("%d/%m/%Y")
+
+    def get_time(self) -> str:
+        return self.__date_time.strftime("%H:%M")
+
+    def get_operator(self) -> User:
+        return self.__operator
+
+    def get_description(self) -> str:
+        return self.__description
