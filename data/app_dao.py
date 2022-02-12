@@ -11,6 +11,10 @@ class AppDAO:
 
     def __init__(self) -> None:
         self.connection = sqlite3.connect(AppDAO.__DB_PATH)
+        self.__user_dao = UserDAO(self.connection)
+
+    def close_database(self) -> None:
+        self.connection.close()
 
 
 class UserDAO:
@@ -90,3 +94,16 @@ class UserDAO:
 
 class ProductDAO:
     __table_name = "PRODUCTS"
+
+
+class LogEntryDAO:
+    __table_name = "LOGENTRIES"
+    
+
+class StockDAO:
+    __table_name = "STOCKS"
+
+
+if __name__ == "__main__":
+    app = AppDAO()
+    app.close_database()
