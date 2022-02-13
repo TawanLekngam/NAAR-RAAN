@@ -1,5 +1,4 @@
 import sys
-from tkinter import Widget
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
@@ -64,7 +63,6 @@ class Menu_order_form(QWidget):
         order_button = QPushButton("Order", self)
         order_button.setObjectName("order_button")
         order_button.setGeometry(QRect(1145, 885, 700, 80))
-       
 
         self.showFullScreen()
 
