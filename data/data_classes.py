@@ -1,10 +1,8 @@
+from abc import ABC
 from datetime import datetime
 from dataclasses import dataclass
+
 from access_level import AccessLevel
-
-
-class Data:
-    pass
 
 
 @dataclass
@@ -40,11 +38,18 @@ class User:
         return self.__access_level
 
 
+class Product(ABC):
+    pass
+
+
 @dataclass
-class Product:
+class Drink(Product):
 
     __id: int
     __name: str
+    __hot_price: float
+    __cold_price: float
+    __blended_price: float
 
     def get_id(self) -> int:
         return self.__id
@@ -52,16 +57,14 @@ class Product:
     def get_name(self) -> str:
         return self.__name
 
-    def set_id(self, id: int) -> None:
-        self.__id = id
+    def get_hot_price(self) -> float:
+        return self.__hot_price
 
-    def set_name(self, name: str) -> None:
-        self.__name = name
+    def get_cold_price(self) -> float:
+        return self.__cold_price
 
-
-class ProductAddon:
-
-    pass
+    def get_blended_price(self) -> float:
+        return self.__blended_price
 
 
 @dataclass
