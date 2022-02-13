@@ -7,7 +7,7 @@ from access_level import *
 class AppDAO:
 
     __ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-    __DB_PATH = os.path.join(__ROOT_DIR, "pred_raan.db")
+    __DB_PATH = os.path.join(__ROOT_DIR, "perd_raan.db")
 
     def __init__(self) -> None:
         self.connection = sqlite3.connect(AppDAO.__DB_PATH)
@@ -134,6 +134,8 @@ class StockDAO:
 
 if __name__ == "__main__":
     app = AppDAO()
-    user = User(1,"natcha","teekayu","snowball","fay","0000000000",AdminAccess())
-    app.add_user(user)
+    user1 = User(1,"natcha","teekayu","snowball","fay","0000000000",AdminAccess())
+    user2 = User(1,"prima","sirinapapant","kon suay","nene","0000000001",EmployeeAccess())
+    app.add_user(user1)
+    app.add_user(user2)
     app.close_database()
