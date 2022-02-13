@@ -1,0 +1,94 @@
+QWidget {
+    background-color: #F9F5F0;
+}
+
+QFrame#user_frame {
+    background-color: #4A321C;
+}
+
+QLabel#menu_label {
+    background-color: transparent;
+    font-family: "Dongle";
+    font-size: 65pt;
+    font-weight: bold;
+    color: #4A321C;
+}
+
+QFrame#menu_frame {
+    background-color: #D8B797;
+    border-radius: 20px;
+}
+
+QLineEdit#search_bar {
+    font-family: "Dongle";
+    font-size: 65pt;
+    font-weight: bold;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #4A321C;
+    background: #F9F5F0;
+    border: 5px solid #754926;
+    border-radius: 20px;
+}
+
+/* QScrollArea#menu_scrollArea {
+    background-color: transparent;
+    font-family: "Dongle";
+    font-size: 65pt;
+    color: #4A321C;
+}
+
+QWidget#menu_scrollAreaContents {
+    background-color: transparent;
+    font-family: "Dongle";
+    font-size: 65pt;
+    color: #4A321C;
+} */
+
+QFrame#order_frame {
+    background-color: transparent;
+    border: 5px solid #754926;
+    border-radius: 20px;
+}
+
+/* QScrollArea#order_scrollArea {
+    background-color: transparent;
+    font-family: "Dongle";
+    font-size: 65pt;
+    color: #4A321C;
+}
+
+QWidget#order_scrollAreaContents {
+    background-color: transparent;
+    font-family: "Dongle";
+    font-size: 65pt;
+    color: #4A321C;
+} */
+
+QFrame#line {
+    background-color: #D8B797;
+}
+
+QLabel#total_label {
+    font-family: "Dongle";
+    font-size: 65pt;
+    font-weight: bold;
+    color: #4A321C;
+}
+
+QLabel#number_label {
+    font-family: "Dongle";
+    font-size: 65pt;
+    font-weight: bold;
+    color: #4A321C;
+}
+
+QPushButton#order_button {
+    background-color: #754926;
+    font-family: "Dongle";
+    font-size: 65pt;
+    font-weight: bold;
+    color: #F9F5F0;
+    border: 5px solid #754926;
+    border-radius: 20px;
+}
