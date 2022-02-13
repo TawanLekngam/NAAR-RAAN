@@ -40,6 +40,9 @@ class AppDAO:
     def add_drink(self, drink: Drink) -> None:
         self.__drink_dao.add_drink(drink)
 
+    def get_all_drinks(self) -> list[Drink]:
+        return self.__drink_dao.get_all_drinks()
+
 
 class UserDAO:
 
@@ -207,6 +210,7 @@ class StockDAO:
 
 if __name__ == "__main__":
     app = AppDAO()
-    drink = Drink(0, "Cha Thai", 35.5, 40.5, 42.25)
-    app.add_drink(drink)
+    temp = app.get_all_drinks()
+    for i in temp:
+        print(i.get_name())
     app.close_database()
