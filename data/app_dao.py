@@ -9,14 +9,21 @@ class AppDAO:
     __ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
     __DB_PATH = os.path.join(__ROOT_DIR, "perd_raan.db")
 
-    def __init__(self) -> None:
+    def __init__(self):
         self.connection = sqlite3.connect(AppDAO.__DB_PATH)
         self.__user_dao = UserDAO(self.connection)
+        self.__drink_dao = DrinkDAO(self.connection)
+
+        self.__create_all_table()
+
+    def __create_all_table(self) -> None:
         self.__user_dao.create_table()
+        self.__drink_dao.create_table()
 
     def close_database(self) -> None:
         self.connection.close()
 
+    # UserDAO
     def add_user(self, user: User) -> None:
         self.__user_dao.add_user(user)
 
@@ -28,6 +35,10 @@ class AppDAO:
 
     def get_user_by_username(self, username: str) -> User:
         return self.__user_dao.get_user_by_username(username)
+
+    # DrinkDAP
+    def add_drink(self, drink: Drink) -> None:
+        self.__drink_dao.add_drink(drink)
 
 
 class UserDAO:
@@ -41,7 +52,7 @@ class UserDAO:
     __COLUMN_PHONE_NUMBER = "phone_number"         # str
     __COLUMN_ACCESSLEVEL = "access_level"          # str
 
-    def __init__(self, connection: sqlite3.Connection) -> None:
+    def __init__(self, connection: sqlite3.Connection):
         self.__connection = connection
         self.__curcor = self.__connection.cursor()
         self.__query = list()
@@ -58,7 +69,7 @@ class UserDAO:
         )""")
         self.__connection.commit()
 
-    def __convert_to_object(self) -> None:
+    def __convert_data_to_object(self) -> None:
         # convert raw data in query to User object
         convert_data = list()
         for data in self.__query:
@@ -72,7 +83,7 @@ class UserDAO:
     def get_all_users(self) -> list[User]:
         self.__curcor.execute(f"SELECT * FROM {UserDAO.__table_name}")
         self.__query = self.__curcor.fetchall()
-        self.__convert_to_object()
+        self.__convert_data_to_object()
         return self.__query
 
     def get_user_by_id(self, id: int) -> User:
@@ -120,12 +131,74 @@ class UserDAO:
         self.__connection.commit()
 
 
-class ProductDAO:
-    __table_name = "PRODUCTS"
+class DrinkDAO:
+    __table_name = "DRINKS"
+    __COLUMN_ID = "id"
+    __COLUMN_NAME = "name"
+    __COLUMN_HOT = "hot"
+    __COLUMN_COLD = "cold"
+    __COLUMN_BLENDED = "blended"
+
+    def __init__(self, connection: sqlite3.Connection):
+        self.__connection = connection
+        self.__cursor = self.__connection.cursor()
+        self.__query = list()
+
+    def create_table(self) -> None:
+        self.__cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.__table_name} (
+            {self.__COLUMN_ID} INTEGER PRIMARY KEY,
+            {self.__COLUMN_NAME} TEXT,
+            {self.__COLUMN_HOT} REAL,
+            {self.__COLUMN_COLD} REAL,
+            {self.__COLUMN_BLENDED} REAL
+        )""")
+        self.__connection.commit()
+
+    def __convert_data_to_object(self) -> None:
+        convert_data = list()
+        for data in self.__query:
+            drink = Drink(data[0], data[1], data[2], data[3], data[4])
+            convert_data.append(drink)
+        self.__query = convert_data
+
+    def get_all_drinks(self) -> list[Drink]:
+        self.__cursor.execute(f"SELECT * FROM {DrinkDAO.__table_name}")
+        self.__query = self.__cursor.fetchall()
+        self.__convert_data_to_object()
+        return self.__query
+
+    def get_drink_by_id(self, id: int) -> Drink:
+        self.__cursor.execute(
+            f"SELECT * FROM {DrinkDAO.__table_name} WHERE {DrinkDAO.__COLUMN_ID}={id}")
+        data = self.__cursor.fetchall()
+        if data is None:
+            return None
+        return Drink(data[0], data[1], data[2], data[3], data[4])
+
+    def add_drink(self, drink: Drink):
+        self.__cursor.execute(
+            f"""INSERT INTO {DrinkDAO.__table_name}(
+            {DrinkDAO.__COLUMN_ID},
+            {DrinkDAO.__COLUMN_NAME},
+            {DrinkDAO.__COLUMN_HOT},
+            {DrinkDAO.__COLUMN_COLD},
+            {DrinkDAO.__COLUMN_BLENDED})
+            VALUES
+            ('{drink.get_id()}',
+            '{drink.get_name()}',
+            '{drink.get_hot_price()}',
+            '{drink.get_cold_price()}',
+            '{drink.get_blended_price()}')""")
+
+        self.__connection.commit()
+
+
+class BakeryDAO:
+    __table_name = "BAKERIES"
 
 
 class LogEntryDAO:
-    __table_name = "LOGENTRIES"
+    __table_name = "LOGENTRY"
 
 
 class StockDAO:
@@ -134,8 +207,6 @@ class StockDAO:
 
 if __name__ == "__main__":
     app = AppDAO()
-    user1 = User(1,"natcha","teekayu","snowball","fay","0000000000",AdminAccess())
-    user2 = User(1,"prima","sirinapapant","kon suay","nene","0000000001",EmployeeAccess())
-    app.add_user(user1)
-    app.add_user(user2)
+    drink = Drink(0, "Cha Thai", 35.5, 40.5, 42.25)
+    app.add_drink(drink)
     app.close_database()
