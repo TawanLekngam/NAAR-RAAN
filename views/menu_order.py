@@ -67,7 +67,7 @@ class Menu_order_form(QWidget):
         self.showFullScreen()
 
     def set_styleSheet(self, file_name: str):
-        with open("theme/" + file_name, "r") as f:
+        with open("themes/" + file_name, "r") as f:
             _style = f.read()
             self.setStyleSheet(_style)
             f.close
