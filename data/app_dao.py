@@ -39,6 +39,13 @@ class AppDAO:
     def get_all_drinks(self) -> list[Drink]:
         return self.__drink_dao.get_all_drinks()
 
+    # BakeryDAO
+    def add_bakery(self, bakery: Bakery) -> None:
+        self.__bakery_dao.add_bakery(bakery)
+
+    def get_all_bakeries(self) -> list[Bakery]:
+        return self.__bakery_dao.get_all_bakeries()
+
     # LogEntryDAO
     def add_log_entry(self, log_entry: LogEntry) -> None:
         self.__log_entry_dao.add_log_entry(log_entry)
