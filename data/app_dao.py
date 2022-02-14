@@ -45,7 +45,6 @@ class AppDAO:
 
 
 class UserDAO:
-
     __table_name = "USERS"
     __COLUMN_ID = "id"                             # int
     __COLUMN_FIRSTNAME = "first_name"              # str
@@ -57,11 +56,11 @@ class UserDAO:
 
     def __init__(self, connection: sqlite3.Connection):
         self.__connection = connection
-        self.__curcor = self.__connection.cursor()
+        self.__cursor = self.__connection.cursor()
         self.__query = list()
 
     def create_table(self) -> None:
-        self.__curcor.execute(f"""CREATE TABLE IF NOT EXISTS {self.__table_name} (
+        self.__cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.__table_name} (
             {self.__COLUMN_ID} INTEGER PRIMARY KEY,
             {self.__COLUMN_FIRSTNAME} TEXT,
             {self.__COLUMN_LASTNAME} TEXT,
@@ -84,15 +83,15 @@ class UserDAO:
         self.__query = convert_data
 
     def get_all_users(self) -> list[User]:
-        self.__curcor.execute(f"SELECT * FROM {UserDAO.__table_name}")
-        self.__query = self.__curcor.fetchall()
+        self.__cursor.execute(f"SELECT * FROM {UserDAO.__table_name}")
+        self.__query = self.__cursor.fetchall()
         self.__convert_data_to_object()
         return self.__query
 
     def get_user_by_id(self, id: int) -> User:
-        self.__curcor.execute(
+        self.__cursor.execute(
             f"SELECT * FROM {UserDAO.__table_name} WHERE {UserDAO.__COLUMN_ID}={id}")
-        data = self.__curcor.fetchall()
+        data = self.__cursor.fetchall()
         if data is None:
             return None
         access_level = AdminAccess(
@@ -101,9 +100,9 @@ class UserDAO:
                     data[4], data[5], access_level)
 
     def get_user_by_username(self, username: str) -> User:
-        self.__curcor.execute(
+        self.__cursor.execute(
             f"SELECT * FROM {UserDAO.__table_name} WHERE {UserDAO.__COLUMN_USERNAME}='{username}'")
-        data = self.__curcor.fetchall()
+        data = self.__cursor.fetchall()
         if data is None:
             return None
         access_level = AdminAccess(
@@ -115,7 +114,7 @@ class UserDAO:
         access_level = "Admin" if isinstance(
             user.get_access_level(), AdminAccess) else "Employee"
 
-        self.__curcor.execute(
+        self.__cursor.execute(
             f"""INSERT INTO {UserDAO.__table_name}(
             {UserDAO.__COLUMN_FIRSTNAME},
             {UserDAO.__COLUMN_LASTNAME},
@@ -202,6 +201,27 @@ class BakeryDAO:
 
 class LogEntryDAO:
     __table_name = "LOGENTRY"
+    __COLUMN_ID = "id"
+    __COLUMN_DATE = "date"
+    __COLUMN_TIME = "time"
+    __COLUMN_OPERATOR = "operator"
+    __COLUMN_DESCRIPTION = "description"
+
+    def __init__(self, connection: sqlite3.Connection):
+        self.__connection = connection
+        self.__cursor = self.__connection.cursor()
+        self.__query = list()
+        self.__create_table()
+
+    def __create_table(self):
+        self.__cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.__table_name} (
+            {self.__COLUMN_ID} INTEGER PRIMARY KEY,
+            {self.__COLUMN_DATE} TEXT,
+            {self.__COLUMN_TIME} TEXT,
+            {self.__COLUMN_OPERATOR} INTEGER,
+            {self.__COLUMN_DESCRIPTION} TEXT
+        )""")
+        self.__connection.commit()
 
 
 class StockDAO:
