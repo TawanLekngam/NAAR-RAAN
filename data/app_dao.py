@@ -13,6 +13,7 @@ class AppDAO:
         self.connection = sqlite3.connect(AppDAO.__DB_PATH)
         self.__user_dao = UserDAO(self.connection)
         self.__drink_dao = DrinkDAO(self.connection)
+        self.__bakery_dao = BakeryDAO(self.connection)
         self.__log_entry_dao = LogEntryDAO(self.connection, self.__user_dao)
 
     def close_database(self) -> None:
@@ -48,13 +49,13 @@ class AppDAO:
 
 class UserDAO:
     __table_name = "USERS"
-    __COLUMN_ID = "id"                             # int
-    __COLUMN_FIRSTNAME = "first_name"              # str
-    __COLUMN_LASTNAME = "last_name"                # str
-    __COLUMN_USERNAME = "username"                 # str
-    __COLUMN_PASSWORD = "password"                 # str
-    __COLUMN_PHONE_NUMBER = "phone_number"         # str
-    __COLUMN_ACCESSLEVEL = "access_level"          # str
+    __COLUMN_ID = "id"
+    __COLUMN_FIRSTNAME = "first_name"
+    __COLUMN_LASTNAME = "last_name"
+    __COLUMN_USERNAME = "username"
+    __COLUMN_PASSWORD = "password"
+    __COLUMN_PHONE_NUMBER = "phone_number"
+    __COLUMN_ACCESSLEVEL = "access_level"
 
     def __init__(self, connection: sqlite3.Connection):
         self.__connection = connection
@@ -203,7 +204,7 @@ class BakeryDAO:
     __COLUMN_NAME = "name"
     __COLUMN_PRICE = "price"
 
-    def __init__(self,connection:sqlite3.Connection):
+    def __init__(self, connection: sqlite3.Connection):
         self.__connection = connection
         self.__cursor = self.__connection.cursor()
         self.__query = list()
@@ -216,6 +217,30 @@ class BakeryDAO:
             {BakeryDAO.__COLUMN_PRICE} REAL
         )""")
         self.__connection.commit()
+
+    def __convert_data_to_object(self) -> None:
+        convert_data = list()
+        for data in self.__query:
+            bakery = Bakery(data[0], data[1], data[2])
+            convert_data.append(bakery)
+        self.__query = convert_data
+
+    def get_all_bakeries(self) -> list[Bakery]:
+        self.__cursor.execute(f"SELETE * FROM {BakeryDAO.__table_name}")
+        self.__query = self.__cursor.fetchall()
+        self.__convert_data_to_object()
+        return self.__query
+
+    def add_bakery(self, bakery: Bakery) -> None:
+        self.__cursor.execute(
+            f"""INSERT INTO {BakeryDAO.__table_name} (
+            {BakeryDAO.__COLUMN_ID},
+            {BakeryDAO.__COLUMN_NAME},
+            {BakeryDAO.__COLUMN_PRICE})
+            VALUES
+            ('{bakery.get_id()}',
+            '{bakery.get_name()}',
+            '{bakery.get_price()}')""")
 
 
 class LogEntryDAO:
