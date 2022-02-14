@@ -63,14 +63,14 @@ class UserDAO:
         self.__create_table()
 
     def __create_table(self) -> None:
-        self.__cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.__table_name} (
-            {self.__COLUMN_ID} INTEGER PRIMARY KEY,
-            {self.__COLUMN_FIRSTNAME} TEXT,
-            {self.__COLUMN_LASTNAME} TEXT,
-            {self.__COLUMN_USERNAME} TEXT,
-            {self.__COLUMN_PASSWORD} TEXT,
-            {self.__COLUMN_PHONE_NUMBER} TEXT,
-            {self.__COLUMN_ACCESSLEVEL} TEXT)""")
+        self.__cursor.execute(f"""CREATE TABLE IF NOT EXISTS {UserDAO.__table_name} (
+            {UserDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
+            {UserDAO.__COLUMN_FIRSTNAME} TEXT,
+            {UserDAO.__COLUMN_LASTNAME} TEXT,
+            {UserDAO.__COLUMN_USERNAME} TEXT,
+            {UserDAO.__COLUMN_PASSWORD} TEXT,
+            {UserDAO.__COLUMN_PHONE_NUMBER} TEXT,
+            {UserDAO.__COLUMN_ACCESSLEVEL} TEXT)""")
         self.__connection.commit()
 
     def __convert_data_to_object(self) -> None:
@@ -150,12 +150,12 @@ class DrinkDAO:
         self.__create_table()
 
     def __create_table(self) -> None:
-        self.__cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.__table_name} (
-            {self.__COLUMN_ID} INTEGER PRIMARY KEY,
-            {self.__COLUMN_NAME} TEXT,
-            {self.__COLUMN_HOT} REAL,
-            {self.__COLUMN_COLD} REAL,
-            {self.__COLUMN_BLENDED} REAL)""")
+        self.__cursor.execute(f"""CREATE TABLE IF NOT EXISTS {DrinkDAO.__table_name} (
+            {DrinkDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
+            {DrinkDAO.__COLUMN_NAME} TEXT,
+            {DrinkDAO.__COLUMN_HOT} REAL,
+            {DrinkDAO.__COLUMN_COLD} REAL,
+            {DrinkDAO.__COLUMN_BLENDED} REAL)""")
         self.__connection.commit()
 
     def __convert_data_to_object(self) -> None:
@@ -199,6 +199,23 @@ class DrinkDAO:
 
 class BakeryDAO:
     __table_name = "BAKERIES"
+    __COLUMN_ID = "id"
+    __COLUMN_NAME = "name"
+    __COLUMN_PRICE = "price"
+
+    def __init__(self,connection:sqlite3.Connection):
+        self.__connection = connection
+        self.__cursor = self.__connection.cursor()
+        self.__query = list()
+        self.__create_table()
+
+    def __create_table(self) -> None:
+        self.__cursor.execute(f"""CREATE TABLE IF NOT EXISTS {BakeryDAO.__table_name} (
+            {BakeryDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
+            {BakeryDAO.__COLUMN_NAME} TEXT,
+            {BakeryDAO.__COLUMN_PRICE} REAL
+        )""")
+        self.__connection.commit()
 
 
 class LogEntryDAO:
@@ -217,12 +234,12 @@ class LogEntryDAO:
         self.__create_table()
 
     def __create_table(self) -> None:
-        self.__cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.__table_name} (
-            {self.__COLUMN_ID} INTEGER PRIMARY KEY,
-            {self.__COLUMN_DATE} TEXT,
-            {self.__COLUMN_TIME} TEXT,
-            {self.__COLUMN_OPERATOR} INTEGER,
-            {self.__COLUMN_DESCRIPTION} TEXT)""")
+        self.__cursor.execute(f"""CREATE TABLE IF NOT EXISTS {LogEntryDAO.__table_name} (
+            {LogEntryDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
+            {LogEntryDAO.__COLUMN_DATE} TEXT,
+            {LogEntryDAO.__COLUMN_TIME} TEXT,
+            {LogEntryDAO.__COLUMN_OPERATOR} INTEGER,
+            {LogEntryDAO.__COLUMN_DESCRIPTION} TEXT)""")
         self.__connection.commit()
 
     def __convert_data_to_object(self) -> None:
