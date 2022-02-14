@@ -13,7 +13,7 @@ class AppDAO:
         self.connection = sqlite3.connect(AppDAO.__DB_PATH)
         self.__user_dao = UserDAO(self.connection)
         self.__drink_dao = DrinkDAO(self.connection)
-        self.__logentry_dao = LogEntryDAO(self.connection, self.__user_dao)
+        self.__log_entry_dao = LogEntryDAO(self.connection, self.__user_dao)
 
     def close_database(self) -> None:
         self.connection.close()
@@ -37,6 +37,9 @@ class AppDAO:
 
     def get_all_drinks(self) -> list[Drink]:
         return self.__drink_dao.get_all_drinks()
+
+    def add_log_entry(self, log_entry: LogEntry) -> None:
+        self.__log_entry_dao.add_log_entry(log_entry)
 
 
 class UserDAO:
@@ -87,7 +90,7 @@ class UserDAO:
     def get_user_by_id(self, id: int) -> User:
         self.__cursor.execute(
             f"SELECT * FROM {UserDAO.__table_name} WHERE {UserDAO.__COLUMN_ID}={id}")
-        data = self.__cursor.fetchall()
+        data = self.__cursor.fetchone()
         if data is None:
             return None
         access_level = AdminAccess(
@@ -98,7 +101,7 @@ class UserDAO:
     def get_user_by_username(self, username: str) -> User:
         self.__cursor.execute(
             f"SELECT * FROM {UserDAO.__table_name} WHERE {UserDAO.__COLUMN_USERNAME}='{username}'")
-        data = self.__cursor.fetchall()
+        data = self.__cursor.fetchone()
         if data is None:
             return None
         access_level = AdminAccess(
@@ -169,7 +172,7 @@ class DrinkDAO:
     def get_drink_by_id(self, id: int) -> Drink:
         self.__cursor.execute(
             f"SELECT * FROM {DrinkDAO.__table_name} WHERE {DrinkDAO.__COLUMN_ID}={id}")
-        data = self.__cursor.fetchall()
+        data = self.__cursor.fetchone()
         if data is None:
             return None
         return Drink(data[0], data[1], data[2], data[3], data[4])
@@ -236,8 +239,7 @@ class LogEntryDAO:
         return self.__query
 
     def add_log_entry(self, log_entry: LogEntry) -> None:
-        user = self.__user_dao.get_user_by_id(log_entry.get_id())
-
+        user = log_entry.get_operator()
         self.__cursor.execute(
             f"""INSERT INTO {LogEntryDAO.__table_name}(
             {LogEntryDAO.__COLUMN_ID},
@@ -260,7 +262,8 @@ class StockDAO:
 
 if __name__ == "__main__":
     app = AppDAO()
-    temp = app.get_all_drinks()
-    for i in temp:
-        print(i.get_name())
+
+    user = app.get_user_by_id(3)
+    log_en = LogEntry(7, "16/12/2001", "13:50", user, "test")
+    app.add_log_entry(log_en)
     app.close_database()
