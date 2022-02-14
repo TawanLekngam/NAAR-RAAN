@@ -1,5 +1,4 @@
 from abc import ABC
-from datetime import datetime
 from dataclasses import dataclass
 
 from access_level import AccessLevel
@@ -7,7 +6,6 @@ from access_level import AccessLevel
 
 @dataclass
 class User:
-
     __id: int
     __firstname: str
     __lastname: str
@@ -44,7 +42,6 @@ class Product(ABC):
 
 @dataclass
 class Drink(Product):
-
     __id: int
     __name: str
     __hot_price: float
@@ -68,10 +65,26 @@ class Drink(Product):
 
 
 @dataclass
-class LogEntry:
-
+class Bakery(Product):
     __id: int
-    __date_time: datetime
+    __name: str
+    __price: float
+
+    def get_id(self) -> int:
+        return self.__id
+
+    def get_name(self) -> str:
+        return self.__name
+
+    def get_price(self) -> float:
+        return self.__price
+
+
+@dataclass
+class LogEntry:
+    __id: int
+    __date: str
+    __time: str
     __operator: User
     __description: str
 
@@ -79,10 +92,10 @@ class LogEntry:
         return self.__id
 
     def get_date(self) -> str:
-        return self.__date_time.strftime("%d/%m/%Y")
+        return self.__date
 
     def get_time(self) -> str:
-        return self.__date_time.strftime("%H:%M")
+        return self.__time
 
     def get_operator(self) -> User:
         return self.__operator
