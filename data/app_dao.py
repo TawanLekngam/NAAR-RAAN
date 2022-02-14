@@ -13,6 +13,7 @@ class AppDAO:
         self.connection = sqlite3.connect(AppDAO.__DB_PATH)
         self.__user_dao = UserDAO(self.connection)
         self.__drink_dao = DrinkDAO(self.connection)
+        self.__logentry_dao = LogEntryDAO(self.connection, self.__user_dao)
 
     def close_database(self) -> None:
         self.connection.close()
@@ -203,13 +204,14 @@ class LogEntryDAO:
     __COLUMN_OPERATOR = "operator"
     __COLUMN_DESCRIPTION = "description"
 
-    def __init__(self, connection: sqlite3.Connection):
+    def __init__(self, connection: sqlite3.Connection, user_dao: UserDAO):
         self.__connection = connection
+        self.__user_dao = user_dao
         self.__cursor = self.__connection.cursor()
         self.__query = list()
         self.__create_table()
 
-    def __create_table(self):
+    def __create_table(self) -> None:
         self.__cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.__table_name} (
             {self.__COLUMN_ID} INTEGER PRIMARY KEY,
             {self.__COLUMN_DATE} TEXT,
@@ -217,6 +219,38 @@ class LogEntryDAO:
             {self.__COLUMN_OPERATOR} INTEGER,
             {self.__COLUMN_DESCRIPTION} TEXT
         )""")
+        self.__connection.commit()
+
+    def __convert_data_to_object(self) -> None:
+        convert_data = list()
+        for data in self.__query:
+            user = self.__user_dao.get_user_by_id(data[3])
+            log_entry = LogEntry(data[0], data[1], data[2], user, data[4])
+            convert_data.append(log_entry)
+        self.__query = convert_data
+
+    def get_all_log_entry(self) -> list[LogEntry]:
+        self.__cursor.execute(f"SELETE * FROM {LogEntryDAO.__table_name}")
+        self.__query = self.__cursor.fetchall()
+        self.__convert_data_to_object()
+        return self.__query
+
+    def add_log_entry(self, log_entry: LogEntry) -> None:
+        user = self.__user_dao.get_user_by_id(log_entry.get_id())
+
+        self.__cursor.execute(
+            f"""INSERT INTO {LogEntryDAO.__table_name}(
+            {LogEntryDAO.__COLUMN_ID},
+            {LogEntryDAO.__COLUMN_DATE},
+            {LogEntryDAO.__COLUMN_TIME},
+            {LogEntryDAO.__COLUMN_OPERATOR},
+            {LogEntryDAO.__COLUMN_DESCRIPTION})
+            VALUES
+            ('{log_entry.get_id()}',
+            '{log_entry.get_date()}',
+            '{log_entry.get_time()}',
+            '{user.get_id()}',
+            '{log_entry.get_description()}')""")
         self.__connection.commit()
 
 
