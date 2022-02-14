@@ -31,15 +31,19 @@ class AppDAO:
     def get_user_by_username(self, username: str) -> User:
         return self.__user_dao.get_user_by_username(username)
 
-    # DrinkDAP
+    # DrinkDAO
     def add_drink(self, drink: Drink) -> None:
         self.__drink_dao.add_drink(drink)
 
     def get_all_drinks(self) -> list[Drink]:
         return self.__drink_dao.get_all_drinks()
 
+    # LogEntryDAO
     def add_log_entry(self, log_entry: LogEntry) -> None:
         self.__log_entry_dao.add_log_entry(log_entry)
+
+    def get_all_log(self) -> list[LogEntry]:
+        return self.__log_entry_dao.get_all_log_entry()
 
 
 class UserDAO:
@@ -66,8 +70,7 @@ class UserDAO:
             {self.__COLUMN_USERNAME} TEXT,
             {self.__COLUMN_PASSWORD} TEXT,
             {self.__COLUMN_PHONE_NUMBER} TEXT,
-            {self.__COLUMN_ACCESSLEVEL} TEXT
-        )""")
+            {self.__COLUMN_ACCESSLEVEL} TEXT)""")
         self.__connection.commit()
 
     def __convert_data_to_object(self) -> None:
@@ -152,8 +155,7 @@ class DrinkDAO:
             {self.__COLUMN_NAME} TEXT,
             {self.__COLUMN_HOT} REAL,
             {self.__COLUMN_COLD} REAL,
-            {self.__COLUMN_BLENDED} REAL
-        )""")
+            {self.__COLUMN_BLENDED} REAL)""")
         self.__connection.commit()
 
     def __convert_data_to_object(self) -> None:
@@ -220,8 +222,7 @@ class LogEntryDAO:
             {self.__COLUMN_DATE} TEXT,
             {self.__COLUMN_TIME} TEXT,
             {self.__COLUMN_OPERATOR} INTEGER,
-            {self.__COLUMN_DESCRIPTION} TEXT
-        )""")
+            {self.__COLUMN_DESCRIPTION} TEXT)""")
         self.__connection.commit()
 
     def __convert_data_to_object(self) -> None:
@@ -263,7 +264,4 @@ class StockDAO:
 if __name__ == "__main__":
     app = AppDAO()
 
-    user = app.get_user_by_id(3)
-    log_en = LogEntry(7, "16/12/2001", "13:50", user, "test")
-    app.add_log_entry(log_en)
     app.close_database()
