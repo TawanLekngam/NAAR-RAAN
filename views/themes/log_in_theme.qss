@@ -1,0 +1,34 @@
+QWidget {
+    background-color: #F9F5F0;
+}
+
+QLabel#label_username, #label_password {
+    background-color: transparent;
+    font-family: "Dongle";
+    font-size: 65pt;
+    font-weight: bold;
+    color: #4A321C;
+}
+
+QLineEdit#lineEdit_username,#lineEdit_password {
+    font-family: "Dongle";
+    font-size: 65pt;
+    font-weight: bold;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #4A321C;
+    background: #D8B797;
+    border-radius: 20px;
+}
+
+QPushButton#pushButton_login{
+    background-color: #754926;
+    font-family: "Dongle";
+    font-size: 50pt;
+    font-weight: bold;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #F9F5F0;
+    border: 5px solid #754926;
+    border-radius: 20px;
+}
