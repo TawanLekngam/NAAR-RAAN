@@ -14,12 +14,6 @@ class AppDAO:
         self.__user_dao = UserDAO(self.connection)
         self.__drink_dao = DrinkDAO(self.connection)
 
-        self.__create_all_table()
-
-    def __create_all_table(self) -> None:
-        self.__user_dao.create_table()
-        self.__drink_dao.create_table()
-
     def close_database(self) -> None:
         self.connection.close()
 
@@ -58,8 +52,9 @@ class UserDAO:
         self.__connection = connection
         self.__cursor = self.__connection.cursor()
         self.__query = list()
+        self.__create_table()
 
-    def create_table(self) -> None:
+    def __create_table(self) -> None:
         self.__cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.__table_name} (
             {self.__COLUMN_ID} INTEGER PRIMARY KEY,
             {self.__COLUMN_FIRSTNAME} TEXT,
@@ -145,8 +140,9 @@ class DrinkDAO:
         self.__connection = connection
         self.__cursor = self.__connection.cursor()
         self.__query = list()
+        self.__create_table()
 
-    def create_table(self) -> None:
+    def __create_table(self) -> None:
         self.__cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.__table_name} (
             {self.__COLUMN_ID} INTEGER PRIMARY KEY,
             {self.__COLUMN_NAME} TEXT,
