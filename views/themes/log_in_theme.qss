@@ -23,12 +23,11 @@ QLineEdit#lineEdit_username,#lineEdit_password {
 
 QPushButton#pushButton_login{
     background-color: #754926;
-    font-family: "Dongle";
-    font-size: 50pt;
     font-weight: bold;
+    width: 200px;
+    height: 80px;
     padding-left: 30px;
     padding-right: 30px;
-    color: #F9F5F0;
     border: 5px solid #754926;
     border-radius: 20px;
 }
