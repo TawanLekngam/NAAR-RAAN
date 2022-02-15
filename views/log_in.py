@@ -32,9 +32,11 @@ class Log_In(QWidget):
 
         self.gridLayout.addWidget(self.lineEdit_password, 1, 1, 1, 1)
 
-        self.pushButton_login = QPushButton("LOG IN",self)
+        self.pushButton_login = QPushButton(self)
         self.pushButton_login.setObjectName(u"pushButton_login")
-        
+        pixmap = QPixmap("views/assets/Image/coffee.png")
+        self.pushButton_login.setIcon(pixmap)
+        self.pushButton_login.setIconSize(QSize(55,55))
 
         self.gridLayout.addWidget(self.pushButton_login, 2, 2, 1, 1)
 
