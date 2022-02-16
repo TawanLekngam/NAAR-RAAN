@@ -32,13 +32,14 @@ class Log_In(QWidget):
 
         self.pushButton_login = QPushButton(self)
         self.pushButton_login.setObjectName(u"pushButton_login")
-        self.pixmap = QPixmap("C:/Users/Beam/OneDrive/Desktop/SEP/SEP_Project/views/assets/Image/coffee.png")
+        
+        self.pixmap = QPixmap("assets/Image/coffee.png")
         self.pushButton_login.setIcon(self.pixmap)
         self.pushButton_login.setIconSize(QSize(55,55))
         
 
         self.gridLayout.addWidget(self.pushButton_login, 2, 0,1,3)
-
+        
         self.show()
     def set_styleSheet(self, file_name: str):
         with open("themes/" + file_name, "r") as f:
