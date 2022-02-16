@@ -12,13 +12,13 @@ class Log_In(QWidget):
 
         self.gridLayout = QGridLayout(self)
         self.gridLayout.setObjectName(u"gridLayout")
+
         self.label_username = QLabel("USERNAME",self)
         self.label_username.setObjectName(u"label_username")
         self.gridLayout.addWidget(self.label_username, 0, 0,1,3)
 
         self.lineEdit_username = QLineEdit(self)
         self.lineEdit_username.setObjectName(u"lineEdit_username")
-
         self.gridLayout.addWidget(self.lineEdit_username, 0, 1,1,2)
 
         self.label_password = QLabel("PASSWORD",self)
@@ -27,7 +27,6 @@ class Log_In(QWidget):
 
         self.lineEdit_password = QLineEdit(self)
         self.lineEdit_password.setObjectName(u"lineEdit_password")
-
         self.gridLayout.addWidget(self.lineEdit_password, 1, 1,1,2)
 
         self.pushButton_login = QPushButton(self)
@@ -36,9 +35,7 @@ class Log_In(QWidget):
         self.pixmap = QPixmap("assets/Image/coffee.png")
         self.pushButton_login.setIcon(self.pixmap)
         self.pushButton_login.setIconSize(QSize(55,55))
-        
-
-        self.gridLayout.addWidget(self.pushButton_login, 2, 0,1,3)
+        self.gridLayout.addWidget(self.pushButton_login, 2, 1,1,1)
         
         self.show()
     def set_styleSheet(self, file_name: str):
