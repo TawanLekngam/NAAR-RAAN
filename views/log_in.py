@@ -13,6 +13,8 @@ class Log_In(QWidget):
         self.gridLayout = QGridLayout(self)
         self.gridLayout.setObjectName(u"gridLayout")
 
+        self.logo = QLabel(self)
+
         self.label_username = QLabel("USERNAME",self)
         self.label_username.setObjectName(u"label_username")
         self.gridLayout.addWidget(self.label_username, 0, 0,1,3)
@@ -32,7 +34,7 @@ class Log_In(QWidget):
         self.pushButton_login = QPushButton(self)
         self.pushButton_login.setObjectName(u"pushButton_login")
         
-        self.pixmap = QPixmap("assets/Image/coffee.png")
+        self.pixmap = QPixmap("assets/svgs/coffee.svgs")
         self.pushButton_login.setIcon(self.pixmap)
         self.pushButton_login.setIconSize(QSize(55,55))
         self.gridLayout.addWidget(self.pushButton_login, 2, 1,1,1)
