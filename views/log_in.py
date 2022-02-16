@@ -1,45 +1,53 @@
 import sys
-from tkinter import CENTER
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
-class Log_In(QWidget):
+class Log_in(QWidget):
     def __init__(self):
         QWidget.__init__(self,None)
 
-        self.setFixedSize(1920, 1080)
+        self.resize(1920, 1080)
 
-        self.gridLayout = QGridLayout(self)
-        self.gridLayout.setObjectName(u"gridLayout")
+        self.label_circle = QLabel(self)
+        self.label_circle.setObjectName("label_circle")
+        self.label_circle.setGeometry(QRect(753, 112, 400, 400))
+        self.label_circle.setPixmap(QPixmap("assets/Image/circle.png"))
 
-        self.logo = QLabel(self)
+        self.label_logo = QLabel(self)
+        self.label_logo.setObjectName("label_logo")
+        self.label_logo.setGeometry(QRect(846, 158, 252, 252))
+        self.label_logo.setPixmap(QPixmap("assets/Image/logo.png"))
 
-        self.label_username = QLabel("USERNAME",self)
+        self.label_username = QLabel(self)
         self.label_username.setObjectName(u"label_username")
-        self.gridLayout.addWidget(self.label_username, 0, 0,1,3)
-
+        self.label_username.setGeometry(QRect(523, 587, 321, 72))
+        
+        
+        self.label_password = QLabel(self)
+        self.label_password.setObjectName("label_password")
+        self.label_password.setGeometry(QRect(523, 726, 291, 72))
+        
         self.lineEdit_username = QLineEdit(self)
-        self.lineEdit_username.setObjectName(u"lineEdit_username")
-        self.gridLayout.addWidget(self.lineEdit_username, 0, 1,1,2)
-
-        self.label_password = QLabel("PASSWORD",self)
-        self.label_password.setObjectName(u"label_password")
-        self.gridLayout.addWidget(self.label_password, 1, 0,1,3)
+        self.lineEdit_username.setObjectName("lineEdit_username")
+        self.lineEdit_username.setGeometry(QRect(980, 570, 600, 80))
 
         self.lineEdit_password = QLineEdit(self)
-        self.lineEdit_password.setObjectName(u"lineEdit_password")
-        self.gridLayout.addWidget(self.lineEdit_password, 1, 1,1,2)
+        self.lineEdit_password.setObjectName("lineEdit_password")
+        self.lineEdit_password.setGeometry(QRect(980, 715, 600, 80))
 
-        self.pushButton_login = QPushButton(self)
-        self.pushButton_login.setObjectName(u"pushButton_login")
-        
-        self.pixmap = QPixmap("assets/svgs/coffee.svgs")
-        self.pushButton_login.setIcon(self.pixmap)
-        self.pushButton_login.setIconSize(QSize(55,55))
-        self.gridLayout.addWidget(self.pushButton_login, 2, 1,1,1)
-        
+        self.pushButton = QPushButton(self)
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton.setGeometry(QRect(860, 860, 200, 80))
+
+        icon = QIcon()
+        icon.addFile("assets/svgs/coffee.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton.setIcon(icon)
+        self.pushButton.setIconSize(QSize(55, 55))
+
         self.show()
+    
+    
     def set_styleSheet(self, file_name: str):
         with open("themes/" + file_name, "r") as f:
             _style = f.read()
@@ -48,7 +56,7 @@ class Log_In(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    login = Log_In()
+    login = Log_in()
     login.set_styleSheet("log_in_theme.qss")
-    sys.exit(app.exec())
 
+    sys.exit(app.exec())
