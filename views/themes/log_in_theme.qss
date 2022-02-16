@@ -21,7 +21,7 @@ QLineEdit#lineEdit_username,#lineEdit_password {
     border-radius: 20px;
 }
 
-QPushButton#pushButton_login{
+QPushButton#pushButton{
     background-color: #754926;
     font-weight: bold;
     width: 200px;

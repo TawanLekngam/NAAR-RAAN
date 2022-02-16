@@ -19,12 +19,11 @@ class Log_in(QWidget):
         self.label_logo.setGeometry(QRect(846, 158, 252, 252))
         self.label_logo.setPixmap(QPixmap("assets/Image/logo.png"))
 
-        self.label_username = QLabel(self)
+        self.label_username = QLabel("Username",self)
         self.label_username.setObjectName(u"label_username")
         self.label_username.setGeometry(QRect(523, 587, 321, 72))
         
-        
-        self.label_password = QLabel(self)
+        self.label_password = QLabel("Password",self)
         self.label_password.setObjectName("label_password")
         self.label_password.setGeometry(QRect(523, 726, 291, 72))
         
