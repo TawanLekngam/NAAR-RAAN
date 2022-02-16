@@ -10,7 +10,7 @@ class User:
     __firstname: str
     __lastname: str
     __username: str
-    __password: str         # MayBe Hashing
+    __password: str
     __phone_number: str
     __access_level: AccessLevel
 
