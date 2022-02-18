@@ -3,14 +3,12 @@ from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
-from base_page import BasePage
+from views.base_page import BasePage
 
 
 class Menu_order(BasePage):
     def __init__(self):
         BasePage.__init__(self, None)
-
-        self.setFixedSize(1920, 1080)
 
         user_frame = QFrame(self)
         user_frame.setObjectName("user_frame")
