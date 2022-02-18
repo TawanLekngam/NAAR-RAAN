@@ -1,8 +1,13 @@
 from PySide6.QtWidgets import QWidget
 from PySide6.QtGui import QFont
+import os
 
 
 class BasePage(QWidget):
+
+    __ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+    __THEME_PATH = os.path.join(__ROOT_DIR, "themes")
+
     def __init__(self, parent: QWidget):
         QWidget.__init__(self, parent)
         self._set_stylesheet()
@@ -14,8 +19,8 @@ class BasePage(QWidget):
 
     def _set_stylesheet(self):
         file_name = type(self).__name__.lower() + ".qss"
-        theme_dir_name = "themes"
-        with open(theme_dir_name + '/' + file_name, "r") as file:
+        real_path = os.path.join(BasePage.__THEME_PATH, file_name)
+        with open(real_path, "r") as file:
             style = file.read()
             self.setStyleSheet(style)
         file.close()
