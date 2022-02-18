@@ -1,7 +1,9 @@
-from abc import ABC
-from PySide6.QtWidgets import QWidget
-from models.model import Model
-from views.menu_order import Menu_order
+from abc import (ABC)
+from PySide6.QtWidgets import (QWidget)
+
+from models.model import (Model)
+from views.menu_order import (Menu_order)
+from data.app_dao import (AppDAO)
 
 
 class Controller:
