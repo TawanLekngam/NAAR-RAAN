@@ -1,6 +1,7 @@
+import os
 from PySide6.QtWidgets import QWidget
 from PySide6.QtGui import QFont
-import os
+
 
 
 class BasePage(QWidget):
