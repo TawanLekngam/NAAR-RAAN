@@ -47,7 +47,7 @@ class BakeryDAO {
 
     - create_table(): None
     - convert_data(): None
-    + get_all_bakeies(): List
+    + get_all_bakeries(): List
     + get_bakery_by_id(id: int): Bakery
     + add_bakery(bakery: Bakery): None 
 
@@ -99,6 +99,8 @@ class Log {
     + get_description(): str
 }
 
+abstract class Product
+
 class Drink {
     - id: int
     - name: str
@@ -123,6 +125,13 @@ class Bakery {
     + get_price(): float
 }
 
+class BakeryQuantity{
+    - bakery_dao: BakeryDAO
+
+    + get_quantity_by_id(id: int): int
+    + update_bakery(count: int): None
+}
+
 AppDAO -- UserDAO
 AppDAO -- LogDAO
 UserDAO - LogDAO
@@ -133,4 +142,7 @@ LogDAO -- Log
 User - Log
 DrinkDAO -- Drink
 BakeryDAO -- Bakery
+Drink -* Product
+Product *- Bakery
+BakeryDAO - BakeryQuantity
 @enduml
