@@ -1,6 +1,6 @@
-# Application file for run program
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
+import data
 
 
 def main() -> int:
