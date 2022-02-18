@@ -10,6 +10,8 @@ class BasePage(QWidget):
 
     def __init__(self, parent: QWidget):
         QWidget.__init__(self, parent)
+        self.setFixedSize(1920, 1080)
+
         self._set_stylesheet()
 
     def _get_font(self, size: int) -> QFont():
