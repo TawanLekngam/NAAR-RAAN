@@ -1,12 +1,11 @@
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow
-import data
+from PySide6.QtWidgets import (QApplication)
+from views import menu_order
 
 
 def main() -> int:
     app = QApplication(sys.argv)
-    win = QMainWindow()
-    win.showFullScreen()
+    win = menu_order.Menu_order()
     return app.exec()
 
 
