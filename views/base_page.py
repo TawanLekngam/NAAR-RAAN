@@ -7,6 +7,11 @@ class BasePage(QWidget):
         QWidget.__init__(self, parent)
         self._set_stylesheet()
 
+    def _get_font(self, size: int) -> QFont():
+        font = QFont()
+        font.setPixelSize(size)
+        return font
+
     def _set_stylesheet(self):
         file_name = type(self).__name__.lower() + ".qss"
         theme_dir_name = "themes"
