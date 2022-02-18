@@ -310,7 +310,17 @@ class StockDAO:
     __table_name = "STOCKS"
 
 
-if __name__ == "__main__":
-    app = AppDAO()
+class BakeryQuantity:
+    __table_name = "BAKERY_QUANTITY"
+    __COLUMN_ID = "id"
+    __COLUMN_QUANTITY = "quantity"
 
-    app.close_database()
+    def __init__(self, connection: sqlite3.Connection()):
+        self.__connection = connection
+        self.__cursor = self.__connection.cursor()
+        self.__create_table()
+
+    def __create_table(self):
+        self.__cursor.execute(f"""CREATE TABLE IF NOT EXISTS {BakeryQuantity.__table_name} (
+            {BakeryQuantity.__COLUMN_ID} INTEGER PRIMARY KEY,
+            {BakeryQuantity.__COLUMN_QUANTITY} INTEGER)""")
