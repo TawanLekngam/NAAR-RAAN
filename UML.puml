@@ -1,0 +1,136 @@
+@startuml
+
+class AppDAO {
+    - connection: Connection
+    - user_dao: UserDAO
+    - drink_dao: DrinkDAO
+    - bakery_dao: BakeryDAO
+
+    + close_database(): None
+    + get_all_users(): List
+    + get_all_drinks(): List
+    + get_all_bakeies(): List
+    + get_all_logs(): List
+
+}
+
+class UserDAO {
+    - connection: Connection
+    - cursor: Cursor
+    - query: List
+
+    - create_table(): None
+    - convert_data(): None
+    + get_all_users(): List
+    + get_user_by_id(id: int): User
+    + get_user_by_username(username: str): User
+    + add_user(user: User): None
+}
+
+class DrinkDAO {
+    - connection: Connection
+    - cursor: Cursor
+    - query: List
+
+    - create_table(): None
+    - convert_data(): None
+    + get_all_drinks(): List
+    + get_drink_by_id(id: int): Drink
+    + add_drink(drink: Drink): None
+
+}
+
+class BakeryDAO {
+    - connection: Connection
+    - cursor: Cursor
+    - query: List
+
+    - create_table(): None
+    - convert_data(): None
+    + get_all_bakeies(): List
+    + get_bakery_by_id(id: int): Bakery
+    + add_bakery(bakery: Bakery): None 
+
+}
+
+class LogDAO {
+    - user_dao: UserDAO
+    - connection: Connection
+    - cursor: Cursor
+    - query: List
+
+    - create_table(): None
+    - convert_data(): None
+    + get_all_logs(): List
+    + get_log_by_id(id: int): Log
+    + add_log(log: Log): None
+
+}
+
+class User {
+    - id: int
+    - firstname: str
+    - lastname: str
+    - username: str
+    - password: str
+    - phone_no: str
+    - access_level: AccessLevel
+
+    + get_id(): int
+    + get_firstname(): str
+    + get_lastname(): str
+    + get_username(): str
+    + get_password(): str
+    + get_phone_no(): str
+    + get_access_level(): AccessLevel
+}
+
+class Log {
+    - id: int
+    - date: str
+    - time: str
+    - operator: User
+    - description: str
+
+    + get_id(): int
+    + get_date(): str
+    + get_time(): str
+    + get_operator(): User
+    + get_description(): str
+}
+
+class Drink {
+    - id: int
+    - name: str
+    - hot_price: float
+    - cold_price: float
+    - blended_price: float
+
+    + get_id(): int
+    + get_name(): str
+    + get_hot_price(): float
+    + get_cold_price(): float
+    + get_blended_price(): float
+}
+
+class Bakery {
+    - id: int
+    - name: str
+    - price: float
+
+    + get_id(): int
+    + get_name(): str
+    + get_price(): float
+}
+
+AppDAO -- UserDAO
+AppDAO -- LogDAO
+UserDAO - LogDAO
+AppDAO -- DrinkDAO
+AppDAO -- BakeryDAO
+UserDAO -- User
+LogDAO -- Log
+User - Log
+DrinkDAO -- Drink
+BakeryDAO -- Bakery
+@enduml
