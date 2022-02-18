@@ -22,6 +22,7 @@ class Menu_order(BasePage):
 
         menu_label = QLabel("Menu", menu_frame)
         menu_label.setObjectName("menu_label")
+        menu_label.setFont(self._get_font(80))
         menu_label.setGeometry(QRect(54, 26, 128, 116))
 
         search_bar = QLineEdit(menu_frame)
