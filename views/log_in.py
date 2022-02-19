@@ -8,13 +8,11 @@ class Log_in(BasePage):
     def __init__(self):
         BasePage.__init__(self,None)
 
-        self.resize(1920, 1080)
-
         self.label_circle = QLabel(self)
         self.label_circle.setObjectName("label_circle")
         self.label_circle.setGeometry(QRect(753, 112, 400, 400))
         self.label_circle.setPixmap(QPixmap("assets/Image/circle.png"))
-
+        
         self.label_logo = QLabel(self)
         self.label_logo.setObjectName("label_logo")
         self.label_logo.setGeometry(QRect(846, 158, 252, 252))
