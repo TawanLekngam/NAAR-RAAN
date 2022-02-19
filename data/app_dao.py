@@ -16,6 +16,8 @@ class AppDAO:
         self.__bakery_dao = BakeryDAO(self.connection)
         self.__log_entry_dao = LogEntryDAO(self.connection, self.__user_dao)
 
+        self.__bakery_quantity = BakeryQuantity(self.connection)
+
     def close_database(self) -> None:
         self.connection.close()
 
@@ -310,7 +312,23 @@ class StockDAO:
     __table_name = "STOCKS"
 
 
-if __name__ == "__main__":
-    app = AppDAO()
+class BakeryQuantity:
+    __table_name = "BAKERY_QUANTITY"
+    __COLUMN_ID = "id"
+    __COLUMN_QUANTITY = "quantity"
 
-    app.close_database()
+    def __init__(self, connection: sqlite3.Connection()):
+        self.__connection = connection
+        self.__cursor = self.__connection.cursor()
+        self.__create_table()
+
+    def __create_table(self):
+        self.__cursor.execute(f"""CREATE TABLE IF NOT EXISTS {BakeryQuantity.__table_name} (
+            {BakeryQuantity.__COLUMN_ID} INTEGER PRIMARY KEY,
+            {BakeryQuantity.__COLUMN_QUANTITY} INTEGER)""")
+
+    def update_quantity(self, id: int, quantity: int) -> None:
+        pass
+
+    def get_quantity_by_id(self, id: int) -> int:
+        pass

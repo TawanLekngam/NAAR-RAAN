@@ -1,11 +1,12 @@
 import sys
 from PySide6.QtWidgets import (QApplication)
-from views import menu_order
+from controllers.controller import MenuOrderController
 
 
 def main() -> int:
     app = QApplication(sys.argv)
-    win = menu_order.Menu_order()
+    win = MenuOrderController()
+    win.show_page()
     return app.exec()
 
 
