@@ -25,6 +25,7 @@ class Menu_order(BasePage):
 
         search_bar = QLineEdit(menu_frame)
         search_bar.setObjectName("search_bar")
+        search_bar.setFont(self._get_font(65))
         search_bar.setGeometry(QRect(272, 40, 677, 80))
 
         menu_scrollArea = QScrollArea(menu_frame)
@@ -55,14 +56,17 @@ class Menu_order(BasePage):
 
         total_label = QLabel("Total", order_frame)
         total_label.setObjectName("total_label")
+        total_label.setFont(self._get_font(65))
         total_label.setGeometry(QRect(420, 660, 110, 40))
 
         number_label = QLabel("0", order_frame)
         number_label.setObjectName("number_label")
+        number_label.setFont(self._get_font(65))
         number_label.setGeometry(QRect(540, 660, 115, 40))
 
         order_button = QPushButton("Order", self)
         order_button.setObjectName("order_button")
+        order_button.setFont(self._get_font(65))
         order_button.setGeometry(QRect(1145, 885, 700, 80))
 
         self.showFullScreen()

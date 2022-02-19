@@ -20,7 +20,6 @@ QFrame#menu_frame {
 
 QLineEdit#search_bar {
     font-family: "Dongle";
-    font-size: 65pt;
     font-weight: bold;
     padding-left: 30px;
     padding-right: 30px;
@@ -70,14 +69,12 @@ QFrame#line {
 
 QLabel#total_label {
     font-family: "Dongle";
-    font-size: 65pt;
     font-weight: bold;
     color: #4A321C;
 }
 
 QLabel#number_label {
     font-family: "Dongle";
-    font-size: 65pt;
     font-weight: bold;
     color: #4A321C;
 }
@@ -85,7 +82,6 @@ QLabel#number_label {
 QPushButton#order_button {
     background-color: #754926;
     font-family: "Dongle";
-    font-size: 65pt;
     font-weight: bold;
     color: #F9F5F0;
     border: 5px solid #754926;
