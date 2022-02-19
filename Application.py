@@ -1,11 +1,12 @@
 import sys
 from PySide6.QtWidgets import (QApplication)
-from controllers.controller import (MenuOrderController)
+from controllers import *
 
 
 def main() -> int:
     app = QApplication(sys.argv)
-    win = MenuOrderController()
+    # win = LogInController()       # For test LogIn Page
+    win = MenuOrderController()     # For test Menu Order Page
     win.show_page()
     return app.exec()
 
