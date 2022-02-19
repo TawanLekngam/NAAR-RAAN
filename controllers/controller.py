@@ -1,8 +1,8 @@
 from abc import (ABC)
 from PySide6.QtWidgets import (QWidget)
 
-from models.model import (Model)
 from views import *
+from models import *
 
 
 class Controller:
@@ -18,7 +18,7 @@ class Controller:
 class MenuOrderController(Controller):
 
     def __init__(self):
-        Controller.__init__(self, Menu_order(), None)
+        Controller.__init__(self, Menu_order(), MenuModel())
 
 
 class LogInController(Controller):
