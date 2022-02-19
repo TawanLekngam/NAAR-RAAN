@@ -2,10 +2,11 @@ import sys
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
+from views.base_page import BasePage
 
-class Log_in(QWidget):
+class Log_in(BasePage):
     def __init__(self):
-        QWidget.__init__(self,None)
+        BasePage.__init__(self,None)
 
         self.resize(1920, 1080)
 
@@ -46,16 +47,8 @@ class Log_in(QWidget):
 
         self.show()
     
-    
-    def set_styleSheet(self, file_name: str):
-        with open("themes/" + file_name, "r") as f:
-            _style = f.read()
-            self.setStyleSheet(_style)
-            f.close
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     login = Log_in()
-    login.set_styleSheet("log_in_theme.qss")
-
     sys.exit(app.exec())
+
