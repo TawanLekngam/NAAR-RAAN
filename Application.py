@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtWidgets import (QApplication)
-from controllers.controller import MenuOrderController
+from controllers.controller import (MenuOrderController)
 
 
 def main() -> int:
