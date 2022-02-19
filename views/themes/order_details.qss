@@ -1,0 +1,33 @@
+QWidget {
+    background-color: #F9F5F0;
+}
+
+QLabel#menu_name {
+    font-family: "Dongle";
+    font-weight: bold;
+    color: #4A321C;
+}
+
+QPushButton#default_button {
+    font-family: "Dongle";
+    color: #4A321C;
+    background: #D8B797;
+    border-radius: 20px;
+}
+
+QLabel#sweetness_label {
+    font-family: "Dongle";
+    color: #754926;
+}
+
+QLabel#addOn_label {
+    font-family: "Dongle";
+    color: #754926;
+}
+
+QPushButton#cancel_add_button {
+    font-family: "Dongle";
+    color: #F9F5F0;
+    background: #4A321C;
+    border-radius: 20px;
+}
