@@ -25,3 +25,4 @@ class LogInController(Controller):
 
     def __init__(self):
         Controller.__init__(self, Log_in(), None)
+        self.view.login_button_emit(lambda: print("Clicked"))
