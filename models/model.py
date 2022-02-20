@@ -9,4 +9,4 @@ class Model(ABC):
 class MenuModel(Model):
 
     def __init__(self):
-        pass
+        print("Log: Load" + type(self).__name__)
