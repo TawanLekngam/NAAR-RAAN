@@ -5,14 +5,12 @@ QWidget {
 QLabel#label_username, #label_password {
     background-color: transparent;
     font-family: "Dongle";
-    font-size: 65pt;
     font-weight: bold;
     color: #4A321C;
 }
 
-QLineEdit#lineEdit_username,#lineEdit_password {
+QLineEdit#lineEdit_username, #lineEdit_password {
     font-family: "Dongle";
-    font-size: 65pt;
     font-weight: bold;
     padding-left: 30px;
     padding-right: 30px;
@@ -21,9 +19,8 @@ QLineEdit#lineEdit_username,#lineEdit_password {
     border-radius: 20px;
 }
 
-QPushButton#pushButton{
+QPushButton#pushButton {
     background-color: #754926;
-    font-weight: bold;
     width: 200px;
     height: 80px;
     padding-left: 30px;
