@@ -1,15 +1,15 @@
-from audioop import add
 import sys
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
-from views.base_page import BasePage
+from views.widgets.utility_widget import Widget
 
 
-class Order_details(BasePage):
+
+class Order_details(Widget):
     def __init__(self):
-        BasePage.__init__(self, None)
+        Widget.__init__(self, None)
         self.setFixedSize(1000, 850)
 
         menu_name = QLabel("Test One Two", self)
