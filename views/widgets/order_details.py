@@ -6,10 +6,9 @@ from PySide6.QtWidgets import *
 from views.widgets.utility_widget import Widget
 
 
-
 class Order_details(Widget):
-    def __init__(self):
-        Widget.__init__(self, None)
+    def __init__(self, parent: QWidget):
+        Widget.__init__(self, parent)
         self.setFixedSize(1000, 850)
 
         menu_name = QLabel("Test One Two", self)
