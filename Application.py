@@ -9,7 +9,7 @@ def main() -> int:
     # win = LogInController()       # For test LogIn Page
     #win = MenuOrderController()     # For test Menu Order Page
 
-    od = Order_details()
+    od = Order_details(None)
     
     return app.exec()
 
