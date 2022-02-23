@@ -4,15 +4,15 @@ from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
 from views.base_page import BasePage
+from views.user_tab import UserTab
 
 
 class Menu_order(BasePage):
     def __init__(self):
         BasePage.__init__(self, None)
 
-        user_frame = QFrame(self)
-        user_frame.setObjectName("user_frame")
-        user_frame.setGeometry(QRect(1590, 0, 330, 65))
+        user_tab = UserTab(self)
+        user_tab.setGeometry(1590, 0, 330, 65)
 
         menu_frame = QFrame(self)
         menu_frame.setObjectName("menu_frame")

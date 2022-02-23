@@ -2,10 +2,6 @@ QWidget {
     background-color: #F9F5F0;
 }
 
-QFrame#user_frame {
-    background-color: #4A321C;
-}
-
 QLabel#menu_label {
     background-color: transparent;
     font-family: "Dongle";
