@@ -1,7 +1,7 @@
 from abc import ABC
 from dataclasses import dataclass
 
-from access_level import AccessLevel
+from data.access_level import AccessLevel
 
 
 @dataclass
