@@ -7,7 +7,7 @@ class Widget(QWidget()):
     def __init__(self, parent: QWidget):
         QWidget.__init__(self, QWidget)
 
-    def _get_font(size: font) -> QFont:
+    def _get_font(self,size: font) -> QFont:
         font = QFont()
         font.setPixelSize(size)
         return font
