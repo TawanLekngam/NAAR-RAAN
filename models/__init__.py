@@ -1,1 +1,1 @@
-from models.model import *
+from models.model import (Model, MenuModel)
