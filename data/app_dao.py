@@ -1,7 +1,7 @@
 import sqlite3
 import os.path
-from data_classes import *
-from access_level import *
+from data.data_classes import *
+from data.access_level import *
 
 
 class AppDAO:
@@ -317,7 +317,7 @@ class BakeryQuantity:
     __COLUMN_ID = "id"
     __COLUMN_QUANTITY = "quantity"
 
-    def __init__(self, connection: sqlite3.Connection()):
+    def __init__(self, connection: sqlite3.Connection):
         self.__connection = connection
         self.__cursor = self.__connection.cursor()
         self.__create_table()
