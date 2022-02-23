@@ -4,7 +4,7 @@ from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
 from views.base_page import BasePage
-from views.user_tab import UserTab
+from views.widgets.user_tab import UserTab
 
 
 class Menu_order(BasePage):
