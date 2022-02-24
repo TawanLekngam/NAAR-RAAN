@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import (QWidget, QLabel, QPushButton,)
 from PySide6.QtGui import (QFont, QMouseEvent)
+from PySide6.QtCore import (QRect)
 
 
 class Widget(QWidget):  # Base Widget for dymamic widget
@@ -13,7 +14,7 @@ class Widget(QWidget):  # Base Widget for dymamic widget
         return font
 
 
-class UserTab(Widget):
+class UserTab(Widget):  # for show current user and go to another views
 
     def __init__(self, parent: QWidget):
         Widget.__init__(self, parent)
@@ -23,13 +24,19 @@ class UserTab(Widget):
             print("Log: On me.")
 
 
-class MenuItem(Widget):
+class MenuItem(Widget): 
 
     def __init__(self, parent: QWidget):
-        QWidget.__init__(self, parent)
+        Widget.__init__(self, parent)
 
 
-class OrderDetails(Widget):
+class OrderItem(Widget):
+
+    def __init__(self, parent: QWidget):
+        Widget.__init__(self, parent)
+
+
+class OrderDetails(Widget):  # order detail for menu order view
 
     def __init__(self, parent: QWidget):
         Widget.__init__(self, parent)
