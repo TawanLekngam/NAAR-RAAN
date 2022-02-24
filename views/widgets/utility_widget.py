@@ -1,10 +1,8 @@
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QPushButton)
 from PySide6.QtGui import (QFont, QMouseEvent)
 
-# Base Dynamic widget
 
-
-class Widget(QWidget):
+class Widget(QWidget): #Base Widget for dymamic widget
 
     def __init__(self, parent: QWidget):
         QWidget.__init__(self, parent)
