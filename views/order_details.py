@@ -3,7 +3,7 @@ from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
-from views.widgets.utility_widget import Widget
+from views.utility_widget import Widget
 
 
 class Order_details(Widget):
