@@ -142,7 +142,8 @@ LogDAO -- Log
 User - Log
 DrinkDAO -- Drink
 BakeryDAO -- Bakery
-Drink -* Product
-Product *- Bakery
+Bakery -* Product
+Product *- Drink
 BakeryDAO - BakeryQuantity
+AppDAO -- BakeryQuantity
 @enduml
