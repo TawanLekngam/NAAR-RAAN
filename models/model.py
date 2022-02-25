@@ -1,5 +1,5 @@
 from abc import ABC
-from data import *
+from data import AppDAO, Drink
 
 
 __APP_DAO = AppDAO()

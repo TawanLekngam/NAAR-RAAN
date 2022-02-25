@@ -1,16 +1,16 @@
 import sys
 from PySide6.QtWidgets import (QApplication)
 from controllers import *
-from views.widgets.order_details import Order_details
+from views.utility_widget import OrderDetails
 
 
 def main() -> int:
     app = QApplication(sys.argv)
     # win = LogInController()       # For test LogIn Page
-    #win = MenuOrderController()     # For test Menu Order Page
+    # win = MenuOrderController()     # For test Menu Order Page
 
-    od = Order_details()
-    
+    od = OrderDetails(None)
+
     return app.exec()
 
 
