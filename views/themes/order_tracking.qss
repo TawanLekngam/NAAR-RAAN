@@ -1,0 +1,23 @@
+QWidget {
+    background-color: #F9F5F0;
+}
+
+QLabel#label_todo, #label_doing,#label_done {
+    background-color: transparent;
+    font-family: "Dongle";
+    font-weight: bold;
+    color: #4A321C;
+    font-size: 70pt
+}
+QScrollArea#scrollArea_todo, #scrollArea_doing, #scrollArea_done{
+    background-color: #D8B797;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 30px;
+}
+QWidget#scrollAreaWidgetContents, #scrollAreaWidgetContents_2,#scrollAreaWidgetContents_3{
+    background-color: #D8B797;
+    border-radius: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
