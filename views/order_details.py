@@ -7,7 +7,7 @@ from views.utility_widget import Widget
 
 
 class Order_details(Widget):
-    def __init__(self, parent: QWidget):
+    def __init__(self, parent: QWidget = None):
         Widget.__init__(self, parent)
         self.setFixedSize(1000, 850)
 
@@ -111,6 +111,7 @@ class Order_details(Widget):
         add_button.setFont(self._get_font(65))
         add_button.setGeometry(QRect(551, 726, 200, 80))
 
+        self._set_stylesheet("order_details.qss")
         self.show()
 
 
