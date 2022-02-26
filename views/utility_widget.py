@@ -6,7 +6,7 @@ from PySide6.QtCore import (QRect)
 
 class Widget(QWidget):  # Base Widget for dymamic widget
 
-    def __init__(self, parent: QWidget):
+    def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
 
     def _get_font(self, size: int) -> QFont:
@@ -26,7 +26,7 @@ class Widget(QWidget):  # Base Widget for dymamic widget
 
 class UserTab(Widget):  # for show current user and go to another views
 
-    def __init__(self, parent: QWidget):
+    def __init__(self, parent: QWidget = None):
         Widget.__init__(self, parent)
 
     def mouseMoveEvent(self, event: QMouseEvent):
@@ -48,7 +48,7 @@ class OrderItem(Widget):
 
 class OrderDetails(Widget):  # order detail for menu order view
 
-    def __init__(self, parent: QWidget):
+    def __init__(self, parent: QWidget  = None):
         Widget.__init__(self, parent)
         self.setFixedSize(1000, 850)
 
