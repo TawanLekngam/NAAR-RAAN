@@ -1,3 +1,4 @@
+import os.path
 from PySide6.QtWidgets import (QWidget, QLabel, QPushButton,)
 from PySide6.QtGui import (QFont, QMouseEvent)
 from PySide6.QtCore import (QRect)
@@ -13,6 +14,15 @@ class Widget(QWidget):  # Base Widget for dymamic widget
         font.setPixelSize(size)
         return font
 
+    def _set_stylesheet(filename: str) -> None:
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        theme_dir = os.path.join(base_dir, "themes")
+        real_path = os.path.join(theme_dir, filename)
+        with open(real_path, "r") as file:
+            style = file.read()
+            self.setStyleSheet(style)
+        file.close()
+
 
 class UserTab(Widget):  # for show current user and go to another views
 
@@ -24,7 +34,7 @@ class UserTab(Widget):  # for show current user and go to another views
             print("Log: On me.")
 
 
-class MenuItem(Widget): 
+class MenuItem(Widget):
 
     def __init__(self, parent: QWidget):
         Widget.__init__(self, parent)
