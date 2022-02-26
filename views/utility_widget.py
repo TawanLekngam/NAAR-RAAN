@@ -14,7 +14,7 @@ class Widget(QWidget):  # Base Widget for dymamic widget
         font.setPixelSize(size)
         return font
 
-    def _set_stylesheet(self,filename: str) -> None:
+    def _set_stylesheet(self, filename: str) -> None:
         base_dir = os.path.dirname(os.path.abspath(__file__))
         theme_dir = os.path.join(base_dir, "themes")
         real_path = os.path.join(theme_dir, filename)
