@@ -15,6 +15,12 @@ QPushButton#default_button {
     border-radius: 20px;
 }
 
+QPushButton#default_button:checked {
+    background-color: #754926;
+    border-radius: 20px;
+    color: #F9F5F0;
+}
+
 QLabel#sweetness_label {
     font-family: "Dongle";
     color: #754926;
@@ -30,4 +36,10 @@ QPushButton#cancel_add_button {
     color: #F9F5F0;
     background: #4A321C;
     border-radius: 20px;
+}
+
+QPushButton#cancel_add_button:hover {
+    background-color: #754926;
+    border-radius: 20px;
+    color: #F9F5F0;
 }
