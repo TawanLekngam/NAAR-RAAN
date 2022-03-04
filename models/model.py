@@ -10,9 +10,5 @@ class Model(ABC):
 
 
 class MenuModel(Model):
-
-    def __init__(self):
-        print("Log: Load" + type(self).__name__)
-
     def get_all_drinks() -> list[Drink]:
         return __APP_DAO.get_all_drinks()
