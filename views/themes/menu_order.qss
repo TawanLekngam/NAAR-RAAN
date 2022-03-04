@@ -4,8 +4,6 @@ QWidget {
 
 QLabel#menu_label {
     background-color: transparent;
-    font-family: "Dongle";
-    font-weight: bold;
     color: #4A321C;
 }
 
@@ -15,8 +13,6 @@ QFrame#menu_frame {
 }
 
 QLineEdit#search_bar {
-    font-family: "Dongle";
-    font-weight: bold;
     padding-left: 30px;
     padding-right: 30px;
     color: #4A321C;
@@ -63,22 +59,12 @@ QFrame#line {
     background-color: #D8B797;
 }
 
-QLabel#total_label {
-    font-family: "Dongle";
-    font-weight: bold;
-    color: #4A321C;
-}
-
-QLabel#number_label {
-    font-family: "Dongle";
-    font-weight: bold;
+QLabel#default_label {
     color: #4A321C;
 }
 
 QPushButton#order_button {
     background-color: #754926;
-    font-family: "Dongle";
-    font-weight: bold;
     color: #F9F5F0;
     border: 5px solid #754926;
     border-radius: 20px;

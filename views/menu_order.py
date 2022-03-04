@@ -5,6 +5,7 @@ from PySide6.QtWidgets import *
 
 from views.base_page import BasePage
 from views.utility_widget import UserTab
+from views.themes.theme import Theme
 
 
 class Menu_order(BasePage):
@@ -20,12 +21,12 @@ class Menu_order(BasePage):
 
         menu_label = QLabel("Menu", menu_frame)
         menu_label.setObjectName("menu_label")
-        menu_label.setFont(self._get_font(80))
+        menu_label.setFont(Theme.DONGLE_BOLD_80)
         menu_label.setGeometry(QRect(54, 26, 128, 116))
 
         search_bar = QLineEdit(menu_frame)
         search_bar.setObjectName("search_bar")
-        search_bar.setFont(self._get_font(65))
+        search_bar.setFont(Theme.DONGLE_BOLD_65)
         search_bar.setGeometry(QRect(272, 40, 677, 80))
 
         menu_scrollArea = QScrollArea(menu_frame)
@@ -55,18 +56,18 @@ class Menu_order(BasePage):
         line.setGeometry(QRect(25, 634, 650, 5))
 
         total_label = QLabel("Total", order_frame)
-        total_label.setObjectName("total_label")
-        total_label.setFont(self._get_font(65))
+        total_label.setObjectName("default_label")
+        total_label.setFont(Theme.DONGLE_BOLD_65)
         total_label.setGeometry(QRect(420, 660, 110, 40))
 
         number_label = QLabel("0", order_frame)
-        number_label.setObjectName("number_label")
-        number_label.setFont(self._get_font(65))
+        number_label.setObjectName("default_label")
+        number_label.setFont(Theme.DONGLE_BOLD_65)
         number_label.setGeometry(QRect(540, 660, 115, 40))
 
         order_button = QPushButton("Order", self)
         order_button.setObjectName("order_button")
-        order_button.setFont(self._get_font(65))
+        order_button.setFont(Theme.DONGLE_BOLD_65)
         order_button.setGeometry(QRect(1145, 885, 700, 80))
 
         self.showFullScreen()
