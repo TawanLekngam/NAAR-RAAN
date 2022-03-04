@@ -1,4 +1,4 @@
-from PySide6 import QFont
+from PySide6.QtGui import QFont
 
 class Theme:
     #Font
@@ -13,10 +13,10 @@ class Theme:
     DONGLE_BOLD_65.setPixelSize(65)
     DONGLE_BOLD_80.setBold(True)
 
-    #Colors
-    DARK_BROWN = "3B2816"
-    LIGHT_BROWN = "754926"
-    CREAM = "D8B797"
-    EGG_WHITE = "F9F5F0"
+    #Colors (Just in case)
+    # DARK_BROWN = "4A321C"
+    # LIGHT_BROWN = "754926"
+    # CREAM = "D8B797"
+    # EGG_WHITE = "F9F5F0"
 
 
