@@ -259,8 +259,8 @@ class BakeryDAO:
             '{bakery.get_price()}')""")
 
 
-class LogEntryDAO:
-    __table_name = "LOGENTRY"
+class LogDAO:
+    __table_name = "LOGS"
     __COLUMN_ID = "id"
     __COLUMN_DATE = "date"
     __COLUMN_TIME = "time"
