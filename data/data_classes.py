@@ -36,12 +36,8 @@ class User:
         return self.__access_level
 
 
-class Product(ABC):
-    pass
-
-
 @dataclass
-class Drink(Product):
+class Drink:
     __id: int
     __name: str
     __hot_price: float
@@ -65,7 +61,7 @@ class Drink(Product):
 
 
 @dataclass
-class Bakery(Product):
+class Bakery:
     __id: int
     __name: str
     __price: float
@@ -81,11 +77,28 @@ class Bakery(Product):
 
 
 @dataclass
-class LogEntry:
+class Receipt:
     __id: int
     __date: str
     __time: str
-    __operator: User
+    __detail: str
+
+    def get_id(self) -> int:
+        return self.__id
+
+    def get_date(self) -> str:
+        return self.__date
+
+    def get_time(self) -> str:
+        return self.__time
+
+
+@dataclass
+class Log:
+    __id: int
+    __date: str
+    __time: str
+    __owner: User
     __description: str
 
     def get_id(self) -> int:
@@ -97,8 +110,8 @@ class LogEntry:
     def get_time(self) -> str:
         return self.__time
 
-    def get_operator(self) -> User:
-        return self.__operator
+    def get_owner(self) -> User:
+        return self.__owner
 
     def get_description(self) -> str:
         return self.__description
