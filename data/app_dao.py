@@ -1,7 +1,16 @@
 import sqlite3
-import os.path
+import os
 from data.data_classes import *
 from data.access_level import *
+
+
+class DAO:
+    connection: sqlite3.Connection
+    cursor: sqlite3.Cursor
+
+    def __init__(self, connection: sqlite3.Connection):
+        self.connection = connection
+        self.cursor = self.__connection.cursor()
 
 
 class AppDAO:
@@ -304,5 +313,3 @@ class LogEntryDAO:
             '{user.get_id()}',
             '{log_entry.get_description()}')""")
         self.__connection.commit()
-
-
