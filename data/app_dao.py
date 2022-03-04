@@ -16,8 +16,6 @@ class AppDAO:
         self.__bakery_dao = BakeryDAO(self.connection)
         self.__log_entry_dao = LogEntryDAO(self.connection, self.__user_dao)
 
-        self.__bakery_quantity = BakeryQuantity(self.connection)
-
     def close_database(self) -> None:
         self.connection.close()
 
