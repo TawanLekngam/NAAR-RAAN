@@ -4,15 +4,10 @@ from PySide6.QtGui import (QFont, QMouseEvent)
 from PySide6.QtCore import (QRect)
 
 
-class Widget(QWidget):  # Base Widget for dymamic widget
+class Widget(QWidget):  # base Widget for dymamic widget
 
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
-
-    def _get_font(self, size: int) -> QFont:
-        font = QFont()
-        font.setPixelSize(size)
-        return font
 
     def _set_stylesheet(self, filename: str) -> None:
         base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -48,7 +43,7 @@ class OrderItem(Widget):
 
 class OrderDetails(Widget):  # order detail for menu order view
 
-    def __init__(self, parent: QWidget  = None):
+    def __init__(self, parent: QWidget = None):
         Widget.__init__(self, parent)
         self.setFixedSize(1000, 850)
 

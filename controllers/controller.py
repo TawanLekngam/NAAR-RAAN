@@ -1,4 +1,3 @@
-from abc import (ABC)
 from PySide6.QtWidgets import (QWidget)
 
 from views import *
@@ -7,7 +6,7 @@ from models import *
 
 class Controller:
 
-    def __init__(self, view: QWidget, model: Model) -> None:
+    def __init__(self, view: QWidget = None, model: Model= None):
         self.view = view
         self.model = model
 
