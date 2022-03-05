@@ -46,13 +46,13 @@ class Drink:
     def get_name(self) -> str:
         return self.__name
 
-    def get_hot_price(self) -> float:
+    def get_h_price(self) -> float:
         return self.__hot_price
 
-    def get_cold_price(self) -> float:
+    def get_c_price(self) -> float:
         return self.__cold_price
 
-    def get_blended_price(self) -> float:
+    def get_b_price(self) -> float:
         return self.__blended_price
 
 
