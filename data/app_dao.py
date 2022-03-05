@@ -10,9 +10,9 @@ class DAO:
 
     def __init__(self, connection: sqlite3.Connection):
         self.connection = connection
-        self.cursor = self.__connection.cursor()
+        self.cursor = self.connection.cursor()
 
-    def execute(self, execute_sql: str) -> None:
+    def execute(self, sql: str) -> None:
         self.cursor.execute(execute_sql)
 
     def commit(self) -> None:
@@ -80,9 +80,10 @@ class UserDAO(DAO):
 
     def __init__(self, connection: sqlite3.Connection):
         super().__init__(connection)
+        self.__create_table()
 
-    def create_table(self) -> None:
-        self.cursor.execute(f"""CREATE TABLE IF NOT EXISTS {UserDAO.__table_name} (
+    def __create_table(self) -> None:
+        self.execute(f"""CREATE TABLE IF NOT EXISTS {UserDAO.__table_name} (
             {UserDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
             {UserDAO.__COLUMN_FIRSTNAME} TEXT,
             {UserDAO.__COLUMN_LASTNAME} TEXT,
@@ -90,6 +91,27 @@ class UserDAO(DAO):
             {UserDAO.__COLUMN_PASSWORD} TEXT,
             {UserDAO.__COLUMN_ACCESSLEVEL} TEXT)""")
         self.commit()
+
+    def add_user(self, user: User) -> None:
+        access_level = "Admin" if isinstance(
+            user.get_access_level(), AdminAccess) else "Employee"
+        self.execute(
+            f"""INSERT INTO {UserDAO.__table_name}(
+            {UserDAO.__COLUMN_FIRSTNAME},
+            {UserDAO.__COLUMN_LASTNAME},
+            {UserDAO.__COLUMN_USERNAME},
+            {UserDAO.__COLUMN_PASSWORD},
+            {UserDAO.__COLUMN_ACCESSLEVEL})
+            VALUES
+            ('{user.get_firstname()}',
+            '{user.get_lastname()}',
+            '{user.get_username()}',
+            '{user.get_password()}',
+            '{access_level}')""")
+        self.commit()
+
+    def update_user(self, id: int, firstname: str = None, lastname: str = None, username: str = None, password: str = None):
+        pass
 
     def get_all_users(self) -> list[User]:
         self.execute(f"SELECT * FROM {UserDAO.__table_name}")
@@ -109,7 +131,7 @@ class UserDAO(DAO):
         return convert_data
 
     def get_user_by_id(self, id: int) -> User:
-        self.__cursor.execute(
+        self.execute(
             f"SELECT * FROM {UserDAO.__table_name} WHERE {UserDAO.__COLUMN_ID}={id}")
         raw_query = self.cursor.fetchone()
         if raw_query is None:
@@ -124,10 +146,10 @@ class UserDAO(DAO):
                     access_level)
 
     def get_user_by_username(self, username: str) -> User:
-        self.__cursor.execute(
+        self.execute(
             f"SELECT * FROM {UserDAO.__table_name} WHERE {UserDAO.__COLUMN_USERNAME}='{username}'")
-        data = self.cursor.fetchone()
-        if data is None:
+        raw_query = self.cursor.fetchone()
+        if raw_query is None:
             return None
         access_level = AdminAccess(
         ) if data[5] == "Admin" else EmployeeAccess()
@@ -138,28 +160,11 @@ class UserDAO(DAO):
                     data[4],
                     access_level)
 
-    def add_user(self, user: User) -> None:
-        access_level = "Admin" if isinstance(
-            user.get_access_level(), AdminAccess) else "Employee"
-
-        self.execute(
-            f"""INSERT INTO {UserDAO.__table_name}(
-            {UserDAO.__COLUMN_FIRSTNAME},
-            {UserDAO.__COLUMN_LASTNAME},
-            {UserDAO.__COLUMN_USERNAME},
-            {UserDAO.__COLUMN_PASSWORD},
-            {UserDAO.__COLUMN_ACCESSLEVEL})
-            VALUES
-            ('{user.get_firstname()}',
-            '{user.get_lastname()}',
-            '{user.get_username()}',
-            '{user.get_password()}',
-            '{access_level}')""")
-
-        self.commit()
+    def delete_user(self, id: int):
+        pass
 
 
-class DrinkDAO:
+class DrinkDAO(DAO):
     __table_name = "DRINKS"
     __COLUMN_ID = "id"
     __COLUMN_NAME = "name"
@@ -168,9 +173,7 @@ class DrinkDAO:
     __COLUMN_BLENDED = "blended"
 
     def __init__(self, connection: sqlite3.Connection):
-        self.__connection = connection
-        self.__cursor = self.__connection.cursor()
-        self.__query = list()
+        super().__init__(connection)
         self.__create_table()
 
     def __create_table(self) -> None:
