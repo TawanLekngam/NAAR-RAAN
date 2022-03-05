@@ -11,7 +11,6 @@ class User:
     __lastname: str
     __username: str
     __password: str
-    __phone_number: str
     __access_level: AccessLevel
 
     def get_id(self) -> int:
@@ -28,9 +27,6 @@ class User:
 
     def get_password(self) -> str:
         return self.__password
-
-    def get_phone_number(self) -> str:
-        return self.__phone_number
 
     def get_access_level(self) -> AccessLevel:
         return self.__access_level
