@@ -12,18 +12,17 @@ QLabel#label_todo, #label_doing,#label_done {
 QScrollArea#scrollArea_todo, #scrollArea_doing, #scrollArea_done{
     background-color: #D8B797;
     border-radius: 20px;
-    padding-left: 20px;
-    padding-right: 30px;
+    padding: 0px;
 }
 QWidget#scrollAreaWidgetContents, #scrollAreaWidgetContents_2,#scrollAreaWidgetContents_3{
     background-color: #D8B797;
+    padding: 0px;
     border-radius: 20px;
-    padding: 30px;
+   
 }
 
 QListView#listView_todo_1, #listView_todo_2, #listView_doing_1, #listView_doing_2, #listView_done_1{
     background-color: #754926;
-    border-radius: 10px 10px 10px 10px;
-    padding-left: 20px;
-    padding-right: 30px;
+    border-radius: 10px;
+    
 }
