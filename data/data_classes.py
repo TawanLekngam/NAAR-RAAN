@@ -94,7 +94,6 @@ class Log:
     __id: int
     __date: str
     __time: str
-    __owner: User
     __description: str
 
     def get_id(self) -> int:
@@ -105,9 +104,6 @@ class Log:
 
     def get_time(self) -> str:
         return self.__time
-
-    def get_owner(self) -> User:
-        return self.__owner
 
     def get_description(self) -> str:
         return self.__description
