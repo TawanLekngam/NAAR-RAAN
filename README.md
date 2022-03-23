@@ -1,2 +1,2 @@
-# Narr Raan
-Narr Raan is a point of sale system(POS) that supports service workers such as managers and employees. The purpose of this software is to provide a proper system and improve work efficiency to keep track of orders, order processes, activity logs, and transactions.
+# Naar Raan
+Naar Raan is a point of sale system(POS) that supports service workers such as managers and employees. The purpose of this software is to provide a proper system and improve work efficiency to keep track of orders, order processes, activity logs, and transactions.
