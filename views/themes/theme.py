@@ -4,7 +4,7 @@ from PySide6.QtGui import QFont
 
 class Theme:
     __ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-    __THEME_PATH = os.path.join(Theme.__ROOT_DIR, "theme.qss")
+    __THEME_PATH = os.path.join(__ROOT_DIR, "theme.qss")
 
     # Font
     DONGLE_REGULAR_65 = QFont("Dongle")
