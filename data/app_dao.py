@@ -1,72 +1,37 @@
 import sqlite3
 import os
+from abc import ABC
 from data.data_classes import *
 from data.access_level import *
 
 
-class DAO:
-    connection: sqlite3.Connection
-    cursor: sqlite3.Cursor
+class AppDAO:
+    __ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+    __DB_PATH = os.path.join(__ROOT_DIR, "naar_raan.db")
+    __connection: sqlite3.Connection = sqlite3.connect(__DB_PATH)
 
+    @staticmethod
+    def get_dao(database: str = None) -> DAO:
+        if database == "user":
+            return UserDAO(AppDAO.__connection)
+        elif database == "drink":
+            return DrinkDAO(AppDAO.__connection)
+        elif database == "bakery":
+            return BakeryDAO(AppDAO.__connection)
+        elif database == "log":
+            return LogDAO(AppDAO.__connection)
+        return None
+
+    @staticmethod
+    def close_database() -> None:
+        """ disconnect database."""
+        AppDAO.__connection.close()
+
+
+class DAO(ABC):
     def __init__(self, connection: sqlite3.Connection):
         self.connection = connection
         self.cursor = self.connection.cursor()
-
-    def execute(self, sql: str) -> None:
-        self.cursor.execute(execute_sql)
-
-    def commit(self) -> None:
-        self.connection.commit()
-        print("Database: Commit.")  # debug log
-
-
-class AppDAO:
-    __ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-    __DB_PATH = os.path.join(__ROOT_DIR, "perd_raan.db")
-
-    def __init__(self):
-        self.connection = sqlite3.connect(AppDAO.__DB_PATH)
-        self.__user_dao = UserDAO(self.connection)
-        self.__drink_dao = DrinkDAO(self.connection)
-        self.__bakery_dao = BakeryDAO(self.connection)
-        self.__log_entry_dao = LogEntryDAO(self.connection, self.__user_dao)
-
-    def close_database(self) -> None:
-        self.connection.close()
-
-    # UserDAO
-    def add_user(self, user: User) -> None:
-        self.__user_dao.add_user(user)
-
-    def get_all_users(self) -> list[User]:
-        return self.__user_dao.get_all_users()
-
-    def get_user_by_id(self, id: int) -> User:
-        return self.__user_dao.get_user_by_id(id)
-
-    def get_user_by_username(self, username: str) -> User:
-        return self.__user_dao.get_user_by_username(username)
-
-    # DrinkDAO
-    def add_drink(self, drink: Drink) -> None:
-        self.__drink_dao.add_drink(drink)
-
-    def get_all_drinks(self) -> list[Drink]:
-        return self.__drink_dao.get_all_drinks()
-
-    # BakeryDAO
-    def add_bakery(self, bakery: Bakery) -> None:
-        self.__bakery_dao.add_bakery(bakery)
-
-    def get_all_bakeries(self) -> list[Bakery]:
-        return self.__bakery_dao.get_all_bakeries()
-
-    # LogEntryDAO
-    def add_log_entry(self, log_entry: LogEntry) -> None:
-        self.__log_entry_dao.add_log_entry(log_entry)
-
-    def get_all_log(self) -> list[LogEntry]:
-        return self.__log_entry_dao.get_all_log_entry()
 
 
 class UserDAO(DAO):
@@ -83,19 +48,21 @@ class UserDAO(DAO):
         self.__create_table()
 
     def __create_table(self) -> None:
-        self.execute(f"""CREATE TABLE IF NOT EXISTS {UserDAO.__table_name} (
+        """ create users table if not exists."""
+        self.cursor.execute(f"""CREATE TABLE IF NOT EXISTS {UserDAO.__table_name} (
             {UserDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
             {UserDAO.__COLUMN_FIRSTNAME} TEXT,
             {UserDAO.__COLUMN_LASTNAME} TEXT,
             {UserDAO.__COLUMN_USERNAME} TEXT,
             {UserDAO.__COLUMN_PASSWORD} TEXT,
             {UserDAO.__COLUMN_ACCESSLEVEL} TEXT)""")
-        self.commit()
+        self.cursor.commit()
 
     def add_user(self, user: User) -> None:
+        """ add user data to users table."""
         access_level = "Admin" if isinstance(
-            user.get_access_level(), AdminAccess) else "Employee"
-        self.execute(
+            user.get_access_level(), AdminAccess) else "Staff"
+        self.cursor.execute(
             f"""INSERT INTO {UserDAO.__table_name}(
             {UserDAO.__COLUMN_FIRSTNAME},
             {UserDAO.__COLUMN_LASTNAME},
@@ -108,10 +75,40 @@ class UserDAO(DAO):
             '{user.get_username()}',
             '{user.get_password()}',
             '{access_level}')""")
-        self.commit()
+        self.connection.commit()
 
-    def update_user(self, id: int, firstname: str = None, lastname: str = None, username: str = None, password: str = None):
-        pass
+    def update_user(
+        self,
+        id: int,
+        firstname: str = None,
+        lastname: str = None,
+        username: str = None,
+        password: str = None,
+        access: AccessLevel = None
+    ) -> None:
+        """ update user data where the given id.
+            example:    update_user(10, firstname="natcha", access=AdminAccess())
+        """
+        query = f"UPDATE {UserDAO.__table_name} SET "
+
+        if firstname is not None:
+            query += f'{UserDAO.__COLUMN_FIRSTNAME}="{firstname}", '
+        if lastname is not None:
+            query += f'{UserDAO.__COLUMN_LASTNAME}="{lastname}", '
+        if username is not None:
+            query += f'{UserDAO.__COLUMN_USERNAME}="{username}", '
+        if password is not None:
+            query += f'{UserDAO.__COLUMN_PASSWORD}="{password}", '
+        if access is not None:
+            level = "admin" if isinstance(access, AdminAccess) else "staff"
+            query += f'{UserDAO.__COLUMN_ACCESSLEVEL}="{level}"'
+
+        if query[-2] == ',':
+            query = query[:-2]
+
+        query += f" WHERE {UserDAO.__COLUMN_ID}={id}"
+        self.cursor.execute(query)
+        self.connection.commit()
 
     def get_all_users(self) -> list[User]:
         self.execute(f"SELECT * FROM {UserDAO.__table_name}")
@@ -120,7 +117,7 @@ class UserDAO(DAO):
         convert_data = list()
         for data in raw_query:
             access_level = AdminAccess(
-            ) if data[5] == "Admin" else EmployeeAccess()
+            ) if data[5] == "Admin" else StaffAccess()
             user = User(data[0],
                         data[1],
                         data[2],
@@ -131,13 +128,12 @@ class UserDAO(DAO):
         return convert_data
 
     def get_user_by_id(self, id: int) -> User:
-        self.execute(
+        self.cursor.execute(
             f"SELECT * FROM {UserDAO.__table_name} WHERE {UserDAO.__COLUMN_ID}={id}")
         data = self.cursor.fetchone()
         if data is None:
             return None
-        access_level = AdminAccess(
-        ) if data[5] == "Admin" else EmployeeAccess()
+        access_level = AdminAccess() if data[5] == "Admin" else StaffAccess()
         return User(data[0],
                     data[1],
                     data[2],
@@ -146,13 +142,12 @@ class UserDAO(DAO):
                     access_level)
 
     def get_user_by_username(self, username: str) -> User:
-        self.execute(
+        self.cursor.execute(
             f"SELECT * FROM {UserDAO.__table_name} WHERE {UserDAO.__COLUMN_USERNAME}='{username}'")
         data = self.cursor.fetchone()
         if data is None:
             return None
-        access_level = AdminAccess(
-        ) if data[5] == "Admin" else EmployeeAccess()
+        access_level = AdminAccess() if data[5] == "Admin" else StaffAccess()
         return User(data[0],
                     data[1],
                     data[2],
@@ -160,8 +155,12 @@ class UserDAO(DAO):
                     data[4],
                     access_level)
 
-    def delete_user(self, id: int):
-        pass
+    def delete_user_by_id(self, id: int) -> None:
+        """ delete user data at given id."""
+        self.cursor.execute(
+            f"DELETE FROM {UserDAO.__table_name} WHERE {UserDAO.__COLUMN_ID}={id}"
+        )
+        self.connection.commit()
 
 
 class DrinkDAO(DAO):
