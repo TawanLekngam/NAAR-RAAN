@@ -12,6 +12,6 @@ class AdminAccess(AccessLevel):
         return "Admin"
 
 
-class EmployeeAccess(AccessLevel):
+class StaffAccess(AccessLevel):
     def get_access_level() -> str:
-        return "Employee"
+        return "Staff"
