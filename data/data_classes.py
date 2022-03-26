@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
 from data.access_level import AccessLevel
@@ -32,8 +32,15 @@ class User:
         return self.__access_level
 
 
+class Product(ABC):
+    
+    @abstractmethod
+    def get_name(self) -> str:
+        pass
+
+
 @dataclass
-class Drink:
+class Drink(Product):
     __id: int
     __name: str
     __hot_price: float
@@ -57,7 +64,7 @@ class Drink:
 
 
 @dataclass
-class Bakery:
+class Bakery(Product):
     __id: int
     __name: str
     __price: float
