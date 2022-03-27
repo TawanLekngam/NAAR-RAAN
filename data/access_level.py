@@ -9,9 +9,9 @@ class AccessLevel(ABC):
 
 class AdminAccess(AccessLevel):
     def get_access_level() -> str:
-        return "Admin"
+        return "admin"
 
 
 class StaffAccess(AccessLevel):
     def get_access_level() -> str:
-        return "Staff"
+        return "staff"
