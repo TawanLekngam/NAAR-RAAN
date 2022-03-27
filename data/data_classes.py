@@ -31,6 +31,9 @@ class User:
     def get_access_level(self) -> AccessLevel:
         return self.__access_level
 
+    def get_access_level_str(self) -> str:
+        return self.__access_level.get_access_level()
+
 
 class Product(ABC):
     
@@ -97,10 +100,11 @@ class Receipt:
 
 
 @dataclass
-class Log:
+class LogEntry:
     __id: int
     __date: str
     __time: str
+    __operator: int
     __description: str
 
     def get_id(self) -> int:
@@ -111,6 +115,9 @@ class Log:
 
     def get_time(self) -> str:
         return self.__time
+
+    def get_operator(self) -> str:
+        return self.__operator
 
     def get_description(self) -> str:
         return self.__description
