@@ -1,8 +1,18 @@
 import sqlite3
 import os
-from abc import ABC
+from abc import ABC, abstractmethod
 from data.data_classes import *
 from data.access_level import *
+
+
+class DAO(ABC):
+    def __init__(self, connection: sqlite3.Connection):
+        self.connection = connection
+        self.cursor = self.connection.cursor()
+
+    @abstractmethod
+    def __create_table(self) -> None:
+        pass
 
 
 class AppDAO:
@@ -14,24 +24,12 @@ class AppDAO:
     def get_dao(database: str = None) -> DAO:
         if database == "user":
             return UserDAO(AppDAO.__connection)
-        elif database == "drink":
-            return DrinkDAO(AppDAO.__connection)
-        elif database == "bakery":
-            return BakeryDAO(AppDAO.__connection)
-        elif database == "log":
-            return LogDAO(AppDAO.__connection)
         return None
 
     @staticmethod
     def close_database() -> None:
         """ disconnect database."""
         AppDAO.__connection.close()
-
-
-class DAO(ABC):
-    def __init__(self, connection: sqlite3.Connection):
-        self.connection = connection
-        self.cursor = self.connection.cursor()
 
 
 class UserDAO(DAO):
@@ -49,19 +47,19 @@ class UserDAO(DAO):
 
     def __create_table(self) -> None:
         """ create users table if not exists."""
-        self.cursor.execute(f"""CREATE TABLE IF NOT EXISTS {UserDAO.__table_name} (
+        self.cursor.execute(
+            f"""CREATE TABLE IF NOT EXISTS {UserDAO.__table_name} (
             {UserDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
             {UserDAO.__COLUMN_FIRSTNAME} TEXT,
             {UserDAO.__COLUMN_LASTNAME} TEXT,
             {UserDAO.__COLUMN_USERNAME} TEXT,
             {UserDAO.__COLUMN_PASSWORD} TEXT,
             {UserDAO.__COLUMN_ACCESSLEVEL} TEXT)""")
-        self.cursor.commit()
+        self.connection.commit()
 
     def add_user(self, user: User) -> None:
         """ add user data to users table."""
-        access_level = "Admin" if isinstance(
-            user.get_access_level(), AdminAccess) else "Staff"
+        access_level = user.get_access_level_str()
         self.cursor.execute(
             f"""INSERT INTO {UserDAO.__table_name}(
             {UserDAO.__COLUMN_FIRSTNAME},
@@ -89,6 +87,7 @@ class UserDAO(DAO):
         """ update user data where the given id.
             example:    update_user(10, firstname="natcha", access=AdminAccess())
         """
+
         query = f"UPDATE {UserDAO.__table_name} SET "
 
         if firstname is not None:
@@ -100,7 +99,7 @@ class UserDAO(DAO):
         if password is not None:
             query += f'{UserDAO.__COLUMN_PASSWORD}="{password}", '
         if access is not None:
-            level = "admin" if isinstance(access, AdminAccess) else "staff"
+            level = access.get_access_level_str()
             query += f'{UserDAO.__COLUMN_ACCESSLEVEL}="{level}"'
 
         if query[-2] == ',':
@@ -112,12 +111,12 @@ class UserDAO(DAO):
 
     def get_all_users(self) -> list[User]:
         self.execute(f"SELECT * FROM {UserDAO.__table_name}")
-        raw_query = self.cursor.fetchall()
+        query = self.cursor.fetchall()
         # convert data
         convert_data = list()
-        for data in raw_query:
+        for data in query:
             access_level = AdminAccess(
-            ) if data[5] == "Admin" else StaffAccess()
+            ) if data[5] == "admin" else StaffAccess()
             user = User(data[0],
                         data[1],
                         data[2],
@@ -133,7 +132,7 @@ class UserDAO(DAO):
         data = self.cursor.fetchone()
         if data is None:
             return None
-        access_level = AdminAccess() if data[5] == "Admin" else StaffAccess()
+        access_level = AdminAccess() if data[5] == "admin" else StaffAccess()
         return User(data[0],
                     data[1],
                     data[2],
@@ -147,7 +146,7 @@ class UserDAO(DAO):
         data = self.cursor.fetchone()
         if data is None:
             return None
-        access_level = AdminAccess() if data[5] == "Admin" else StaffAccess()
+        access_level = AdminAccess() if data[5] == "admin" else StaffAccess()
         return User(data[0],
                     data[1],
                     data[2],
@@ -158,163 +157,164 @@ class UserDAO(DAO):
     def delete_user_by_id(self, id: int) -> None:
         """ delete user data at given id."""
         self.cursor.execute(
-            f"DELETE FROM {UserDAO.__table_name} WHERE {UserDAO.__COLUMN_ID}={id}"
-        )
+            f"DELETE FROM {UserDAO.__table_name} WHERE {UserDAO.__COLUMN_ID}={id}")
         self.connection.commit()
 
 
-class DrinkDAO(DAO):
-    __table_name = "DRINKS"
+class DrinkPriceDAO(DAO):
+    __table_name = "PRICE_DRINKS"
     __COLUMN_ID = "id"
-    __COLUMN_NAME = "name"
-    __COLUMN_HOT = "hot"
-    __COLUMN_COLD = "cold"
-    __COLUMN_BLENDED = "blended"
+    __COLUMN_HPRICE = "hot"
+    __COLUMN_CPRICE = "cold"
+    __COLUMN_BPRICE = "blended"
 
     def __init__(self, connection: sqlite3.Connection):
         super().__init__(connection)
         self.__create_table()
 
     def __create_table(self) -> None:
-        self.execute(f"""CREATE TABLE IF NOT EXISTS {DrinkDAO.__table_name} (
-            {DrinkDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
-            {DrinkDAO.__COLUMN_NAME} TEXT,
-            {DrinkDAO.__COLUMN_HOT} REAL,
-            {DrinkDAO.__COLUMN_COLD} REAL,
-            {DrinkDAO.__COLUMN_BLENDED} REAL)""")
-        self.commit()
+        self.cursor.execute(
+            f"""CREATE TABLE IF NOT EXISTS {DrinkPriceDAO.__table_name} (
+            {DrinkPriceDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
+            {DrinkPriceDAO.__COLUMN_HPRICE} REAL,
+            {DrinkPriceDAO.__COLUMN_CPRICE} REAL,
+            {DrinkPriceDAO.__COLUMN_BPRICE} REAL)""")
+        self.connection.commit()
 
-    def add_drink(self, drink: Drink):
-        self.execute(
-            f"""INSERT INTO {DrinkDAO.__table_name}(
-            {DrinkDAO.__COLUMN_ID},
-            {DrinkDAO.__COLUMN_NAME},
-            {DrinkDAO.__COLUMN_HOT},
-            {DrinkDAO.__COLUMN_COLD},
-            {DrinkDAO.__COLUMN_BLENDED})
+    def add_drink_price(self, id: int, hprice: float, cprice: float, bprice: float) -> None:
+        self.cursor.execute(f"""INSERT INTO {DrinkPriceDAO.__table_name} (
+            {DrinkPriceDAO.__COLUMN_ID},
+            {DrinkPriceDAO.__COLUMN_HPRICE},
+            {DrinkPriceDAO.__COLUMN_CPRICE},
+            {DrinkPriceDAO.__COLUMN_BPRICE})
             VALUES
-            ('{drink.get_id()}',
-            '{drink.get_name()}',
-            '{drink.get_h_price()}',
-            '{drink.get_c_price()}',
-            '{drink.get_b_price()}')""")
-        self.commit()
+            ({id},
+            {hprice},
+            {cprice},
+            {bprice})""")
+        self.connection.commit()
 
-    def get_all_drinks(self) -> list[Drink]:
-        self.execute(f"SELECT * FROM {DrinkDAO.__table_name}")
-        raw_query = self.cursor.fetchall()
-        # convert data
-        convert_data = list()
-        for data in raw_query:
-            drink = Drink(data[0], data[1], data[2], data[3], data[4])
-            convert_data.append(drink)
-        return convert_data
+    def get_drink_price(self, id: int) -> tuple:
+        self.cursor.execute(
+            f"SELETE * FROM {DrinkPriceDAO.__table_name} WHERE {DrinkPriceDAO.__COLUMN_ID}={id}")
+        query = self.cursor.fetchone()
+        return query[1], query[2], query[3]
 
-    def get_drink_by_id(self, id: int) -> Drink:
-        self.execute(
-            f"SELECT * FROM {DrinkDAO.__table_name} WHERE {DrinkDAO.__COLUMN_ID}={id}")
-        data = self.cursor.fetchone()
-        if data is None:
-            return None
-        return Drink(data[0], data[1], data[2], data[3], data[4])
+    def update_drink_price(self, id: int, hprice: float = None, cprice: float = None, bprice: float = None) -> None:
+        query = f'UPDATE {DrinkPriceDAO.__table_name} SET '
+
+        if hprice is not None:
+            query += f'{DrinkPriceDAO.__COLUMN_HPRICE}={hprice}, '
+        if cprice is not None:
+            query += f'{DrinkPriceDAO.__COLUMN_CPRICE}={cprice}, '
+        if bprice is not None:
+            query += f'{DrinkPriceDAO.__COLUMN_BPRICE}={bprice}, '
+
+        if query[-2] == ',':
+            query = query[:-2]
+
+        query += f'WHERE {DrinkPriceDAO.__COLUMN_ID}={id}'
+        self.cursor.execute(query)
+        self.connection.commit()
+
+    def delete_drink_price(self, id: int) -> None:
+        self.cursor.execute(
+            f"DELETE FROM {DrinkPriceDAO.__table_name} WHERE {DrinkPriceDAO.__COLUMN_ID}={id}")
+        self.connection.commit()
 
 
-class BakeryDAO(DAO):
-    __table_name = "BAKERIES"
+class BakeryPriceDAO(DAO):
+    __table_name = "PRICE_BAKERIES"
     __COLUMN_ID = "id"
-    __COLUMN_NAME = "name"
     __COLUMN_PRICE = "price"
 
     def __init__(self, connection: sqlite3.Connection):
         super().__init__(connection)
-        self.__create_table()
 
     def __create_table(self) -> None:
-        self.execute(f"""CREATE TABLE IF NOT EXISTS {BakeryDAO.__table_name} (
-            {BakeryDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
-            {BakeryDAO.__COLUMN_NAME} TEXT,
-            {BakeryDAO.__COLUMN_PRICE} REAL
-        )""")
-        self.commit()
+        self.cursor.execute(
+            f"""CREATE TABLE IF NOT EXISTS {BakeryPriceDAO.__table_name} (
+            {BakeryPriceDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
+            {BakeryPriceDAO.__COLUMN_PRICE} REAL)""")
+        self.connection.commit()
 
-    def add_bakery(self, bakery: Bakery) -> None:
-        self.execute(
-            f"""INSERT INTO {BakeryDAO.__table_name} (
-            {BakeryDAO.__COLUMN_ID},
-            {BakeryDAO.__COLUMN_NAME},
-            {BakeryDAO.__COLUMN_PRICE})
+    def add_bakery_price(self, id: int, price: float) -> None:
+        self.cursor.execute(f"""INSERT INTO {BakeryPriceDAO.__table_name} (
+            {BakeryPriceDAO.__COLUMN_ID},
+            {BakeryPriceDAO.__COLUMN_PRICE})
             VALUES
-            ('{bakery.get_id()}',
-            '{bakery.get_name()}',
-            '{bakery.get_price()}')""")
-        self.commit()
+            ({id},
+            {price})""")
+        self.connection.commit()
 
-    def get_all_bakeries(self) -> list[Bakery]:
-        self.execute(f"SELECT * FROM {BakeryDAO.__table_name}")
-        raw_query = self.cursor.fetchall()
-        convert_data = list()
-        for data in self.__query:
-            bakery = Bakery(data[0], data[1], data[2])
-            convert_data.append(bakery)
-        return convert_data
+    def get_bakery_price(self, id: int) -> float:
+        self.cursor.execute(
+            f"SELETE * FROM {BakeryPriceDAO.__table_name} WHERE {BakeryPriceDAO.__COLUMN_ID}={id}")
+        query = self.cursor.fetchone()
+        return query
 
-    def get_bakery_by_id(self, id: int) -> Bakery:
-        self.execute(
-            f"SELECT * FROM {BakeryDAO.__table_name} WHERE {BakeryDAO.__COLUMN_ID}={id}")
-        data = self.cursor.fetchone()
-        if data is None:
-            return None
-        return Bakery(data[0], data[1], data[2])
+    def update_bakery_price(self, id: int, price: float = None) -> None:
+        if price is None:
+            return
+        self.cursor.execute(
+            f"""UPDATE {BakeryPriceDAO.__table_name} SET {BakeryPriceDAO.__COLUMN_PRICE}={price} WHERE {BakeryPriceDAO.__COLUMN_ID}={id}""")
+        self.connection.commit()
+
+    def delete_bakery_price(self, id: int) -> None:
+        self.cursor.execute(
+            f"DELETE FROM {BakeryPriceDAO.__table_name} WHERE {BakeryPriceDAO.__COLUMN_ID}={id}")
+        self.connection.commit()
 
 
-class LogDAO(DAO):
-    __table_name = "LOGS"
+class ProductDAO(DAO):
+    __table_name = "PRODUCTS"
     __COLUMN_ID = "id"
-    __COLUMN_DATE = "date"
-    __COLUMN_TIME = "time"
-    __COLUMN_DESCRIPTION = "description"
+    __COLUMN_NAME = "name"
+    __COLUMN_TYPE = "type"
 
     def __init__(self, connection: sqlite3.Connection):
         super().__init__(connection)
         self.__create_table()
+        self.__DP_DAO = DrinkPriceDAO(connection)
+        self.__BP_DAO: BakeryPriceDAO(connection)
 
     def __create_table(self) -> None:
-        self.execute(f"""CREATE TABLE IF NOT EXISTS {LogDAO.__table_name} (
-            {LogDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
-            {LogDAO.__COLUMN_DATE} TEXT,
-            {LogDAO.__COLUMN_TIME} TEXT,
-            {LogDAO.__COLUMN_OPERATOR} INTEGER,
-            {LogDAO.__COLUMN_DESCRIPTION} TEXT)""")
-        self.commit()
+        self.cursor.execute(
+            f"""CREATE TABLE IF NOT EXITTS {ProductDAO.__table_name} (
+            {ProductDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
+            {ProductDAO.__COLUMN_NAME} TEXT,
+            {ProductDAO.__COLUMN_TYPE} TEXT)""")
+        self.connection.commit()
 
-    def add_log_entry(self, log: Log) -> None:
-        user = log_entry.get_operator()
-        self.execute(
-            f"""INSERT INTO {LogDAO.__table_name}(
-            {LogDAO.__COLUMN_ID},
-            {LogDAO.__COLUMN_DATE},
-            {LogDAO.__COLUMN_TIME},
-            {LogDAO.__COLUMN_DESCRIPTION})
+    def add_product(self, product: Product) -> None:
+        product_type = "drink" if isinstance(product, Drink) else "bakery"
+        self.cursor.execute(f"""INSERT INTO {ProductDAO.__table_name}(
+            {ProductDAO.__COLUMN_NAME},
+            {ProductDAO.__COLUMN_TYPE},)
             VALUES
-            ('{log.get_id()}',
-            '{log.get_date()}',
-            '{log.get_time()}',
-            '{log.get_description()}')""")
-        self.commit()
+            ('{product.get_name()}',
+            '{product_type}')""")
+        self.connection.commit()
 
-    def get_all_logs(self) -> list[LogEntry]:
-        self.execute(f"SELETE * FROM {LogDAO.__table_name}")
-        raw_query = self.cursor.fetchall()
-        convert_data = list()
-        for data in raw_query:
-            log = Log(data[0], data[1], data[2], data[3])
-            convert_data.append(log)
-        return convert_data
+    def get_all_products(self, filter=None) -> list[Product]:
+        pass
 
-    def get_log__by_id(self, id: int) -> Log:
-        self.execute(
-            f"SELETE * FROM {LogDAO.__table_name} WHERE {LogDAO.__COLUMN_ID}={id}")
-        data = self.cursor.fetchone()
-        if data is None:
-            return None
-        return Log(data[0], data[1], data[2], data[3])
+    def get_product_by_id(self, id: int) -> Product:
+        self.cursor.execute(
+            f"SELETE * FROM {ProductDAO.__table_name} WHERE {ProductDAO.__COLUMN_ID}={id}")
+        query = self.cursor.fetchone()
+
+        if query[2] == "drink":
+            return
+        elif query[2] == "bakery":
+            return
+
+        return None
+
+    def update_product(self) -> None:
+        pass
+
+    def delete_product(self, id: int) -> None:
+        self.cursor.execute(
+            f"DELETE FROM {ProductDAO.__table_name} WHERE {ProductDAO.__COLUMN_ID}={id}")
+        self.connection.commit()
