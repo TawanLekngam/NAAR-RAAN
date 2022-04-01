@@ -19,3 +19,11 @@ class LoginModel(Model):
             return True
 
         return False
+
+class MenuOrderModel(Model):
+
+    def __init__(self) -> None:
+        self.__productDAO: ProductDAO = AppDAO.get_dao("product")
+
+    
+
