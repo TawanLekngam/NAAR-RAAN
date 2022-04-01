@@ -182,7 +182,18 @@ class DrinkDAO(DAO):
         self.connection.commit()
 
     def add_drink(self, drink: Drink) -> None:
-        pass
+        self.cursor.execute(
+            f"""INSERT INTO {DrinkDAO.__table_name}(
+            {DrinkDAO.__COLUMN_NAME},
+            {DrinkDAO.__COLUMN_HP},
+            {DrinkDAO.__COLUMN_CP},
+            {DrinkDAO.__COLUMN_BP})
+            VALUES
+            ('{drink.get_name()}',
+            {drink.get_h_price()},
+            {drink.get_c_price()},
+            {drink.get_b_price()})""")
+        self.connection.commit()
 
     def get_all_drinks(self) -> list[Drink]:
         self.cursor.execute(f"""SELETE * FROM {DrinkDAO.__table_name}""")
@@ -194,13 +205,29 @@ class DrinkDAO(DAO):
         return convert_data
 
     def get_drink_by_id(self, id: int) -> Drink:
-        pass
-
-    def get_drink_by_name(self, name: str) -> Drink:
-        pass
+        self.cursor.execute(
+            f"""SELETE * FROM {DrinkDAO.__table_name} WHERE {DrinkDAO.__COLUMN_ID}={id}"""
+        )
+        data = self.cursor.fetchone()
+        return Drink(data[0], data[1], data[2], data[3], data[4])
 
     def update_drink(self, id: int, name: str = None, hprice: float = None, cprice: float = None, bprice: float = None) -> None:
-        pass
+        query = f"UPDATE {DrinkDAO.__table_name} SET "
+        if name is not None:
+            query += f'{DrinkDAO.__COLUMN_NAME}="{name}", '
+        if hprice is not None:
+            query += f'{DrinkDAO.__COLUMN_HP}={hprice}'
+        if cprice is not None:
+            query += f'{DrinkDAO.__COLUMN_CP}={cprice}'
+        if bprice is not None:
+            query += f'{DrinkDAO.__COLUMN_BP}={bprice}'
+
+        if query[-2] == ',':
+            query = query[:-2]
+
+        query += f" WHERE {DrinkDAO.__COLUMN_ID}={id}"
+        self.cursor.execute(query)
+        self.connection.commit()
 
     def delete_drink(self, id: int) -> None:
         self.cursor.execute(
