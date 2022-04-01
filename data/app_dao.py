@@ -10,10 +10,6 @@ class DAO(ABC):
         self.connection = connection
         self.cursor = self.connection.cursor()
 
-    @abstractmethod
-    def __create_table(self) -> None:
-        pass
-
 
 class AppDAO:
     __ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -24,6 +20,8 @@ class AppDAO:
     def get_dao(database: str = None) -> DAO:
         if database == "user":
             return UserDAO(AppDAO.__connection)
+        if database == "product":
+            return ProductDAO(AppDAO.__connection)
         return None
 
     @staticmethod
@@ -161,12 +159,13 @@ class UserDAO(DAO):
         self.connection.commit()
 
 
-class DrinkPriceDAO(DAO):
-    __table_name = "PRICE_DRINKS"
+class DrinkDAO(DAO):
+    __table_name = "DRINKS"
     __COLUMN_ID = "id"
-    __COLUMN_HPRICE = "hot"
-    __COLUMN_CPRICE = "cold"
-    __COLUMN_BPRICE = "blended"
+    __COLUMN_NAME = "name"
+    __COLUMN_HP = "hot_price"
+    __COLUMN_CP = "cold_price"
+    __COLUMN_BP = "blended_price"
 
     def __init__(self, connection: sqlite3.Connection):
         super().__init__(connection)
@@ -174,52 +173,38 @@ class DrinkPriceDAO(DAO):
 
     def __create_table(self) -> None:
         self.cursor.execute(
-            f"""CREATE TABLE IF NOT EXISTS {DrinkPriceDAO.__table_name} (
-            {DrinkPriceDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
-            {DrinkPriceDAO.__COLUMN_HPRICE} REAL,
-            {DrinkPriceDAO.__COLUMN_CPRICE} REAL,
-            {DrinkPriceDAO.__COLUMN_BPRICE} REAL)""")
+            f"""CREATE TABLE IF NOT EIXSTS {DrinkDAO.__table_name} (
+            {DrinkDAO.__COLUMN_ID} INTEGER PRIMARY KEY),
+            {DrinkDAO.__COLUMN_NAME} TEXT,
+            {DrinkDAO.__COLUMN_HP} REAL,
+            {DrinkDAO.__COLUMN_CP} REAL,
+            {DrinkDAO.__COLUMN_HP} REAL)""")
         self.connection.commit()
 
-    def add_drink_price(self, id: int, hprice: float, cprice: float, bprice: float) -> None:
-        self.cursor.execute(f"""INSERT INTO {DrinkPriceDAO.__table_name} (
-            {DrinkPriceDAO.__COLUMN_ID},
-            {DrinkPriceDAO.__COLUMN_HPRICE},
-            {DrinkPriceDAO.__COLUMN_CPRICE},
-            {DrinkPriceDAO.__COLUMN_BPRICE})
-            VALUES
-            ({id},
-            {hprice},
-            {cprice},
-            {bprice})""")
-        self.connection.commit()
+    def add_drink(self, drink: Drink) -> None:
+        pass
 
-    def get_drink_price(self, id: int) -> tuple:
+    def get_all_drinks(self) -> list[Drink]:
+        self.cursor.execute(f"""SELETE * FROM {DrinkDAO.__table_name}""")
+        query = self.cursor.fetchall()
+        convert_data = list()
+        for data in query:
+            drink = Drink(data[0], data[1], data[2], data[3], data[4])
+            convert_data.append(drink)
+        return convert_data
+
+    def get_drink_by_id(self, id: int) -> Drink:
+        pass
+
+    def get_drink_by_name(self, name: str) -> Drink:
+        pass
+
+    def update_drink(self, id: int, name: str = None, hprice: float = None, cprice: float = None, bprice: float = None) -> None:
+        pass
+
+    def delete_drink(self, id: int) -> None:
         self.cursor.execute(
-            f"SELETE * FROM {DrinkPriceDAO.__table_name} WHERE {DrinkPriceDAO.__COLUMN_ID}={id}")
-        query = self.cursor.fetchone()
-        return query[1], query[2], query[3]
-
-    def update_drink_price(self, id: int, hprice: float = None, cprice: float = None, bprice: float = None) -> None:
-        query = f'UPDATE {DrinkPriceDAO.__table_name} SET '
-
-        if hprice is not None:
-            query += f'{DrinkPriceDAO.__COLUMN_HPRICE}={hprice}, '
-        if cprice is not None:
-            query += f'{DrinkPriceDAO.__COLUMN_CPRICE}={cprice}, '
-        if bprice is not None:
-            query += f'{DrinkPriceDAO.__COLUMN_BPRICE}={bprice}, '
-
-        if query[-2] == ',':
-            query = query[:-2]
-
-        query += f'WHERE {DrinkPriceDAO.__COLUMN_ID}={id}'
-        self.cursor.execute(query)
-        self.connection.commit()
-
-    def delete_drink_price(self, id: int) -> None:
-        self.cursor.execute(
-            f"DELETE FROM {DrinkPriceDAO.__table_name} WHERE {DrinkPriceDAO.__COLUMN_ID}={id}")
+            f"DELETE FROM {DrinkDAO.__table_name} WHERE {DrinkDAO.__COLUMN_ID}={id}")
         self.connection.commit()
 
 
@@ -230,6 +215,7 @@ class BakeryPriceDAO(DAO):
 
     def __init__(self, connection: sqlite3.Connection):
         super().__init__(connection)
+        self.__create_table()
 
     def __create_table(self) -> None:
         self.cursor.execute(
@@ -276,11 +262,11 @@ class ProductDAO(DAO):
         super().__init__(connection)
         self.__create_table()
         self.__DP_DAO = DrinkPriceDAO(connection)
-        self.__BP_DAO: BakeryPriceDAO(connection)
+        self.__BP_DAO = BakeryPriceDAO(connection)
 
     def __create_table(self) -> None:
         self.cursor.execute(
-            f"""CREATE TABLE IF NOT EXITTS {ProductDAO.__table_name} (
+            f"""CREATE TABLE IF NOT EXISTS {ProductDAO.__table_name} (
             {ProductDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
             {ProductDAO.__COLUMN_NAME} TEXT,
             {ProductDAO.__COLUMN_TYPE} TEXT)""")
