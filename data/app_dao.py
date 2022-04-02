@@ -235,10 +235,11 @@ class DrinkDAO(DAO):
         self.connection.commit()
 
 
-class BakeryPriceDAO(DAO):
+class BakeryDAO(DAO):
     __table_name = "PRICE_BAKERIES"
     __COLUMN_ID = "id"
-    __COLUMN_PRICE = "price"
+    __COLUMN_NAME = "name"
+    __COLUMN_P = "price"
 
     def __init__(self, connection: sqlite3.Connection):
         super().__init__(connection)
@@ -246,88 +247,85 @@ class BakeryPriceDAO(DAO):
 
     def __create_table(self) -> None:
         self.cursor.execute(
-            f"""CREATE TABLE IF NOT EXISTS {BakeryPriceDAO.__table_name} (
-            {BakeryPriceDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
-            {BakeryPriceDAO.__COLUMN_PRICE} REAL)""")
+            f"""CREATE TABLE IF NOT EXISTS {BakeryDAO.__table_name} (
+            {BakeryDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
+            {BakeryDAO.__COLUMN_NAME} TEXT,
+            {BakeryDAO.__COLUMN_P} REAL)""")
         self.connection.commit()
 
-    def add_bakery_price(self, id: int, price: float) -> None:
-        self.cursor.execute(f"""INSERT INTO {BakeryPriceDAO.__table_name} (
-            {BakeryPriceDAO.__COLUMN_ID},
-            {BakeryPriceDAO.__COLUMN_PRICE})
+    def add_bakery(self, bakery: Bakery) -> None:
+        self.cursor.execute(f"""INSERT INTO {BakeryDAO.__table_name} (
+            {BakeryDAO.__COLUMN_NAME},
+            {BakeryDAO.__COLUMN_P})
             VALUES
-            ({id},
-            {price})""")
+            ('{bakery.get_name()}',
+            {bakery.get_price()})""")
         self.connection.commit()
 
-    def get_bakery_price(self, id: int) -> float:
-        self.cursor.execute(
-            f"SELETE * FROM {BakeryPriceDAO.__table_name} WHERE {BakeryPriceDAO.__COLUMN_ID}={id}")
-        query = self.cursor.fetchone()
-        return query
+    def get_all_bakeries(self) -> list[Bakery]:
+        self.cursor.execute(f"""SELETE * FROM {BakeryDAO.__table_name}""")
+        query = self.cursor.fetchall()
+        convert_data = list()
+        for data in query:
+            bakery = Bakery(data[0], data[1], data[2])
+            convert_data.append(bakery)
+        return convert_data
 
-    def update_bakery_price(self, id: int, price: float = None) -> None:
-        if price is None:
-            return
+    def get_bakery_by_id(self, id: int) -> Bakery:
         self.cursor.execute(
-            f"""UPDATE {BakeryPriceDAO.__table_name} SET {BakeryPriceDAO.__COLUMN_PRICE}={price} WHERE {BakeryPriceDAO.__COLUMN_ID}={id}""")
+            f"SELETE * FROM {BakeryDAO.__table_name} WHERE {BakeryDAO.__COLUMN_ID}={id}")
+        data = self.cursor.fetchone()
+        return Bakery(data[0], data[1], data[2])
+
+    def update_bakery(self, id: int, name: str = None, price: float = None) -> None:
+        query = f"UPDATE {BakeryDAO.__table_name} SET "
+        if name is not None:
+            query += f'{BakeryDAO.__COLUMN_NAME}="{name}", '
+        if price is not None:
+            query += f'{BakeryDAO.__COLUMN_P}={price}'
+
+        if query[-2] == ',':
+            query = query[:-2]
+        query += f'WHERE {BakeryDAO.__COLUMN_ID}={id}'
+        self.cursor.execute(query)
         self.connection.commit()
 
-    def delete_bakery_price(self, id: int) -> None:
+    def delete_bakery(self, id: int) -> None:
         self.cursor.execute(
-            f"DELETE FROM {BakeryPriceDAO.__table_name} WHERE {BakeryPriceDAO.__COLUMN_ID}={id}")
+            f"DELETE FROM {BakeryDAO.__table_name} WHERE {BakeryDAO.__COLUMN_ID}={id}")
         self.connection.commit()
 
 
-class ProductDAO(DAO):
-    __table_name = "PRODUCTS"
+class AddonDAO(DAO):
+    __table_name = "ADDONS"
     __COLUMN_ID = "id"
     __COLUMN_NAME = "name"
-    __COLUMN_TYPE = "type"
+    __COLUMN_P = "price"
+
+class LogEntryDAO(DAO):
+    __table_name = "LOGENTRIES"
+    __COLUMN_ID = "id"
+    __COLUMN_DATE = "date"
+    __COLUMN_TIME = "time"
+    __COLUMN_OWNER = "owner_id"
+    __COLUMN_DESCR = "description"
 
     def __init__(self, connection: sqlite3.Connection):
         super().__init__(connection)
-        self.__create_table()
-        self.__DP_DAO = DrinkPriceDAO(connection)
-        self.__BP_DAO = BakeryPriceDAO(connection)
 
-    def __create_table(self) -> None:
-        self.cursor.execute(
-            f"""CREATE TABLE IF NOT EXISTS {ProductDAO.__table_name} (
-            {ProductDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
-            {ProductDAO.__COLUMN_NAME} TEXT,
-            {ProductDAO.__COLUMN_TYPE} TEXT)""")
-        self.connection.commit()
-
-    def add_product(self, product: Product) -> None:
-        product_type = "drink" if isinstance(product, Drink) else "bakery"
-        self.cursor.execute(f"""INSERT INTO {ProductDAO.__table_name}(
-            {ProductDAO.__COLUMN_NAME},
-            {ProductDAO.__COLUMN_TYPE},)
-            VALUES
-            ('{product.get_name()}',
-            '{product_type}')""")
-        self.connection.commit()
-
-    def get_all_products(self, filter=None) -> list[Product]:
+    def __create_table(self):
         pass
 
-    def get_product_by_id(self, id: int) -> Product:
-        self.cursor.execute(
-            f"SELETE * FROM {ProductDAO.__table_name} WHERE {ProductDAO.__COLUMN_ID}={id}")
-        query = self.cursor.fetchone()
-
-        if query[2] == "drink":
-            return
-        elif query[2] == "bakery":
-            return
-
-        return None
-
-    def update_product(self) -> None:
+    def add_logentry(self):
         pass
 
-    def delete_product(self, id: int) -> None:
-        self.cursor.execute(
-            f"DELETE FROM {ProductDAO.__table_name} WHERE {ProductDAO.__COLUMN_ID}={id}")
-        self.connection.commit()
+    def get_all_logentries(self, date: str = None, time: str = None):
+        pass
+
+    def get_log_by_id(self):
+        pass
+
+
+class ReceiptDAO(DAO):
+    __table_name = "RECEIPTS"
+    __COLUMN_ID = "id"
