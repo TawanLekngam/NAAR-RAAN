@@ -302,6 +302,60 @@ class AddonDAO(DAO):
     __COLUMN_NAME = "name"
     __COLUMN_P = "price"
 
+    def __init__(self, connection: sqlite3.Connection):
+        super().__init__(connection)
+
+    def __create_table(self) -> None:
+        self.cursor.execute(
+            f"""CREATE TABLE IF NOT EXISTS {AddonDAO.__table_name} (
+            {AddonDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
+            {AddonDAO.__COLUMN_NAME} TEXT,
+            {AddonDAO.__COLUMN_P} REAL)""")
+        self.connection.commit()
+
+    def add_addon(self, addon: Addon) -> None:
+        self.cursor.execute(f"""INSERT INTO {AddonDAO.__table_name} (
+            {AddonDAO.__COLUMN_NAME},
+            {AddonDAO.__COLUMN_P})
+            VALUES
+            ('{addon.get_name()}',
+            {addon.get_price()})""")
+        self.connection.commit()
+
+    def get_all_addons(self) -> list[Addon]:
+        self.cursor.execute(f"""SELETE * FROM {AddonDAO.__table_name}""")
+        query = self.cursor.fetchall()
+        convert_data = list()
+        for data in query:
+            addon = Addon(data[0], data[1], data[2])
+            convert_data.append(bakery)
+        return convert_data
+
+    def get_addon_by_id(self, id: int) -> Bakery:
+        self.cursor.execute(
+            f"SELETE * FROM {AddonDAO.__table_name} WHERE {AddonDAO.__COLUMN_ID}={id}")
+        data = self.cursor.fetchone()
+        return Addon(data[0], data[1], data[2])
+
+    def update_bakery(self, id: int, name: str = None, price: float = None) -> None:
+        query = f"UPDATE {AddonDAO.__table_name} SET "
+        if name is not None:
+            query += f'{AddonDAO.__COLUMN_NAME}="{name}", '
+        if price is not None:
+            query += f'{AddonDAO.__COLUMN_P}={price}'
+
+        if query[-2] == ',':
+            query = query[:-2]
+        query += f'WHERE {AddonDAO.__COLUMN_ID}={id}'
+        self.cursor.execute(query)
+        self.connection.commit()
+
+    def delete_bakery(self, id: int) -> None:
+        self.cursor.execute(
+            f"DELETE FROM {AddonDAO.__table_name} WHERE {AddonDAO.__COLUMN_ID}={id}")
+        self.connection.commit()
+
+
 class LogEntryDAO(DAO):
     __table_name = "LOGENTRIES"
     __COLUMN_ID = "id"
