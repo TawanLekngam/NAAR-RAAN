@@ -20,8 +20,6 @@ class AppDAO:
     def get_dao(database: str = None) -> DAO:
         if database == "user":
             return UserDAO(AppDAO.__connection)
-        if database == "product":
-            return ProductDAO(AppDAO.__connection)
         if database == "drink":
             return DrinkDAO(AppDAO.__connection)
         if database == "bakery":
