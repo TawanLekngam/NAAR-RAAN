@@ -29,7 +29,7 @@ class AppDAO:
         if database == "logentry":
             return LogEntryDAO(AppDAO.__connection)
         if database == "receipt":
-            return None
+            return ReceiptDAO(AppDAO.__connection)
         return None
 
     @staticmethod
@@ -368,7 +368,6 @@ class AddonDAO(DAO):
 
 class LogEntryDAO(DAO):
     __table_name = "LOGENTRIES"
-    __COLUMN_ID = "id"
     __COLUMN_DATE = "date"
     __COLUMN_TIME = "time"
     __COLUMN_OWNER = "owner_id"
@@ -376,9 +375,17 @@ class LogEntryDAO(DAO):
 
     def __init__(self, connection: sqlite3.Connection):
         super().__init__(connection)
+        self.__create_table()
 
     def __create_table(self):
-        pass
+        self.cursor.execute(
+            f"""CREATE TABLE IF NOT EXISTS {LogEntryDAO.__table_name}(
+            {LogEntryDAO.__COLUMN_DATE} TEXT NOT NULL,
+            {LogEntryDAO.__COLUMN_TIME} TEXT NOT NULL,
+            {LogEntryDAO.__COLUMN_OWNER} INTEGER,
+            {LogEntryDAO.__COLUMN_DESCR} TEXT,
+            PRIMARY KEY ({LogEntryDAO.__COLUMN_DATE},{LogEntryDAO.__COLUMN_TIME}))"""
+        )
 
     def add_logentry(self):
         pass
@@ -392,7 +399,22 @@ class LogEntryDAO(DAO):
 
 class ReceiptDAO(DAO):
     __table_name = "RECEIPTS"
-    __COLUMN_ID = "id"
     __COLUMN_DATE = "date"
     __COLUMN_TIME = "time"
+    __COLUMN_NO = "number"
     __COLUMN_DESCR = "description"
+
+    def __init__(self, connection: sqlite3.Connection):
+        super().__init__(connection)
+        self.__create_table()
+
+    def __create_table(self) -> None:
+        self.cursor.execute(
+            f"""CREATE TABLE IF NOT EXISTS {ReceiptDAO.__table_name}(
+            {ReceiptDAO.__COLUMN_DATE} TEXT NOT NULL,
+            {ReceiptDAO.__COLUMN_TIME} TEXT NOT NULL,
+            {ReceiptDAO.__COLUMN_NO} INTEGER NOT NULL,
+            {ReceiptDAO.__COLUMN_DESCR} TEXT,
+            PRIMARY KEY ({ReceiptDAO.__COLUMN_DATE},{ReceiptDAO.__COLUMN_TIME},{ReceiptDAO.__COLUMN_NO}))"""
+        )
+        self.connection.commit()
