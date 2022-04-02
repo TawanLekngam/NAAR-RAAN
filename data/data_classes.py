@@ -36,7 +36,7 @@ class User:
 
 
 class Product(ABC):
-    
+
     @abstractmethod
     def get_name(self) -> str:
         pass
@@ -68,6 +68,22 @@ class Drink(Product):
 
 @dataclass
 class Bakery(Product):
+    __id: int
+    __name: str
+    __price: float
+
+    def get_id(self) -> int:
+        return self.__id
+
+    def get_name(self) -> str:
+        return self.__name
+
+    def get_price(self) -> float:
+        return self.__price
+
+
+@dataclass
+class Addon(Product):
     __id: int
     __name: str
     __price: float
