@@ -22,6 +22,16 @@ class AppDAO:
             return UserDAO(AppDAO.__connection)
         if database == "product":
             return ProductDAO(AppDAO.__connection)
+        if database == "drink":
+            return DrinkDAO(AppDAO.__connection)
+        if database == "bakery":
+            return BakeryDAO(AppDAO.__connection)
+        if database == "addon":
+            return AddonDAO(AppDAO.__connection)
+        if database == "logentry":
+            return LogEntryDAO(AppDAO.__connection)
+        if database == "receipt":
+            return None
         return None
 
     @staticmethod
@@ -52,7 +62,8 @@ class UserDAO(DAO):
             {UserDAO.__COLUMN_LASTNAME} TEXT,
             {UserDAO.__COLUMN_USERNAME} TEXT,
             {UserDAO.__COLUMN_PASSWORD} TEXT,
-            {UserDAO.__COLUMN_ACCESSLEVEL} TEXT)""")
+            {UserDAO.__COLUMN_ACCESSLEVEL} TEXT
+            )""")
         self.connection.commit()
 
     def add_user(self, user: User) -> None:
@@ -173,12 +184,12 @@ class DrinkDAO(DAO):
 
     def __create_table(self) -> None:
         self.cursor.execute(
-            f"""CREATE TABLE IF NOT EIXSTS {DrinkDAO.__table_name} (
-            {DrinkDAO.__COLUMN_ID} INTEGER PRIMARY KEY),
+            f"""CREATE TABLE IF NOT EXISTS {DrinkDAO.__table_name} (
+            {DrinkDAO.__COLUMN_ID} INTEGER PRIMARY KEY,
             {DrinkDAO.__COLUMN_NAME} TEXT,
             {DrinkDAO.__COLUMN_HP} REAL,
             {DrinkDAO.__COLUMN_CP} REAL,
-            {DrinkDAO.__COLUMN_HP} REAL)""")
+            {DrinkDAO.__COLUMN_BP} REAL)""")
         self.connection.commit()
 
     def add_drink(self, drink: Drink) -> None:
@@ -236,7 +247,7 @@ class DrinkDAO(DAO):
 
 
 class BakeryDAO(DAO):
-    __table_name = "PRICE_BAKERIES"
+    __table_name = "BAKERIES"
     __COLUMN_ID = "id"
     __COLUMN_NAME = "name"
     __COLUMN_P = "price"
@@ -304,6 +315,7 @@ class AddonDAO(DAO):
 
     def __init__(self, connection: sqlite3.Connection):
         super().__init__(connection)
+        self.__create_table()
 
     def __create_table(self) -> None:
         self.cursor.execute(
@@ -383,3 +395,6 @@ class LogEntryDAO(DAO):
 class ReceiptDAO(DAO):
     __table_name = "RECEIPTS"
     __COLUMN_ID = "id"
+    __COLUMN_DATE = "date"
+    __COLUMN_TIME = "time"
+    __COLUMN_DESCR = "description"
