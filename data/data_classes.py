@@ -114,6 +114,9 @@ class Receipt:
     def get_time(self) -> str:
         return self.__time
 
+    def get_detail(self) -> str:
+        return self.__detail
+
 
 @dataclass
 class LogEntry:
