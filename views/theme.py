@@ -7,6 +7,9 @@ class Theme:
     __THEME_PATH = os.path.join(__ROOT_DIR, "theme.qss")
 
     # Font
+    DONGLE_REGULAR_50 = QFont("Dongle")
+    DONGLE_REGULAR_50.setPixelSize(50)
+
     DONGLE_REGULAR_65 = QFont("Dongle")
     DONGLE_REGULAR_65.setPixelSize(65)
 
