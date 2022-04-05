@@ -387,14 +387,11 @@ class LogEntryDAO(DAO):
             PRIMARY KEY ({LogEntryDAO.__COLUMN_DATE},{LogEntryDAO.__COLUMN_TIME}))"""
         )
 
-    def add_logentry(self):
+    def add_logentry(self, logentry: LogEntry) -> None:
         pass
 
-    def get_all_logentries(self, date: str = None, time: str = None):
-        pass
-
-    def get_log_by_id(self):
-        pass
+    def get_all_logentries(self, date: str = None, time: str = None) -> list[LogEntry]:
+        return
 
 
 class ReceiptDAO(DAO):
@@ -418,3 +415,53 @@ class ReceiptDAO(DAO):
             PRIMARY KEY ({ReceiptDAO.__COLUMN_DATE},{ReceiptDAO.__COLUMN_TIME},{ReceiptDAO.__COLUMN_NO}))"""
         )
         self.connection.commit()
+
+    def add_receipt(self, receipt: Receipt) -> None:
+        pass
+
+
+class RevenueDAO(DAO):
+    __table_name = "TARGETREVENUES"
+    __COLUMN_YEAR = "year"
+    __COLUMN_MONTH = "month"
+    __COLUMN_TARGET = "target"
+
+    def __init__(self, connection: sqlite3.Connection):
+        super().__init__(connection)
+        self.__create_table()
+
+    def __create_table(self) -> None:
+        self.cursor.execute(
+            f"""CREATE TABLE IF NOT EXISTS {RevenueDAO.__table_name}(
+            {RevenueDAO.__COLUMN_YEAR} TEXT NOT NULL,
+            {RevenueDAO.__COLUMN_MONTH} TEXT NOT NULL,
+            {RevenueDAO.__COLUMN_TARGET} INTEGET,
+            PRIMARY KEY ({RevenueDAO.__COLUMN_YEAR},{RevenueDAO.__COLUMN_MONTH})
+            )"""
+        )
+        self.connection.commit()
+
+    def add_target_revenue(self, target_revenue: TargetRevenue) -> None:
+        self.cursor.execute(
+            f"""INSERT INTO {RevenueDAO.__table_name}(
+            {RevenueDAO.__COLUMN_YEAR},
+            {RevenueDAO.__COLUMN_MONTH},
+            {RevenueDAO.__COLUMN_TARGET})
+            VALUES(
+            "{target_revenue.get_year()}",
+            "{target_revenue.get_month()}",
+            {target_revenue.get_target_revenue()}
+            )""")
+        self.connection.commit()
+
+    def update_target_revenue(self, year: str, month: str, target: int) -> None:
+        pass
+
+    def get_all_target_revenues(self) -> list[TargetRevenue]:
+        pass
+
+    def get_target_revenue(self, year, month) -> TargetRevenue:
+        pass
+
+    def delete_target_revenue(self) -> None:
+        pass
