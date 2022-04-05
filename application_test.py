@@ -8,5 +8,5 @@ if __name__ == "__main__":
     # print(type(data_access).__name__)
 
     app = QApplication(sys.argv)
-    w = MenuOrderController()
+    w = LogInController()
     sys.exit(app.exec_())
