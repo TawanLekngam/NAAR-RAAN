@@ -140,3 +140,19 @@ class LogEntry:
 
     def get_description(self) -> str:
         return self.__description
+
+
+@dataclass
+class TargetRevenue:
+    __year: str
+    __month: str
+    __target_revenue: int
+
+    def get_year(self) -> str:
+        return self.__year
+
+    def get_month(self) -> str:
+        return self.__month
+
+    def get_target_revenue(self) -> int:
+        return self.__target_revenue
