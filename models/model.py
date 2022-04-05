@@ -10,7 +10,7 @@ class Model(ABC):
     pass
 
 
-class LoginModel(Model):
+class LogInModel(Model):
     def __init__(self):
         self.__userDAO: UserDAO = AppDAO.get_dao("user")
 
