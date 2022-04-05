@@ -7,7 +7,21 @@ from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
-from theme import Theme
+from views.theme import Theme
+
+"""
+    utility widget.
+"""
+
+
+class UserTab(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+
+
+"""
+    application view.
+"""
 
 
 class LogInPage(QWidget):
