@@ -1,3 +1,6 @@
+"""
+    contain all model.
+"""
 from abc import ABC
 from data import *
 from data.app_dao import *
@@ -27,3 +30,7 @@ class MenuOrderModel(Model):
 
     
 
+class RevenueModel(Model):
+
+    def __init__(self):
+        pass
