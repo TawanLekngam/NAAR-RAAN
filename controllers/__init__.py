@@ -1,1 +1,1 @@
-from controllers.controller import (MenuOrderController, LogInController)
+from controllers.controller import (MenuOrderPage, LogInPage)
