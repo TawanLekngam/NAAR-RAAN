@@ -1,3 +1,8 @@
+"""
+    controller
+"""
+
+
 from PySide6.QtWidgets import (QWidget)
 
 from views import *
@@ -13,19 +18,22 @@ class Controller:
         self.view.showFullScreen()
 
 
-class LogInController(Controller):
-    def __init__(self):
-        Controller.__init__(self, LogInPage(), LogInModel())
-        self.view: LogInPage
-        self.model: LogInModel
+class LogInPage(Controller):
+    view: LoginView
+    model: LoginModel
+
+    def __init__(self, view: LoginView = None, model: LoginModel = None):
+        Controller.__init__(self, view, model)
         self.view.login_button_emit(self.logIn)
-        self.show_page()
 
     def logIn(self):
-        if self.model.login_verify(self.view.lineEdit_username.text(),self.view.lineEdit_password.text()):
+        if self.model.login_verify(self.view.lineEdit_username.text(), self.view.lineEdit_password.text()):
             self.view.close()
 
-class MenuOrderController(Controller):
-    def __init__(self):
-        Controller.__init__(self, MenuOrderPage(), MenuOrderModel())
-        self.show_page()
+
+class MenuOrderPage(Controller):
+    view: MenuOrderView
+    model: MenuOrderModel
+
+    def __init__(self, view: MenuOrderView = None, model: MenuOrderModel = None):
+        Controller.__init__(self, view, model)
