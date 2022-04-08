@@ -1,5 +1,5 @@
 import os.path
-from PySide6.QtWidgets import (QWidget, QLabel, QPushButton,)
+from PySide6.QtWidgets import *
 from PySide6.QtGui import (QFont, QMouseEvent)
 from PySide6.QtCore import (QRect)
 
@@ -146,5 +146,82 @@ class OrderDetails(Widget):  # order detail for menu order view
         add_button.setObjectName("cancel_add_button")
         add_button.setFont(self._get_font(65))
         add_button.setGeometry(QRect(551, 726, 200, 80))
+
+        self.show()
+
+class OrderTracking(Widget):
+    def __init__(self, parent: QWidget = None):
+        Widget.__init__(self, parent)
+        self.resize(1920, 1080)
+
+        self.scrollArea_todo = QScrollArea(self)
+        self.scrollArea_todo.setObjectName(u"scrollArea_todo")
+        self.scrollArea_todo.setGeometry(QRect(81, 273, 500, 600))
+        self.scrollArea_todo.setWidgetResizable(True)
+
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 498, 598))
+
+        self.listView_todo_1 = QListView(self.scrollAreaWidgetContents)
+        self.listView_todo_1.setObjectName(u"listView_todo_1")
+        self.listView_todo_1.setGeometry(QRect(25, 35, 450, 300))
+
+        self.listView_todo_2 = QListView(self.scrollAreaWidgetContents)
+        self.listView_todo_2.setObjectName(u"listView_todo_2")
+        self.listView_todo_2.setGeometry(QRect(25, 375, 450, 300))
+
+        self.scrollArea_todo.setWidget(self.scrollAreaWidgetContents)
+
+        self.label_todo = QLabel("TO DO",self)
+        self.label_todo.setObjectName("label_todo")
+        self.label_todo.setGeometry(QRect(118, 197, 200, 61))
+        self.label_todo.setFont(self._get_font(65))
+        
+
+        self.label_doing = QLabel("DOING",self)
+        self.label_doing.setObjectName(u"label_doing")
+        self.label_doing.setGeometry(QRect(760, 197, 200, 61))
+        self.label_doing.setFont(self._get_font(65))
+        
+
+        self.scrollArea_doing = QScrollArea(self)
+        self.scrollArea_doing.setObjectName(u"scrollArea_doing")
+        self.scrollArea_doing.setGeometry(QRect(729, 273, 500, 750))
+        self.scrollArea_doing.setWidgetResizable(True)
+
+        self.scrollAreaWidgetContents_2 = QWidget()
+        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 498, 748))
+
+        self.listView_doing_1 = QListView(self.scrollAreaWidgetContents_2)
+        self.listView_doing_1.setObjectName(u"listView_doing_1")
+        self.listView_doing_1.setGeometry(QRect(25, 35, 450, 300))
+        self.listView_doing_2 = QListView(self.scrollAreaWidgetContents_2)
+        self.listView_doing_2.setObjectName(u"listView_doing_2")
+        self.listView_doing_2.setGeometry(QRect(25, 375, 450, 300))
+
+        self.scrollArea_doing.setWidget(self.scrollAreaWidgetContents_2)
+
+        self.label_done = QLabel("DONE",self)
+        self.label_done.setObjectName(u"label_done")
+        self.label_done.setGeometry(QRect(1377, 197, 171, 61))
+        self.label_done.setFont(self._get_font(65))
+        
+
+        self.scrollArea_done = QScrollArea(self)
+        self.scrollArea_done.setObjectName(u"scrollArea_done")
+        self.scrollArea_done.setGeometry(QRect(1345, 273, 500, 500))
+        self.scrollArea_done.setWidgetResizable(True)
+
+        self.scrollAreaWidgetContents_3 = QWidget()
+        self.scrollAreaWidgetContents_3.setObjectName(u"scrollAreaWidgetContents_3")
+        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 498, 498))
+
+        self.listView_done_1 = QListView(self.scrollAreaWidgetContents_3)
+        self.listView_done_1.setObjectName(u"listView_done_1")
+        self.listView_done_1.setGeometry(QRect(25, 35, 450, 300))
+
+        self.scrollArea_done.setWidget(self.scrollAreaWidgetContents_3)
 
         self.show()
