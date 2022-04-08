@@ -17,6 +17,10 @@ class Theme:
     DONGLE_BOLD_80.setPixelSize(80)
     DONGLE_BOLD_80.setBold(True)
 
+    DONGLE_BOLD_70 = QFont("Dongle")
+    DONGLE_BOLD_70.setPixelSize(70)
+    DONGLE_BOLD_70.setBold(True)
+
     DONGLE_BOLD_65 = QFont("Dongle")
     DONGLE_BOLD_65.setPixelSize(65)
     DONGLE_BOLD_80.setBold(True)
