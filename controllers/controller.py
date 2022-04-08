@@ -45,3 +45,10 @@ class OrderTrackingPage(Controller):
 
     def __init__(self, view: OrderTrackingView = None, model: OrderTrackingModel = None):
         Controller.__init__(self,view, model)
+
+class TargetRevenuePage(Controller):
+    view: TargetRevenueView
+    model: TargetRevenueModel
+
+    def __init__(self, view: TargetRevenueView = None, model: TargetRevenueModel = None):
+        Controller.__init__(self,view, model)

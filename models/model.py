@@ -35,3 +35,7 @@ class RevenueModel(Model):
 class OrderTrackingModel(Model):
     def __init__(self):
         pass
+
+class TargetRevenueModel(Model):
+    def __init__(self):
+        pass
