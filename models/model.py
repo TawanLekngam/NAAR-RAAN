@@ -31,3 +31,7 @@ class MenuOrderModel(Model):
 class RevenueModel(Model):
     def __init__(self):
         pass
+
+class OrderTrackingModel(Model):
+    def __init__(self):
+        pass

@@ -9,6 +9,7 @@ from views import *
 from models import *
 
 
+
 class Controller:
     def __init__(self, view: QWidget = None, model: Model = None):
         self.view = view
@@ -38,4 +39,9 @@ class MenuOrderPage(Controller):
     def __init__(self, view: MenuOrderView = None, model: MenuOrderModel = None):
         Controller.__init__(self, view, model)
 
+class OrderTrackingPage(Controller):
+    view: OrderTrackingView
+    model: OrderTrackingModel
 
+    def __init__(self, view: OrderTrackingView = None, model: OrderTrackingModel = None):
+        Controller.__init__(self,view, model)

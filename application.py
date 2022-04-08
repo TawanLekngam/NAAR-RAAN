@@ -5,9 +5,9 @@
 import sys
 from PySide6.QtWidgets import (QApplication)
 
-from controllers.controller import (Controller, LogInPage, MenuOrderPage)
-from views.view import (LoginView, MenuOrderView)
-from models.model import (LoginModel, MenuOrderModel)
+from controllers.controller import (Controller, LogInPage, MenuOrderPage, OrderTrackingPage)
+from views.view import (LoginView, MenuOrderView, OrderTrackingView)
+from models.model import (LoginModel, MenuOrderModel, OrderTrackingModel)
 from data.data_classes import (User)
 
 
@@ -26,9 +26,13 @@ class Application:
         self.__menuorder_page = MenuOrderPage(
             MenuOrderView(),
             MenuOrderModel())
+        self.__order_tracking = OrderTrackingPage(
+            OrderTrackingView(),
+            OrderTrackingModel()
+        )
 
 
-        self.__current_page = self.__login_page
+        self.__current_page = self.__order_tracking
 
     def start(self) -> None:
         self.__current_page.show_page()
