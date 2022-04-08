@@ -37,3 +37,9 @@ class MenuOrderPage(Controller):
 
     def __init__(self, view: MenuOrderView = None, model: MenuOrderModel = None):
         Controller.__init__(self, view, model)
+
+class OrderTrackingPage(Controller):
+    view: MenuOrderView
+    model: MenuOrderModel
+
+    
