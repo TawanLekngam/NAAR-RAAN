@@ -277,7 +277,7 @@ class OrderTrackingView(QWidget):
 
         self.scrollArea_todo = QScrollArea(self)
         self.scrollArea_todo.setObjectName("scrollArea_todo")
-        self.scrollArea_todo.setGeometry(QRect(81, 273, 500, 600))
+        self.scrollArea_todo.setGeometry(QRect(81, 273, 500, 830))
         self.scrollArea_todo.setWidgetResizable(True)
 
         self.scrollAreaWidgetContents = QWidget()
@@ -297,18 +297,18 @@ class OrderTrackingView(QWidget):
         self.label_todo = QLabel("TO DO",self)
         self.label_todo.setObjectName("label_todo")
         self.label_todo.setGeometry(QRect(118, 197, 200, 61))
-        self.label_todo.setFont(Theme.DONGLE_BOLD_65)
+        self.label_todo.setFont(Theme.DONGLE_BOLD_70)
         
 
         self.label_doing = QLabel("DOING",self)
         self.label_doing.setObjectName("label_doing")
         self.label_doing.setGeometry(QRect(760, 197, 200, 61))
-        self.label_doing.setFont(Theme.DONGLE_BOLD_65)
+        self.label_doing.setFont(Theme.DONGLE_BOLD_70)
         
 
         self.scrollArea_doing = QScrollArea(self)
         self.scrollArea_doing.setObjectName("scrollArea_doing")
-        self.scrollArea_doing.setGeometry(QRect(729, 273, 500, 750))
+        self.scrollArea_doing.setGeometry(QRect(729, 273, 500, 830))
         self.scrollArea_doing.setWidgetResizable(True)
 
         self.scrollAreaWidgetContents_2 = QWidget()
@@ -327,12 +327,12 @@ class OrderTrackingView(QWidget):
         self.label_done = QLabel("DONE",self)
         self.label_done.setObjectName("label_done")
         self.label_done.setGeometry(QRect(1377, 197, 171, 61))
-        self.label_done.setFont(Theme.DONGLE_BOLD_65)
+        self.label_done.setFont(Theme.DONGLE_BOLD_70)
         
 
         self.scrollArea_done = QScrollArea(self)
         self.scrollArea_done.setObjectName("scrollArea_done")
-        self.scrollArea_done.setGeometry(QRect(1345, 273, 500, 500))
+        self.scrollArea_done.setGeometry(QRect(1345, 273, 500, 830))
         self.scrollArea_done.setWidgetResizable(True)
 
         self.scrollAreaWidgetContents_3 = QWidget()
@@ -394,19 +394,19 @@ class TargetRevenueView(QWidget):
         self.label_money_target = QLabel("9000",self.widget_report)
         self.label_money_target.setObjectName("label_money_target")
         self.label_money_target.setGeometry(QRect(670, 470, 131, 61))
-        self.label_money_target.setFont(Theme.DONGLE_BOLD_65)
+        self.label_money_target.setFont(Theme.DONGLE_REGULAR_65)
         
         self.label_money_revenue = QLabel("5000",self.widget_report)
         self.label_money_revenue.setObjectName("label_money_revenue")
         self.label_money_revenue.setGeometry(QRect(670, 565, 131, 51))
-        self.label_money_revenue.setFont(Theme.DONGLE_BOLD_65)
+        self.label_money_revenue.setFont(Theme.DONGLE_REGULAR_65)
        
         self.label_money_left = QLabel("4000",self.widget_report)
         self.label_money_left.setObjectName("label_money_left")
         self.label_money_left.setGeometry(QRect(670, 650, 131, 51))
-        self.label_money_left.setFont(Theme.DONGLE_BOLD_65)
+        self.label_money_left.setFont(Theme.DONGLE_REGULAR_65)
         
-        self.pushButton_edit = QPushButton(self)
+        self.pushButton_edit = QPushButton("Edit",self)
         self.pushButton_edit.setObjectName("pushButton_edit")
         self.pushButton_edit.setGeometry(QRect(1620, 878, 220, 80))
         self.pushButton_edit.setFont(Theme.DONGLE_BOLD_65)
