@@ -33,7 +33,7 @@ QPushButton#pushButton {
     border-radius: 20px;
 }
 
-QLabel#menu_label {
+QLabel#menu_label, #label_todo, #label_doing,#label_done, #label_target, #label_revenue_pie, #label_amount_left,#label_money_left,#label_money_revenue,#label_money_target{
     background-color: transparent;
     color: #4A321C;
 }
@@ -50,6 +50,49 @@ QLineEdit#search_bar {
     background: #F9F5F0;
     border: 5px solid #754926;
     border-radius: 20px;
+}
+QScrollArea#scrollArea_todo, #scrollArea_doing, #scrollArea_done{
+    background-color: #D8B797;
+    border-radius: 20px;
+    padding: 0px;
+}
+
+QListView#listView_todo_1, #listView_todo_2, #listView_doing_1, #listView_doing_2, #listView_done_1{
+    background-color: #754926;
+    border-radius: 10px;
+    
+}
+
+QWidget#scrollAreaWidgetContents, #scrollAreaWidgetContents_2,#scrollAreaWidgetContents_3, #widget_date{
+    background-color: #D8B797;
+    padding: 0px;
+    border-radius: 20px;
+   
+}
+
+QListWidget#listWidget_date{
+    background-color: #D8B797;
+    border-top: 5px solid #4A321C;
+}
+
+QWidget#widget_report{
+    background-color: #F9F5F0;
+    border: 5px solid #4A321C;
+    border-radius: 20px;
+}
+
+QLabel#label_month, #label_revenue{
+    background-color: transparent;
+    color: #F9F5F0
+}
+
+QPushButton#pushButton_edit{
+    background-color: #754926;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 20px;
+    color: #FFFFFF;
+
 }
 
 /* QScrollArea#menu_scrollArea {
