@@ -1,5 +1,5 @@
 """
-    
+    main application file
 """
 
 import sys
@@ -26,22 +26,9 @@ class Application:
         self.__menuorder_page = MenuOrderPage(
             MenuOrderView(),
             MenuOrderModel())
-        self.__order_tracking = OrderTrackingPage(
-            OrderTrackingView(),
-            OrderTrackingModel()
-        )
-        self.__target_revenue = TargetRevenuePage(
-            TargetRevenueView(),
-            TargetRevenueModel()
-        )
-
-        self.__audit_log = AuditLogPage(
-            AuditLogView(),
-            AuditLogModel()
-        )
 
 
-        self.__current_page = self.__audit_log
+        self.__current_page = self.__login_page     # first page
 
     def start(self) -> None:
         self.__current_page.show_page()
@@ -49,6 +36,7 @@ class Application:
 
     def update(self) -> None:
         self.__current_page.update()
+
 
 
 
