@@ -52,3 +52,10 @@ class TargetRevenuePage(Controller):
 
     def __init__(self, view: TargetRevenueView = None, model: TargetRevenueModel = None):
         Controller.__init__(self,view, model)
+
+class AuditLogPage(Controller):
+    view: AuditLogView
+    model: AuditLogModel
+
+    def __init__(self, view: AuditLogView = None, model: AuditLogModel = None):
+        Controller.__init__(self,view, model)

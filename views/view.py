@@ -413,6 +413,43 @@ class TargetRevenueView(QWidget):
         
         self.setStyleSheet(Theme.get_stylesheet())
 
+
+class AuditLogView(QWidget):
+    def __init__(self):
+        QWidget.__init__(self,None)
+
+        self.resize(1920, 1080)
+        self.widget_auditlog = QWidget(self)
+        self.widget_auditlog.setObjectName("widget_auditlog")
+        self.widget_auditlog.setGeometry(QRect(60, 120, 1800, 980))
+
+        self.label_date = QLabel("Date",self.widget_auditlog)
+        self.label_date.setObjectName("label_date")
+        self.label_date.setGeometry(QRect(100, 70, 151, 61))
+        self.label_date.setFont(Theme.DONGLE_BOLD_70)
+
+        self.label_time = QLabel("Time",self.widget_auditlog)
+        self.label_time.setObjectName("label_time")
+        self.label_time.setGeometry(QRect(400, 70, 151, 61))
+        self.label_time.setFont(Theme.DONGLE_BOLD_70)
+        
+        self.label_name = QLabel("Name",self.widget_auditlog)
+        self.label_name.setObjectName("label_name")
+        self.label_name.setGeometry(QRect(640, 70, 171, 61))
+        self.label_name.setFont(Theme.DONGLE_BOLD_70)
+        
+        self.label_activity = QLabel("Activity",self.widget_auditlog)
+        self.label_activity.setObjectName("label_activity")
+        self.label_activity.setGeometry(QRect(1080, 70, 231, 61))
+        self.label_activity.setFont(Theme.DONGLE_BOLD_70)
+        
+        self.listWidget_auditlog = QListWidget(self.widget_auditlog)
+        self.listWidget_auditlog.setObjectName("listWidget_auditlog")
+        self.listWidget_auditlog.setGeometry(QRect(39, 150, 1722, 810))
+
+        self.setStyleSheet(Theme.get_stylesheet())
+
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     mo = LoginPage()

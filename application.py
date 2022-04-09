@@ -5,9 +5,9 @@
 import sys
 from PySide6.QtWidgets import (QApplication)
 
-from controllers.controller import (Controller, LogInPage, MenuOrderPage, OrderTrackingPage, TargetRevenuePage)
-from views.view import (LoginView, MenuOrderView, OrderTrackingView, TargetRevenueView)
-from models.model import (LoginModel, MenuOrderModel, OrderTrackingModel, TargetRevenueModel)
+from controllers.controller import (AuditLogPage, Controller, LogInPage, MenuOrderPage, OrderTrackingPage, TargetRevenuePage)
+from views.view import (AuditLogView, LoginView, MenuOrderView, OrderTrackingView, TargetRevenueView)
+from models.model import (AuditLogModel, LoginModel, MenuOrderModel, OrderTrackingModel, TargetRevenueModel)
 from data.data_classes import (User)
 
 
@@ -35,8 +35,13 @@ class Application:
             TargetRevenueModel()
         )
 
+        self.__audit_log = AuditLogPage(
+            AuditLogView(),
+            AuditLogModel()
+        )
 
-        self.__current_page = self.__target_revenue
+
+        self.__current_page = self.__audit_log
 
     def start(self) -> None:
         self.__current_page.show_page()

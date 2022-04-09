@@ -39,3 +39,7 @@ class OrderTrackingModel(Model):
 class TargetRevenueModel(Model):
     def __init__(self):
         pass
+
+class AuditLogModel(Model):
+    def __init__(self):
+        pass

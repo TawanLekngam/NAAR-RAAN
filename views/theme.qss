@@ -63,14 +63,14 @@ QListView#listView_todo_1, #listView_todo_2, #listView_doing_1, #listView_doing_
     
 }
 
-QWidget#scrollAreaWidgetContents, #scrollAreaWidgetContents_2,#scrollAreaWidgetContents_3, #widget_date{
+QWidget#scrollAreaWidgetContents, #scrollAreaWidgetContents_2,#scrollAreaWidgetContents_3, #widget_date, #widget_auditlog{
     background-color: #D8B797;
     padding: 0px;
     border-radius: 20px;
    
 }
 
-QListWidget#listWidget_date{
+QListWidget#listWidget_date, #listWidget_auditlog{
     background-color: #D8B797;
     border-top: 5px solid #4A321C;
 }
@@ -81,7 +81,7 @@ QWidget#widget_report{
     border-radius: 20px;
 }
 
-QLabel#label_month, #label_revenue{
+QLabel#label_month, #label_revenue,#label_date, #label_time, #label_name, #label_activity{
     background-color: transparent;
     color: #F9F5F0
 }
@@ -94,6 +94,7 @@ QPushButton#pushButton_edit{
     color: #FFFFFF;
 
 }
+
 
 /* QScrollArea#menu_scrollArea {
     background-color: transparent;
