@@ -182,3 +182,23 @@ QPushButton#cancel_add_button:hover {
     border-radius: 20px;
     color: #F9F5F0;
 }
+
+QFrame#admin_frame {
+    background-color: #F9F5F0;
+    border: 5px solid #4A321C;
+    border-radius: 20px;
+}
+
+/* QScrollArea#admin_scrollArea {
+    background-color: transparent;
+    font-family: "Dongle";
+    font-size: 65pt;
+    color: #4A321C;
+}
+
+QWidget#admin_scrollAreaContents {
+    background-color: transparent;
+    font-family: "Dongle";
+    font-size: 65pt;
+    color: #4A321C;
+} */
