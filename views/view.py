@@ -449,8 +449,39 @@ class AuditLogView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+class MenuAdmin(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+
+        admin_frame = QFrame(self)
+        admin_frame.setObjectName("admin_frame")
+        admin_frame.setGeometry(75, 115, 1000, 850)
+
+        menu_label = QLabel("Menu", admin_frame)
+        menu_label.setObjectName("menu_label")
+        menu_label.setFont(Theme.DONGLE_BOLD_80)
+        menu_label.setGeometry(QRect(55, 70, 121, 51))
+
+        self.search_bar = QLineEdit(admin_frame)
+        self.search_bar.setObjectName("search_bar")
+        self.search_bar.setFont(Theme.DONGLE_BOLD_65)
+        self.search_bar.setGeometry(QRect(260, 53, 680, 80))
+
+        admin_scrollArea = QScrollArea(admin_frame)
+        admin_scrollArea.setObjectName("admin_scrollArea")
+        admin_scrollArea.setGeometry(QRect(55, 182, 890, 440))
+
+        admin_scrollAreaContents = QWidget(admin_scrollArea)
+        admin_scrollAreaContents.setObjectName("admin_scrollAreaContents")
+        admin_scrollAreaContents.setGeometry(QRect(0, 0, 888, 438))
+        admin_scrollArea.setWidget(admin_scrollAreaContents)
+
+        add_button = QPushButton("Add", self)
+        add_button.setObjectName("cancel_add_button")
+        add_button.setFont(Theme.DONGLE_REGULAR_65)
+        add_button.setGeometry(QRect(836, 690, 100, 100))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    mo = LoginPage()
+    mo = MenuAdmin()
     sys.exit(app.exec())
