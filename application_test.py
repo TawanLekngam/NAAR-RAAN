@@ -27,10 +27,14 @@ class Application:
             MenuOrderView(),
             MenuOrderModel())
 
+        self.__menuadmin_page = MenuAdminPage(
+            view = MenuAdminView()
+        )
+
         """
             start page will show 
         """
-        self.__current_page = self.__login_page
+        self.__current_page = self.__menuadmin_page
 
     def start(self) -> None:
         self.__current_page.show_page()

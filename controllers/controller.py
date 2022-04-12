@@ -59,3 +59,9 @@ class AuditLogPage(Controller):
 
     def __init__(self, view: AuditLogView = None, model: AuditLogModel = None):
         Controller.__init__(self,view, model)
+
+class MenuAdminPage(Controller):
+    view: MenuAdminView
+
+    def __init__(self, view: MenuAdminView = None, model: Model = None):
+        Controller.__init__(self, view, model)

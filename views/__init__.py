@@ -1,2 +1,2 @@
 from views.theme import Theme
-from views.view import (LoginView, MenuOrderView,OrderTrackingView,TargetRevenueView,AuditLogView)
+from views.view import (LoginView, MenuOrderView,OrderTrackingView,TargetRevenueView,AuditLogView, MenuAdminView)
