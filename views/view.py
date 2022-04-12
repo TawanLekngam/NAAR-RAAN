@@ -449,7 +449,7 @@ class AuditLogView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
-class MenuAdmin(QWidget):
+class MenuAdminView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
 
@@ -480,6 +480,9 @@ class MenuAdmin(QWidget):
         add_button.setObjectName("cancel_add_button")
         add_button.setFont(Theme.DONGLE_REGULAR_65)
         add_button.setGeometry(QRect(836, 690, 100, 100))
+
+        self.setStyleSheet(Theme.get_stylesheet())
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
