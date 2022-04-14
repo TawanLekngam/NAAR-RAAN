@@ -51,7 +51,8 @@ QLineEdit#search_bar {
     border: 5px solid #754926;
     border-radius: 20px;
 }
-QScrollArea#scrollArea_todo, #scrollArea_doing, #scrollArea_done{
+
+QScrollArea #scrollArea_todo, #scrollArea_doing, #scrollArea_done{
     background-color: #D8B797;
     border-radius: 20px;
     padding: 0px;
@@ -173,12 +174,12 @@ QLabel#addOn_label {
 
 QPushButton#cancel_add_button {
     color: #F9F5F0;
-    background: #4A321C;
+    background: #754926;
     border-radius: 20px;
 }
 
 QPushButton#cancel_add_button:hover {
-    background-color: #754926;
+    background-color: #4A321C;
     border-radius: 20px;
     color: #F9F5F0;
 }
@@ -202,3 +203,44 @@ QWidget#admin_scrollAreaContents {
     font-size: 65pt;
     color: #4A321C;
 } */
+
+QWidget #admin_widget {
+    background-color: #D8B797;
+    border-radius: 20px;
+}
+
+QLineEdit #input_bar {
+    background: #F9F5F0;
+    border-radius: 20px;
+    color: #4A321C;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+QRadioButton #default_radio {
+    QRadioButton{
+    color: #4A321C;
+}
+
+QRadioButton::indicator #default_radio {
+    background: #F9F5F0;
+    width: 30px;
+    height: 30px;
+    border: 5px solid #754926;
+    border-radius: 20px;
+}
+
+QRadioButton::indicator:checked #default_radio {
+    background-color:  #754926;
+	height: 30px;
+	width: 30px;
+	border-radius: 20px;
+}
+
+QLineEdit#price_bar {
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #4A321C;
+    background: #F9F5F0;
+    border-radius: 20px;
+}
