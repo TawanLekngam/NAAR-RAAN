@@ -31,10 +31,7 @@ class Application:
             view = MenuAdminView()
         )
 
-        """
-            start page will show 
-        """
-        self.__current_page = self.__menuadmin_page
+        self.__current_page = self.__menuadmin_page  # change controller here
 
     def start(self) -> None:
         self.__current_page.show_page()
