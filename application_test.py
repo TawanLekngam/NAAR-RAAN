@@ -31,7 +31,22 @@ class Application:
             view = MenuAdminView()
         )
 
-        self.__current_page = self.__menuadmin_page  # change controller here
+        self.__auditlog_page = AuditLogPage(
+            AuditLogView(),
+            AuditLogModel()
+        )
+
+        self.__targetrevenue_page = TargetRevenuePage(
+            TargetRevenueView(),
+            TargetRevenueModel()
+        )
+
+        self.__ordertracking_page = OrderTrackingPage(
+            OrderTrackingView(),
+            OrderTrackingModel()
+        )
+
+        self.__current_page = self.__ordertracking_page  # change controller here
 
     def start(self) -> None:
         self.__current_page.show_page()
