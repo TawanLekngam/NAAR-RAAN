@@ -163,11 +163,6 @@ class LoginView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
 
-        label_circle = QLabel(self)
-        label_circle.setObjectName("label_circle")
-        label_circle.setGeometry(QRect(753, 112, 400, 400))
-        label_circle.setPixmap(QPixmap("assets/Image/circle.png"))
-
         label_logo = QLabel(self)
         label_logo.setObjectName("label_logo")
         label_logo.setGeometry(QRect(846, 158, 252, 252))
@@ -197,9 +192,9 @@ class LoginView(QWidget):
         self.login_button = QPushButton(self)
         self.login_button.setObjectName("pushButton")
         self.login_button.setGeometry(QRect(860, 860, 200, 80))
-
+        
         icon = QIcon()
-        icon.addFile("assets/svgs/coffee.svg",
+        icon.addFile("assets/Image/coffee.png",
                      QSize(), QIcon.Normal, QIcon.Off)
         self.login_button.setIcon(icon)
         self.login_button.setIconSize(QSize(55, 55))
