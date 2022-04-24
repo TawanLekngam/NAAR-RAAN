@@ -95,6 +95,9 @@ QPushButton#pushButton_edit{
 
 }
 
+QFrame#frame{
+    background-color: #754926;
+}
 
 /* QScrollArea#menu_scrollArea {
     background-color: transparent;

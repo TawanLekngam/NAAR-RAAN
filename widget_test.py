@@ -5,8 +5,8 @@ from views.view import *
 
 def main() -> int:
     app = QApplication(sys.argv)
-    w = OrderDetail()   # change widget here
-    w.show()
+    w = BasePageView()  # change widget here
+    w.showFullScreen()
     return app.exec()
 
 if __name__ == "__main__":
