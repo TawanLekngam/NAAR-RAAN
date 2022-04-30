@@ -169,11 +169,16 @@ class BasePageView(QWidget):
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
 
+        self.pushButton = QPushButton("Audit Log",self.frame)
+        self.pushButton.setObjectName(u"pushButton_base_page")
+        self.pushButton.setGeometry(QRect(1421, 5, 500, 94))
+        self.pushButton.setFont(Theme.DONGLE_BOLD_65)
+
         self.stackedWidget = QStackedWidget(self)
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.stackedWidget.setGeometry(QRect(0, 84, 1920, 1071))
 
-        self.target_revenue_page = MenuOrderView()
+        self.target_revenue_page = TargetRevenueView()
         self.target_revenue_page.setObjectName(u"page")
         self.stackedWidget.addWidget(self.target_revenue_page)
         self.page_2 = MenuOrderView()
