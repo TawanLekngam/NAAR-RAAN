@@ -62,7 +62,7 @@ class MOC(Controller):
     __v: MenuOrderView
     __m: MenuOrderModel
 
-    def __init__(self, v: QWidget = None, m: model = None):
+    def __init__(self, v: QWidget = None, m: Model = None):
         Controller.__init__(self, v, m)
 
 class ALC(Controller):
