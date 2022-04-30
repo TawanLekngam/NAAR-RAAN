@@ -96,7 +96,12 @@ QPushButton#pushButton_edit{
 }
 
 QFrame#frame{
-    background-color: #754926;
+    background-color: #4A321C;
+}
+
+QPushButton#pushButton_base_page{
+    color: #D8B797;
+    background-color: #4A321C;
 }
 
 /* QScrollArea#menu_scrollArea {
