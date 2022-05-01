@@ -8,3 +8,6 @@ Beam - complete Baseview
 Sun. - complete controller
      - fix dataclass
      - complete revenue
+
+
+Note: comment duay na krub.
