@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
-from data.access_level import AccessLevel
+from src.data.access_level import AccessLevel
 
 
 @dataclass

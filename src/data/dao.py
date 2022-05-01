@@ -1,9 +1,8 @@
 import sqlite3
 import os
 from abc import ABC, abstractmethod
-from data.data_classes import *
-from data.access_level import *
-
+from src import *
+from src.data.data_class import *
 
 class DAO(ABC):
     def __init__(self, connection: sqlite3.Connection):

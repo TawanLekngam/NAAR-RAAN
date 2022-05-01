@@ -169,16 +169,11 @@ class BasePageView(QWidget):
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
 
-        self.pushButton = QPushButton("Audit Log",self.frame)
-        self.pushButton.setObjectName(u"pushButton_base_page")
-        self.pushButton.setGeometry(QRect(1421, 5, 500, 94))
-        self.pushButton.setFont(Theme.DONGLE_BOLD_65)
-
         self.stackedWidget = QStackedWidget(self)
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.stackedWidget.setGeometry(QRect(0, 84, 1920, 1071))
 
-        self.target_revenue_page = TargetRevenueView()
+        self.target_revenue_page = MenuOrderView()
         self.target_revenue_page.setObjectName(u"page")
         self.stackedWidget.addWidget(self.target_revenue_page)
         self.page_2 = MenuOrderView()
@@ -483,7 +478,7 @@ class MenuAdminView(QWidget):
         menu_label = QLabel("Menu", admin_frame)
         menu_label.setObjectName("menu_label")
         menu_label.setFont(Theme.DONGLE_BOLD_80)
-        menu_label.setGeometry(QRect(55, 70, 125, 51))
+        menu_label.setGeometry(QRect(55, 70, 121, 51))
 
         self.search_bar = QLineEdit(admin_frame)
         self.search_bar.setObjectName("search_bar")
@@ -499,116 +494,15 @@ class MenuAdminView(QWidget):
         admin_scrollAreaContents.setGeometry(QRect(0, 0, 888, 438))
         admin_scrollArea.setWidget(admin_scrollAreaContents)
 
-        add_button = QPushButton("+", admin_frame)
+        add_button = QPushButton("Add", self)
         add_button.setObjectName("cancel_add_button")
         add_button.setFont(Theme.DONGLE_REGULAR_65)
         add_button.setGeometry(QRect(836, 690, 100, 100))
 
         self.setStyleSheet(Theme.get_stylesheet())
 
-class MenuEdit(QWidget):
-        def __init__(self, parent: QWidget = None):
-            QWidget.__init__(self, parent)
-            self.setFixedSize(1000, 850)
-            self.setObjectName("admin_widget")
-
-            name = QLabel("Name", self)
-            name.setObjectName("default_label")
-            name.setFont(Theme.DONGLE_BOLD_65)
-            name.setGeometry(QRect(33, 75, 111, 41))
-
-            self.name_bar = QLineEdit(self)
-            self.name_bar.setObjectName("input_bar")
-            self.name_bar.setFont(Theme.DONGLE_REGULAR_65)
-            self.search_bar.setGeometry(QRect(210, 49, 470, 60))
-
-            self.addOn_button = QRadioButton(self)
-            self.addOn_button.setObjectName("default_radio")
-            self.addOn_button.setFont(Theme.DONGLE_REGULAR_65)
-            self.addOn_button.setGeometry(33, 177, 191, 41)
-            self.addOn_button.setText("Add-On")
-
-            self.drink_button = QRadioButton(self)
-            self.drink_button.setObjectName("default_radio")
-            self.drink_button.setFont(Theme.DONGLE_REGULAR_65)
-            self.drink_button.setGeometry(290, 177, 151, 41)
-            self.drink_button.setText("Drink")
-            
-            self.bakery_button = QRadioButton(self)
-            self.bakery_button.setObjectName("default_radio")
-            self.bakery_button.setFont(Theme.DONGLE_REGULAR_65)
-            self.bakery_button.setGeometry(290, 177, 151, 41)
-            self.bakery_button.setText("Bakery")
-
-            type_buttonGroup = QButtonGroup(self)
-            type_buttonGroup.setObjectName("type_buttonGroup")
-            type_buttonGroup.addButton(self.addOn_button)
-            type_buttonGroup.addButton(self.drink_button)
-            type_buttonGroup.addButton(self.bakery_button)
-
-            self.price_label = QLabel(self)
-            self.price_label.setObjectName("default_label")
-            self.price_label.setFont(Theme.DONGLE_REGULAR_65)
-            self.price_label.setGeometry(33, 301, 111, 41)
-
-            self.hot_checkBox = QCheckBox(self)
-            self.hot_checkBox.setObjectName("default_checkBox")
-            self.hot_checkBox.setFont(Theme.DONGLE_REGULAR_65)
-            self.hot_checkBox.setGeometry(194, 281, 141, 71)
-            self.hot_checkBox.setCheckable(True)
-
-            self.hot_checkBox = QCheckBox(self)
-            self.hot_checkBox.setObjectName("default_checkBox")
-            self.hot_checkBox.setFont(Theme.DONGLE_REGULAR_65)
-            self.hot_checkBox.setGeometry(194, 281, 141, 71)
-            self.hot_checkBox.setCheckable(True)
-
-            self.cold_checkBox = QCheckBox(self)
-            self.cold_checkBox.setObjectName("default_checkBox")
-            self.cold_checkBox.setFont(Theme.DONGLE_REGULAR_65)
-            self.cold_checkBox.setGeometry(194, 370, 141, 71)
-            self.cold_checkBox.setCheckable(True)
-
-            self.blended_checkBox = QCheckBox(self)
-            self.blended_checkBox.setObjectName("default_checkBox")
-            self.blended_checkBox.setFont(Theme.DONGLE_REGULAR_65)
-            self.blended_checkBox.setGeometry(194, 459, 141, 71)
-            self.blended_checkBox.setCheckable(True)
-
-            self.hot_price = QLineEdit(self)
-            self.hot_price.setObjectName("price_bar")
-            self.hot_price.setFont(Theme.DONGLE_REGULAR_65)
-            self.hot_price.setGeometry(480, 281, 200, 60)
-            self.hot_price.setAlignment(Qt.AlignCenter)
-
-            self.cold_price = QLineEdit(self)
-            self.cold_price.setObjectName("price_bar")
-            self.cold_price.setFont(Theme.DONGLE_REGULAR_65)
-            self.cold_price.setGeometry(480, 281, 200, 60)
-            self.cold_price.setAlignment(Qt.AlignCenter)
-
-            self.blended_price = QLineEdit(self)
-            self.blended_price.setObjectName("price_bar")
-            self.blended_price.setFont(Theme.DONGLE_REGULAR_65)
-            self.blended_price.setGeometry(480, 281, 200, 60)
-            self.blended_price.setAlignment(Qt.AlignCenter)
-
-            self.cancel_button = QPushButton("Cancel", self)
-            self.setObjectName("cancel_add_button")
-            self.cancel_button.setFont(Theme.DONGLE_REGULAR_65)
-            self.cancel_button.setGeometry(33, 730, 200, 80)
-
-            self.delete_button = QPushButton("Cancel", self)
-            self.setObjectName("cancel_add_button")
-            self.delete_button.setFont(Theme.DONGLE_REGULAR_65)
-            self.delete_button.setGeometry(480, 730, 200, 80)
-            
-            self.save_button = QPushButton("Cancel", self)
-            self.setObjectName("cancel_add_button")
-            self.save_button.setFont(Theme.DONGLE_REGULAR_65)
-            self.csave_button.setGeometry(257, 730, 200, 80)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    mo = MenuOrderView()
+    mo = MenuAdmin()
     sys.exit(app.exec())

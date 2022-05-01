@@ -2,8 +2,7 @@
     contain all model.
 """
 from abc import ABC
-from data import *
-from data.app_dao import *
+from src.data.dao import *
 
 
 class Model(ABC):
@@ -16,6 +15,8 @@ class LoginModel(Model):
 
     def login_verify(self, username: str, password: str) -> bool:
         db_user = self.__userDAO.get_user_by_username(username)
+        if db_user is None:
+            return False
 
         if password == db_user.get_password():
             return True

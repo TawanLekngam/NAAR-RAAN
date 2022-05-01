@@ -7,7 +7,7 @@ from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
-from views.theme import Theme
+from src.data.theme import Theme
 
 """
     utility widget.
@@ -154,13 +154,18 @@ class OrderDetail(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+
 """
     application view.
 """
 
-class BasePageView(QWidget):
+
+class BaseView(QWidget):
+    """
+    run another widget on stackwidget.
+    """
     def __init__(self, parent: QWidget = None):
-        QWidget.__init__(self,parent)
+        QWidget.__init__(self, parent)
 
         self.resize(1920, 1080)
         self.frame = QFrame(self)
@@ -178,14 +183,15 @@ class BasePageView(QWidget):
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.stackedWidget.setGeometry(QRect(0, 84, 1920, 1071))
 
-        self.target_revenue_page = TargetRevenueView()
+        self.target_revenue_page = MenuOrderView()
         self.target_revenue_page.setObjectName(u"page")
         self.stackedWidget.addWidget(self.target_revenue_page)
-        self.page_2 = MenuOrderView()
-        self.page_2.setObjectName(u"page_2")
-        self.stackedWidget.addWidget(self.page_2)
 
         self.setStyleSheet(Theme.get_stylesheet())
+
+    def add_view(self, view: QWidget) -> None:
+        self.stackedWidget.addWidget(view)
+
 
 class LoginView(QWidget):
     def __init__(self, parent: QWidget = None):
@@ -220,7 +226,7 @@ class LoginView(QWidget):
         self.login_button = QPushButton(self)
         self.login_button.setObjectName("pushButton")
         self.login_button.setGeometry(QRect(860, 860, 200, 80))
-        
+
         icon = QIcon()
         icon.addFile("assets/Image/coffee.png",
                      QSize(), QIcon.Normal, QIcon.Off)
@@ -293,6 +299,7 @@ class MenuOrderView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+
 class OrderTrackingView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -317,17 +324,15 @@ class OrderTrackingView(QWidget):
 
         self.scrollArea_todo.setWidget(self.scrollAreaWidgetContents)
 
-        self.label_todo = QLabel("TO DO",self)
+        self.label_todo = QLabel("TO DO", self)
         self.label_todo.setObjectName("label_todo")
         self.label_todo.setGeometry(QRect(118, 197, 200, 61))
         self.label_todo.setFont(Theme.DONGLE_BOLD_70)
-        
 
-        self.label_doing = QLabel("DOING",self)
+        self.label_doing = QLabel("DOING", self)
         self.label_doing.setObjectName("label_doing")
         self.label_doing.setGeometry(QRect(760, 197, 200, 61))
         self.label_doing.setFont(Theme.DONGLE_BOLD_70)
-        
 
         self.scrollArea_doing = QScrollArea(self)
         self.scrollArea_doing.setObjectName("scrollArea_doing")
@@ -335,7 +340,8 @@ class OrderTrackingView(QWidget):
         self.scrollArea_doing.setWidgetResizable(True)
 
         self.scrollAreaWidgetContents_2 = QWidget()
-        self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
+        self.scrollAreaWidgetContents_2.setObjectName(
+            "scrollAreaWidgetContents_2")
         self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 498, 748))
 
         self.listView_doing_1 = QListView(self.scrollAreaWidgetContents_2)
@@ -347,11 +353,10 @@ class OrderTrackingView(QWidget):
 
         self.scrollArea_doing.setWidget(self.scrollAreaWidgetContents_2)
 
-        self.label_done = QLabel("DONE",self)
+        self.label_done = QLabel("DONE", self)
         self.label_done.setObjectName("label_done")
         self.label_done.setGeometry(QRect(1377, 197, 171, 61))
         self.label_done.setFont(Theme.DONGLE_BOLD_70)
-        
 
         self.scrollArea_done = QScrollArea(self)
         self.scrollArea_done.setObjectName("scrollArea_done")
@@ -359,7 +364,8 @@ class OrderTrackingView(QWidget):
         self.scrollArea_done.setWidgetResizable(True)
 
         self.scrollAreaWidgetContents_3 = QWidget()
-        self.scrollAreaWidgetContents_3.setObjectName("scrollAreaWidgetContents_3")
+        self.scrollAreaWidgetContents_3.setObjectName(
+            "scrollAreaWidgetContents_3")
         self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 498, 498))
 
         self.listView_done_1 = QListView(self.scrollAreaWidgetContents_3)
@@ -369,28 +375,28 @@ class OrderTrackingView(QWidget):
         self.scrollArea_done.setWidget(self.scrollAreaWidgetContents_3)
 
         self.setStyleSheet(Theme.get_stylesheet())
-        
+
 
 class TargetRevenueView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
 
         self.resize(1920, 1080)
-        
+
         self.widget_date = QWidget(self)
         self.widget_date.setObjectName("widget_date")
         self.widget_date.setGeometry(QRect(80, 90, 625, 900))
-        
+
         self.listWidget_date = QListWidget(self.widget_date)
         self.listWidget_date.setObjectName("listWidget_date")
         self.listWidget_date.setGeometry(QRect(13, 130, 600, 750))
-        
-        self.label_month = QLabel("Month",self.widget_date)
+
+        self.label_month = QLabel("Month", self.widget_date)
         self.label_month.setObjectName("label_month")
         self.label_month.setGeometry(QRect(60, 40, 171, 61))
         self.label_month.setFont(Theme.DONGLE_BOLD_65)
-        
-        self.label_revenue = QLabel("Revenue",self.widget_date)
+
+        self.label_revenue = QLabel("Revenue", self.widget_date)
         self.label_revenue.setObjectName("label_revenue")
         self.label_revenue.setGeometry(QRect(390, 40, 211, 61))
         self.label_revenue.setFont(Theme.DONGLE_BOLD_65)
@@ -398,79 +404,80 @@ class TargetRevenueView(QWidget):
         self.widget_report = QWidget(self)
         self.widget_report.setObjectName("widget_report")
         self.widget_report.setGeometry(QRect(840, 115, 1000, 720))
-        
-        self.label_target = QLabel("Target",self.widget_report)
+
+        self.label_target = QLabel("Target", self.widget_report)
         self.label_target.setObjectName("label_target")
         self.label_target.setGeometry(QRect(200, 470, 171, 61))
         self.label_target.setFont(Theme.DONGLE_BOLD_65)
-        
-        self.label_revenue_pie = QLabel("Revenue",self.widget_report)
+
+        self.label_revenue_pie = QLabel("Revenue", self.widget_report)
         self.label_revenue_pie.setObjectName("label_revenue_pie")
         self.label_revenue_pie.setGeometry(QRect(200, 565, 221, 51))
         self.label_revenue_pie.setFont(Theme.DONGLE_BOLD_65)
-        
-        self.label_amount_left = QLabel("Amount Left",self.widget_report)
+
+        self.label_amount_left = QLabel("Amount Left", self.widget_report)
         self.label_amount_left.setObjectName("label_amount_left")
         self.label_amount_left.setGeometry(QRect(200, 650, 341, 61))
         self.label_amount_left.setFont(Theme.DONGLE_BOLD_65)
-        
-        self.label_money_target = QLabel("9000",self.widget_report)
+
+        self.label_money_target = QLabel("9000", self.widget_report)
         self.label_money_target.setObjectName("label_money_target")
         self.label_money_target.setGeometry(QRect(670, 470, 131, 61))
         self.label_money_target.setFont(Theme.DONGLE_REGULAR_65)
-        
-        self.label_money_revenue = QLabel("5000",self.widget_report)
+
+        self.label_money_revenue = QLabel("5000", self.widget_report)
         self.label_money_revenue.setObjectName("label_money_revenue")
         self.label_money_revenue.setGeometry(QRect(670, 565, 131, 51))
         self.label_money_revenue.setFont(Theme.DONGLE_REGULAR_65)
-       
-        self.label_money_left = QLabel("4000",self.widget_report)
+
+        self.label_money_left = QLabel("4000", self.widget_report)
         self.label_money_left.setObjectName("label_money_left")
         self.label_money_left.setGeometry(QRect(670, 650, 131, 51))
         self.label_money_left.setFont(Theme.DONGLE_REGULAR_65)
-        
-        self.pushButton_edit = QPushButton("Edit",self)
+
+        self.pushButton_edit = QPushButton("Edit", self)
         self.pushButton_edit.setObjectName("pushButton_edit")
         self.pushButton_edit.setGeometry(QRect(1620, 878, 220, 80))
         self.pushButton_edit.setFont(Theme.DONGLE_BOLD_65)
-        
+
         self.setStyleSheet(Theme.get_stylesheet())
 
 
 class AuditLogView(QWidget):
     def __init__(self):
-        QWidget.__init__(self,None)
+        QWidget.__init__(self, None)
 
         self.resize(1920, 1080)
         self.widget_auditlog = QWidget(self)
         self.widget_auditlog.setObjectName("widget_auditlog")
         self.widget_auditlog.setGeometry(QRect(60, 120, 1800, 980))
 
-        self.label_date = QLabel("Date",self.widget_auditlog)
+        self.label_date = QLabel("Date", self.widget_auditlog)
         self.label_date.setObjectName("label_date")
         self.label_date.setGeometry(QRect(100, 70, 151, 61))
         self.label_date.setFont(Theme.DONGLE_BOLD_70)
 
-        self.label_time = QLabel("Time",self.widget_auditlog)
+        self.label_time = QLabel("Time", self.widget_auditlog)
         self.label_time.setObjectName("label_time")
         self.label_time.setGeometry(QRect(400, 70, 151, 61))
         self.label_time.setFont(Theme.DONGLE_BOLD_70)
-        
-        self.label_name = QLabel("Name",self.widget_auditlog)
+
+        self.label_name = QLabel("Name", self.widget_auditlog)
         self.label_name.setObjectName("label_name")
         self.label_name.setGeometry(QRect(640, 70, 171, 61))
         self.label_name.setFont(Theme.DONGLE_BOLD_70)
-        
-        self.label_activity = QLabel("Activity",self.widget_auditlog)
+
+        self.label_activity = QLabel("Activity", self.widget_auditlog)
         self.label_activity.setObjectName("label_activity")
         self.label_activity.setGeometry(QRect(1080, 70, 231, 61))
         self.label_activity.setFont(Theme.DONGLE_BOLD_70)
-        
+
         self.listWidget_auditlog = QListWidget(self.widget_auditlog)
         self.listWidget_auditlog.setObjectName("listWidget_auditlog")
         self.listWidget_auditlog.setGeometry(QRect(39, 150, 1722, 810))
 
         self.setStyleSheet(Theme.get_stylesheet())
+
 
 class MenuAdminView(QWidget):
     def __init__(self, parent: QWidget = None):
@@ -483,7 +490,7 @@ class MenuAdminView(QWidget):
         menu_label = QLabel("Menu", admin_frame)
         menu_label.setObjectName("menu_label")
         menu_label.setFont(Theme.DONGLE_BOLD_80)
-        menu_label.setGeometry(QRect(55, 70, 125, 51))
+        menu_label.setGeometry(QRect(55, 70, 121, 51))
 
         self.search_bar = QLineEdit(admin_frame)
         self.search_bar.setObjectName("search_bar")
@@ -499,116 +506,15 @@ class MenuAdminView(QWidget):
         admin_scrollAreaContents.setGeometry(QRect(0, 0, 888, 438))
         admin_scrollArea.setWidget(admin_scrollAreaContents)
 
-        add_button = QPushButton("+", admin_frame)
+        add_button = QPushButton("Add", self)
         add_button.setObjectName("cancel_add_button")
         add_button.setFont(Theme.DONGLE_REGULAR_65)
         add_button.setGeometry(QRect(836, 690, 100, 100))
 
         self.setStyleSheet(Theme.get_stylesheet())
 
-class MenuEdit(QWidget):
-        def __init__(self, parent: QWidget = None):
-            QWidget.__init__(self, parent)
-            self.setFixedSize(1000, 850)
-            self.setObjectName("admin_widget")
-
-            name = QLabel("Name", self)
-            name.setObjectName("default_label")
-            name.setFont(Theme.DONGLE_BOLD_65)
-            name.setGeometry(QRect(33, 75, 111, 41))
-
-            self.name_bar = QLineEdit(self)
-            self.name_bar.setObjectName("input_bar")
-            self.name_bar.setFont(Theme.DONGLE_REGULAR_65)
-            self.search_bar.setGeometry(QRect(210, 49, 470, 60))
-
-            self.addOn_button = QRadioButton(self)
-            self.addOn_button.setObjectName("default_radio")
-            self.addOn_button.setFont(Theme.DONGLE_REGULAR_65)
-            self.addOn_button.setGeometry(33, 177, 191, 41)
-            self.addOn_button.setText("Add-On")
-
-            self.drink_button = QRadioButton(self)
-            self.drink_button.setObjectName("default_radio")
-            self.drink_button.setFont(Theme.DONGLE_REGULAR_65)
-            self.drink_button.setGeometry(290, 177, 151, 41)
-            self.drink_button.setText("Drink")
-            
-            self.bakery_button = QRadioButton(self)
-            self.bakery_button.setObjectName("default_radio")
-            self.bakery_button.setFont(Theme.DONGLE_REGULAR_65)
-            self.bakery_button.setGeometry(290, 177, 151, 41)
-            self.bakery_button.setText("Bakery")
-
-            type_buttonGroup = QButtonGroup(self)
-            type_buttonGroup.setObjectName("type_buttonGroup")
-            type_buttonGroup.addButton(self.addOn_button)
-            type_buttonGroup.addButton(self.drink_button)
-            type_buttonGroup.addButton(self.bakery_button)
-
-            self.price_label = QLabel(self)
-            self.price_label.setObjectName("default_label")
-            self.price_label.setFont(Theme.DONGLE_REGULAR_65)
-            self.price_label.setGeometry(33, 301, 111, 41)
-
-            self.hot_checkBox = QCheckBox(self)
-            self.hot_checkBox.setObjectName("default_checkBox")
-            self.hot_checkBox.setFont(Theme.DONGLE_REGULAR_65)
-            self.hot_checkBox.setGeometry(194, 281, 141, 71)
-            self.hot_checkBox.setCheckable(True)
-
-            self.hot_checkBox = QCheckBox(self)
-            self.hot_checkBox.setObjectName("default_checkBox")
-            self.hot_checkBox.setFont(Theme.DONGLE_REGULAR_65)
-            self.hot_checkBox.setGeometry(194, 281, 141, 71)
-            self.hot_checkBox.setCheckable(True)
-
-            self.cold_checkBox = QCheckBox(self)
-            self.cold_checkBox.setObjectName("default_checkBox")
-            self.cold_checkBox.setFont(Theme.DONGLE_REGULAR_65)
-            self.cold_checkBox.setGeometry(194, 370, 141, 71)
-            self.cold_checkBox.setCheckable(True)
-
-            self.blended_checkBox = QCheckBox(self)
-            self.blended_checkBox.setObjectName("default_checkBox")
-            self.blended_checkBox.setFont(Theme.DONGLE_REGULAR_65)
-            self.blended_checkBox.setGeometry(194, 459, 141, 71)
-            self.blended_checkBox.setCheckable(True)
-
-            self.hot_price = QLineEdit(self)
-            self.hot_price.setObjectName("price_bar")
-            self.hot_price.setFont(Theme.DONGLE_REGULAR_65)
-            self.hot_price.setGeometry(480, 281, 200, 60)
-            self.hot_price.setAlignment(Qt.AlignCenter)
-
-            self.cold_price = QLineEdit(self)
-            self.cold_price.setObjectName("price_bar")
-            self.cold_price.setFont(Theme.DONGLE_REGULAR_65)
-            self.cold_price.setGeometry(480, 281, 200, 60)
-            self.cold_price.setAlignment(Qt.AlignCenter)
-
-            self.blended_price = QLineEdit(self)
-            self.blended_price.setObjectName("price_bar")
-            self.blended_price.setFont(Theme.DONGLE_REGULAR_65)
-            self.blended_price.setGeometry(480, 281, 200, 60)
-            self.blended_price.setAlignment(Qt.AlignCenter)
-
-            self.cancel_button = QPushButton("Cancel", self)
-            self.setObjectName("cancel_add_button")
-            self.cancel_button.setFont(Theme.DONGLE_REGULAR_65)
-            self.cancel_button.setGeometry(33, 730, 200, 80)
-
-            self.delete_button = QPushButton("Cancel", self)
-            self.setObjectName("cancel_add_button")
-            self.delete_button.setFont(Theme.DONGLE_REGULAR_65)
-            self.delete_button.setGeometry(480, 730, 200, 80)
-            
-            self.save_button = QPushButton("Cancel", self)
-            self.setObjectName("cancel_add_button")
-            self.save_button.setFont(Theme.DONGLE_REGULAR_65)
-            self.csave_button.setGeometry(257, 730, 200, 80)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    mo = MenuOrderView()
+    mo = MenuAdmin()
     sys.exit(app.exec())
