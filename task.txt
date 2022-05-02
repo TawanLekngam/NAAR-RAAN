@@ -1,0 +1,13 @@
+Due : 07 - 05 - 2022
+Nene - resize view
+     - stack widget
+
+Beam - complete Baseview
+     - format qss
+
+Sun. - complete controller
+     - fix dataclass
+     - complete revenue
+
+
+Note: comment duay na krub.
