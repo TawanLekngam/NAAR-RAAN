@@ -17,6 +17,11 @@ class AppDAO:
 
     @staticmethod
     def get_dao(database: str = None) -> DAO:
+        """
+        Generate the dao by following the parameter and return it.
+
+        If it not have the operation will return None.
+        """
         if database == "user":
             return UserDAO(AppDAO.__connection)
         if database == "drink":
@@ -33,7 +38,9 @@ class AppDAO:
 
     @staticmethod
     def close_database() -> None:
-        """ disconnect database."""
+        """
+        Disconnect database.
+        """
         AppDAO.__connection.close()
 
 
