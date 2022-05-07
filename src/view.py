@@ -174,16 +174,43 @@ class BaseView(QWidget):
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
 
-        self.pushButton = QPushButton("Audit Log",self.frame)
-        self.pushButton.setObjectName(u"pushButton_base_page")
+        self.pushButton = QPushButton("Tawan L.",self.frame)
+        self.pushButton.setObjectName("pushButton_base_page")
         self.pushButton.setGeometry(QRect(1421, 5, 500, 94))
         self.pushButton.setFont(Theme.DONGLE_BOLD_65)
+
+        self.pushButton_home = QPushButton(self.frame)
+        self.pushButton_home.setObjectName("pushButton_base_page")
+        self.pushButton_home.setGeometry(QRect(1321, 5, 100, 94))
+        icon = QIcon()
+        icon.addFile("assets/Image/home.png",
+                     QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_home.setIcon(icon)
+        self.pushButton_home.setIconSize(QSize(55,55))
+
+        self.pushButton_target = QPushButton(self.frame)
+        self.pushButton_target.setObjectName("pushButton_base_page")
+        self.pushButton_target.setGeometry(QRect(1221, 5, 100, 94))
+        icon = QIcon()
+        icon.addFile("assets/Image/target.png",
+                     QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_home.setIcon(icon)
+        self.pushButton_home.setIconSize(QSize(55,55))
+
+        self.pushButton_auditlog = QPushButton(self.frame)
+        self.pushButton_auditlog.setObjectName("pushButton_base_page")
+        self.pushButton_auditlog.setGeometry(QRect(1121, 5, 100, 94))
+        icon = QIcon()
+        icon.addFile("assets/Image/history.png",
+                     QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_home.setIcon(icon)
+        self.pushButton_home.setIconSize(QSize(55,55))
 
         self.stackedWidget = QStackedWidget(self)
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.stackedWidget.setGeometry(QRect(0, 84, 1920, 1071))
 
-        self.target_revenue_page = MenuOrderView()
+        self.target_revenue_page = AuditLogView()
         self.target_revenue_page.setObjectName(u"page")
         self.stackedWidget.addWidget(self.target_revenue_page)
 
@@ -300,83 +327,6 @@ class MenuOrderView(QWidget):
         self.setStyleSheet(Theme.get_stylesheet())
 
 
-class OrderTrackingView(QWidget):
-    def __init__(self, parent: QWidget = None):
-        QWidget.__init__(self, parent)
-        self.resize(1920, 1080)
-
-        self.scrollArea_todo = QScrollArea(self)
-        self.scrollArea_todo.setObjectName("scrollArea_todo")
-        self.scrollArea_todo.setGeometry(QRect(81, 273, 500, 830))
-        self.scrollArea_todo.setWidgetResizable(True)
-
-        self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 498, 598))
-
-        self.listView_todo_1 = QListView(self.scrollAreaWidgetContents)
-        self.listView_todo_1.setObjectName("listView_todo_1")
-        self.listView_todo_1.setGeometry(QRect(25, 35, 450, 300))
-
-        self.listView_todo_2 = QListView(self.scrollAreaWidgetContents)
-        self.listView_todo_2.setObjectName("listView_todo_2")
-        self.listView_todo_2.setGeometry(QRect(25, 375, 450, 300))
-
-        self.scrollArea_todo.setWidget(self.scrollAreaWidgetContents)
-
-        self.label_todo = QLabel("TO DO", self)
-        self.label_todo.setObjectName("label_todo")
-        self.label_todo.setGeometry(QRect(118, 197, 200, 61))
-        self.label_todo.setFont(Theme.DONGLE_BOLD_70)
-
-        self.label_doing = QLabel("DOING", self)
-        self.label_doing.setObjectName("label_doing")
-        self.label_doing.setGeometry(QRect(760, 197, 200, 61))
-        self.label_doing.setFont(Theme.DONGLE_BOLD_70)
-
-        self.scrollArea_doing = QScrollArea(self)
-        self.scrollArea_doing.setObjectName("scrollArea_doing")
-        self.scrollArea_doing.setGeometry(QRect(729, 273, 500, 830))
-        self.scrollArea_doing.setWidgetResizable(True)
-
-        self.scrollAreaWidgetContents_2 = QWidget()
-        self.scrollAreaWidgetContents_2.setObjectName(
-            "scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 498, 748))
-
-        self.listView_doing_1 = QListView(self.scrollAreaWidgetContents_2)
-        self.listView_doing_1.setObjectName("listView_doing_1")
-        self.listView_doing_1.setGeometry(QRect(25, 35, 450, 300))
-        self.listView_doing_2 = QListView(self.scrollAreaWidgetContents_2)
-        self.listView_doing_2.setObjectName("listView_doing_2")
-        self.listView_doing_2.setGeometry(QRect(25, 375, 450, 300))
-
-        self.scrollArea_doing.setWidget(self.scrollAreaWidgetContents_2)
-
-        self.label_done = QLabel("DONE", self)
-        self.label_done.setObjectName("label_done")
-        self.label_done.setGeometry(QRect(1377, 197, 171, 61))
-        self.label_done.setFont(Theme.DONGLE_BOLD_70)
-
-        self.scrollArea_done = QScrollArea(self)
-        self.scrollArea_done.setObjectName("scrollArea_done")
-        self.scrollArea_done.setGeometry(QRect(1345, 273, 500, 830))
-        self.scrollArea_done.setWidgetResizable(True)
-
-        self.scrollAreaWidgetContents_3 = QWidget()
-        self.scrollAreaWidgetContents_3.setObjectName(
-            "scrollAreaWidgetContents_3")
-        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 498, 498))
-
-        self.listView_done_1 = QListView(self.scrollAreaWidgetContents_3)
-        self.listView_done_1.setObjectName("listView_done_1")
-        self.listView_done_1.setGeometry(QRect(25, 35, 450, 300))
-
-        self.scrollArea_done.setWidget(self.scrollAreaWidgetContents_3)
-
-        self.setStyleSheet(Theme.get_stylesheet())
-
-
 class TargetRevenueView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -385,25 +335,25 @@ class TargetRevenueView(QWidget):
 
         self.widget_date = QWidget(self)
         self.widget_date.setObjectName("widget_date")
-        self.widget_date.setGeometry(QRect(80, 90, 625, 900))
+        self.widget_date.setGeometry(QRect(80, 65, 625, 900))
 
         self.listWidget_date = QListWidget(self.widget_date)
         self.listWidget_date.setObjectName("listWidget_date")
         self.listWidget_date.setGeometry(QRect(13, 130, 600, 750))
 
         self.label_month = QLabel("Month", self.widget_date)
-        self.label_month.setObjectName("label_month")
+        self.label_month.setObjectName("label_date_target")
         self.label_month.setGeometry(QRect(60, 40, 171, 61))
         self.label_month.setFont(Theme.DONGLE_BOLD_65)
 
         self.label_revenue = QLabel("Revenue", self.widget_date)
-        self.label_revenue.setObjectName("label_revenue")
+        self.label_revenue.setObjectName("label_date_target")
         self.label_revenue.setGeometry(QRect(390, 40, 211, 61))
         self.label_revenue.setFont(Theme.DONGLE_BOLD_65)
 
         self.widget_report = QWidget(self)
         self.widget_report.setObjectName("widget_report")
-        self.widget_report.setGeometry(QRect(840, 115, 1000, 720))
+        self.widget_report.setGeometry(QRect(840, 100, 1000, 720))
 
         self.label_target = QLabel("Target", self.widget_report)
         self.label_target.setObjectName("label_target")
@@ -411,33 +361,33 @@ class TargetRevenueView(QWidget):
         self.label_target.setFont(Theme.DONGLE_BOLD_65)
 
         self.label_revenue_pie = QLabel("Revenue", self.widget_report)
-        self.label_revenue_pie.setObjectName("label_revenue_pie")
+        self.label_revenue_pie.setObjectName("label_target")
         self.label_revenue_pie.setGeometry(QRect(200, 565, 221, 51))
         self.label_revenue_pie.setFont(Theme.DONGLE_BOLD_65)
 
         self.label_amount_left = QLabel("Amount Left", self.widget_report)
-        self.label_amount_left.setObjectName("label_amount_left")
+        self.label_amount_left.setObjectName("label_target")
         self.label_amount_left.setGeometry(QRect(200, 650, 341, 61))
         self.label_amount_left.setFont(Theme.DONGLE_BOLD_65)
 
         self.label_money_target = QLabel("9000", self.widget_report)
-        self.label_money_target.setObjectName("label_money_target")
+        self.label_money_target.setObjectName("label_target")
         self.label_money_target.setGeometry(QRect(670, 470, 131, 61))
         self.label_money_target.setFont(Theme.DONGLE_REGULAR_65)
 
         self.label_money_revenue = QLabel("5000", self.widget_report)
-        self.label_money_revenue.setObjectName("label_money_revenue")
+        self.label_money_revenue.setObjectName("label_target")
         self.label_money_revenue.setGeometry(QRect(670, 565, 131, 51))
         self.label_money_revenue.setFont(Theme.DONGLE_REGULAR_65)
 
         self.label_money_left = QLabel("4000", self.widget_report)
-        self.label_money_left.setObjectName("label_money_left")
+        self.label_money_left.setObjectName("label_target")
         self.label_money_left.setGeometry(QRect(670, 650, 131, 51))
         self.label_money_left.setFont(Theme.DONGLE_REGULAR_65)
 
         self.pushButton_edit = QPushButton("Edit", self)
         self.pushButton_edit.setObjectName("pushButton_edit")
-        self.pushButton_edit.setGeometry(QRect(1620, 878, 220, 80))
+        self.pushButton_edit.setGeometry(QRect(1620, 870, 220, 80))
         self.pushButton_edit.setFont(Theme.DONGLE_BOLD_65)
 
         self.setStyleSheet(Theme.get_stylesheet())
@@ -450,25 +400,25 @@ class AuditLogView(QWidget):
         self.resize(1920, 1080)
         self.widget_auditlog = QWidget(self)
         self.widget_auditlog.setObjectName("widget_auditlog")
-        self.widget_auditlog.setGeometry(QRect(60, 120, 1800, 980))
+        self.widget_auditlog.setGeometry(QRect(60, 100, 1800, 980))
 
         self.label_date = QLabel("Date", self.widget_auditlog)
-        self.label_date.setObjectName("label_date")
+        self.label_date.setObjectName("label_details")
         self.label_date.setGeometry(QRect(100, 70, 151, 61))
         self.label_date.setFont(Theme.DONGLE_BOLD_70)
 
         self.label_time = QLabel("Time", self.widget_auditlog)
-        self.label_time.setObjectName("label_time")
+        self.label_time.setObjectName("label_details")
         self.label_time.setGeometry(QRect(400, 70, 151, 61))
         self.label_time.setFont(Theme.DONGLE_BOLD_70)
 
         self.label_name = QLabel("Name", self.widget_auditlog)
-        self.label_name.setObjectName("label_name")
+        self.label_name.setObjectName("label_details")
         self.label_name.setGeometry(QRect(640, 70, 171, 61))
         self.label_name.setFont(Theme.DONGLE_BOLD_70)
 
         self.label_activity = QLabel("Activity", self.widget_auditlog)
-        self.label_activity.setObjectName("label_activity")
+        self.label_activity.setObjectName("label_details")
         self.label_activity.setGeometry(QRect(1080, 70, 231, 61))
         self.label_activity.setFont(Theme.DONGLE_BOLD_70)
 
@@ -510,6 +460,82 @@ class MenuAdminView(QWidget):
         add_button.setObjectName("cancel_add_button")
         add_button.setFont(Theme.DONGLE_REGULAR_65)
         add_button.setGeometry(QRect(836, 690, 100, 100))
+
+        self.setStyleSheet(Theme.get_stylesheet())
+
+class OrderTrackingView(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+        self.resize(1920, 1080)
+
+        self.scrollArea_todo = QScrollArea(self)
+        self.scrollArea_todo.setObjectName("scrollArea_order")
+        self.scrollArea_todo.setGeometry(QRect(81, 273, 500, 830))
+        self.scrollArea_todo.setWidgetResizable(True)
+
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 498, 598))
+
+        self.listView_todo_1 = QListView(self.scrollAreaWidgetContents)
+        self.listView_todo_1.setObjectName("listView_order")
+        self.listView_todo_1.setGeometry(QRect(25, 35, 450, 300))
+
+        self.listView_todo_2 = QListView(self.scrollAreaWidgetContents)
+        self.listView_todo_2.setObjectName("listView_order")
+        self.listView_todo_2.setGeometry(QRect(25, 375, 450, 300))
+
+        self.scrollArea_todo.setWidget(self.scrollAreaWidgetContents)
+
+        self.label_todo = QLabel("TO DO", self)
+        self.label_todo.setObjectName("label_todo")
+        self.label_todo.setGeometry(QRect(118, 197, 200, 61))
+        self.label_todo.setFont(Theme.DONGLE_BOLD_70)
+
+        self.label_doing = QLabel("DOING", self)
+        self.label_doing.setObjectName("label_doing")
+        self.label_doing.setGeometry(QRect(760, 197, 200, 61))
+        self.label_doing.setFont(Theme.DONGLE_BOLD_70)
+
+        self.scrollArea_doing = QScrollArea(self)
+        self.scrollArea_doing.setObjectName("scrollArea_order")
+        self.scrollArea_doing.setGeometry(QRect(729, 273, 500, 830))
+        self.scrollArea_doing.setWidgetResizable(True)
+
+        self.scrollAreaWidgetContents_2 = QWidget()
+        self.scrollAreaWidgetContents_2.setObjectName(
+            "scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 498, 748))
+
+        self.listView_doing_1 = QListView(self.scrollAreaWidgetContents_2)
+        self.listView_doing_1.setObjectName("listView_order")
+        self.listView_doing_1.setGeometry(QRect(25, 35, 450, 300))
+        self.listView_doing_2 = QListView(self.scrollAreaWidgetContents_2)
+        self.listView_doing_2.setObjectName("listView_order")
+        self.listView_doing_2.setGeometry(QRect(25, 375, 450, 300))
+
+        self.scrollArea_doing.setWidget(self.scrollAreaWidgetContents_2)
+
+        self.label_done = QLabel("DONE", self)
+        self.label_done.setObjectName("label_done")
+        self.label_done.setGeometry(QRect(1377, 197, 171, 61))
+        self.label_done.setFont(Theme.DONGLE_BOLD_70)
+
+        self.scrollArea_done = QScrollArea(self)
+        self.scrollArea_done.setObjectName("scrollArea_order")
+        self.scrollArea_done.setGeometry(QRect(1345, 273, 500, 830))
+        self.scrollArea_done.setWidgetResizable(True)
+
+        self.scrollAreaWidgetContents_3 = QWidget()
+        self.scrollAreaWidgetContents_3.setObjectName(
+            "scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 498, 498))
+
+        self.listView_done_1 = QListView(self.scrollAreaWidgetContents_3)
+        self.listView_done_1.setObjectName("listView_order")
+        self.listView_done_1.setGeometry(QRect(25, 35, 450, 300))
+
+        self.scrollArea_done.setWidget(self.scrollAreaWidgetContents_3)
 
         self.setStyleSheet(Theme.get_stylesheet())
 
