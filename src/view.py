@@ -182,29 +182,31 @@ class BaseView(QWidget):
         self.pushButton_home = QPushButton(self.frame)
         self.pushButton_home.setObjectName("pushButton_base_page")
         self.pushButton_home.setGeometry(QRect(1321, 5, 100, 94))
-        icon = QIcon()
-        icon.addFile("assets/Image/home.png",
+        icon_home = QIcon()
+        icon_home.addFile("src/data/asset/Image/home.png",
                      QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_home.setIcon(icon)
+        self.pushButton_home.setIcon(icon_home)
         self.pushButton_home.setIconSize(QSize(55,55))
+        
+        self.pushButton_home.setIcon(QIcon("src/data/asset/Image/home.png"))
 
         self.pushButton_target = QPushButton(self.frame)
         self.pushButton_target.setObjectName("pushButton_base_page")
         self.pushButton_target.setGeometry(QRect(1221, 5, 100, 94))
-        icon = QIcon()
-        icon.addFile("assets/Image/target.png",
+        icon_target = QIcon()
+        icon_target.addFile("src/data/asset/Image/target.png",
                      QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_home.setIcon(icon)
-        self.pushButton_home.setIconSize(QSize(55,55))
+        self.pushButton_target.setIcon(icon_target)
+        self.pushButton_target.setIconSize(QSize(55,55))
 
         self.pushButton_auditlog = QPushButton(self.frame)
         self.pushButton_auditlog.setObjectName("pushButton_base_page")
         self.pushButton_auditlog.setGeometry(QRect(1121, 5, 100, 94))
-        icon = QIcon()
-        icon.addFile("assets/Image/history.png",
+        icon_auditlog = QIcon()
+        icon_auditlog.addFile("src/data/asset/Image/history.png",
                      QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_home.setIcon(icon)
-        self.pushButton_home.setIconSize(QSize(55,55))
+        self.pushButton_auditlog.setIcon(icon_auditlog)
+        self.pushButton_auditlog.setIconSize(QSize(55,55))
 
         self.stackedWidget = QStackedWidget(self)
         self.stackedWidget.setObjectName(u"stackedWidget")
@@ -227,7 +229,7 @@ class LoginView(QWidget):
         label_logo = QLabel(self)
         label_logo.setObjectName("label_logo")
         label_logo.setGeometry(QRect(846, 158, 252, 252))
-        label_logo.setPixmap(QPixmap("assets/Image/logo.png"))
+        label_logo.setPixmap(QPixmap("src/data/asset/Image/logo.png"))
 
         label_username = QLabel("Username", self)
         label_username.setObjectName("label_username")
@@ -255,7 +257,7 @@ class LoginView(QWidget):
         self.login_button.setGeometry(QRect(860, 860, 200, 80))
 
         icon = QIcon()
-        icon.addFile("assets/Image/coffee.png",
+        icon.addFile("src/data/asset/Image/coffee.png",
                      QSize(), QIcon.Normal, QIcon.Off)
         self.login_button.setIcon(icon)
         self.login_button.setIconSize(QSize(55, 55))
