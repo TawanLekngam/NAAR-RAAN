@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>720</width>
+    <height>850</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #D8B797;
+border-radius: 20px;</string>
+  </property>
+  <widget class="QLabel" name="name_label">
+   <property name="geometry">
+    <rect>
+     <x>33</x>
+     <y>75</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dongle</family>
+     <pointsize>65</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #4A321C;</string>
+   </property>
+   <property name="text">
+    <string>Name</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="name">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>49</y>
+     <width>470</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dongle</family>
+     <pointsize>65</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: #F9F5F0;
+border-radius: 20px;
+color:  #4A321C;
+padding-left: 30px;
+padding-right: 30px;</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="addOn_button">
+   <property name="geometry">
+    <rect>
+     <x>33</x>
+     <y>177</y>
+     <width>191</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dongle</family>
+     <pointsize>65</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton{
+color: #4A321C;
+}
+
+QRadioButton::indicator {
+background: #F9F5F0;
+width: 30px;
+height: 30px;
+border: 5px solid #754926;
+border-radius: 20px;
+}
+
+QRadioButton::indicator:checked {
+    background-color:  #754926;
+	height: 30px;
+	width: 30px;
+	border-radius: 20px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Add-On</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">type_buttonGroup</string>
+   </attribute>
+  </widget>
+  <widget class="QRadioButton" name="drink_button">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>177</y>
+     <width>151</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dongle</family>
+     <pointsize>65</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton{
+color: #4A321C;
+}
+
+QRadioButton::indicator {
+background: #F9F5F0;
+width: 30px;
+height: 30px;
+border: 5px solid #754926;
+border-radius: 20px;
+}
+
+QRadioButton::indicator:checked {
+    background-color:  #754926;
+	height: 30px;
+	width: 30px;
+	border-radius: 20px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Drink</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">type_buttonGroup</string>
+   </attribute>
+  </widget>
+  <widget class="QRadioButton" name="bakery_button">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>177</y>
+     <width>171</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dongle</family>
+     <pointsize>65</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton{
+color: #4A321C;
+}
+
+QRadioButton::indicator {
+background: #F9F5F0;
+width: 30px;
+height: 30px;
+border: 5px solid #754926;
+border-radius: 20px;
+}
+
+QRadioButton::indicator:checked {
+    background-color:  #754926;
+	height: 30px;
+	width: 30px;
+	border-radius: 20px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Bakery</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">type_buttonGroup</string>
+   </attribute>
+  </widget>
+  <widget class="QLabel" name="price_label">
+   <property name="geometry">
+    <rect>
+     <x>33</x>
+     <y>301</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dongle</family>
+     <pointsize>65</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #4A321C;</string>
+   </property>
+   <property name="text">
+    <string>Price</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="hot_checkBox">
+   <property name="geometry">
+    <rect>
+     <x>194</x>
+     <y>281</y>
+     <width>141</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dongle</family>
+     <pointsize>65</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox{
+color: #4A321C;
+}
+
+QCheckBox::indicator{
+width: 50px;
+height: 50px;
+background: #F9F5F0;
+border: 5px solid #754926;
+border-radius: 20px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Hot</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="cold_checkBox">
+   <property name="geometry">
+    <rect>
+     <x>194</x>
+     <y>370</y>
+     <width>151</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dongle</family>
+     <pointsize>65</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox{
+color: #4A321C;
+}
+
+QCheckBox::indicator{
+width: 50px;
+height: 50px;
+background: #F9F5F0;
+border: 5px solid #754926;
+border-radius: 20px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Cold</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="blended_checkBox">
+   <property name="geometry">
+    <rect>
+     <x>194</x>
+     <y>459</y>
+     <width>211</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dongle</family>
+     <pointsize>65</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox{
+color: #4A321C;
+}
+
+QCheckBox::indicator{
+width: 50px;
+height: 50px;
+background: #F9F5F0;
+border: 5px solid #754926;
+border-radius: 20px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Blended</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="hot_price">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>281</y>
+     <width>200</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dongle</family>
+     <pointsize>65</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: #F9F5F0;
+border-radius: 20px;
+color:  #4A321C;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="cold_price">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>370</y>
+     <width>200</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dongle</family>
+     <pointsize>65</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: #F9F5F0;
+border-radius: 20px;
+color:  #4A321C;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="blended_price">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>459</y>
+     <width>200</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dongle</family>
+     <pointsize>65</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: #F9F5F0;
+border-radius: 20px;
+color:  #4A321C;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancel_button">
+   <property name="geometry">
+    <rect>
+     <x>124</x>
+     <y>730</y>
+     <width>200</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dongle</family>
+     <pointsize>65</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	background: #754926;
+	border-radius: 20px;
+}
+
+QPushButton::Pressed {
+	background: #4A321C;
+}</string>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="add_button">
+   <property name="geometry">
+    <rect>
+     <x>394</x>
+     <y>730</y>
+     <width>200</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dongle</family>
+     <pointsize>65</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	background: #754926;
+	border-radius: 20px;
+}
+
+QPushButton::Pressed {
+	background: #4A321C;
+}</string>
+   </property>
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="type_buttonGroup"/>
+ </buttongroups>
+</ui>
