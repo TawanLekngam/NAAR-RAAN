@@ -541,6 +541,91 @@ class OrderTrackingView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+class AddMenuAdmin(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+        self.setFixedSize(720, 850)
+
+        name_label = QLabel("Name", self)
+        name_label.setObjectName("menu_name")
+        name_label.setFont(Theme.DONGLE_BOLD_65)
+        name_label.setGeometry(QRect(33, 75, 111, 41))
+
+        name = QLineEdit(self)
+        name.setObjectName("lineedit_input")
+        name.setFont(Theme.DONGLE_REGULAR_65)
+        name.setGeometry(210, 49, 470, 60)
+
+        addOn_button = QRadioButton(self)
+        addOn_button.setObjectName("default_radio")
+        addOn_button.setFont(Theme.DONGLE_BOLD_65)
+        addOn_button.setGeometry(33, 177, 191, 41)
+
+        drink_button = QRadioButton(self)
+        drink_button.setObjectName("default_radio")
+        drink_button.setFont(Theme.DONGLE_BOLD_65)
+        drink_button.setGeometry(290, 177, 151, 41)
+
+        bakery_button = QRadioButton(self)
+        bakery_button.setObjectName("default_radio")
+        bakery_button.setFont(Theme.DONGLE_BOLD_65)
+        bakery_button.setGeometry(500, 177, 171, 41)
+
+        type_buttonGroup = QButtonGroup(self)
+        type_buttonGroup.setObjectName("type_buttonGroup")
+        type_buttonGroup.addButton(addOn_button)
+        type_buttonGroup.addButton(drink_button)
+        type_buttonGroup.addButton(bakery_button)
+
+        price_label = QLabel("Price", self)
+        price_label.setObjectName("menu_name")
+        price_label.setFont(Theme.DONGLE_BOLD_65)
+        price_label.setGeometry(QRect(33, 301, 111, 41))
+
+        hot_checkBox = QCheckBox(self)
+        hot_checkBox.setObjectName("default_checkbox")
+        hot_checkBox.setFont(Theme.DONGLE_REGULAR_65)
+        hot_checkBox.setGeometry(194, 281, 141, 71)
+
+        cold_checkBox = QCheckBox(self)
+        cold_checkBox.setObjectName("default_checkbox")
+        cold_checkBox.setFont(Theme.DONGLE_REGULAR_65)
+        cold_checkBox.setGeometry(194, 370, 151, 61)
+
+        blended_checkBox = QCheckBox(self)
+        blended_checkBox.setObjectName("default_checkbox")
+        blended_checkBox.setFont(Theme.DONGLE_REGULAR_65)
+        blended_checkBox.setGeometry(194, 459, 211, 61)
+
+        hot_price = QLineEdit(self)
+        hot_price.setObjectName("lineedit_input")
+        hot_price.setFont(Theme.DONGLE_REGULAR_65)
+        hot_price.setGeometry(480, 281, 200, 60)
+        hot_price.setAlignment(Qt.AlignCenter)
+
+        cold_price = QLineEdit(self)
+        cold_price.setObjectName("lineedit_input")
+        cold_price.setFont(Theme.DONGLE_REGULAR_65)
+        cold_price.setGeometry(480, 370, 200, 60)
+        cold_price.setAlignment(Qt.AlignCenter)
+
+        blended_price = QLineEdit(self)
+        blended_price.setObjectName("lineedit_input")
+        blended_price.setFont(Theme.DONGLE_REGULAR_65)
+        blended_price.setGeometry(480, 459, 200, 60)
+        blended_price.setAlignment(Qt.AlignCenter)
+
+        cancel_button = QPushButton("Cancel", self)
+        cancel_button.setObjectName("cancel_add_button")
+        cancel_button.setFont(Theme.DONGLE_REGULAR_65)
+        cancel_button.setGeometry(QRect(124, 730, 200, 80))
+
+        add_button = QPushButton("Add", self)
+        add_button.setObjectName("cancel_add_button")
+        add_button.setFont(Theme.DONGLE_REGULAR_65)
+        add_button.setGeometry(QRect(394, 730, 200, 80))
+
+        self.setStyleSheet(Theme.get_stylesheet())
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
