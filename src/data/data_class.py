@@ -119,6 +119,37 @@ class Receipt:
 
 
 @dataclass
+class Receipt_Item:
+    """
+    class that contain the detail of item in the receipt.
+    """
+    __id: int
+    __date: str
+    __time: str
+    __item: str
+    __cost: float
+    __quantity: int
+
+    def __str__(self) -> str:
+        return f"{self.__item:<15} x {self.__quantity:>5} : {self.__cost * self.__quantity:.2f}"
+
+    def get_id(self) -> int:
+        return self.__id
+
+    def get_date(self) -> str:
+        return self.__date
+
+    def get_time(self) -> str:
+        return self.__time
+
+    def get_detail(self) -> str:
+        """
+        return detail of receipt item.
+        """
+        return self.__str__()
+
+
+@dataclass
 class LogEntry:
     __id: int
     __date: str
