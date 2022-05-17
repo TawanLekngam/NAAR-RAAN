@@ -205,3 +205,43 @@ QWidget#admin_scrollAreaContents {
     font-size: 65pt;
     color: #4A321C;
 } */
+
+/* Menu Admin Add */
+QLineEdit#lineedit_input {
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #4A321C;
+    background: #F9F5F0;
+    border-radius: 20px;
+}
+
+QRadioButton#default_radio {
+    color: #4A321C;
+}
+
+QRadioButton#default_radio::indicator {
+    background: #F9F5F0;
+    width: 30px;
+    height: 30px;
+    border: 5px solid #754926;
+    border-radius: 20px;
+}
+
+QRadioButton#default_radio::indicator:checked {
+    background-color: #754926;
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+}
+
+QCheckBox#default_checkbox {
+    color: #4A321C;
+}
+
+QCheckBox#default::indicator {
+    width: 50px;
+    height: 50px;
+    background: #F9F5F0;
+    border: 5px solid #754926;
+    border-radius: 20px;
+}
