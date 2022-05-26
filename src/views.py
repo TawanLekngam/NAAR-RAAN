@@ -98,10 +98,65 @@ class OrderDetail(QWidget):
 """
 
 
-class BaseView(QWidget):
-    """
-    run another widget on stackwidget.
-    """
+class LoginView(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+
+        label_logo = QLabel(self)
+        label_logo.setObjectName("label_logo")
+        label_logo.setGeometry(QRect(846, 158, 252, 252))
+        label_logo.setPixmap(QPixmap("src/data/asset/Image/logo.png"))
+
+        label_username = QLabel("Username", self)
+        label_username.setObjectName("label_username")
+        label_username.setFont(Theme.DONGLE_BOLD_65)
+        label_username.setGeometry(QRect(523, 587, 321, 72))
+
+        label_password = QLabel("Password", self)
+        label_password.setObjectName("label_password")
+        label_password.setFont(Theme.DONGLE_BOLD_65)
+        label_password.setGeometry(QRect(523, 726, 291, 72))
+
+        self.lineEdit_username = QLineEdit(self)
+        self.lineEdit_username.setObjectName("lineEdit_username")
+        self.lineEdit_username.setFont(Theme.DONGLE_BOLD_65)
+        self.lineEdit_username.setGeometry(QRect(980, 570, 600, 80))
+
+        self.lineEdit_password = QLineEdit(self)
+        self.lineEdit_password.setObjectName("lineEdit_password")
+        self.lineEdit_password.setFont(Theme.DONGLE_REGULAR_50)
+        self.lineEdit_password.setEchoMode(QLineEdit.Password)
+        self.lineEdit_password.setGeometry(QRect(980, 715, 600, 80))
+
+        self.login_button = QPushButton(self)
+        self.login_button.setObjectName("pushButton")
+        self.login_button.setGeometry(QRect(860, 860, 200, 80))
+
+        icon = QIcon()
+        icon.addFile("src/data/asset/Image/coffee.png",
+                     QSize(), QIcon.Normal, QIcon.Off)
+        self.login_button.setIcon(icon)
+        self.login_button.setIconSize(QSize(55, 55))
+        self.setStyleSheet(Theme.get_stylesheet())
+
+    def clear_info(self) -> None:
+        self.lineEdit_username.setText("")
+        self.lineEdit_password.setText("")
+
+    def reset(self) -> None:
+        self.clear_info()
+
+    def get_username(self) -> str:
+        return self.lineEdit_username.text()
+
+    def get_password(self) -> str:
+        return self, lineEdit_password.text()
+
+    def set_login_button_listener(self, function) -> None:
+        self.login_button.clicked.connect(function)
+
+
+class MainView(QWidget):
 
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -159,64 +214,6 @@ class BaseView(QWidget):
 
     def add_view(self, view: QWidget) -> None:
         self.stackedWidget.addWidget(view)
-
-
-class LoginView(QWidget):
-    def __init__(self, parent: QWidget = None):
-        QWidget.__init__(self, parent)
-
-        label_logo = QLabel(self)
-        label_logo.setObjectName("label_logo")
-        label_logo.setGeometry(QRect(846, 158, 252, 252))
-        label_logo.setPixmap(QPixmap("src/data/asset/Image/logo.png"))
-
-        label_username = QLabel("Username", self)
-        label_username.setObjectName("label_username")
-        label_username.setFont(Theme.DONGLE_BOLD_65)
-        label_username.setGeometry(QRect(523, 587, 321, 72))
-
-        label_password = QLabel("Password", self)
-        label_password.setObjectName("label_password")
-        label_password.setFont(Theme.DONGLE_BOLD_65)
-        label_password.setGeometry(QRect(523, 726, 291, 72))
-
-        self.lineEdit_username = QLineEdit(self)
-        self.lineEdit_username.setObjectName("lineEdit_username")
-        self.lineEdit_username.setFont(Theme.DONGLE_BOLD_65)
-        self.lineEdit_username.setGeometry(QRect(980, 570, 600, 80))
-
-        self.lineEdit_password = QLineEdit(self)
-        self.lineEdit_password.setObjectName("lineEdit_password")
-        self.lineEdit_password.setFont(Theme.DONGLE_REGULAR_50)
-        self.lineEdit_password.setEchoMode(QLineEdit.Password)
-        self.lineEdit_password.setGeometry(QRect(980, 715, 600, 80))
-
-        self.login_button = QPushButton(self)
-        self.login_button.setObjectName("pushButton")
-        self.login_button.setGeometry(QRect(860, 860, 200, 80))
-
-        icon = QIcon()
-        icon.addFile("src/data/asset/Image/coffee.png",
-                     QSize(), QIcon.Normal, QIcon.Off)
-        self.login_button.setIcon(icon)
-        self.login_button.setIconSize(QSize(55, 55))
-        self.setStyleSheet(Theme.get_stylesheet())
-
-    def clear_info(self) -> None:
-        self.lineEdit_username.setText("")
-        self.lineEdit_password.setText("")
-
-    def reset(self) -> None:
-        self.clear_info()
-
-    def get_username(self) -> str:
-        return self.lineEdit_username.text()
-
-    def get_password(self) -> str:
-        return self, lineEdit_password.text()
-
-    def set_login_button_listener(self, function) -> None:
-        self.login_button.clicked.connect(function)
 
 
 class MenuOrderView(QWidget):
