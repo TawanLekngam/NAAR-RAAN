@@ -105,54 +105,31 @@ class BaseView(QWidget):
 
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
+        self.setFixedSize(1920, 1080)
 
-        self.resize(1920, 1080)
         self.frame = QFrame(self)
-        self.frame.setObjectName(u"frame")
-        self.frame.setGeometry(QRect(0, -10, 1920, 94))
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.frame.setGeometry(QRect(0, 0, 1920, 100))
 
-        self.pushButton = QPushButton("Tawan L.", self.frame)
-        self.pushButton.setObjectName("pushButton_base_page")
-        self.pushButton.setGeometry(QRect(1421, 5, 500, 94))
-        self.pushButton.setFont(Theme.DONGLE_BOLD_65)
+        self.userButton = QPushButton("User Name", self.frame)
+        self.userButton.setObjectName("user_base_page")
+        self.userButton.setGeometry(QRect(1552, 0, 300, 100))
+        self.userButton.setFont(Theme.DONGLE_BOLD_65)
 
-        self.pushButton_home = QPushButton(self.frame)
-        self.pushButton_home.setObjectName("pushButton_base_page")
-        self.pushButton_home.setGeometry(QRect(1321, 5, 100, 94))
-        icon_home = QIcon()
-        icon_home.addFile("src/data/asset/Image/home.png",
-                          QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_home.setIcon(icon_home)
-        self.pushButton_home.setIconSize(QSize(55, 55))
+        self.homeButton = QPushButton(self.frame)
+        self.homeButton.setObjectName("home_button_base_page")
+        self.homeButton.setGeometry(QRect(36, 0, 100, 100))
 
-        self.pushButton_home.setIcon(QIcon("src/data/asset/Image/home.png"))
-
-        self.pushButton_target = QPushButton(self.frame)
-        self.pushButton_target.setObjectName("pushButton_base_page")
-        self.pushButton_target.setGeometry(QRect(1221, 5, 100, 94))
-        icon_target = QIcon()
-        icon_target.addFile("src/data/asset/Image/target.png",
-                            QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_target.setIcon(icon_target)
-        self.pushButton_target.setIconSize(QSize(55, 55))
-
-        self.pushButton_auditlog = QPushButton(self.frame)
-        self.pushButton_auditlog.setObjectName("pushButton_base_page")
-        self.pushButton_auditlog.setGeometry(QRect(1121, 5, 100, 94))
-        icon_auditlog = QIcon()
-        icon_auditlog.addFile("src/data/asset/Image/history.png",
-                              QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_auditlog.setIcon(icon_auditlog)
-        self.pushButton_auditlog.setIconSize(QSize(55, 55))
+        self.auditlogButton = QPushButton(self.frame)
+        self.auditlogButton.setObjectName("history_button_base_page")
+        self.auditlogButton.setGeometry(QRect(136, 0, 100, 100))
 
         self.stackedWidget = QStackedWidget(self)
-        self.stackedWidget.setObjectName(u"stackedWidget")
+        self.stackedWidget.setObjectName("stackedWidget")
         self.stackedWidget.setGeometry(QRect(0, 84, 1920, 1071))
 
         self.target_revenue_page = AuditLogView()
-        self.target_revenue_page.setObjectName(u"page")
+        self.target_revenue_page.setObjectName("page")
         self.stackedWidget.addWidget(self.target_revenue_page)
 
         self.setStyleSheet(Theme.get_stylesheet())
