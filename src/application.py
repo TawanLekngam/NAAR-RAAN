@@ -1,14 +1,14 @@
 from PySide6.QtWidgets import QStackedWidget
 
-from .models import *
-from .views import *
-from .controllers import *
+from models import *
+from views import *
+from controllers import LoginPage
 
 
 class Application(QStackedWidget):
 
     def __init__(self):
-        QStackedWidget().__init__(self, None)
+        QStackedWidget.__init__(self, None)
         self.setFixedSize(1920, 1080)
         self.setWindowTitle("Naar Raan")
 

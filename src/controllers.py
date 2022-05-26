@@ -2,9 +2,8 @@ from abc import ABC
 from datetime import date
 from PySide6.QtWidgets import QWidget
 
-from .application import Application
-from .models import *
-from .views import *
+from models import *
+from views import *
 
 
 class Controller:
@@ -25,7 +24,7 @@ class LoginPage(Controller):
     view: LoginView
     model: LoginModel
 
-    def __init__(self, root: Application, view: QWidget, model: Model):
+    def __init__(self, root, view: QWidget, model: Model):
         super().__init__(view, model)
         self.__root: Application = root
 

@@ -2,8 +2,8 @@ from abc import ABC
 from datetime import date
 from dateutil import relativedelta
 
-from .data.orm.schema import *
-from .data.orm.data_access_object import *
+from data.orm.schema import *
+from data.orm.data_access_object import *
 
 
 class Model(ABC):
