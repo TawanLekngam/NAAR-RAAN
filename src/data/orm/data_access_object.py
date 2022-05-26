@@ -11,11 +11,12 @@ class DAO(ABC):
         self.session = session
 
     @abstractmethod
-    def exist(self, obj: object) -> bool:
+    def __exist(self, obj: object) -> bool:
         pass
 
 
 class AppDAO:
+
     local_session = Session(bind=engine)
 
     @staticmethod
@@ -24,11 +25,12 @@ class AppDAO:
 
 
 class UserDAO(DAO):
+
     def __init__(self, session: Session):
         super().__init__(session)
 
     def add_user(self, user: User) -> None:
-        if user is None or self.exist(user):
+        if user is None or self.__exist(user):
             return
 
         self.session.add(user)
@@ -42,20 +44,6 @@ class UserDAO(DAO):
 
     def get_user_by_username(self, username: str) -> User:
         return self.session.query(User).filter(User.username == username).first()
-
-    def exist(self, user: User) -> bool:
-        "return True if User exist in the database."
-        if user is None:
-            return False
-
-        query = self.session.query(User).filter(
-            User.fname == user.get_fname(),
-            User.lname == user.get_lname(),
-            User.username == user.get_username(),
-            User.password == user.get_password(),
-            User.access_level == user.get_access_level()
-        ).first()
-        return query is not None
 
     def delete_user_by_id(self, id: int):
         user: User = self.session.query(User).filter(User.id == id).first()
@@ -97,29 +85,32 @@ class UserDAO(DAO):
         self.session.commit()
         return True
 
+    def __exist(self, user: User) -> bool:
+        "return True if User __exist in the database."
+        if user is None:
+            return False
+
+        query = self.session.query(User).filter(
+            User.fname == user.get_fname(),
+            User.lname == user.get_lname(),
+            User.username == user.get_username(),
+            User.password == user.get_password(),
+            User.access_level == user.get_access_level()
+        ).first()
+        return query is not None
+
 
 class DrinkDAO(DAO):
+
     def __init__(self, session: Session):
         super().__init__(session)
 
     def add_drink(self, drink: Drink) -> None:
-        if drink is None or self.exist(drink):
+        if drink is None or self.__exist(drink):
             return
 
         self.session.add(drink)
         self.session.commit()
-
-    def exist(self, drink: Drink) -> bool:
-        if drink is None:
-            return False
-
-        query = self.session.query(Drink).filter(
-            Drink.name == drink.get_name(),
-            Drink.hprice == drink.get_hprice(),
-            Drink.cprice == drink.get_cprice(),
-            Drink.bprice == drink.get_bprice()
-        ).first()
-        return query is not None
 
     def get_all_drinks(self) -> list[Drink]:
         return self.session.query(Drink).all()
@@ -147,10 +138,10 @@ class DrinkDAO(DAO):
 
         if drink is None:
             return False
-        
+
         if name is not None:
             drink.name = name
-        
+
         if hprice is not None:
             drink.hprice = hprice
 
@@ -161,3 +152,73 @@ class DrinkDAO(DAO):
             drink.bprice = bprice
         self.session.commit()
         return True
+
+    def __exist(self, drink: Drink) -> bool:
+        if drink is None:
+            return False
+
+        query = self.session.query(Drink).filter(
+            Drink.name == drink.get_name(),
+            Drink.hprice == drink.get_hprice(),
+            Drink.cprice == drink.get_cprice(),
+            Drink.bprice == drink.get_bprice()
+        ).first()
+        return query is not None
+
+
+class BakeryDAO(DAO):
+
+    def __init__(self, session: Session):
+        self.session = session
+
+    def add_bakery(self, bakery, Bakery) -> None:
+        if bakery is None or self.__exist(bakery):
+            return
+
+        self.session.add(bakery)
+        self.session.commit()
+
+    def get_all_bakeries(self) -> list[Bakery]:
+        return self.session.query(Bakery).all()
+
+    def get_bakery_by_id(self, id: int) -> Bakery:
+        return self.session.query(Bakery).filter(Bakery.id == id).first()
+
+    def delete_bakery_by_id(self, id: int) -> None:
+        bakery: Bakery = self.session.query(
+            Bakery).filter(User.id == id).first()
+        if bakery is None:
+            return
+
+        self.session.delete(bakery)
+        self.session.commit()
+
+    def update_bakery(
+            self,
+            id: int,
+            name: str = None,
+            price: float = None) -> bool:
+        bakery: Bakery = self.session.query(
+            Bakery).filter(User.id == id).first()
+
+        if bakery is None:
+            return False
+
+        if name is not None:
+            bakery.name == name
+
+        if price is not None:
+            bakery.price == price
+
+        self.session.commit()
+        return True
+
+    def __exist(self, bakery: Bakery) -> bool:
+        if bakery is None:
+            return None
+
+        query = self.session.query(Bakery).filter(
+            Bakery.name == bakery.get_name(),
+            Bakery.price == bakery.get_price()
+        ).first()
+        return query is not None
