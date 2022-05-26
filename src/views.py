@@ -10,11 +10,6 @@ from PySide6.QtWidgets import *
 from .theme import Theme
 
 
-class UserTab(QWidget):
-    def __init__(self, parent: QWidget = None):
-        QWidget.__init__(self, parent)
-
-
 class OrderDetail(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
