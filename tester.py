@@ -6,7 +6,7 @@ from src.controller import *
 
 def test_widget() -> int:
     app = QApplication(sys.argv)
-    w = MenuAdminView() # change widget here
+    w = AddMenuAdmin() # change widget here
     w.show()
     return app.exec()
 
