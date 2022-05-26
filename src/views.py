@@ -150,7 +150,7 @@ class LoginView(QWidget):
         return self.lineEdit_username.text()
 
     def get_password(self) -> str:
-        return self, lineEdit_password.text()
+        return self.lineEdit_password.text()
 
     def set_login_button_listener(self, function) -> None:
         self.login_button.clicked.connect(function)
