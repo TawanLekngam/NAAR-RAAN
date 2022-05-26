@@ -78,11 +78,14 @@ class Drink(Schema):
         "return drink's id."
         return self.id
 
+    def get_name(self) -> str:
+        return self.name
+
     def get_hprice(self) -> float:
         "return hot price."
         return self.hprice
 
-    def get_c_price(self) -> float:
+    def get_cprice(self) -> float:
         "return cold price."
         return self.cprice
 
@@ -167,27 +170,27 @@ class Receipt(Schema):
         self.hand = hand
         self.date = date
         self.time = time
-        self.desc - desc
+        self.desc = desc
 
         if None in [self.date, self.time]:
             now = datetime.now()
             self.date = f"{now.day:02d}-{now.month:02d}-{now.year}"
             self.time = f"{now.hour:02d}:{now.minute:02d}:{now.second:02d}"
 
-        def __str__(self) -> str:
-            return f"<Receipt date={self.date} time={self.time} description={self.desc}>"
+    def __str__(self) -> str:
+        return f"<Receipt date={self.date} time={self.time} description={self.desc}>"
 
-        def get_id(self) -> int:
-            return self.id
+    def get_id(self) -> int:
+        return self.id
 
-        def get_hand(self) -> str:
-            return self.hand
+    def get_hand(self) -> str:
+        return self.hand
 
-        def get_date(self) -> str:
-            return self.date
+    def get_date(self) -> str:
+        return self.date
 
-        def get_time(self) -> str:
-            return self.time
+    def get_time(self) -> str:
+        return self.time
 
-        def get_desc(self) -> str:
-            return self.desc
+    def get_desc(self) -> str:
+        return self.desc
