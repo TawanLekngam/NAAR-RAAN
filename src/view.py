@@ -750,7 +750,3 @@ class EmployeeAdd(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    sys.exit(app.exec())
