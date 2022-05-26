@@ -1,26 +1,15 @@
-import sys
-from PySide6.QtWidgets import QApplication
+from PySide6.QtWidgets import QStackedWidget
 
-from src.controller import *
-from src.data.data_class import User
 
-class Application:
-    """
-    main application
-    """
+class Application(QStackedWidget):
 
     def __init__(self):
-        self.root = QApplication(sys.argv)
-        self.__current_user: User = None
-        self.__current_cont: Controller = None
+        QStackedWidget().__init__(self, None)
+        self.setFixedSize(1920, 1080)
+        self.setWindowTitle("Naar Raan")
 
-        """
-        controller
-        """
-        self.__login_page = LIC()
+        self.current_user = None
 
-    def start(self) -> None:
-        pass
 
-    def stop(self) -> None:
-        pass
+        # Login Page
+        self.login_page = None

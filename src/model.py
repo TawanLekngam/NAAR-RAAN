@@ -1,8 +1,9 @@
-"""
-    contain all model.
-"""
 from abc import ABC
-from src.data.dao import *
+from datetime import date
+from dateutil import relativedelta
+
+from .data.orm.schema import *
+from .data.orm.data_access_object import *
 
 
 class Model(ABC):
@@ -10,37 +11,34 @@ class Model(ABC):
 
 
 class LoginModel(Model):
+
     def __init__(self):
-        self.__userDAO: UserDAO = AppDAO.get_dao("user")
+        self.user_dao: UserDAO = AppDAO.get_dao("user")
+        self.__current_user: User = None
+        self.__current_username = str()
+        self.__current_password = str()
+        self.valid_login = False
 
-    def login_verify(self, username: str, password: str) -> bool:
-        db_user = self.__userDAO.get_user_by_username(username)
-        if db_user is None:
-            return False
+    def get_input(self, username: str, password: str) -> None:
+        self.__current_username = username
+        self.__current_password = password
 
-        if password == db_user.get_password():
-            return True
+    def retrive_user(self, username: str) -> None:
+        self.__current_user = self.user_dao.get_user_by_username(username)
 
-        return False
+    def verify(self) -> None:
+        if self.__current_user is None:
+            self.valid_login = False
+            return
 
+        self.valid_login = (self.__current_username == self.__current_user.get_username()
+                            and self.__current_password == self.__current_user.get_password())
 
-class MenuOrderModel(Model):
-    def __init__(self) -> None:
-        self.__productDAO: ProductDAO = AppDAO.get_dao("drink")
+    def is_valid(self) -> bool:
+        return self.valid_login
 
+    def set_current_user(self, username: str) -> None:
+        self.__current_user = self.user_dao.get_user_by_username(username)
 
-class RevenueModel(Model):
-    def __init__(self):
-        pass
-
-class OrderTrackingModel(Model):
-    def __init__(self):
-        pass
-
-class TargetRevenueModel(Model):
-    def __init__(self):
-        pass
-
-class AuditLogModel(Model):
-    def __init__(self):
-        pass
+    def get_current_user(self) -> User:
+        return self.__current_user

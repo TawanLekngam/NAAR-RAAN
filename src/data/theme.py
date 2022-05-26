@@ -1,7 +1,3 @@
-"""
-    theme.py for control theme of view of application.
-"""
-
 import os
 from PySide6.QtGui import QFont
 
@@ -10,9 +6,7 @@ class Theme:
     __ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
     __THEME_PATH = os.path.join(__ROOT_DIR, "theme.qss")
 
-    """
-    Aplication font.
-    """
+    # Font
     DONGLE_REGULAR_50 = QFont("Dongle")
     DONGLE_REGULAR_50.setPixelSize(50)
 
@@ -31,9 +25,6 @@ class Theme:
     DONGLE_BOLD_65.setPixelSize(65)
     DONGLE_BOLD_65.setBold(True)
 
-    """
-    Operation for get stylesheet.
-    """
     @staticmethod
     def get_stylesheet() -> str:
         """get style from theme.qss file"""
