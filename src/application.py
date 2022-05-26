@@ -1,5 +1,9 @@
 from PySide6.QtWidgets import QStackedWidget
 
+from .model import *
+from .view import *
+from .controllers import *
+
 
 class Application(QStackedWidget):
 
@@ -10,6 +14,15 @@ class Application(QStackedWidget):
 
         self.current_user = None
 
-
         # Login Page
         self.login_page = None
+
+    def initialize_page(self) -> None:
+        pass
+
+    def set_current_user(self, user: User) -> None:
+        self.current_user = user
+
+    def start(self) -> None:
+        "driver method."
+        self.showFullScreen()
