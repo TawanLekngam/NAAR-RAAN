@@ -7,12 +7,7 @@ from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
-from src.data.theme import Theme
-
-"""
-    utility widget.
-"""
-
+from.theme import Theme
 
 class UserTab(QWidget):
     def __init__(self, parent: QWidget = None):
