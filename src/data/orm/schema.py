@@ -159,15 +159,13 @@ class Log(Schema):
 class Receipt(Schema):
     __tablename__ = "RECEIPTS"
     id = Column("id", Integer(), primary_key=True)
-    hand = Column("Handler", String(30))
     date = Column("date", String(30))
     time = Column("time", String(30))
     desc = Column("description", String(1000))
 
-    def __init__(self, desc: str, hand: str, id: int = None, date: str = None, time: str = None):
+    def __init__(self, desc: str, id: int = None, date: str = None, time: str = None):
         super().__init__()
         self.id = id
-        self.hand = hand
         self.date = date
         self.time = time
         self.desc = desc
@@ -182,9 +180,6 @@ class Receipt(Schema):
 
     def get_id(self) -> int:
         return self.id
-
-    def get_hand(self) -> str:
-        return self.hand
 
     def get_date(self) -> str:
         return self.date

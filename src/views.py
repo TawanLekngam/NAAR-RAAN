@@ -98,46 +98,6 @@ class OrderDetail(QWidget):
 """
 
 
-class BaseView(QWidget):
-    """
-    run another widget on stackwidget.
-    """
-
-    def __init__(self, parent: QWidget = None):
-        QWidget.__init__(self, parent)
-        self.setFixedSize(1920, 1080)
-
-        self.frame = QFrame(self)
-        self.frame.setObjectName("frame")
-        self.frame.setGeometry(QRect(0, 0, 1920, 100))
-
-        self.userButton = QPushButton("User Name", self.frame)
-        self.userButton.setObjectName("user_base_page")
-        self.userButton.setGeometry(QRect(1552, 0, 300, 100))
-        self.userButton.setFont(Theme.DONGLE_BOLD_65)
-
-        self.homeButton = QPushButton(self.frame)
-        self.homeButton.setObjectName("home_button_base_page")
-        self.homeButton.setGeometry(QRect(36, 0, 100, 100))
-
-        self.auditlogButton = QPushButton(self.frame)
-        self.auditlogButton.setObjectName("history_button_base_page")
-        self.auditlogButton.setGeometry(QRect(136, 0, 100, 100))
-
-        self.stackedWidget = QStackedWidget(self)
-        self.stackedWidget.setObjectName("stackedWidget")
-        self.stackedWidget.setGeometry(QRect(0, 84, 1920, 1071))
-
-        self.target_revenue_page = AuditLogView()
-        self.target_revenue_page.setObjectName("page")
-        self.stackedWidget.addWidget(self.target_revenue_page)
-
-        self.setStyleSheet(Theme.get_stylesheet())
-
-    def add_view(self, view: QWidget) -> None:
-        self.stackedWidget.addWidget(view)
-
-
 class LoginView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -194,6 +154,43 @@ class LoginView(QWidget):
 
     def set_login_button_listener(self, function) -> None:
         self.login_button.clicked.connect(function)
+
+
+class MainView(QWidget):
+
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+        self.setFixedSize(1920, 1080)
+
+        self.frame = QFrame(self)
+        self.frame.setObjectName("frame")
+        self.frame.setGeometry(QRect(0, 0, 1920, 100))
+
+        self.userButton = QPushButton("User Name", self.frame)
+        self.userButton.setObjectName("user_base_page")
+        self.userButton.setGeometry(QRect(1552, 0, 300, 100))
+        self.userButton.setFont(Theme.DONGLE_BOLD_65)
+
+        self.homeButton = QPushButton(self.frame)
+        self.homeButton.setObjectName("home_button_base_page")
+        self.homeButton.setGeometry(QRect(36, 0, 100, 100))
+
+        self.auditlogButton = QPushButton(self.frame)
+        self.auditlogButton.setObjectName("history_button_base_page")
+        self.auditlogButton.setGeometry(QRect(136, 0, 100, 100))
+
+        self.stackedWidget = QStackedWidget(self)
+        self.stackedWidget.setObjectName("stackedWidget")
+        self.stackedWidget.setGeometry(QRect(0, 84, 1920, 1071))
+
+        self.target_revenue_page = AuditLogView()
+        self.target_revenue_page.setObjectName("page")
+        self.stackedWidget.addWidget(self.target_revenue_page)
+
+        self.setStyleSheet(Theme.get_stylesheet())
+
+    def add_view(self, view: QWidget) -> None:
+        self.stackedWidget.addWidget(view)
 
 
 class MenuOrderView(QWidget):
