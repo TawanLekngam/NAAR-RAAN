@@ -589,6 +589,168 @@ class MenuEdit(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+class EmployeeEdit(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+        self.setFixedSize(720, 850)
+        self.setObjectName("admin_widget")
+
+        name_label = QLabel("Name", self)
+        name_label.setObjectName("menu_name")
+        name_label.setFont(Theme.DONGLE_BOLD_65)
+        name_label.setGeometry(QRect(33, 75, 111, 41))
+
+        self.name = QLineEdit(self)
+        self.name.setObjectName("input_bar")
+        self.name.setFont(Theme.DONGLE_REGULAR_65)
+        self.name.setGeometry(QRect(250, 50, 430, 60))
+
+        surname_label = QLabel("Surname", self)
+        surname_label.setObjectName("menu_name")
+        surname_label.setFont(Theme.DONGLE_BOLD_65)
+        surname_label.setGeometry(QRect(33, 180, 171, 41))
+
+        self.surname = QLineEdit(self)
+        self.surname.setObjectName("input_bar")
+        self.surname.setFont(Theme.DONGLE_REGULAR_65)
+        self.surname.setGeometry(QRect(250, 155, 430, 60))
+
+        username_label = QLabel("Username", self)
+        username_label.setObjectName("menu_name")
+        username_label.setFont(Theme.DONGLE_BOLD_65)
+        username_label.setGeometry(QRect(33, 390, 191, 41))
+
+        self.username = QLineEdit(self)
+        self.username.setObjectName("input_bar")
+        self.username.setFont(Theme.DONGLE_REGULAR_65)
+        self.username.setGeometry(QRect(250, 365, 430, 60))
+
+        password_label = QLabel("Password", self)
+        password_label.setObjectName("menu_name")
+        password_label.setFont(Theme.DONGLE_BOLD_65)
+        password_label.setGeometry(QRect(33, 285, 201, 41))
+
+        self.password = QLineEdit(self)
+        self.password.setObjectName("input_bar")
+        self.password.setFont(Theme.DONGLE_REGULAR_65)
+        self.password.setGeometry(QRect(250, 260, 430, 60))
+
+        position_label = QLabel("Position", self)
+        position_label.setObjectName("menu_name")
+        position_label.setFont(Theme.DONGLE_BOLD_65)
+        position_label.setGeometry(QRect(33, 495, 191, 41))
+
+        self.admin_button = QRadioButton("Admin", self)
+        self.admin_button.setObjectName("default_radio")
+        self.admin_button.setFont(Theme.DONGLE_REGULAR_65)
+        self.admin_button.setGeometry(QRect(250, 495, 161, 41))
+
+        self.staff_button = QRadioButton("Staff", self)
+        self.staff_button.setObjectName("default_radio")
+        self.staff_button.setFont(Theme.DONGLE_REGULAR_65)
+        self.staff_button.setGeometry(QRect(540, 495, 141, 41))
+
+        position_buttonGroup = QButtonGroup(self)
+        position_buttonGroup.setObjectName("position_buttonGroup")
+        position_buttonGroup.addButton(self.admin_button)
+        position_buttonGroup.addButton(self.staff_button)
+
+        self.cancel_button = QPushButton("Cancel", self)
+        self.cancel_button.setObjectName("cancel_add_button")
+        self.cancel_button.setFont(Theme.DONGLE_REGULAR_65)
+        self.cancel_button.setGeometry(QRect(33, 730, 200, 80))
+
+        self.save_button = QPushButton("Save", self)
+        self.save_button.setObjectName("cancel_add_button")
+        self.save_button.setFont(Theme.DONGLE_REGULAR_65)
+        self.save_button.setGeometry(QRect(257, 730, 200, 80))
+
+        self.delete_button = QPushButton("Delete", self)
+        self.delete_button.setObjectName("cancel_add_button")
+        self.delete_button.setFont(Theme.DONGLE_REGULAR_65)
+        self.delete_button.setGeometry(QRect(480, 730, 200, 80))
+
+        self.setStyleSheet(Theme.get_stylesheet())
+        
+class EmployeeAdd(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+        self.setFixedSize(720, 850)
+        self.setObjectName("admin_widget")
+
+        name_label = QLabel("Name", self)
+        name_label.setObjectName("menu_name")
+        name_label.setFont(Theme.DONGLE_BOLD_65)
+        name_label.setGeometry(QRect(33, 75, 111, 41))
+
+        self.name = QLineEdit(self)
+        self.name.setObjectName("input_bar")
+        self.name.setFont(Theme.DONGLE_REGULAR_65)
+        self.name.setGeometry(QRect(250, 50, 430, 60))
+
+        surname_label = QLabel("Surname", self)
+        surname_label.setObjectName("menu_name")
+        surname_label.setFont(Theme.DONGLE_BOLD_65)
+        surname_label.setGeometry(QRect(33, 180, 171, 41))
+
+        self.surname = QLineEdit(self)
+        self.surname.setObjectName("input_bar")
+        self.surname.setFont(Theme.DONGLE_REGULAR_65)
+        self.surname.setGeometry(QRect(250, 155, 430, 60))
+
+        username_label = QLabel("Username", self)
+        username_label.setObjectName("menu_name")
+        username_label.setFont(Theme.DONGLE_BOLD_65)
+        username_label.setGeometry(QRect(33, 390, 191, 41))
+
+        self.username = QLineEdit(self)
+        self.username.setObjectName("input_bar")
+        self.username.setFont(Theme.DONGLE_REGULAR_65)
+        self.username.setGeometry(QRect(250, 365, 430, 60))
+
+        password_label = QLabel("Password", self)
+        password_label.setObjectName("menu_name")
+        password_label.setFont(Theme.DONGLE_BOLD_65)
+        password_label.setGeometry(QRect(33, 285, 201, 41))
+
+        self.password = QLineEdit(self)
+        self.password.setObjectName("input_bar")
+        self.password.setFont(Theme.DONGLE_REGULAR_65)
+        self.password.setGeometry(QRect(250, 260, 430, 60))
+
+        position_label = QLabel("Position", self)
+        position_label.setObjectName("menu_name")
+        position_label.setFont(Theme.DONGLE_BOLD_65)
+        position_label.setGeometry(QRect(33, 495, 191, 41))
+
+        self.admin_button = QRadioButton("Admin", self)
+        self.admin_button.setObjectName("default_radio")
+        self.admin_button.setFont(Theme.DONGLE_REGULAR_65)
+        self.admin_button.setGeometry(QRect(250, 495, 161, 41))
+
+        self.staff_button = QRadioButton("Staff", self)
+        self.staff_button.setObjectName("default_radio")
+        self.staff_button.setFont(Theme.DONGLE_REGULAR_65)
+        self.staff_button.setGeometry(QRect(540, 495, 141, 41))
+
+        position_buttonGroup = QButtonGroup(self)
+        position_buttonGroup.setObjectName("position_buttonGroup")
+        position_buttonGroup.addButton(self.admin_button)
+        position_buttonGroup.addButton(self.staff_button)
+
+        self.cancel_button = QPushButton("Cancel", self)
+        self.cancel_button.setObjectName("cancel_add_button")
+        self.cancel_button.setFont(Theme.DONGLE_REGULAR_65)
+        self.cancel_button.setGeometry(QRect(124, 730, 200, 80))
+
+        self.add_button = QPushButton("Add", self)
+        self.add_button.setObjectName("cancel_add_button")
+        self.add_button.setFont(Theme.DONGLE_REGULAR_65)
+        self.add_button.setGeometry(QRect(394, 730, 200, 80))
+
+        self.setStyleSheet(Theme.get_stylesheet())
+
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     sys.exit(app.exec())
