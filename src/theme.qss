@@ -33,10 +33,35 @@ QPushButton#pushButton {
     border-radius: 20px;
 }
 
-QPushButton#pushButton_base_page{
+QPushButton#history_button_base_page {
+    background: transparent;
+    image: url(src/asset/Image/history);
+    padding-bottom: 20px;
+}
+QPushButton#home_button_base_page {
+   background: transparent;
+    image: url(src/asset/Image/home);
+    padding-bottom: 20px;
+}
+
+QPushButton#history_button_base_page:hover {
+    image: url(src/asset/Image/history_hover);
+}
+
+QPushButton#home_button_base_page:hover {
+    image: url(src/asset/Image/home_hover);
+}
+
+QPushButton#user_base_page{
     background-color: #4A321C;
     color: #D8B797;
-    
+    text-align:right;
+    padding-bottom: 10px;
+    border: none;
+}
+
+QPushButton#user_base_page:hover {
+    color: #F9F5F0;
 }
 
 QLabel#menu_label, #label_todo, #label_doing,#label_done, #label_target{
@@ -271,5 +296,5 @@ QCheckBox#default_checkbox::indicator {
 }
 
 QCheckBox#default_checkbox::indicator:checked {
-    image: url(src/data/asset/Image/checkmark.png);
+    image: url(src/asset/Image/checkmark.png);
 }
