@@ -435,12 +435,12 @@ class AddMenuAdmin(QWidget):
 
         self.drink_button = QRadioButton("Drink", self)
         self.drink_button.setObjectName("default_radio")
-        self.drink_button.setFont(Theme.DONGLE_BOLD_65)
+        self.drink_button.setFont(Theme.DONGLE_REGULAR_65)
         self.drink_button.setGeometry(QRect(210, 185, 151, 41))
 
         self.bakery_button = QRadioButton("Bakery", self)
         self.bakery_button.setObjectName("default_radio")
-        self.bakery_button.setFont(Theme.DONGLE_BOLD_65)
+        self.bakery_button.setFont(Theme.DONGLE_REGULAR_65)
         self.bakery_button.setGeometry(QRect(500, 185, 171, 41))
 
         type_buttonGroup = QButtonGroup(self)
@@ -521,12 +521,12 @@ class MenuEdit(QWidget):
 
         self.drink_button = QRadioButton("Drink", self)
         self.drink_button.setObjectName("default_radio")
-        self.drink_button.setFont(Theme.DONGLE_BOLD_65)
+        self.drink_button.setFont(Theme.DONGLE_REGULAR_65)
         self.drink_button.setGeometry(QRect(210, 185, 151, 41))
 
         self.bakery_button = QRadioButton("Bakery", self)
         self.bakery_button.setObjectName("default_radio")
-        self.bakery_button.setFont(Theme.DONGLE_BOLD_65)
+        self.bakery_button.setFont(Theme.DONGLE_REGULAR_65)
         self.bakery_button.setGeometry(QRect(500, 185, 171, 41))
 
         type_buttonGroup = QButtonGroup(self)
