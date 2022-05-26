@@ -6,8 +6,8 @@ from src.controller import *
 
 def test_widget() -> int:
     app = QApplication(sys.argv)
-    w = BaseView()  # change widget here
-    w.showFullScreen()
+    w = MenuAdminView() # change widget here
+    w.show()
     return app.exec()
 
 def test_controller() -> int:
