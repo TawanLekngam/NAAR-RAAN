@@ -1,5 +1,5 @@
 """
-    contain all view and utility widget.
+    contain all views and utility widgets.
 """
 
 import sys

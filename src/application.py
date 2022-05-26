@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QStackedWidget
 
-from .model import *
-from .view import *
+from .models import *
+from .views import *
 from .controllers import *
 
 
