@@ -17,8 +17,12 @@ class Application(QStackedWidget):
         # Login Page
         self.login_page = LoginPage(self, LoginView(), LoginModel())
 
+        # start page
+        self.addWidget(self.login_page.view)
+
     def initialize_page(self) -> None:
-        pass
+        if self.current_user is None:
+            return
 
     def set_current_user(self, user: User) -> None:
         self.current_user = user
