@@ -98,30 +98,12 @@ class Bakery(Schema):
     price = Column("price", Float())
 
     def __init__(self, name: str, price: float):
+        super().__init__()
         self.name = name
         self.price = price
 
     def __str__(self) -> str:
         return f"<Bakery {self.name:<15} price {self.price:<4.02f}>"
-
-    def get_id(self) -> int:
-        return self.id
-
-    def get_name(self) -> str:
-        return self.name
-
-    def get_price(self) -> float:
-        return self.price
-
-
-class Addon(Schema):
-    __tablename__ = "ADDONS"
-    id = Column("id", Integer(), primary_key=True)
-    name = Column("name", String(255))
-    price = Column("price", Float())
-
-    def __str__(self) -> str:
-        return f"<Addon {self.name:<15} price {self.price:<4.02f}>"
 
     def get_id(self) -> int:
         return self.id
@@ -141,6 +123,7 @@ class Log(Schema):
     desc = Column("description", String(1000))
 
     def __init__(self, desc: str, id: int = None, date: str = None, time: str = None):
+        super().__init__()
         self.id = id
         self.date = date
         self.time = time
@@ -152,7 +135,7 @@ class Log(Schema):
             self.time = f"{now.hour:02d}:{now.minute:02d}:{now.second:02d}"
 
     def __str__(self):
-        return f"<Log {self.date} {self.time} description={self.desc}>"
+        return f"<Log date={self.date} time={self.time} description={self.desc}>"
 
     def get_id(self) -> int:
         return self.id
@@ -168,3 +151,43 @@ class Log(Schema):
 
     def get_detail(self) -> tuple:
         return self.date, self.time, self.desc
+
+
+class Receipt(Schema):
+    __tablename__ = "RECEIPTS"
+    id = Column("id", Integer(), primary_key=True)
+    hand = Column("Handler", String(30))
+    date = Column("date", String(30))
+    time = Column("time", String(30))
+    desc = Column("description", String(1000))
+
+    def __init__(self, desc: str, hand: str, id: int = None, date: str = None, time: str = None):
+        super().__init__()
+        self.id = id
+        self.hand = hand
+        self.date = date
+        self.time = time
+        self.desc - desc
+
+        if None in [self.date, self.time]:
+            now = datetime.now()
+            self.date = f"{now.day:02d}-{now.month:02d}-{now.year}"
+            self.time = f"{now.hour:02d}:{now.minute:02d}:{now.second:02d}"
+
+        def __str__(self) -> str:
+            return f"<Receipt date={self.date} time={self.time} description={self.desc}>"
+
+        def get_id(self) -> int:
+            return self.id
+
+        def get_hand(self) -> str:
+            return self.hand
+
+        def get_date(self) -> str:
+            return self.date
+
+        def get_time(self) -> str:
+            return self.time
+
+        def get_desc(self) -> str:
+            return self.desc
