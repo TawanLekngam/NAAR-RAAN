@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 from sqlalchemy import desc
 from .schema import Session, engine
 from .schema import User, Drink, Bakery, Log, Receipt
@@ -9,6 +9,10 @@ class DAO(ABC):
 
     def __init__(self, session: Session):
         self.session = session
+
+    @abstractmethod
+    def exist(self, obj: object) -> bool:
+        pass
 
 
 class AppDAO:
@@ -24,7 +28,7 @@ class UserDAO(DAO):
         super().__init__(session)
 
     def add_user(self, user: User) -> None:
-        if self.exist(user):
+        if user is None or self.exist(user):
             return
 
         self.session.add(user)
@@ -62,7 +66,8 @@ class UserDAO(DAO):
         self.session.commit()
 
     def update_user(
-            self, id: int,
+            self,
+            id: int,
             fname: str = None,
             lname: str = None,
             username: str = None,
@@ -73,9 +78,6 @@ class UserDAO(DAO):
 
         if user is None:
             return False
-
-        if id is not None:
-            user.id = id
 
         if fname is not None:
             user.fname = fname
@@ -99,3 +101,63 @@ class UserDAO(DAO):
 class DrinkDAO(DAO):
     def __init__(self, session: Session):
         super().__init__(session)
+
+    def add_drink(self, drink: Drink) -> None:
+        if drink is None or self.exist(drink):
+            return
+
+        self.session.add(drink)
+        self.session.commit()
+
+    def exist(self, drink: Drink) -> bool:
+        if drink is None:
+            return False
+
+        query = self.session.query(Drink).filter(
+            Drink.name == drink.get_name(),
+            Drink.hprice == drink.get_hprice(),
+            Drink.cprice == drink.get_cprice(),
+            Drink.bprice == drink.get_bprice()
+        ).first()
+        return query is not None
+
+    def get_all_drinks(self) -> list[Drink]:
+        return self.session.query(Drink).all()
+
+    def get_drink_by_id(self, id: int) -> Drink:
+        return self.session.query(Drink).filter(Drink.id == id).first()
+
+    def delete_drink_by_id(self, id: int):
+        drink: Drink = self.session.query(Drink).filter(Drink.id == id).first()
+        if drink is None:
+            return
+
+        self.session.delete(drink)
+        self.session.commit()
+
+    def update_drink(
+            self,
+            id: int,
+            name: str = None,
+            hprice: float = None,
+            cprice: float = None,
+            bprice: float = None) -> bool:
+        """update drink data."""
+        drink: Drink = self.session.query(Drink).filter(Drink.id == id).first()
+
+        if drink is None:
+            return False
+        
+        if name is not None:
+            drink.name = name
+        
+        if hprice is not None:
+            drink.hprice = hprice
+
+        if cprice is not None:
+            drink.cprice = cprice
+
+        if bprice is not None:
+            drink.bprice = bprice
+        self.session.commit()
+        return True
