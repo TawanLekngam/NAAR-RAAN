@@ -29,7 +29,7 @@ class Theme:
 
     DONGLE_BOLD_65 = QFont("Dongle")
     DONGLE_BOLD_65.setPixelSize(65)
-    DONGLE_BOLD_80.setBold(True)
+    DONGLE_BOLD_65.setBold(True)
 
     """
     Operation for get stylesheet.
