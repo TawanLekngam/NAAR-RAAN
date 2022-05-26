@@ -202,7 +202,20 @@ class LoginView(QWidget):
         self.login_button.setIconSize(QSize(55, 55))
         self.setStyleSheet(Theme.get_stylesheet())
 
-    def login_button_emit(self, function) -> None:
+    def clear_info(self) -> None:
+        self.lineEdit_username.setText("")
+        self.lineEdit_password.setText("")
+
+    def reset(self) -> None:
+        self.clear_info()
+
+    def get_username(self) -> str:
+        return self.lineEdit_username.text()
+
+    def get_password(self) -> str:
+        return self, lineEdit_password.text()
+
+    def set_login_button_listener(self, function) -> None:
         self.login_button.clicked.connect(function)
 
 
