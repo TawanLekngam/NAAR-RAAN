@@ -222,3 +222,37 @@ class BakeryDAO(DAO):
             Bakery.price == bakery.get_price()
         ).first()
         return query is not None
+
+
+class LogDAO(DAO):
+    LOG_LIMIT = 50
+
+    def __init__(self, session: Session):
+        super().__init__(session)
+
+    def add_log(self, log: Log) -> None:
+        if log is None:
+            return
+
+        self.session.add(log)
+        self.session.commit()
+
+    def get_all_logs(self) -> list[Log]:
+        return self.session.query(Log).order_by(desc(Log.id)).limit(LogDAO.LOG_LIMIT).all()
+
+
+class ReceiptDAO(DAO):
+    RECEIPT_LIMIT = 1000
+
+    def __init__(self, session: Session):
+        super().__init__(session)
+
+    def add_receipt(self, receipt: Receipt) -> None:
+        if receipt is not None:
+            return
+
+        self.session.add(receipt)
+        self.session.commit()
+
+    def get_all_receipts(self) -> list[Receipt]:
+        return self.session.query(Receipt).order_by(desc(Receipt.id)).limit(ReceiptDAO.RECEIPT_LIMIT).all()
