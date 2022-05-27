@@ -93,7 +93,7 @@ class HomeView(QWidget):
         self.setFixedSize(1920, 1080)
 
         self.tab_frame = QFrame(self)
-        self.tab_frame.setObjectName("frame")
+        self.tab_frame.setObjectName("tab_frame")
         self.tab_frame.setGeometry(QRect(0, 0, 1920, 100))
 
         self.user_button = QPushButton("User Name", self.tab_frame)
@@ -171,7 +171,7 @@ class OrderView(QWidget):
         order_scrollArea.setWidget(order_scrollAreaContents)
 
         line = QFrame(order_frame)
-        line.setObjectName("line")
+        line.setObjectName("order_line")
         line.setGeometry(QRect(25, 634, 650, 5))
 
         total_label = QLabel("Total", order_frame)
@@ -258,6 +258,24 @@ class MenuListView(QWidget):
         self.setStyleSheet(Theme.get_stylesheet())
 
 
+class MenuListItem(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+        self.setFixedSize(880, 80)
+        self.setObjectName("menu_list_widget")
+
+        self.name_button = QPushButton("Menu Name", self)
+        self.name_button.setObjectName("list_button")
+        self.name_button.setFont(Theme.DONGLE_REGULAR_65)
+        self.name_button.setGeometry(QRect(50, 10, 780, 50))
+
+        white_line = QFrame(self)
+        white_line.setObjectName("white_line")
+        white_line.setGeometry(QRect(30, 70, 820, 3))
+
+        self.setStyleSheet(Theme.get_stylesheet())
+
+
 class DrinkDetailView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -267,7 +285,7 @@ class DrinkDetailView(QWidget):
         order_frame.setGeometry(75, 115, 1000, 850)
 
         menu_name = QLabel("Name Test", order_frame)
-        menu_name.setObjectName("menu_name")
+        menu_name.setObjectName("default_label")
         menu_name.setFont(Theme.DONGLE_BOLD_80)
         menu_name.setGeometry(QRect(100, 70, 830, 77))
 
@@ -352,7 +370,7 @@ class BakeryDetailView(QWidget):
         order_frame.setGeometry(75, 115, 1000, 850)
 
         menu_name = QLabel("Name Test", order_frame)
-        menu_name.setObjectName("menu_name")
+        menu_name.setObjectName("default_label")
         menu_name.setFont(Theme.DONGLE_BOLD_80)
         menu_name.setGeometry(QRect(100, 70, 830, 77))
 
@@ -513,7 +531,7 @@ class AddMenuAdmin(QWidget):
         self.setObjectName("admin_widget")
 
         name_label = QLabel("Name", self)
-        name_label.setObjectName("menu_name")
+        name_label.setObjectName("default_label")
         name_label.setFont(Theme.DONGLE_BOLD_65)
         name_label.setGeometry(QRect(33, 75, 111, 41))
 
@@ -523,7 +541,7 @@ class AddMenuAdmin(QWidget):
         self.name_bar.setGeometry(QRect(210, 49, 470, 60))
 
         type_label = QLabel("Type", self)
-        type_label.setObjectName("menu_name")
+        type_label.setObjectName("default_label")
         type_label.setFont(Theme.DONGLE_BOLD_65)
         type_label.setGeometry(QRect(33, 185, 111, 41))
 
@@ -543,7 +561,7 @@ class AddMenuAdmin(QWidget):
         type_buttonGroup.addButton(self.bakery_button)
 
         price_label = QLabel("Price", self)
-        price_label.setObjectName("menu_name")
+        price_label.setObjectName("default_label")
         price_label.setFont(Theme.DONGLE_BOLD_65)
         price_label.setGeometry(QRect(33, 301, 111, 41))
 
@@ -600,7 +618,7 @@ class MenuEdit(QWidget):
         self.setObjectName("admin_widget")
 
         name_label = QLabel("Name", self)
-        name_label.setObjectName("menu_name")
+        name_label.setObjectName("default_label")
         name_label.setFont(Theme.DONGLE_BOLD_65)
         name_label.setGeometry(QRect(33, 75, 111, 41))
 
@@ -610,7 +628,7 @@ class MenuEdit(QWidget):
         self.name_bar.setGeometry(QRect(210, 49, 470, 60))
 
         type_label = QLabel("Type", self)
-        type_label.setObjectName("menu_name")
+        type_label.setObjectName("default_label")
         type_label.setFont(Theme.DONGLE_BOLD_65)
         type_label.setGeometry(QRect(33, 185, 111, 41))
 
@@ -630,7 +648,7 @@ class MenuEdit(QWidget):
         type_buttonGroup.addButton(self.bakery_button)
 
         price_label = QLabel("Price", self)
-        price_label.setObjectName("menu_name")
+        price_label.setObjectName("default_label")
         price_label.setFont(Theme.DONGLE_BOLD_65)
         price_label.setGeometry(QRect(33, 301, 111, 41))
 
@@ -728,7 +746,7 @@ class EmployeeEdit(QWidget):
         self.setObjectName("admin_widget")
 
         name_label = QLabel("Name", self)
-        name_label.setObjectName("menu_name")
+        name_label.setObjectName("default_label")
         name_label.setFont(Theme.DONGLE_BOLD_65)
         name_label.setGeometry(QRect(33, 75, 111, 41))
 
@@ -738,7 +756,7 @@ class EmployeeEdit(QWidget):
         self.name.setGeometry(QRect(250, 50, 430, 60))
 
         surname_label = QLabel("Surname", self)
-        surname_label.setObjectName("menu_name")
+        surname_label.setObjectName("default_label")
         surname_label.setFont(Theme.DONGLE_BOLD_65)
         surname_label.setGeometry(QRect(33, 180, 171, 41))
 
@@ -748,7 +766,7 @@ class EmployeeEdit(QWidget):
         self.surname.setGeometry(QRect(250, 155, 430, 60))
 
         username_label = QLabel("Username", self)
-        username_label.setObjectName("menu_name")
+        username_label.setObjectName("default_label")
         username_label.setFont(Theme.DONGLE_BOLD_65)
         username_label.setGeometry(QRect(33, 390, 191, 41))
 
@@ -758,7 +776,7 @@ class EmployeeEdit(QWidget):
         self.username.setGeometry(QRect(250, 365, 430, 60))
 
         password_label = QLabel("Password", self)
-        password_label.setObjectName("menu_name")
+        password_label.setObjectName("default_label")
         password_label.setFont(Theme.DONGLE_BOLD_65)
         password_label.setGeometry(QRect(33, 285, 201, 41))
 
@@ -768,7 +786,7 @@ class EmployeeEdit(QWidget):
         self.password.setGeometry(QRect(250, 260, 430, 60))
 
         position_label = QLabel("Position", self)
-        position_label.setObjectName("menu_name")
+        position_label.setObjectName("default_label")
         position_label.setFont(Theme.DONGLE_BOLD_65)
         position_label.setGeometry(QRect(33, 495, 191, 41))
 
@@ -812,7 +830,7 @@ class EmployeeAdd(QWidget):
         self.setObjectName("admin_widget")
 
         name_label = QLabel("Name", self)
-        name_label.setObjectName("menu_name")
+        name_label.setObjectName("default_label")
         name_label.setFont(Theme.DONGLE_BOLD_65)
         name_label.setGeometry(QRect(33, 75, 111, 41))
 
@@ -822,7 +840,7 @@ class EmployeeAdd(QWidget):
         self.name.setGeometry(QRect(250, 50, 430, 60))
 
         surname_label = QLabel("Surname", self)
-        surname_label.setObjectName("menu_name")
+        surname_label.setObjectName("default_label")
         surname_label.setFont(Theme.DONGLE_BOLD_65)
         surname_label.setGeometry(QRect(33, 180, 171, 41))
 
@@ -832,7 +850,7 @@ class EmployeeAdd(QWidget):
         self.surname.setGeometry(QRect(250, 155, 430, 60))
 
         username_label = QLabel("Username", self)
-        username_label.setObjectName("menu_name")
+        username_label.setObjectName("default_label")
         username_label.setFont(Theme.DONGLE_BOLD_65)
         username_label.setGeometry(QRect(33, 390, 191, 41))
 
@@ -842,7 +860,7 @@ class EmployeeAdd(QWidget):
         self.username.setGeometry(QRect(250, 365, 430, 60))
 
         password_label = QLabel("Password", self)
-        password_label.setObjectName("menu_name")
+        password_label.setObjectName("default_label")
         password_label.setFont(Theme.DONGLE_BOLD_65)
         password_label.setGeometry(QRect(33, 285, 201, 41))
 
@@ -852,7 +870,7 @@ class EmployeeAdd(QWidget):
         self.password.setGeometry(QRect(250, 260, 430, 60))
 
         position_label = QLabel("Position", self)
-        position_label.setObjectName("menu_name")
+        position_label.setObjectName("default_label")
         position_label.setFont(Theme.DONGLE_BOLD_65)
         position_label.setGeometry(QRect(33, 495, 191, 41))
 
@@ -880,5 +898,23 @@ class EmployeeAdd(QWidget):
         self.add_button.setObjectName("cancel_add_button")
         self.add_button.setFont(Theme.DONGLE_REGULAR_65)
         self.add_button.setGeometry(QRect(394, 730, 200, 80))
+
+        self.setStyleSheet(Theme.get_stylesheet())
+
+
+class AdminListItem(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+        self.setFixedSize(880, 80)
+        self.setObjectName("admin_list_widget")
+
+        self.name_button = QPushButton("Menu Name", self)
+        self.name_button.setObjectName("list_button")
+        self.name_button.setFont(Theme.DONGLE_REGULAR_65)
+        self.name_button.setGeometry(QRect(50, 10, 780, 50))
+
+        white_line = QFrame(self)
+        white_line.setObjectName("brown_line")
+        white_line.setGeometry(QRect(30, 70, 820, 3))
 
         self.setStyleSheet(Theme.get_stylesheet())
