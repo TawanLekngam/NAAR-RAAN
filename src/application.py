@@ -39,6 +39,7 @@ class Application(QStackedWidget):
         if self.current_user is None:
             return
 
+        print(self.current_user)
         self.home_page = HomePage(
             self, HomeView(), HomeModel(), self.current_user)
 

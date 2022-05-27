@@ -40,6 +40,10 @@ class LoginPage(Controller):
             self.model.set_current_user(username)
             self.set_current_user(self.get_current_user())
             self.__root.initialize_page()
+            self.view.hide_error_label()
+        else:
+            self.view.show_error_label()
+
 
     def get_current_user(self) -> User:
         return self.model.get_current_user()

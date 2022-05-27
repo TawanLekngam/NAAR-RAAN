@@ -44,6 +44,7 @@ class LoginView(QWidget):
         self.error.setObjectName("default_label")
         self.error.setFont(Theme.DONGLE_REGULAR_50)
         self.error.setGeometry(QRect(836, 600, 600, 50))
+        
 
         self.lineEdit_password = QLineEdit(self)
         self.lineEdit_password.setObjectName("lineEdit_password")
@@ -60,6 +61,7 @@ class LoginView(QWidget):
         self.login_button.setObjectName("logIn_button")
         self.login_button.setGeometry(QRect(860, 860, 200, 80))
 
+        self.hide_error_label()
         self.setStyleSheet(Theme.get_stylesheet())
 
     def reset(self) -> None:
