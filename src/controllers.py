@@ -78,16 +78,13 @@ class HomePage(Controller):
         self.user_edit_page = None
 
     def initialize(self) -> None:
-        self.initialize_page()
-        self.initialize_button()
-
-
-    def initialize_page(self) -> None:
         self.order_page = OrderPage(OrderView(), OrderModel())
-
-
-
         self.view.stacked_widget.addWidget(self.order_page.view)
+
+        self.log_page = LogPage(LogView(), LogModel())
+        self.view.stacked_widget.addWidget(self.log_page.view)
+
+
 
     def initialize_button(self) -> None:
         admin_btn_group: list[QPushButton] = [self.view.auditLog_button,
@@ -102,19 +99,23 @@ class HomePage(Controller):
                 btn.hide()
             
     def move_to_order_page(self) -> None:
-        pass
+        self.view.stacked_widget.setCurrentIndex(0)
 
     def move_to_log_page(self) -> None:
-        pass
+        if self.__admin_access and self.log_page is not None:
+            self.view.stacked_widget.setCurrentIndex(1)
 
     def move_to_receipt_page(self) -> None:
-        pass
+        if self.__admin_access and self.receipt_page is not None:
+            self.view.stacked_widget.setCurrentIndex(2)
 
     def move_to_menu_edit_page(self) -> None:
-        pass
+        if self.__admin_access and self.menu_edit_page is not None:
+            self.view.stacked_widget.setCurrentIndex(3)
 
     def move_to_user_edit_page(self) -> None:
-        pass
+        if self.__admin_access and self.user_edit_page is not None:
+            self.view.stacked_widget.setCurrentIndex(4)
 
 
 class OrderPage(Controller):
