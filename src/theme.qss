@@ -8,14 +8,10 @@ QWidget {
 
 QLabel#label_username, #label_password {
     background-color: transparent;
-    font-family: "Dongle";
-    font-weight: bold;
     color: #4A321C;
 }
 
 QLineEdit#lineEdit_username, #lineEdit_password {
-    font-family: "Dongle";
-    font-weight: bold;
     padding-left: 30px;
     padding-right: 30px;
     color: #4A321C;
@@ -47,31 +43,26 @@ QPushButton#logIn_button:hover {
 QPushButton#history_button_base_page {
     background: transparent;
     image: url(src/asset/Image/history);
-    padding-bottom: 20px;
 }
 
 QPushButton#home_button_base_page {
    background: transparent;
     image: url(src/asset/Image/home);
-    padding-bottom: 20px;
 }
 
 QPushButton#receipt_button_base_page {
    background: transparent;
     image: url(src/asset/Image/receipt);
-    padding-bottom: 20px;
 }
 
 QPushButton#menu_button_base_page {
    background: transparent;
     image: url(src/asset/Image/menu);
-    padding-bottom: 20px;
 }
 
 QPushButton#employee_button_base_page {
    background: transparent;
     image: url(src/asset/Image/user);
-    padding-bottom: 20px;
 }
 
 QPushButton#history_button_base_page:hover {
@@ -94,19 +85,19 @@ QPushButton#employee_button_base_page:hover {
     image: url(src/asset/Image/user_hover);
 }
 
-QPushButton#user_base_page{
+QPushButton#user_base_page {
     background-color: #4A321C;
     color: #D8B797;
     text-align:right;
-    padding-bottom: 10px;
     border: none;
+    padding-top: 10px;
 }
 
 QPushButton#user_base_page:hover {
     color: #F9F5F0;
 }
 
-QLabel#menu_label, #label_todo, #label_doing,#label_done, #label_target{
+QLabel#menu_label, #label_todo, #label_doing,#label_done, #label_target {
     background-color: transparent;
     color: #4A321C;
 }
@@ -124,42 +115,42 @@ QLineEdit#search_bar {
     border: 5px solid #754926;
     border-radius: 20px;
 }
-QScrollArea#scrollArea_order{
+QScrollArea#scrollArea_order {
     background-color: #D8B797;
     border-radius: 20px;
     padding: 0px;
 }
 
-QListView#listView_order{
+QListView#listView_order {
     background-color: #754926;
     border-radius: 10px;
     
 }
 
-QWidget#scrollAreaWidgetContents, #widget_date, #widget_auditlog{
+QWidget#scrollAreaWidgetContents, #widget_date, #widget_auditlog {
     background-color: #D8B797;
     padding: 0px;
     border-radius: 20px;
    
 }
 
-QListWidget#listWidget_date, #listWidget_auditlog{
+QListWidget#listWidget_date, #listWidget_auditlog {
     background-color: #D8B797;
     border-top: 5px solid #4A321C;
 }
 
-QWidget#widget_report{
+QWidget#widget_report {
     background-color: #F9F5F0;
     border: 5px solid #4A321C;
     border-radius: 20px;
 }
 
-QLabel#label_date_target,#label_date, #label_details{
+QLabel#label_date_target,#label_date, #label_details {
     background-color: transparent;
     color: #F9F5F0
 }
 
-QPushButton#pushButton_edit{
+QPushButton#pushButton_edit {
     background-color: #754926;
     padding-left: 30px;
     padding-right: 30px;
@@ -168,7 +159,7 @@ QPushButton#pushButton_edit{
 
 }
 
-QFrame#frame{
+QFrame#frame {
     background-color: #4A321C;
     padding-left: 30px;
     padding-right: 30px;
@@ -225,6 +216,12 @@ QPushButton#order_button {
 }
 
 /* Order Detail */
+
+QFrame#order_frame {
+    background-color: #F9F5F0;
+    border: 5px solid #754926;
+    border-radius: 20px;
+}
 
 QLabel#menu_name {
     color: #4A321C;

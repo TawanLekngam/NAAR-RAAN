@@ -10,89 +10,6 @@ from PySide6.QtWidgets import *
 from theme import Theme
 
 
-class OrderDetail(QWidget):
-    def __init__(self, parent: QWidget = None):
-        QWidget.__init__(self, parent)
-        self.setFixedSize(1000, 850)
-
-        menu_name = QLabel("Name Test", self)
-        menu_name.setObjectName("menu_name")
-        menu_name.setFont(Theme.DONGLE_BOLD_80)
-        menu_name.setGeometry(QRect(93, 57, 830, 77))
-
-        hot_button = QPushButton("Hot", self)
-        hot_button.setObjectName("default_button")
-        hot_button.setFont(Theme.DONGLE_REGULAR_65)
-        hot_button.setGeometry(QRect(93, 134, 200, 60))
-        hot_button.setCheckable(True)
-
-        cold_button = QPushButton("Cold", self)
-        cold_button.setObjectName("default_button")
-        cold_button.setFont(Theme.DONGLE_REGULAR_65)
-        cold_button.setGeometry(QRect(408, 134, 200, 60))
-        cold_button.setCheckable(True)
-
-        blended_button = QPushButton("Blended", self)
-        blended_button.setObjectName("default_button")
-        blended_button.setFont(Theme.DONGLE_REGULAR_65)
-        blended_button.setGeometry(QRect(723, 134, 200, 60))
-        blended_button.setCheckable(True)
-
-        drinkType_buttonGroup = QButtonGroup(self)
-        drinkType_buttonGroup.setObjectName("drinkType_ButtonGroup")
-        drinkType_buttonGroup.addButton(hot_button)
-        drinkType_buttonGroup.addButton(cold_button)
-        drinkType_buttonGroup.addButton(blended_button)
-
-        sweetness_label = QLabel("Sweetness", self)
-        sweetness_label.setObjectName("sweetness_label")
-        sweetness_label.setFont(Theme.DONGLE_REGULAR_65)
-        sweetness_label.setGeometry(QRect(93, 241, 200, 103))
-
-        sweet0_button = QPushButton("0", self)
-        sweet0_button.setObjectName("default_button")
-        sweet0_button.setFont(Theme.DONGLE_REGULAR_65)
-        sweet0_button.setGeometry(QRect(343, 258, 100, 60))
-        sweet0_button.setCheckable(True)
-
-        sweet25_button = QPushButton("25", self)
-        sweet25_button.setObjectName("default_button")
-        sweet25_button.setFont(Theme.DONGLE_REGULAR_65)
-        sweet25_button.setGeometry(QRect(503, 258, 100, 60))
-        sweet25_button.setCheckable(True)
-
-        sweet50_button = QPushButton("50", self)
-        sweet50_button.setObjectName("default_button")
-        sweet50_button.setFont(Theme.DONGLE_REGULAR_65)
-        sweet50_button.setGeometry(QRect(663, 258, 100, 60))
-        sweet50_button.setCheckable(True)
-
-        sweet100_button = QPushButton("100", self)
-        sweet100_button.setObjectName("default_button")
-        sweet100_button.setFont(Theme.DONGLE_REGULAR_65)
-        sweet100_button.setGeometry(QRect(823, 258, 100, 60))
-        sweet100_button.setCheckable(True)
-
-        sweetness_buttonGroup = QButtonGroup(self)
-        sweetness_buttonGroup.setObjectName("sweetness_buttonGroup")
-        sweetness_buttonGroup.addButton(sweet0_button)
-        sweetness_buttonGroup.addButton(sweet25_button)
-        sweetness_buttonGroup.addButton(sweet50_button)
-        sweetness_buttonGroup.addButton(sweet100_button)
-
-        cancel_button = QPushButton("Cancel", self)
-        cancel_button.setObjectName("cancel_add_button")
-        cancel_button.setFont(Theme.DONGLE_REGULAR_65)
-        cancel_button.setGeometry(QRect(270, 726, 200, 80))
-
-        add_button = QPushButton("Add", self)
-        add_button.setObjectName("cancel_add_button")
-        add_button.setFont(Theme.DONGLE_REGULAR_65)
-        add_button.setGeometry(QRect(551, 726, 200, 80))
-
-        self.setStyleSheet(Theme.get_stylesheet())
-
-
 """
     application view.
 """
@@ -172,38 +89,46 @@ class HomeView(QWidget):
         self.tab_frame.setObjectName("frame")
         self.tab_frame.setGeometry(QRect(0, 0, 1920, 100))
 
-        self.user_button = QPushButton("User Name", self.frame)
+        self.user_button = QPushButton("User Name", self.tab_frame)
         self.user_button.setObjectName("user_base_page")
         self.user_button.setGeometry(QRect(1552, 0, 300, 100))
         self.user_button.setFont(Theme.DONGLE_BOLD_65)
 
-        self.home_button = QPushButton(self.frame)
+        self.home_button = QPushButton(self.tab_frame)
         self.home_button.setObjectName("home_button_base_page")
         self.home_button.setGeometry(QRect(36, 0, 100, 100))
 
-        self.auditLog_button = QPushButton(self.frame)
+        self.auditLog_button = QPushButton(self.tab_frame)
         self.auditLog_button.setObjectName("history_button_base_page")
         self.auditLog_button.setGeometry(QRect(136, 0, 100, 100))
 
-        self.receipt_button = QPushButton(self.frame)
+        self.receipt_button = QPushButton(self.tab_frame)
         self.receipt_button.setObjectName("receipt_button_base_page")
         self.receipt_button.setGeometry(QRect(236, 0, 100, 100))
         
-        self.menu_button = QPushButton(self.frame)
+        self.menu_button = QPushButton(self.tab_frame)
         self.menu_button.setObjectName("menu_button_base_page")
         self.menu_button.setGeometry(QRect(336, 0, 100, 100))
 
-        self.employee_button = QPushButton(self.frame)
+        self.employee_button = QPushButton(self.tab_frame)
         self.employee_button.setObjectName("employee_button_base_page")
         self.employee_button.setGeometry(QRect(436, 0, 100, 100))
 
-        self.stackedWidget = QStackedWidget(self)
-        self.stackedWidget.setObjectName("stackedWidget")
-        self.stackedWidget.setGeometry(QRect(0, 84, 1920, 1071))
+        self.stacked_frame = QFrame(self)
+        self.stacked_frame.setObjectName("stacked_frame")
+        self.stacked_frame.setGeometry(QRect(0, 100, 1920, 980))
 
-        self.target_revenue_page = AuditLogView()
-        self.target_revenue_page.setObjectName("page")
-        self.stackedWidget.addWidget(self.target_revenue_page)
+        self.stacked_widget = QStackedWidget(self.stacked_frame)
+        self.stacked_widget.setObjectName("stacked_widget")
+        self.stacked_widget.setGeometry(QRect(0, -50, 1920, 980))
+
+        self.order_detail = OrderDetailView()
+        self.order_detail.setObjectName("order_detail_page")
+        self.stacked_widget.addWidget(self.order_detail)
+
+        # self.menu_order_page = MenuOrderView()
+        # self.menu_order_page.setObjectName("menu_order_page")
+        # self.stacked_widget.addWidget(self.menu_order_page)
 
         self.setStyleSheet(Theme.get_stylesheet())
 
@@ -217,7 +142,7 @@ class HomeView(QWidget):
         self.userButton.setText(username)
 
 
-class MenuOrderView(QWidget):
+class MenuListView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
 
@@ -243,6 +168,13 @@ class MenuOrderView(QWidget):
         menu_scrollAreaContents.setObjectName("menu_scrollAreaContents")
         menu_scrollAreaContents.setGeometry(QRect(0, 0, 883, 628))
         menu_scrollArea.setWidget(menu_scrollAreaContents)
+
+        self.setStyleSheet(Theme.get_stylesheet())
+
+
+class MenuOrderView(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
 
         order_frame = QFrame(self)
         order_frame.setObjectName("order_frame")
@@ -275,6 +207,93 @@ class MenuOrderView(QWidget):
         self.order_button.setObjectName("order_button")
         self.order_button.setFont(Theme.DONGLE_BOLD_65)
         self.order_button.setGeometry(QRect(1145, 885, 700, 80))
+
+        self.setStyleSheet(Theme.get_stylesheet())
+
+
+class OrderDetailView(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+        self.setFixedSize(1080, 960)
+
+        order_frame = QFrame(self)
+        order_frame.setObjectName("order_frame")
+        order_frame.setGeometry(68, 102, 1000, 850)
+
+        menu_name = QLabel("Name Test", order_frame)
+        menu_name.setObjectName("menu_name")
+        menu_name.setFont(Theme.DONGLE_BOLD_80)
+        menu_name.setGeometry(QRect(93, 57, 830, 77))
+
+        hot_button = QPushButton("Hot", order_frame)
+        hot_button.setObjectName("default_button")
+        hot_button.setFont(Theme.DONGLE_REGULAR_65)
+        hot_button.setGeometry(QRect(93, 134, 200, 60))
+        hot_button.setCheckable(True)
+
+        cold_button = QPushButton("Cold", order_frame)
+        cold_button.setObjectName("default_button")
+        cold_button.setFont(Theme.DONGLE_REGULAR_65)
+        cold_button.setGeometry(QRect(408, 134, 200, 60))
+        cold_button.setCheckable(True)
+
+        blended_button = QPushButton("Blended", order_frame)
+        blended_button.setObjectName("default_button")
+        blended_button.setFont(Theme.DONGLE_REGULAR_65)
+        blended_button.setGeometry(QRect(723, 134, 200, 60))
+        blended_button.setCheckable(True)
+
+        drinkType_buttonGroup = QButtonGroup(order_frame)
+        drinkType_buttonGroup.setObjectName("drinkType_ButtonGroup")
+        drinkType_buttonGroup.addButton(hot_button)
+        drinkType_buttonGroup.addButton(cold_button)
+        drinkType_buttonGroup.addButton(blended_button)
+
+        sweetness_label = QLabel("Sweetness", order_frame)
+        sweetness_label.setObjectName("sweetness_label")
+        sweetness_label.setFont(Theme.DONGLE_REGULAR_65)
+        sweetness_label.setGeometry(QRect(93, 245, 200, 103))
+
+        sweet0_button = QPushButton("0", order_frame)
+        sweet0_button.setObjectName("default_button")
+        sweet0_button.setFont(Theme.DONGLE_REGULAR_65)
+        sweet0_button.setGeometry(QRect(351, 258, 100, 60))
+        sweet0_button.setCheckable(True)
+
+        sweet25_button = QPushButton("25", order_frame)
+        sweet25_button.setObjectName("default_button")
+        sweet25_button.setFont(Theme.DONGLE_REGULAR_65)
+        sweet25_button.setGeometry(QRect(508, 258, 100, 60))
+        sweet25_button.setCheckable(True)
+
+        sweet50_button = QPushButton("50", order_frame)
+        sweet50_button.setObjectName("default_button")
+        sweet50_button.setFont(Theme.DONGLE_REGULAR_65)
+        sweet50_button.setGeometry(QRect(666, 258, 100, 60))
+        sweet50_button.setCheckable(True)
+
+        sweet100_button = QPushButton("100", order_frame)
+        sweet100_button.setObjectName("default_button")
+        sweet100_button.setFont(Theme.DONGLE_REGULAR_65)
+        sweet100_button.setGeometry(QRect(823, 258, 100, 60))
+        sweet100_button.setCheckable(True)
+
+        sweetness_buttonGroup = QButtonGroup(order_frame)
+        sweetness_buttonGroup.setObjectName("sweetness_buttonGroup")
+        sweetness_buttonGroup.addButton(sweet0_button)
+        sweetness_buttonGroup.addButton(sweet25_button)
+        sweetness_buttonGroup.addButton(sweet50_button)
+        sweetness_buttonGroup.addButton(sweet100_button)
+
+        cancel_button = QPushButton("Cancel", order_frame)
+        cancel_button.setObjectName("cancel_add_button")
+        cancel_button.setFont(Theme.DONGLE_REGULAR_65)
+        cancel_button.setGeometry(QRect(270, 726, 200, 80))
+
+        add_button = QPushButton("Add", order_frame)
+        add_button.setObjectName("cancel_add_button")
+        add_button.setFont(Theme.DONGLE_REGULAR_65)
+        add_button.setGeometry(QRect(551, 726, 200, 80))
 
         self.setStyleSheet(Theme.get_stylesheet())
 
