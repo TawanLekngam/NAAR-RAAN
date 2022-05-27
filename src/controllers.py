@@ -47,13 +47,24 @@ class LoginPage(Controller):
     def set_current_user(self, user: User):
         self.__root.set_current_user(user)
 
+    def clear_input_field(self) -> None:
+        self.view.clear_info()
+
 
 class HomePage(Controller):
+    """master page"""
 
-    def __init__(self, view: QWidget, model: Model, user:User):
+    view: HomeView
+    model: HomeModel
+
+    def __init__(self, root, view: QWidget, model: Model, user: User):
         super().__init__(view, model)
+        self.__root = root
         self.view.set_username(user.get_username())
         self.__admin_access = (user.get_access_level() == "admin")
+
+    def set_logout_button_listener(self) -> None:
+        self.view.user_button.click.connect(self.__root.move_to_login)
 
     def set_button_listenner(self, btn: QPushButton, function) -> None:
         btn.clicked.connect(function)
@@ -61,9 +72,8 @@ class HomePage(Controller):
 
 class OrderPage(Controller):
 
-    def __init__(self,view:QWidget, model: Model):
-        super().__init__(view,model)
-        
+    def __init__(self, view: QWidget, model: Model):
+        super().__init__(view, model)
 
 
 class AccountPage(Controller):
