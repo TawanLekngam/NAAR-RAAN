@@ -458,8 +458,8 @@ class BakeryDetailView(QWidget):
 class AuditLogView(QWidget):
     def __init__(self):
         QWidget.__init__(self, None)
+        self.setFixedSize(1920, 1080)
 
-        self.resize(1920, 1080)
         self.widget_auditlog = QWidget(self)
         self.widget_auditlog.setObjectName("widget_auditlog")
         self.widget_auditlog.setGeometry(QRect(60, 100, 1800, 980))
@@ -487,6 +487,34 @@ class AuditLogView(QWidget):
         self.listWidget_auditlog = QListWidget(self.widget_auditlog)
         self.listWidget_auditlog.setObjectName("listWidget_auditlog")
         self.listWidget_auditlog.setGeometry(QRect(39, 150, 1722, 810))
+
+        self.setStyleSheet(Theme.get_stylesheet())
+
+
+class LogItem(QWidget):
+    def __init__(self):
+        QWidget.__init__(self, None)
+        self.setFixedSize(1725, 80)
+        self.setObjectName("menu_list_widget")
+
+        self.date = QLabel("01/01/2022", self)
+        self.date.setObjectName("default_label")
+        self.date.setFont(Theme.DONGLE_REGULAR_65)
+        self.date.setGeometry(QRect(100, 10, 211, 41))
+        
+        self.time = QLabel("00:00", self)
+        self.time.setObjectName("default_label")
+        self.time.setFont(Theme.DONGLE_REGULAR_65)
+        self.time.setGeometry(QRect(400, 10, 111, 41))
+
+        self.name_act = QLabel("Name Act", self)
+        self.name_act.setObjectName("default_label")
+        self.name_act.setFont(Theme.DONGLE_REGULAR_65)
+        self.name_act.setGeometry(QRect(640, 10, 961, 41))
+
+        line = QFrame(self)
+        line.setObjectName("white_line")
+        line.setGeometry(QRect(80, 70, 1550, 3))
 
         self.setStyleSheet(Theme.get_stylesheet())
 
