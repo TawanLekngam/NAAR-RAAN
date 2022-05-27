@@ -46,7 +46,7 @@ class LoginModel(Model):
 
 class HomeModel(Model):
 
-    def __init__(self, user: User):
+    def __init__(self):
         pass
 
     def logout(self) -> None:
@@ -54,13 +54,11 @@ class HomeModel(Model):
 
 
 class OrderModel(Model):
-    __current_user: User
     __drink_dao: DrinkDAO
     __bakery_dao: BakeryDAO
     __receipt_dao: ReceiptDAO
 
-    def __init__(self, user: User = None):
-        self.__current_user = user
+    def __init__(self):
         self.__drink_dao = AppDAO.get_dao("drink")
         self.__bakery_dao = AppDAO.get_dao("bakery")
         self.__receipt_dao = AppDAO.get_dao("receipt")
