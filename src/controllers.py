@@ -60,10 +60,23 @@ class HomePage(Controller):
     def __init__(self, root, view: QWidget, model: Model, user: User):
         super().__init__(view, model)
         self.__root = root
-        self.view.set_username(user.get_username())
+        self.view.user_button.setText(user.get_username())
         self.view.user_button.clicked.connect(self.__root.move_to_login)
         self.__admin_access = (user.get_access_level() == "admin")
+        self.show_admin_button()
 
+    def show_admin_button(self) -> None:
+        admin_btn_group: list[QPushButton] = [self.view.auditLog_button,
+                                              self.view.receipt_button,
+                                              self.view.menu_button,
+                                              self.view.employee_button]
+        if self.__admin_access:
+            for btn in admin_btn_group:
+                btn.show()
+        else:
+            for btn in admin_btn_group:
+                btn.hide()
+            
 
     def set_button_listenner(self, btn: QPushButton, function) -> None:
         btn.clicked.connect(function)
