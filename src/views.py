@@ -455,7 +455,7 @@ class BakeryDetailView(QWidget):
 #         self.setStyleSheet(Theme.get_stylesheet())
 
 
-class AuditLogView(QWidget):
+class LogView(QWidget):
     def __init__(self):
         QWidget.__init__(self, None)
         self.setFixedSize(1920, 1080)
