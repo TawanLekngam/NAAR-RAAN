@@ -53,6 +53,26 @@ class HomeModel(Model):
         pass
 
 
+class OrderModel(Model):
+    __current_user: User
+    __drink_dao: DrinkDAO
+    __bakery_dao: BakeryDAO
+    __receipt_dao: ReceiptDAO
+
+    def __init__(self, user: User = None):
+        self.__current_user = user
+        self.__drink_dao = AppDAO.get_dao("drink")
+        self.__bakery_dao = AppDAO.get_dao("bakery")
+        self.__receipt_dao = AppDAO.get_dao("receipt")
+
+    def get_all_products(self) -> list:
+        products = list()
+        products.extend(self.__drink_dao.get_all_drinks())
+        products.extend(self.__bakery_dao.get_all_bakeries())
+        products.sort(key=lambda x: x.name)
+        return products
+
+
 class AccountModel(Model):
     LENGHT_LIMIT = 4
     __current_user: User
@@ -100,3 +120,8 @@ class LogModel(Model):
 
     def get_all_logs(self) -> list[Log]:
         return self.__log_dao.get_all_logs()
+
+
+if __name__ == "__main__":
+    x = OrderModel()
+    x.get_all_products()
