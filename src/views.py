@@ -185,6 +185,18 @@ class MainView(QWidget):
         self.auditlogButton.setObjectName("history_button_base_page")
         self.auditlogButton.setGeometry(QRect(136, 0, 100, 100))
 
+        self.receiptButton = QPushButton(self.frame)
+        self.receiptButton.setObjectName("receipt_button_base_page")
+        self.receiptButton.setGeometry(QRect(236, 0, 100, 100))
+        
+        self.menuButton = QPushButton(self.frame)
+        self.menuButton.setObjectName("menu_button_base_page")
+        self.menuButton.setGeometry(QRect(336, 0, 100, 100))
+
+        self.employeeButton = QPushButton(self.frame)
+        self.employeeButton.setObjectName("employee_button_base_page")
+        self.employeeButton.setGeometry(QRect(436, 0, 100, 100))
+
         self.stackedWidget = QStackedWidget(self)
         self.stackedWidget.setObjectName("stackedWidget")
         self.stackedWidget.setGeometry(QRect(0, 84, 1920, 1071))
