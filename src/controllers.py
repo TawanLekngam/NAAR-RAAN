@@ -27,7 +27,7 @@ class LoginPage(Controller):
     def __init__(self, root, view: QWidget, model: Model):
         super().__init__(view, model)
         self.view.set_login_button_listener(self.verify_login)
-        self.__root: Application = root
+        self.__root = root
 
     def verify_login(self):
         username = self.view.get_username()
