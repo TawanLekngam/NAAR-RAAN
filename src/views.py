@@ -129,9 +129,13 @@ class HomeView(QWidget):
         self.stacked_widget.setObjectName("stacked_widget")
         self.stacked_widget.setGeometry(QRect(0, -50, 1920, 980))
 
-        # self.order_detail = OrderDetailView()
-        # self.order_detail.setObjectName("order_detail_page")
-        # self.stacked_widget.addWidget(self.order_detail)
+        # self.drink_detail = DrinkDetailView()
+        # self.drink_detail.setObjectName("drink_detail_page")
+        # self.stacked_widget.addWidget(self.drink_detail)
+
+        # self.bakery_detail = BakeryDetailView()
+        # self.bakery_detail.setObjectName("bakery_detail_page")
+        # self.stacked_widget.addWidget(self.bakery_detail)
 
         # self.menu_order_page = MenuOrderView()
         # self.menu_order_page.setObjectName("menu_order_page")
@@ -215,22 +219,20 @@ class MenuOrderView(QWidget):
         number_label.setGeometry(QRect(540, 660, 115, 40))
 
         self.order_button = QPushButton("Order", self)
-        self.order_button.setObjectName("order_button")
+        self.order_button.setObjectName("cancel_add_button")
         self.order_button.setFont(Theme.DONGLE_BOLD_65)
         self.order_button.setGeometry(QRect(1145, 885, 700, 80))
 
         self.setStyleSheet(Theme.get_stylesheet())
 
 
-class OrderDetailView(QWidget):
+class DrinkDetailView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
 
         order_frame = QFrame(self)
         order_frame.setObjectName("order_frame")
         order_frame.setGeometry(75, 115, 1000, 850)
-        # 68, 102
-        # 7, 13
 
         menu_name = QLabel("Name Test", order_frame)
         menu_name.setObjectName("menu_name")
@@ -296,6 +298,31 @@ class OrderDetailView(QWidget):
         sweetness_buttonGroup.addButton(sweet25_button)
         sweetness_buttonGroup.addButton(sweet50_button)
         sweetness_buttonGroup.addButton(sweet100_button)
+
+        cancel_button = QPushButton("Cancel", order_frame)
+        cancel_button.setObjectName("cancel_add_button")
+        cancel_button.setFont(Theme.DONGLE_REGULAR_65)
+        cancel_button.setGeometry(QRect(277, 739, 200, 80))
+
+        add_button = QPushButton("Add", order_frame)
+        add_button.setObjectName("cancel_add_button")
+        add_button.setFont(Theme.DONGLE_REGULAR_65)
+        add_button.setGeometry(QRect(558, 739, 200, 80))
+
+        self.setStyleSheet(Theme.get_stylesheet())
+
+class BakeryDetailView(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+
+        order_frame = QFrame(self)
+        order_frame.setObjectName("order_frame")
+        order_frame.setGeometry(75, 115, 1000, 850)
+
+        menu_name = QLabel("Name Test", order_frame)
+        menu_name.setObjectName("menu_name")
+        menu_name.setFont(Theme.DONGLE_BOLD_80)
+        menu_name.setGeometry(QRect(100, 70, 830, 77))
 
         cancel_button = QPushButton("Cancel", order_frame)
         cancel_button.setObjectName("cancel_add_button")
