@@ -49,9 +49,28 @@ QPushButton#history_button_base_page {
     image: url(src/asset/Image/history);
     padding-bottom: 20px;
 }
+
 QPushButton#home_button_base_page {
    background: transparent;
     image: url(src/asset/Image/home);
+    padding-bottom: 20px;
+}
+
+QPushButton#receipt_button_base_page {
+   background: transparent;
+    image: url(src/asset/Image/receipt);
+    padding-bottom: 20px;
+}
+
+QPushButton#menu_button_base_page {
+   background: transparent;
+    image: url(src/asset/Image/menu);
+    padding-bottom: 20px;
+}
+
+QPushButton#employee_button_base_page {
+   background: transparent;
+    image: url(src/asset/Image/user);
     padding-bottom: 20px;
 }
 
@@ -61,6 +80,18 @@ QPushButton#history_button_base_page:hover {
 
 QPushButton#home_button_base_page:hover {
     image: url(src/asset/Image/home_hover);
+}
+
+QPushButton#receipt_button_base_page:hover {
+    image: url(src/asset/Image/receipt_hover);
+}
+
+QPushButton#menu_button_base_page:hover {
+    image: url(src/asset/Image/menu_hover);
+}
+
+QPushButton#employee_button_base_page:hover {
+    image: url(src/asset/Image/user_hover);
 }
 
 QPushButton#user_base_page{
