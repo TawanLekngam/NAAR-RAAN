@@ -111,23 +111,33 @@ class LoginView(QWidget):
         label_username = QLabel("Username", self)
         label_username.setObjectName("label_username")
         label_username.setFont(Theme.DONGLE_BOLD_65)
-        label_username.setGeometry(QRect(523, 587, 321, 72))
+        label_username.setGeometry(QRect(583, 537, 321, 72))
 
         label_password = QLabel("Password", self)
         label_password.setObjectName("label_password")
         label_password.setFont(Theme.DONGLE_BOLD_65)
-        label_password.setGeometry(QRect(523, 726, 291, 72))
+        label_password.setGeometry(QRect(583, 706, 291, 72))
 
         self.lineEdit_username = QLineEdit(self)
         self.lineEdit_username.setObjectName("lineEdit_username")
         self.lineEdit_username.setFont(Theme.DONGLE_BOLD_65)
-        self.lineEdit_username.setGeometry(QRect(980, 570, 600, 80))
+        self.lineEdit_username.setGeometry(QRect(806, 520, 600, 80))
+
+        self.username_error = QLabel("Error nah nah nah nah nah", self)
+        self.username_error.setObjectName("default_label")
+        self.username_error.setFont(Theme.DONGLE_REGULAR_50)
+        self.username_error.setGeometry(QRect(836, 600, 600, 50))
 
         self.lineEdit_password = QLineEdit(self)
         self.lineEdit_password.setObjectName("lineEdit_password")
         self.lineEdit_password.setFont(Theme.DONGLE_REGULAR_50)
         self.lineEdit_password.setEchoMode(QLineEdit.Password)
-        self.lineEdit_password.setGeometry(QRect(980, 715, 600, 80))
+        self.lineEdit_password.setGeometry(QRect(806, 685, 600, 80))
+
+        self.password_error = QLabel("Error nah nah nah nah nah", self)
+        self.password_error.setObjectName("default_label")
+        self.password_error.setFont(Theme.DONGLE_REGULAR_50)
+        self.password_error.setGeometry(QRect(836, 765, 600, 50))
 
         self.login_button = QPushButton(self)
         self.login_button.setObjectName("pushButton")
