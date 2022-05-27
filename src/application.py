@@ -39,15 +39,13 @@ class Application(QStackedWidget):
         if self.current_user is None:
             return
 
-        print(self.current_user)
         self.home_page = HomePage(
             self, HomeView(), HomeModel(), self.current_user)
 
         self.order_page = OrderPage(OrderView(), OrderModel())
 
-
-        self.addWidget(self.home_page.view)
-
+        # replace widget if already exist
+        self.insertWidget(1, self.home_page.view)
         self.move_to_home()
 
 
