@@ -67,9 +67,29 @@ class HomePage(Controller):
         self.view.user_button.setText(user.get_username())
         self.view.user_button.clicked.connect(self.__root.move_to_login)
         self.__admin_access = (user.get_access_level() == "admin")
-        self.show_admin_button()
+        self.initialize()
 
-    def show_admin_button(self) -> None:
+
+        # sub page
+        self.order_page = None
+        self.log_page = None
+        self.receipt_page = None
+        self.menu_edit_page = None
+        self.user_edit_page = None
+
+    def initialize(self) -> None:
+        self.initialize_page()
+        self.initialize_button()
+
+
+    def initialize_page(self) -> None:
+        self.order_page = OrderPage(OrderView(), OrderModel())
+
+
+
+        self.view.stacked_widget.addWidget(self.order_page.view)
+
+    def initialize_button(self) -> None:
         admin_btn_group: list[QPushButton] = [self.view.auditLog_button,
                                               self.view.receipt_button,
                                               self.view.menu_button,
@@ -81,9 +101,20 @@ class HomePage(Controller):
             for btn in admin_btn_group:
                 btn.hide()
             
+    def move_to_order_page(self) -> None:
+        pass
 
-    def set_button_listenner(self, btn: QPushButton, function) -> None:
-        btn.clicked.connect(function)
+    def move_to_log_page(self) -> None:
+        pass
+
+    def move_to_receipt_page(self) -> None:
+        pass
+
+    def move_to_menu_edit_page(self) -> None:
+        pass
+
+    def move_to_user_edit_page(self) -> None:
+        pass
 
 
 class OrderPage(Controller):
