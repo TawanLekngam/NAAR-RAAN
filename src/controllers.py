@@ -46,3 +46,19 @@ class LoginPage(Controller):
 
     def set_current_user(self, user: User):
         self.__root.set_current_user(user)
+
+
+class HomePage(Controller):
+
+    def __init__(self, view: QWidget, model: Model, admin: bool = False):
+        super().__init__(view, model)
+        self.__admin_access = admin
+
+    def set_button_listenner(self, btn: QPushButton, function) -> None:
+        btn.clicked.connect(function)
+
+
+class AccountPage(Controller):
+
+    def __init__(self, view: QWidget, model: Model):
+        super().__init__(view, model)
