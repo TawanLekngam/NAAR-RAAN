@@ -192,6 +192,9 @@ class MainView(QWidget):
     def add_view(self, view: QWidget) -> None:
         self.stackedWidget.addWidget(view)
 
+    def show_admin_menu(self) -> None:
+        pass
+
 
 class MenuOrderView(QWidget):
     def __init__(self, parent: QWidget = None):
