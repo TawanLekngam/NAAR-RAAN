@@ -26,7 +26,7 @@ class LoginModel(Model):
     def retrive_user(self, username: str) -> None:
         self.__current_user = self.user_dao.get_user_by_username(username)
 
-    def verify(self) -> None:
+    def verify_login(self) -> None:
         if self.__current_user is None:
             self.valid_login = False
             return
