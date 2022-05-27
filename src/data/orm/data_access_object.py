@@ -249,7 +249,7 @@ class LogDAO(DAO):
 
 
 class ReceiptDAO(DAO):
-    RECEIPT_LIMIT = 1000
+    RECEIPT_LIMIT = 100
 
     def __init__(self, session: Session):
         super().__init__(session)
