@@ -286,6 +286,15 @@ QFrame#admin_frame {
     border-radius: 20px;
 }
 
+QFrame#admin_empty_frame {
+    background-color: #D8B797;
+    border-radius: 20px;
+}
+
+QLabel#label_logo {
+    background: transparent;
+}
+
 /* QScrollArea#admin_scrollArea {
     background-color: transparent;
     font-family: "Dongle";

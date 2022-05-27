@@ -519,6 +519,22 @@ class LogItem(QWidget):
         self.setStyleSheet(Theme.get_stylesheet())
 
 
+class AdminEmptyView(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+
+        admin_frame = QFrame(self)
+        admin_frame.setObjectName("admin_empty_frame")
+        admin_frame.setGeometry(1130, 115, 720, 850)
+
+        label_logo = QLabel(admin_frame)
+        label_logo.setObjectName("label_logo")
+        label_logo.setGeometry(QRect(260, 276, 253, 253))
+        label_logo.setPixmap(QPixmap("src/asset/Image/logo.png"))
+
+        self.setStyleSheet(Theme.get_stylesheet())
+
+
 class MenuAdminView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
