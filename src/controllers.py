@@ -62,3 +62,9 @@ class AccountPage(Controller):
 
     def __init__(self, view: QWidget, model: Model):
         super().__init__(view, model)
+
+
+class LogPage(Controller):
+
+    def __init__(self, view: QWidget, model: Model):
+        super().__init__(view, model)
