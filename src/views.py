@@ -129,7 +129,7 @@ class HomeView(QWidget):
 
         self.stacked_widget = QStackedWidget(self.stacked_frame)
         self.stacked_widget.setObjectName("stacked_widget")
-        self.stacked_widget.setGeometry(QRect(0, -50, 1200, 1000))
+        self.stacked_widget.setGeometry(QRect(0, -50, 1920, 980))
 
         # self.drink_detail = DrinkDetailView()
         # self.drink_detail.setObjectName("drink_detail_page")
@@ -139,7 +139,7 @@ class HomeView(QWidget):
         # self.bakery_detail.setObjectName("bakery_detail_page")
         # self.stacked_widget.addWidget(self.bakery_detail)
 
-        # self.menu_list_page = MenuListView()
+        # self.menu_list_page = OrderView()
         # self.menu_list_page.setObjectName("menu_list_page")
         # self.stacked_widget.addWidget(self.menu_list_page)
 
