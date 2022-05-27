@@ -123,10 +123,10 @@ class LoginView(QWidget):
         self.lineEdit_username.setFont(Theme.DONGLE_BOLD_65)
         self.lineEdit_username.setGeometry(QRect(806, 520, 600, 80))
 
-        self.username_error = QLabel("Error nah nah nah nah nah", self)
-        self.username_error.setObjectName("default_label")
-        self.username_error.setFont(Theme.DONGLE_REGULAR_50)
-        self.username_error.setGeometry(QRect(836, 600, 600, 50))
+        self.error = QLabel("Incorrect username or password", self)
+        self.error.setObjectName("default_label")
+        self.error.setFont(Theme.DONGLE_REGULAR_50)
+        self.error.setGeometry(QRect(836, 600, 600, 50))
 
         self.lineEdit_password = QLineEdit(self)
         self.lineEdit_password.setObjectName("lineEdit_password")
@@ -134,10 +134,10 @@ class LoginView(QWidget):
         self.lineEdit_password.setEchoMode(QLineEdit.Password)
         self.lineEdit_password.setGeometry(QRect(806, 685, 600, 80))
 
-        self.password_error = QLabel("Error nah nah nah nah nah", self)
-        self.password_error.setObjectName("default_label")
-        self.password_error.setFont(Theme.DONGLE_REGULAR_50)
-        self.password_error.setGeometry(QRect(836, 765, 600, 50))
+        # self.password_error = QLabel("Error2 nah nah nah nah nah", self)
+        # self.password_error.setObjectName("default_label")
+        # self.password_error.setFont(Theme.DONGLE_REGULAR_50)
+        # self.password_error.setGeometry(QRect(836, 765, 600, 50))
 
         self.login_button = QPushButton(self)
         self.login_button.setObjectName("logIn_button")
@@ -145,12 +145,19 @@ class LoginView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+    def reset(self) -> None:
+        self.clear_info()
+        self.hide_error_label()
+
     def clear_info(self) -> None:
         self.lineEdit_username.setText("")
         self.lineEdit_password.setText("")
 
-    def reset(self) -> None:
-        self.clear_info()
+    def show_error_label(self) -> None:
+        self.error.show()
+
+    def hide_error_label(self) -> None:
+        self.error.hide()
 
     def get_username(self) -> str:
         return self.lineEdit_username.text()
