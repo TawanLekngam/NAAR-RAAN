@@ -61,10 +61,9 @@ class HomePage(Controller):
         super().__init__(view, model)
         self.__root = root
         self.view.set_username(user.get_username())
+        self.view.user_button.clicked.connect(self.__root.move_to_login)
         self.__admin_access = (user.get_access_level() == "admin")
 
-    def set_logout_button_listener(self) -> None:
-        self.view.user_button.click.connect(self.__root.move_to_login)
 
     def set_button_listenner(self, btn: QPushButton, function) -> None:
         btn.clicked.connect(function)
