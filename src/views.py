@@ -101,11 +101,12 @@ class OrderDetail(QWidget):
 class LoginView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
+        self.setFixedSize(1920, 1080)
 
         label_logo = QLabel(self)
         label_logo.setObjectName("label_logo")
         label_logo.setGeometry(QRect(846, 158, 252, 252))
-        label_logo.setPixmap(QPixmap("src/data/asset/Image/logo.png"))
+        label_logo.setPixmap(QPixmap("src/asset/Image/logo.png"))
 
         label_username = QLabel("Username", self)
         label_username.setObjectName("label_username")
