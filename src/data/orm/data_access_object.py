@@ -94,7 +94,7 @@ class UserDAO(DAO):
         if password is not None:
             user.password = password
 
-        if access is not None:
+        if access_level is not None:
             user.access_level = access_level
 
         self.session.commit()
