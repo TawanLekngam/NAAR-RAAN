@@ -44,7 +44,12 @@ class Application(QStackedWidget):
 
         self.order_page = OrderPage(OrderView(), OrderModel())
 
+
         self.addWidget(self.home_page.view)
+
+        self.move_to_home()
+
+
 
     def set_current_user(self, user: User) -> None:
         self.current_user = user
@@ -52,6 +57,12 @@ class Application(QStackedWidget):
     def move_to_login(self):
         self.current_user = None
         self.login_page.clear_input_field()
+        self.setCurrentIndex(0)
+
+    def move_to_home(self):
+        self.setCurrentIndex(1)
+
+    
 
     def start(self) -> None:
         "driver method."
