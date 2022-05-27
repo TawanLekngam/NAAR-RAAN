@@ -7,7 +7,7 @@ from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
-from .theme import Theme
+from theme import Theme
 
 
 class OrderDetail(QWidget):
@@ -134,7 +134,7 @@ class LoginView(QWidget):
         self.login_button.setGeometry(QRect(860, 860, 200, 80))
 
         icon = QIcon()
-        icon.addFile("src/data/asset/Image/coffee.png",
+        icon.addFile("src/asset/Image/coffee.png",
                      QSize(), QIcon.Normal, QIcon.Off)
         self.login_button.setIcon(icon)
         self.login_button.setIconSize(QSize(55, 55))
@@ -151,7 +151,7 @@ class LoginView(QWidget):
         return self.lineEdit_username.text()
 
     def get_password(self) -> str:
-        return self, lineEdit_password.text()
+        return self.lineEdit_password.text()
 
     def set_login_button_listener(self, function) -> None:
         self.login_button.clicked.connect(function)
@@ -192,6 +192,9 @@ class MainView(QWidget):
 
     def add_view(self, view: QWidget) -> None:
         self.stackedWidget.addWidget(view)
+
+    def show_admin_menu(self) -> None:
+        pass
 
 
 class MenuOrderView(QWidget):

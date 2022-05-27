@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from sqlalchemy import desc
-from .schema import Session, engine
-from .schema import User, Drink, Bakery, Log, Receipt
+from data.orm.schema import Session, engine
+from data.orm.schema import User, Drink, Bakery, Log, Receipt
 
 
 class DAO(ABC):
@@ -10,10 +10,6 @@ class DAO(ABC):
     def __init__(self, session: Session):
         self.session = session
 
-    @abstractmethod
-    def __exist(self, obj: object) -> bool:
-        pass
-
 
 class AppDAO:
 
@@ -21,8 +17,19 @@ class AppDAO:
 
     @staticmethod
     def get_dao(type: str) -> DAO:
-        pass
+        if type == "user":
+            return UserDAO(AppDAO.local_session)
+        elif type == "drink":
+            return DrinkDAO(AppDAO.local_session)
+        elif type == "bakery":
+            return BakeryDAO(AppDAO.local_session)
+        elif type == "log":
+            return LogDAO(AppDAO.local_session)
+        elif type == "receipt":
+            return ReceiptDAO(AppDAO.local_session)
 
+        else:
+            return None
 
 class UserDAO(DAO):
 
@@ -242,7 +249,7 @@ class LogDAO(DAO):
 
 
 class ReceiptDAO(DAO):
-    RECEIPT_LIMIT = 1000
+    RECEIPT_LIMIT = 100
 
     def __init__(self, session: Session):
         super().__init__(session)
