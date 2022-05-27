@@ -17,6 +17,20 @@ class Application(QStackedWidget):
         # Login Page
         self.login_page = LoginPage(self, LoginView(), LoginModel())
 
+
+        # Main Page
+        self.main_page = None
+
+        # Staff Page Application
+        self.menu_order_page = None
+
+        # Admin Page Application
+        self.menu_edit_page = None
+        self.user_edit_page = None
+        self.audit_log_page = None
+        self.revenue_page = None
+
+
         # start page
         self.addWidget(self.login_page.view)
 
