@@ -59,6 +59,13 @@ class HomePage(Controller):
         btn.clicked.connect(function)
 
 
+class OrderPage(Controller):
+
+    def __init__(self,view:QWidget, model: Model):
+        super().__init__(view,model)
+        
+
+
 class AccountPage(Controller):
 
     def __init__(self, view: QWidget, model: Model):

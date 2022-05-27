@@ -72,7 +72,7 @@ class Drink(Schema):
         self.bprice = bprice
 
     def __str__(self) -> str:
-        return f"<Drink {self.name:<15} hot {self.hprice:<4.02f} cold {self.cprice:<4.02f} blend {self.bprice:<4.02f}>"
+        return f"<Drink  {self.name:<15} hot {self.hprice:<4.02f} cold {self.cprice:<4.02f} blend {self.bprice:<4.02f}>"
 
     def get_id(self) -> int:
         "return drink's id."
@@ -106,7 +106,7 @@ class Bakery(Schema):
         self.price = price
 
     def __str__(self) -> str:
-        return f"<Bakery {self.name:<15} price {self.price:<4.02f}>"
+        return f"<Bakery {self.name:<36} price {self.price:<4.02f}>"
 
     def get_id(self) -> int:
         return self.id
