@@ -39,6 +39,7 @@ class LoginPage(Controller):
         if self.model.is_valid():
             self.model.set_current_user(username)
             self.set_current_user(self.get_current_user())
+            self.__root.initialize_page()
 
     def get_current_user(self) -> User:
         return self.model.get_current_user()
