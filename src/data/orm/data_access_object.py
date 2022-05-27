@@ -17,6 +17,14 @@ class AppDAO:
 
     @staticmethod
     def get_dao(type: str) -> DAO:
+        """
+        return the data access object.\n
+        user -> UserDAO\n
+        drink -> DrinkDAO\n
+        bakery -> BakeryDAO\n
+        log -> LogDAO\n
+        receipt -> ReceiptDAO
+        """
         if type == "user":
             return UserDAO(AppDAO.local_session)
         elif type == "drink":
