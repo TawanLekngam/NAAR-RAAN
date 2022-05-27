@@ -162,7 +162,7 @@ class LoginView(QWidget):
         self.login_button.clicked.connect(function)
 
 
-class MainView(QWidget):
+class HomeView(QWidget):
 
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -212,6 +212,9 @@ class MainView(QWidget):
 
     def show_admin_menu(self) -> None:
         pass
+
+    def set_username(self, username: str) -> None:
+        self.userButton.setText(username)
 
 
 class MenuOrderView(QWidget):
