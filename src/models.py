@@ -88,5 +88,15 @@ class AccountModel(Model):
             username += lname.lower()
         else:
             username += lname[0:AccountModel.LENGHT_LIMIT].lower()
-        
+
         return username
+
+
+class LogModel(Model):
+    __log_dao: LogDAO
+
+    def __init__(self):
+        self.__log_dao = AppDAO.get_dao("log")
+
+    def get_all_logs(self) -> list[Log]:
+        return self.__log_dao.get_all_logs()
