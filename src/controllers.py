@@ -33,8 +33,10 @@ class LoginPage(Controller):
         username = self.view.get_username()
         password = self.view.get_password()
         self.model.get_input(username, password)
+        self.model.retrive_user(username)
+        self.model.verify_login()
+
         if self.model.is_valid():
-            print("pass")
             self.model.set_current_user(username)
             self.set_current_user(self.get_current_user())
 
@@ -42,4 +44,4 @@ class LoginPage(Controller):
         return self.model.get_current_user()
 
     def set_current_user(self, user: User):
-        self.root.set_current_user(user)
+        self.__root.set_current_user(user)
