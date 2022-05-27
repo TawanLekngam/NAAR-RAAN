@@ -6,6 +6,8 @@ QWidget {
     background-color: #F9F5F0;
 }
 
+/* Log In */
+
 QLabel#label_username, #label_password {
     background-color: transparent;
     color: #4A321C;
@@ -159,12 +161,14 @@ QPushButton#pushButton_edit {
 
 }
 
-QFrame#frame {
+QFrame#tab_frame {
     background-color: #4A321C;
     padding-left: 30px;
     padding-right: 30px;
     border: 0px;
 }
+
+/* Menu List */
 
 /* QScrollArea#menu_scrollArea {
     background-color: transparent;
@@ -200,12 +204,13 @@ QWidget#order_scrollAreaContents {
     color: #4A321C;
 } */
 
-QFrame#line {
+QFrame#order_line {
     background-color: #D8B797;
 }
 
 QLabel#default_label {
     color: #4A321C;
+    background:transparent;
 }
 
 QPushButton#order_button {
@@ -213,6 +218,21 @@ QPushButton#order_button {
     color: #F9F5F0;
     border: 5px solid #754926;
     border-radius: 20px;
+}
+
+/* Menu List Item*/
+QWidget#menu_list_widget {
+    background: #D8B797;
+}
+
+QPushButton#list_button {
+    color: #4A321C;
+    background: transparent;
+    text-align:left;
+}
+
+QFrame#white_line {
+    border: 3px solid rgba(249, 245, 240, 0.5);
 }
 
 /* Order Detail */
@@ -336,4 +356,13 @@ QCheckBox#default_checkbox::indicator {
 
 QCheckBox#default_checkbox::indicator:checked {
     image: url(src/asset/Image/checkmark.png);
+}
+
+/* Admin Item */
+QWidget#admin_list_widget {
+    background: #F9F5F0;
+}
+
+QWidget#brown_line {
+    border: 3px solid #D8B797;
 }
