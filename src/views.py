@@ -112,7 +112,7 @@ class HomeView(QWidget):
         self.receipt_button = QPushButton(self.tab_frame)
         self.receipt_button.setObjectName("receipt_button_base_page")
         self.receipt_button.setGeometry(QRect(236, 0, 100, 100))
-        
+
         self.menu_button = QPushButton(self.tab_frame)
         self.menu_button.setObjectName("menu_button_base_page")
         self.menu_button.setGeometry(QRect(336, 0, 100, 100))
@@ -154,40 +154,10 @@ class HomeView(QWidget):
         pass
 
     def set_username(self, username: str) -> None:
-        self.userButton.setText(username)
+        self.user_button.setText(username)
 
 
-class MenuListView(QWidget):
-    def __init__(self, parent: QWidget = None):
-        QWidget.__init__(self, parent)
-
-        menu_frame = QFrame(self)
-        menu_frame.setObjectName("menu_frame")
-        menu_frame.setGeometry(75, 115, 1000, 850)
-
-        menu_label = QLabel("Menu", menu_frame)
-        menu_label.setObjectName("menu_label")
-        menu_label.setFont(Theme.DONGLE_BOLD_80)
-        menu_label.setGeometry(QRect(54, 26, 128, 116))
-
-        self.search_bar = QLineEdit(menu_frame)
-        self.search_bar.setObjectName("search_bar")
-        self.search_bar.setFont(Theme.DONGLE_BOLD_65)
-        self.search_bar.setGeometry(QRect(272, 40, 677, 80))
-
-        menu_scrollArea = QScrollArea(menu_frame)
-        menu_scrollArea.setObjectName("menu_scrollArea")
-        menu_scrollArea.setGeometry(QRect(57, 169, 885, 630))
-
-        menu_scrollAreaContents = QWidget(menu_scrollArea)
-        menu_scrollAreaContents.setObjectName("menu_scrollAreaContents")
-        menu_scrollAreaContents.setGeometry(QRect(0, 0, 883, 628))
-        menu_scrollArea.setWidget(menu_scrollAreaContents)
-
-        self.setStyleSheet(Theme.get_stylesheet())
-
-
-class MenuOrderView(QWidget):
+class OrderView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
 
@@ -222,6 +192,39 @@ class MenuOrderView(QWidget):
         self.order_button.setObjectName("cancel_add_button")
         self.order_button.setFont(Theme.DONGLE_BOLD_65)
         self.order_button.setGeometry(QRect(1145, 885, 700, 80))
+
+        self.setStyleSheet(Theme.get_stylesheet())
+
+        def set_orderview(self, widget: QWidget) -> None:
+            pass
+
+
+class MenuListView(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+
+        menu_frame = QFrame(self)
+        menu_frame.setObjectName("menu_frame")
+        menu_frame.setGeometry(75, 115, 1000, 850)
+
+        menu_label = QLabel("Menu", menu_frame)
+        menu_label.setObjectName("menu_label")
+        menu_label.setFont(Theme.DONGLE_BOLD_80)
+        menu_label.setGeometry(QRect(54, 26, 128, 116))
+
+        self.search_bar = QLineEdit(menu_frame)
+        self.search_bar.setObjectName("search_bar")
+        self.search_bar.setFont(Theme.DONGLE_BOLD_65)
+        self.search_bar.setGeometry(QRect(272, 40, 677, 80))
+
+        menu_scrollArea = QScrollArea(menu_frame)
+        menu_scrollArea.setObjectName("menu_scrollArea")
+        menu_scrollArea.setGeometry(QRect(57, 169, 885, 630))
+
+        menu_scrollAreaContents = QWidget(menu_scrollArea)
+        menu_scrollAreaContents.setObjectName("menu_scrollAreaContents")
+        menu_scrollAreaContents.setGeometry(QRect(0, 0, 883, 628))
+        menu_scrollArea.setWidget(menu_scrollAreaContents)
 
         self.setStyleSheet(Theme.get_stylesheet())
 
