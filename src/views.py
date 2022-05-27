@@ -127,7 +127,7 @@ class HomeView(QWidget):
 
         self.stacked_widget = QStackedWidget(self.stacked_frame)
         self.stacked_widget.setObjectName("stacked_widget")
-        self.stacked_widget.setGeometry(QRect(0, -50, 1920, 980))
+        self.stacked_widget.setGeometry(QRect(0, -50, 1200, 1000))
 
         # self.drink_detail = DrinkDetailView()
         # self.drink_detail.setObjectName("drink_detail_page")
@@ -136,10 +136,6 @@ class HomeView(QWidget):
         # self.bakery_detail = BakeryDetailView()
         # self.bakery_detail.setObjectName("bakery_detail_page")
         # self.stacked_widget.addWidget(self.bakery_detail)
-
-        # self.menu_order_page = MenuOrderView()
-        # self.menu_order_page.setObjectName("menu_order_page")
-        # self.stacked_widget.addWidget(self.menu_order_page)
 
         # self.menu_list_page = MenuListView()
         # self.menu_list_page.setObjectName("menu_list_page")
@@ -654,6 +650,42 @@ class MenuEdit(QWidget):
         self.delete_button.setGeometry(QRect(480, 730, 200, 80))
 
         self.setStyleSheet(Theme.get_stylesheet())
+
+
+class EmployeeAdminView(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+
+        admin_frame = QFrame(self)
+        admin_frame.setObjectName("admin_frame")
+        admin_frame.setGeometry(75, 115, 1000, 850)
+
+        user_label = QLabel("User", admin_frame)
+        user_label.setObjectName("menu_label")
+        user_label.setFont(Theme.DONGLE_BOLD_80)
+        user_label.setGeometry(QRect(55, 70, 130, 51))
+
+        self.search_bar = QLineEdit(admin_frame)
+        self.search_bar.setObjectName("search_bar")
+        self.search_bar.setFont(Theme.DONGLE_BOLD_65)
+        self.search_bar.setGeometry(QRect(260, 53, 680, 80))
+
+        admin_scrollArea = QScrollArea(admin_frame)
+        admin_scrollArea.setObjectName("admin_scrollArea")
+        admin_scrollArea.setGeometry(QRect(55, 182, 890, 480))
+
+        admin_scrollAreaContents = QWidget(admin_scrollArea)
+        admin_scrollAreaContents.setObjectName("admin_scrollAreaContents")
+        admin_scrollAreaContents.setGeometry(QRect(0, 0, 888, 478))
+        admin_scrollArea.setWidget(admin_scrollAreaContents)
+
+        add_button = QPushButton("+", self)
+        add_button.setObjectName("cancel_add_button")
+        add_button.setFont(Theme.DONGLE_REGULAR_65)
+        add_button.setGeometry(QRect(915, 820, 100, 100))
+
+        self.setStyleSheet(Theme.get_stylesheet())
+
 
 
 class EmployeeEdit(QWidget):
