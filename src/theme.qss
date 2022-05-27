@@ -33,6 +33,17 @@ QPushButton#pushButton {
     border-radius: 20px;
 }
 
+QPushButton#logIn_button {
+    background-color: #754926;
+    border: 5px solid #754926;
+    border-radius: 20px;
+    image: url(src/asset/Image/logo);
+}
+
+QPushButton#logIn_button:hover {
+    image: url(src/asset/Image/logo_hover);
+}
+
 QPushButton#history_button_base_page {
     background: transparent;
     image: url(src/asset/Image/history);

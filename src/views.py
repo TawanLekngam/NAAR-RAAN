@@ -140,14 +140,9 @@ class LoginView(QWidget):
         self.password_error.setGeometry(QRect(836, 765, 600, 50))
 
         self.login_button = QPushButton(self)
-        self.login_button.setObjectName("pushButton")
+        self.login_button.setObjectName("logIn_button")
         self.login_button.setGeometry(QRect(860, 860, 200, 80))
 
-        icon = QIcon()
-        icon.addFile("src/asset/Image/coffee.png",
-                     QSize(), QIcon.Normal, QIcon.Off)
-        self.login_button.setIcon(icon)
-        self.login_button.setIconSize(QSize(55, 55))
         self.setStyleSheet(Theme.get_stylesheet())
 
     def clear_info(self) -> None:
