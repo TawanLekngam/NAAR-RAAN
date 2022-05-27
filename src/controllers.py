@@ -44,7 +44,6 @@ class LoginPage(Controller):
         else:
             self.view.show_error_label()
 
-
     def get_current_user(self) -> User:
         return self.model.get_current_user()
 
@@ -69,7 +68,6 @@ class HomePage(Controller):
         self.__admin_access = (user.get_access_level() == "admin")
         self.initialize()
 
-
         # sub page
         self.order_page = None
         self.log_page = None
@@ -84,7 +82,7 @@ class HomePage(Controller):
         self.log_page = LogPage(LogView(), LogModel())
         self.view.stacked_widget.addWidget(self.log_page.view)
 
-
+        self.receipt_page = Rec
 
     def initialize_button(self) -> None:
         admin_btn_group: list[QPushButton] = [self.view.auditLog_button,
@@ -97,7 +95,7 @@ class HomePage(Controller):
         else:
             for btn in admin_btn_group:
                 btn.hide()
-            
+
     def move_to_order_page(self) -> None:
         self.view.stacked_widget.setCurrentIndex(0)
 
@@ -124,13 +122,19 @@ class OrderPage(Controller):
         super().__init__(view, model)
 
 
-class AccountPage(Controller):
+class LogPage(Controller):
 
     def __init__(self, view: QWidget, model: Model):
         super().__init__(view, model)
 
 
-class LogPage(Controller):
+class ReceiptPage(Controller):
+
+    def __init__(self, view: QWidget, model: Model):
+        super().__init__(view, model)
+
+
+class AccountPage(Controller):
 
     def __init__(self, view: QWidget, model: Model):
         super().__init__(view, model)
