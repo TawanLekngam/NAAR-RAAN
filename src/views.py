@@ -105,7 +105,7 @@ class LoginView(QWidget):
         label_logo = QLabel(self)
         label_logo.setObjectName("label_logo")
         label_logo.setGeometry(QRect(846, 158, 252, 252))
-        label_logo.setPixmap(QPixmap("src/data/asset/Image/logo.png"))
+        label_logo.setPixmap(QPixmap("src/asset/Image/logo.png"))
 
         label_username = QLabel("Username", self)
         label_username.setObjectName("label_username")
@@ -133,7 +133,7 @@ class LoginView(QWidget):
         self.login_button.setGeometry(QRect(860, 860, 200, 80))
 
         icon = QIcon()
-        icon.addFile("src/data/asset/Image/coffee.png",
+        icon.addFile("src/asset/Image/coffee.png",
                      QSize(), QIcon.Normal, QIcon.Off)
         self.login_button.setIcon(icon)
         self.login_button.setIconSize(QSize(55, 55))
