@@ -50,9 +50,10 @@ class LoginPage(Controller):
 
 class HomePage(Controller):
 
-    def __init__(self, view: QWidget, model: Model, admin: bool = False):
+    def __init__(self, view: QWidget, model: Model, user:User):
         super().__init__(view, model)
-        self.__admin_access = admin
+        self.view.set_username(user.get_username())
+        self.__admin_access = (user.get_access_level() == "admin")
 
     def set_button_listenner(self, btn: QPushButton, function) -> None:
         btn.clicked.connect(function)
