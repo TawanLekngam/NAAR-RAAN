@@ -12,7 +12,7 @@ class LoginView(QWidget):
         self.setFixedSize(1920, 1080)
 
         label_logo = QLabel(self)
-        label_logo.setObjectName("label_logo")
+        label_logo.setObjectName("default_label")
         label_logo.setGeometry(QRect(846, 158, 252, 252))
         label_logo.setPixmap(QPixmap("src/asset/Image/logo.png"))
 
@@ -84,28 +84,28 @@ class HomeView(QWidget):
         self.tab_frame.setGeometry(QRect(0, 0, 1920, 100))
 
         self.user_button = QPushButton("User Name", self.tab_frame)
-        self.user_button.setObjectName("user_base_page")
+        self.user_button.setObjectName("user_button")
         self.user_button.setGeometry(QRect(1552, 0, 300, 100))
         self.user_button.setFont(Theme.DONGLE_BOLD_65)
 
         self.home_button = QPushButton(self.tab_frame)
-        self.home_button.setObjectName("home_button_base_page")
+        self.home_button.setObjectName("home_button")
         self.home_button.setGeometry(QRect(36, 0, 100, 100))
 
         self.log_button = QPushButton(self.tab_frame)
-        self.log_button.setObjectName("history_button_base_page")
+        self.log_button.setObjectName("log_button")
         self.log_button.setGeometry(QRect(136, 0, 100, 100))
 
         self.receipt_button = QPushButton(self.tab_frame)
-        self.receipt_button.setObjectName("receipt_button_base_page")
+        self.receipt_button.setObjectName("receipt_button")
         self.receipt_button.setGeometry(QRect(236, 0, 100, 100))
 
         self.menu_button = QPushButton(self.tab_frame)
-        self.menu_button.setObjectName("menu_button_base_page")
+        self.menu_button.setObjectName("menu_button")
         self.menu_button.setGeometry(QRect(336, 0, 100, 100))
 
         self.account_button = QPushButton(self.tab_frame)
-        self.account_button.setObjectName("account_button_base_page")
+        self.account_button.setObjectName("account_button")
         self.account_button.setGeometry(QRect(436, 0, 100, 100))
 
         self.stacked_frame = QFrame(self)
@@ -162,7 +162,7 @@ class OrderView(QWidget):
         QWidget.__init__(self, parent)
 
         order_frame = QFrame(self)
-        order_frame.setObjectName("order_frame")
+        order_frame.setObjectName("brown_border_frame")
         order_frame.setGeometry(QRect(1143, 115, 700, 720))
 
         order_scrollArea = QScrollArea(order_frame)
@@ -175,7 +175,7 @@ class OrderView(QWidget):
         order_scrollArea.setWidget(order_scrollAreaContents)
 
         line = QFrame(order_frame)
-        line.setObjectName("order_line")
+        line.setObjectName("brown_line")
         line.setGeometry(QRect(25, 634, 650, 5))
 
         total_label = QLabel("Total", order_frame)
@@ -189,7 +189,7 @@ class OrderView(QWidget):
         self.number_label.setGeometry(QRect(540, 660, 115, 40))
 
         self.order_button = QPushButton("Order", self)
-        self.order_button.setObjectName("cancel_add_button")
+        self.order_button.setObjectName("default_button")
         self.order_button.setFont(Theme.DONGLE_BOLD_65)
         self.order_button.setGeometry(QRect(1145, 885, 700, 80))
 
@@ -232,7 +232,7 @@ class OrderItem(QWidget):
         self.name_label.setGeometry(QRect(20, 25, 230, 40))
 
         self.minus_button = QPushButton("-", self)
-        self.minus_button.setObjectName("cancel_add_button")
+        self.minus_button.setObjectName("default_button")
         self.minus_button.setFont(Theme.DONGLE_REGULAR_65)
         self.minus_button.setGeometry(QRect(290, 15, 50, 50))
 
@@ -243,7 +243,7 @@ class OrderItem(QWidget):
         self.quantity_label.setGeometry(QRect(390, 25, 230, 40))
 
         self.plus_button = QPushButton("+", self)
-        self.plus_button.setObjectName("cancel_add_button")
+        self.plus_button.setObjectName("default_button")
         self.plus_button.setFont(Theme.DONGLE_REGULAR_65)
         self.plus_button.setGeometry(QRect(460, 15, 50, 50))
 
@@ -277,11 +277,11 @@ class OrderListView(QWidget):
         QWidget.__init__(self, parent)
 
         menu_frame = QFrame(self)
-        menu_frame.setObjectName("menu_frame")
+        menu_frame.setObjectName("brown_frame")
         menu_frame.setGeometry(0, 0, 1000, 850)
 
         menu_label = QLabel("Menu", self)
-        menu_label.setObjectName("menu_label")
+        menu_label.setObjectName("default_label")
         menu_label.setFont(Theme.DONGLE_BOLD_80)
         menu_label.setGeometry(QRect(54, 26, 128, 116))
 
@@ -308,7 +308,7 @@ class OrderListItem(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(880, 80)
-        self.setObjectName("menu_list_widget")
+        self.setObjectName("brown_item")
 
         self.name_button = QPushButton("Menu Name", self)
         self.name_button.setObjectName("list_button")
@@ -327,7 +327,7 @@ class DrinkDetailView(QWidget):
         QWidget.__init__(self, parent)
 
         order_frame = QFrame(self)
-        order_frame.setObjectName("order_frame")
+        order_frame.setObjectName("brown_border_frame")
         order_frame.setGeometry(75, 115, 1000, 850)
 
         menu_name = QLabel("Name Test", order_frame)
@@ -336,19 +336,19 @@ class DrinkDetailView(QWidget):
         menu_name.setGeometry(QRect(100, 70, 830, 77))
 
         hot_button = QPushButton("Hot", order_frame)
-        hot_button.setObjectName("default_button")
+        hot_button.setObjectName("click_button")
         hot_button.setFont(Theme.DONGLE_REGULAR_65)
         hot_button.setGeometry(QRect(100, 147, 200, 60))
         hot_button.setCheckable(True)
 
         cold_button = QPushButton("Cold", order_frame)
-        cold_button.setObjectName("default_button")
+        cold_button.setObjectName("click_button")
         cold_button.setFont(Theme.DONGLE_REGULAR_65)
         cold_button.setGeometry(QRect(415, 147, 200, 60))
         cold_button.setCheckable(True)
 
         blended_button = QPushButton("Blended", order_frame)
-        blended_button.setObjectName("default_button")
+        blended_button.setObjectName("click_button")
         blended_button.setFont(Theme.DONGLE_REGULAR_65)
         blended_button.setGeometry(QRect(730, 147, 200, 60))
         blended_button.setCheckable(True)
@@ -360,30 +360,30 @@ class DrinkDetailView(QWidget):
         drinkType_buttonGroup.addButton(blended_button)
 
         sweetness_label = QLabel("Sweetness", order_frame)
-        sweetness_label.setObjectName("sweetness_label")
+        sweetness_label.setObjectName("brown_label")
         sweetness_label.setFont(Theme.DONGLE_REGULAR_65)
         sweetness_label.setGeometry(QRect(100, 258, 200, 103))
 
         sweet0_button = QPushButton("0", order_frame)
-        sweet0_button.setObjectName("default_button")
+        sweet0_button.setObjectName("click_button")
         sweet0_button.setFont(Theme.DONGLE_REGULAR_65)
         sweet0_button.setGeometry(QRect(358, 271, 100, 60))
         sweet0_button.setCheckable(True)
 
         sweet25_button = QPushButton("25", order_frame)
-        sweet25_button.setObjectName("default_button")
+        sweet25_button.setObjectName("click_button")
         sweet25_button.setFont(Theme.DONGLE_REGULAR_65)
         sweet25_button.setGeometry(QRect(515, 271, 100, 60))
         sweet25_button.setCheckable(True)
 
         sweet50_button = QPushButton("50", order_frame)
-        sweet50_button.setObjectName("default_button")
+        sweet50_button.setObjectName("click_button")
         sweet50_button.setFont(Theme.DONGLE_REGULAR_65)
         sweet50_button.setGeometry(QRect(673, 271, 100, 60))
         sweet50_button.setCheckable(True)
 
         sweet100_button = QPushButton("100", order_frame)
-        sweet100_button.setObjectName("default_button")
+        sweet100_button.setObjectName("click_button")
         sweet100_button.setFont(Theme.DONGLE_REGULAR_65)
         sweet100_button.setGeometry(QRect(830, 271, 100, 60))
         sweet100_button.setCheckable(True)
@@ -396,12 +396,12 @@ class DrinkDetailView(QWidget):
         sweetness_buttonGroup.addButton(sweet100_button)
 
         cancel_button = QPushButton("Cancel", order_frame)
-        cancel_button.setObjectName("cancel_add_button")
+        cancel_button.setObjectName("default_button")
         cancel_button.setFont(Theme.DONGLE_REGULAR_65)
         cancel_button.setGeometry(QRect(277, 739, 200, 80))
 
         add_button = QPushButton("Add", order_frame)
-        add_button.setObjectName("cancel_add_button")
+        add_button.setObjectName("default_button")
         add_button.setFont(Theme.DONGLE_REGULAR_65)
         add_button.setGeometry(QRect(558, 739, 200, 80))
 
@@ -413,7 +413,7 @@ class BakeryDetailView(QWidget):
         QWidget.__init__(self, parent)
 
         order_frame = QFrame(self)
-        order_frame.setObjectName("order_frame")
+        order_frame.setObjectName("brown_border_frame")
         order_frame.setGeometry(75, 115, 1000, 850)
 
         menu_name = QLabel("Name Test", order_frame)
@@ -422,82 +422,16 @@ class BakeryDetailView(QWidget):
         menu_name.setGeometry(QRect(100, 70, 830, 77))
 
         cancel_button = QPushButton("Cancel", order_frame)
-        cancel_button.setObjectName("cancel_add_button")
+        cancel_button.setObjectName("default_button")
         cancel_button.setFont(Theme.DONGLE_REGULAR_65)
         cancel_button.setGeometry(QRect(277, 739, 200, 80))
 
         add_button = QPushButton("Add", order_frame)
-        add_button.setObjectName("cancel_add_button")
+        add_button.setObjectName("default_button")
         add_button.setFont(Theme.DONGLE_REGULAR_65)
         add_button.setGeometry(QRect(558, 739, 200, 80))
 
         self.setStyleSheet(Theme.get_stylesheet())
-
-
-# class RevenueView(QWidget):
-#     def __init__(self, parent: QWidget = None):
-#         QWidget.__init__(self, parent)
-#         self.setFixedSize(1920, 1080)
-
-#         self.widget_date = QWidget(self)
-#         self.widget_date.setObjectName("widget_date")
-#         self.widget_date.setGeometry(QRect(85, 115, 625, 850))
-
-#         self.listWidget_date = QListWidget(self.widget_date)
-#         self.listWidget_date.setObjectName("listWidget_date")
-#         self.listWidget_date.setGeometry(QRect(13, 130, 600, 640))
-#         # self.listWidget_date.setStyleSheet("background: black")
-
-#         self.label_month = QLabel("Month", self.widget_date)
-#         self.label_month.setObjectName("label_date_target")
-#         self.label_month.setGeometry(QRect(60, 40, 171, 61))
-#         self.label_month.setFont(Theme.DONGLE_BOLD_65)
-
-#         self.label_revenue = QLabel("Revenue", self.widget_date)
-#         self.label_revenue.setObjectName("label_date_target")
-#         self.label_revenue.setGeometry(QRect(390, 40, 211, 61))
-#         self.label_revenue.setFont(Theme.DONGLE_BOLD_65)
-
-#         self.widget_report = QWidget(self)
-#         self.widget_report.setObjectName("widget_report")
-#         self.widget_report.setGeometry(QRect(840, 115, 1000, 720))
-
-#         self.label_target = QLabel("Target", self.widget_report)
-#         self.label_target.setObjectName("label_target")
-#         self.label_target.setGeometry(QRect(200, 470, 171, 61))
-#         self.label_target.setFont(Theme.DONGLE_BOLD_65)
-
-#         self.label_revenue_pie = QLabel("Revenue", self.widget_report)
-#         self.label_revenue_pie.setObjectName("label_target")
-#         self.label_revenue_pie.setGeometry(QRect(200, 565, 221, 51))
-#         self.label_revenue_pie.setFont(Theme.DONGLE_BOLD_65)
-
-#         self.label_amount_left = QLabel("Amount Left", self.widget_report)
-#         self.label_amount_left.setObjectName("label_target")
-#         self.label_amount_left.setGeometry(QRect(200, 650, 341, 61))
-#         self.label_amount_left.setFont(Theme.DONGLE_BOLD_65)
-
-#         self.label_money_target = QLabel("9000", self.widget_report)
-#         self.label_money_target.setObjectName("label_target")
-#         self.label_money_target.setGeometry(QRect(670, 470, 131, 61))
-#         self.label_money_target.setFont(Theme.DONGLE_REGULAR_65)
-
-#         self.label_money_revenue = QLabel("5000", self.widget_report)
-#         self.label_money_revenue.setObjectName("label_target")
-#         self.label_money_revenue.setGeometry(QRect(670, 565, 131, 51))
-#         self.label_money_revenue.setFont(Theme.DONGLE_REGULAR_65)
-
-#         self.label_money_left = QLabel("4000", self.widget_report)
-#         self.label_money_left.setObjectName("label_target")
-#         self.label_money_left.setGeometry(QRect(670, 650, 131, 51))
-#         self.label_money_left.setFont(Theme.DONGLE_REGULAR_65)
-
-#         self.pushButton_edit = QPushButton("Edit", self)
-#         self.pushButton_edit.setObjectName("cancel_add_button")
-#         self.pushButton_edit.setGeometry(QRect(1620, 885, 220, 80))
-#         self.pushButton_edit.setFont(Theme.DONGLE_BOLD_65)
-
-#         self.setStyleSheet(Theme.get_stylesheet())
 
 
 class ReceiptView(QWidget):
@@ -510,17 +444,17 @@ class ReceiptView(QWidget):
         receipt_frame.setGeometry(QRect(60, 100, 1800, 980))
 
         self.label_date = QLabel("Date", receipt_frame)
-        self.label_date.setObjectName("label_details")
+        self.label_date.setObjectName("white_label")
         self.label_date.setGeometry(QRect(89, 31, 151, 61))
         self.label_date.setFont(Theme.DONGLE_BOLD_70)
 
         self.label_time = QLabel("Time", receipt_frame)
-        self.label_time.setObjectName("label_details")
+        self.label_time.setObjectName("white_label")
         self.label_time.setGeometry(QRect(439, 31, 151, 61))
         self.label_time.setFont(Theme.DONGLE_BOLD_70)
 
         self.label_name = QLabel("Description", receipt_frame)
-        self.label_name.setObjectName("label_details")
+        self.label_name.setObjectName("white_label")
         self.label_name.setGeometry(QRect(688, 31, 250, 61))
         self.label_name.setFont(Theme.DONGLE_BOLD_70)
 
@@ -554,17 +488,17 @@ class LogView(QWidget):
         log_frame.setGeometry(QRect(60, 100, 1800, 980))
 
         self.label_date = QLabel("Date", log_frame)
-        self.label_date.setObjectName("label_details")
+        self.label_date.setObjectName("white_label")
         self.label_date.setGeometry(QRect(89, 31, 151, 61))
         self.label_date.setFont(Theme.DONGLE_BOLD_70)
 
         self.label_time = QLabel("Time", log_frame)
-        self.label_time.setObjectName("label_details")
+        self.label_time.setObjectName("white_label")
         self.label_time.setGeometry(QRect(439, 31, 151, 61))
         self.label_time.setFont(Theme.DONGLE_BOLD_70)
 
         self.label_name = QLabel("Activity", log_frame)
-        self.label_name.setObjectName("label_details")
+        self.label_name.setObjectName("white_label")
         self.label_name.setGeometry(QRect(688, 31, 231, 61))
         self.label_name.setFont(Theme.DONGLE_BOLD_70)
 
@@ -595,7 +529,7 @@ class LogItem(QWidget):
     def __init__(self):
         QWidget.__init__(self, None)
         self.setFixedSize(1725, 80)
-        self.setObjectName("menu_list_widget")
+        self.setObjectName("brown_item")
 
         self.date = QLabel("01/01/2022", self)
         self.date.setObjectName("default_label")
@@ -624,11 +558,11 @@ class AdminEmptyView(QWidget):
         QWidget.__init__(self, parent)
 
         admin_frame = QFrame(self)
-        admin_frame.setObjectName("admin_empty_frame")
+        admin_frame.setObjectName("brown_frame")
         admin_frame.setGeometry(1130, 115, 720, 850)
 
         label_logo = QLabel(admin_frame)
-        label_logo.setObjectName("label_logo")
+        label_logo.setObjectName("default_label")
         label_logo.setGeometry(QRect(260, 276, 253, 253))
         label_logo.setPixmap(QPixmap("src/asset/Image/logo.png"))
 
@@ -640,11 +574,11 @@ class MenuView(QWidget):
         QWidget.__init__(self, parent)
 
         admin_frame = QFrame(self)
-        admin_frame.setObjectName("admin_frame")
+        admin_frame.setObjectName("dark_brown_border_frame")
         admin_frame.setGeometry(75, 115, 1000, 850)
 
         menu_label = QLabel("Menu", admin_frame)
-        menu_label.setObjectName("menu_label")
+        menu_label.setObjectName("default_label")
         menu_label.setFont(Theme.DONGLE_BOLD_80)
         menu_label.setGeometry(QRect(55, 70, 130, 51))
 
@@ -663,7 +597,7 @@ class MenuView(QWidget):
         admin_scrollArea.setWidget(admin_scrollAreaContents)
 
         add_button = QPushButton("+", self)
-        add_button.setObjectName("cancel_add_button")
+        add_button.setObjectName("default_button")
         add_button.setFont(Theme.DONGLE_REGULAR_65)
         add_button.setGeometry(QRect(915, 820, 100, 100))
 
@@ -686,7 +620,7 @@ class MenuCreateView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(720, 850)
-        self.setObjectName("admin_widget")
+        self.setObjectName("brown_widget")
 
         name_label = QLabel("Name", self)
         name_label.setObjectName("default_label")
@@ -757,12 +691,12 @@ class MenuCreateView(QWidget):
         self.blended_price.setAlignment(Qt.AlignCenter)
 
         self.cancel_button = QPushButton("Cancel", self)
-        self.cancel_button.setObjectName("cancel_add_button")
+        self.cancel_button.setObjectName("default_button")
         self.cancel_button.setFont(Theme.DONGLE_REGULAR_65)
         self.cancel_button.setGeometry(QRect(124, 730, 200, 80))
 
         self.add_button = QPushButton("Add", self)
-        self.add_button.setObjectName("cancel_add_button")
+        self.add_button.setObjectName("default_button")
         self.add_button.setFont(Theme.DONGLE_REGULAR_65)
         self.add_button.setGeometry(QRect(394, 730, 200, 80))
 
@@ -775,7 +709,7 @@ class MenuEditView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(720, 850)
-        self.setObjectName("admin_widget")
+        self.setObjectName("brown_widget")
 
         name_label = QLabel("Name", self)
         name_label.setObjectName("default_label")
@@ -846,17 +780,17 @@ class MenuEditView(QWidget):
         self.blended_price.setAlignment(Qt.AlignCenter)
 
         self.cancel_button = QPushButton("Cancel", self)
-        self.cancel_button.setObjectName("cancel_add_button")
+        self.cancel_button.setObjectName("default_button")
         self.cancel_button.setFont(Theme.DONGLE_REGULAR_65)
         self.cancel_button.setGeometry(QRect(33, 730, 200, 80))
 
         self.save_button = QPushButton("Save", self)
-        self.save_button.setObjectName("cancel_add_button")
+        self.save_button.setObjectName("default_button")
         self.save_button.setFont(Theme.DONGLE_REGULAR_65)
         self.save_button.setGeometry(QRect(257, 730, 200, 80))
 
         self.delete_button = QPushButton("Delete", self)
-        self.delete_button.setObjectName("cancel_add_button")
+        self.delete_button.setObjectName("default_button")
         self.delete_button.setFont(Theme.DONGLE_REGULAR_65)
         self.delete_button.setGeometry(QRect(480, 730, 200, 80))
 
@@ -868,7 +802,7 @@ class AccountView(QWidget):
         QWidget.__init__(self, parent)
 
         admin_frame = QFrame(self)
-        admin_frame.setObjectName("admin_frame")
+        admin_frame.setObjectName("dark_brown_border_frame")
         admin_frame.setGeometry(75, 115, 1000, 850)
 
         user_label = QLabel("User", admin_frame)
@@ -891,7 +825,7 @@ class AccountView(QWidget):
         admin_scrollArea.setWidget(admin_scrollAreaContents)
 
         add_button = QPushButton("+", self)
-        add_button.setObjectName("cancel_add_button")
+        add_button.setObjectName("default_button")
         add_button.setFont(Theme.DONGLE_REGULAR_65)
         add_button.setGeometry(QRect(915, 820, 100, 100))
 
@@ -912,7 +846,7 @@ class AccountCreateView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(720, 850)
-        self.setObjectName("admin_widget")
+        self.setObjectName("brown_widget")
 
         name_label = QLabel("Name", self)
         name_label.setObjectName("default_label")
@@ -975,12 +909,12 @@ class AccountCreateView(QWidget):
         position_buttonGroup.addButton(self.staff_button)
 
         self.cancel_button = QPushButton("Cancel", self)
-        self.cancel_button.setObjectName("cancel_add_button")
+        self.cancel_button.setObjectName("default_button")
         self.cancel_button.setFont(Theme.DONGLE_REGULAR_65)
         self.cancel_button.setGeometry(QRect(124, 730, 200, 80))
 
         self.add_button = QPushButton("Add", self)
-        self.add_button.setObjectName("cancel_add_button")
+        self.add_button.setObjectName("default_button")
         self.add_button.setFont(Theme.DONGLE_REGULAR_65)
         self.add_button.setGeometry(QRect(394, 730, 200, 80))
 
@@ -1045,7 +979,7 @@ class AccountEditView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(720, 850)
-        self.setObjectName("admin_widget")
+        self.setObjectName("brown_widget")
 
         name_label = QLabel("Name", self)
         name_label.setObjectName("default_label")
@@ -1108,17 +1042,17 @@ class AccountEditView(QWidget):
         position_buttonGroup.addButton(self.staff_button)
 
         self.cancel_button = QPushButton("Cancel", self)
-        self.cancel_button.setObjectName("cancel_add_button")
+        self.cancel_button.setObjectName("default_button")
         self.cancel_button.setFont(Theme.DONGLE_REGULAR_65)
         self.cancel_button.setGeometry(QRect(33, 730, 200, 80))
 
         self.save_button = QPushButton("Save", self)
-        self.save_button.setObjectName("cancel_add_button")
+        self.save_button.setObjectName("default_button")
         self.save_button.setFont(Theme.DONGLE_REGULAR_65)
         self.save_button.setGeometry(QRect(257, 730, 200, 80))
 
         self.delete_button = QPushButton("Delete", self)
-        self.delete_button.setObjectName("cancel_add_button")
+        self.delete_button.setObjectName("default_button")
         self.delete_button.setFont(Theme.DONGLE_REGULAR_65)
         self.delete_button.setGeometry(QRect(480, 730, 200, 80))
 
@@ -1129,7 +1063,6 @@ class AdminListItem(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(880, 80)
-        self.setObjectName("admin_list_widget")
 
         self.name_button = QPushButton("List Name", self)
         self.name_button.setObjectName("list_button")

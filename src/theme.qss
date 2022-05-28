@@ -1,28 +1,131 @@
 /* 
-    application deafult stylesheet
+    Application stylesheet
 */
 
+/* Widget */
 QWidget {
     background-color: #F9F5F0;
 }
 
+QWidget#brown_widget {
+    background-color: #D8B797;
+    border-radius: 20px;
+}
+
+QWidget#brown_item {
+    background: #D8B797;
+}
+
+/* Frame */
+QFrame#tab_frame {
+    background-color: #4A321C;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 0px;
+}
+
+QFrame#dark_brown_border_frame {
+    background-color: #transparent;
+    border: 5px solid #4A321C;
+    border-radius: 20px;
+}
+
+QFrame#brown_border_frame {
+    background-color: transparent;
+    border: 5px solid #754926;
+    border-radius: 20px;
+}
+
+QFrame#brown_frame {
+    background-color: #D8B797;
+    border-radius: 20px;
+}
+
+QFrame#upper_curve_frame {
+    background: #D8B797;
+    border-radius: 20px 20px 0px 0px;
+}
+
+/* Line */
+QFrame#white_line {
+    border: 3px solid rgba(249, 245, 240, 0.5);
+}
+
+QWidget#brown_line {
+    background-color: #D8B797;
+}
+
+QWidget#dark_brown_line {
+    background-color: #4A321C;
+}
+
+/* Label */
 QLabel#default_label {
     color: #4A321C;
     background:transparent;
 }
 
-QPushButton#default_button {
+QLabel#white_label {
+    background-color: transparent;
+    color: #F9F5F0
+}
+
+QLabel#brown_label {
+    color: #754926;
+}
+
+/* LineEdit */
+QLineEdit#logIn_bar {
+    padding-left: 30px;
+    padding-right: 30px;
     color: #4A321C;
     background: #D8B797;
     border-radius: 20px;
 }
 
-QPushButton#default_button:checked {
+QLineEdit#search_bar {
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #4A321C;
+    background: #F9F5F0;
+    border: 5px solid #754926;
+    border-radius: 20px;
+}
+
+QLineEdit#input_bar {
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #4A321C;
+    background: #F9F5F0;
+    border-radius: 20px;
+}
+
+/* PushButton */
+QPushButton#default_button {
+    color: #F9F5F0;
+    background: #4A321C;
+    border-radius: 20px;
+}
+
+QPushButton#default_button:hover {
     background-color: #754926;
     border-radius: 20px;
     color: #F9F5F0;
 }
 
+QPushButton#click_button {
+    color: #4A321C;
+    background: #D8B797;
+    border-radius: 20px;
+}
+
+QPushButton#click_button:checked {
+    background-color: #754926;
+    border-radius: 20px;
+    color: #F9F5F0;
+}
+
+/* RadioButton */
 QRadioButton#default_radio {
     color: #4A321C;
     background:transparent;
@@ -43,6 +146,7 @@ QRadioButton#default_radio::indicator:checked {
 	border-radius: 20px;
 }
 
+/* CheckBox */
 QCheckBox#default_checkbox {
     background: transparent;
     color: #4A321C;
@@ -60,15 +164,9 @@ QCheckBox#default_checkbox::indicator:checked {
     image: url(src/asset/Image/checkmark.png);
 }
 
-/* Log In */
-
-QLineEdit#logIn_bar {
-    padding-left: 30px;
-    padding-right: 30px;
-    color: #4A321C;
-    background: #D8B797;
-    border-radius: 20px;
-}
+/* 
+    Log In Page
+*/
 
 QPushButton#logIn_button {
     background-color: #754926;
@@ -81,52 +179,12 @@ QPushButton#logIn_button:hover {
     image: url(src/asset/Image/logo_hover);
 }
 
-QPushButton#history_button_base_page {
-    background: transparent;
-    image: url(src/asset/Image/history);
-}
+/* 
+    User Tab
+*/
 
-QPushButton#home_button_base_page {
-   background: transparent;
-    image: url(src/asset/Image/home);
-}
-
-QPushButton#receipt_button_base_page {
-   background: transparent;
-    image: url(src/asset/Image/receipt);
-}
-
-QPushButton#menu_button_base_page {
-   background: transparent;
-    image: url(src/asset/Image/menu);
-}
-
-QPushButton#account_button_base_page {
-   background: transparent;
-    image: url(src/asset/Image/user);
-}
-
-QPushButton#history_button_base_page:hover {
-    image: url(src/asset/Image/history_hover);
-}
-
-QPushButton#home_button_base_page:hover {
-    image: url(src/asset/Image/home_hover);
-}
-
-QPushButton#receipt_button_base_page:hover {
-    image: url(src/asset/Image/receipt_hover);
-}
-
-QPushButton#menu_button_base_page:hover {
-    image: url(src/asset/Image/menu_hover);
-}
-
-QPushButton#account_button_base_page:hover {
-    image: url(src/asset/Image/user_hover);
-}
-
-QPushButton#user_base_page {
+/* User */
+QPushButton#user_button {
     background-color: #4A321C;
     color: #D8B797;
     text-align:right;
@@ -138,77 +196,68 @@ QPushButton#user_base_page:hover {
     color: #F9F5F0;
 }
 
-QLabel#menu_label, #label_todo, #label_doing,#label_done, #label_target {
-    background-color: transparent;
+/* Home */
+QPushButton#home_button {
+   background: transparent;
+    image: url(src/asset/Image/home);
+}
+
+QPushButton#home_button:hover {
+    image: url(src/asset/Image/home_hover);
+}
+
+/* Audit Log */
+QPushButton#log_button {
+    background: transparent;
+    image: url(src/asset/Image/log);
+}
+
+QPushButton#log_button:hover {
+    image: url(src/asset/Image/log_hover);
+}
+
+/* Receipt */
+QPushButton#receipt_button {
+   background: transparent;
+    image: url(src/asset/Image/receipt);
+}
+
+QPushButton#receipt_button:hover {
+    image: url(src/asset/Image/receipt_hover);
+}
+
+/* Menu */
+QPushButton#menu_button {
+   background: transparent;
+    image: url(src/asset/Image/menu);
+}
+
+QPushButton#menu_button:hover {
+    image: url(src/asset/Image/menu_hover);
+}
+
+/* Account */
+QPushButton#account_button {
+   background: transparent;
+    image: url(src/asset/Image/user);
+}
+
+QPushButton#account_button:hover {
+    image: url(src/asset/Image/user_hover);
+}
+
+/* 
+    List Item
+*/
+QPushButton#list_button {
     color: #4A321C;
+    background: transparent;
+    text-align:left;
 }
 
-QFrame#menu_frame {
-    background-color: #D8B797;
-    border-radius: 20px;
-}
-
-QLineEdit#search_bar {
-    padding-left: 30px;
-    padding-right: 30px;
-    color: #4A321C;
-    background: #F9F5F0;
-    border: 5px solid #754926;
-    border-radius: 20px;
-}
-
-/* QScrollArea#scrollArea_order {
-    background-color: #D8B797;
-    border-radius: 20px;
-    padding: 0px;
-} */
-
-QListView#listView_order {
-    background-color: #754926;
-    border-radius: 10px;
-    
-}
-
-QWidget#scrollAreaWidgetContents, #widget_date, #widget_auditlog {
-    background-color: #D8B797;
-    padding: 0px;
-    border-radius: 20px;
-}
-
-QListWidget#listWidget_date, #listWidget_auditlog {
-    background-color: #D8B797;
-    border-top: 5px solid #4A321C;
-    color: #754926;
-}
-
-QWidget#widget_report {
-    background-color: #F9F5F0;
-    border: 5px solid #4A321C;
-    border-radius: 20px;
-}
-
-QLabel#label_date_target,#label_date, #label_details {
-    background-color: transparent;
-    color: #F9F5F0
-}
-
-QPushButton#pushButton_edit {
-    background-color: #754926;
-    padding-left: 30px;
-    padding-right: 30px;
-    border-radius: 20px;
-    color: #FFFFFF;
-
-}
-
-QFrame#tab_frame {
-    background-color: #4A321C;
-    padding-left: 30px;
-    padding-right: 30px;
-    border: 0px;
-}
-
-/* Menu List */
+/* 
+    Menu List 
+*/
 
 /* QScrollArea#menu_scrollArea {
     background-color: transparent;
@@ -224,11 +273,9 @@ QWidget#menu_scrollAreaContents {
     color: #4A321C;
 } */
 
-QFrame#order_frame {
-    background-color: transparent;
-    border: 5px solid #754926;
-    border-radius: 20px;
-}
+/* 
+    Order List
+ */
 
 /* QScrollArea#order_scrollArea {
     background-color: transparent;
@@ -244,79 +291,9 @@ QWidget#order_scrollAreaContents {
     color: #4A321C;
 } */
 
-QFrame#order_line {
-    background-color: #D8B797;
-}
-
-QPushButton#order_button {
-    background-color: #754926;
-    color: #F9F5F0;
-    border: 5px solid #754926;
-    border-radius: 20px;
-}
-
-/* Menu List Item*/
-QWidget#menu_list_widget {
-    background: #D8B797;
-}
-
-QPushButton#list_button {
-    color: #4A321C;
-    background: transparent;
-    text-align:left;
-}
-
-QFrame#white_line {
-    border: 3px solid rgba(249, 245, 240, 0.5);
-}
-
-/* Order Detail */
-
-QFrame#order_frame {
-    background-color: #F9F5F0;
-    border: 5px solid #754926;
-    border-radius: 20px;
-}
-
-QLabel#menu_name {
-    color: #4A321C;
-    background: transparent;
-}
-
-QLabel#sweetness_label {
-    color: #754926;
-}
-
-QLabel#addOn_label {
-    color: #754926;
-}
-
-QPushButton#cancel_add_button {
-    color: #F9F5F0;
-    background: #4A321C;
-    border-radius: 20px;
-}
-
-QPushButton#cancel_add_button:hover {
-    background-color: #754926;
-    border-radius: 20px;
-    color: #F9F5F0;
-}
-
-QFrame#admin_frame {
-    background-color: #F9F5F0;
-    border: 5px solid #4A321C;
-    border-radius: 20px;
-}
-
-QFrame#admin_empty_frame {
-    background-color: #D8B797;
-    border-radius: 20px;
-}
-
-QLabel#label_logo {
-    background: transparent;
-}
+/* 
+    Order Detail 
+*/
 
 /* QScrollArea#admin_scrollArea {
     background-color: transparent;
@@ -331,44 +308,3 @@ QWidget#admin_scrollAreaContents {
     font-size: 65pt;
     color: #4A321C;
 } */
-
-QWidget#admin_widget {
-    background-color: #D8B797;
-    border-radius: 20px;
-}
-
-QLineEdit#input_bar {
-    padding-left: 30px;
-    padding-right: 30px;
-    color: #4A321C;
-    background: #F9F5F0;
-    border-radius: 20px;
-}
-
-QLineEdit#price_bar {
-    padding-left: 30px;
-    padding-right: 30px;
-    color: #4A321C;
-    background: #F9F5F0;
-    border-radius: 20px;
-}
-
-/* Receipt and Log*/
-QFrame#upper_curve_frame {
-    background: #D8B797;
-    border-radius: 20px 20px 0px 0px;
-}
-
-QWidget#dark_brown_line {
-    border: 3px solid #4A321C;
-}
-
-
-/* Admin Item */
-QWidget#admin_list_widget {
-    background: #F9F5F0;
-}
-
-QWidget#brown_line {
-    border: 3px solid #D8B797;
-}
