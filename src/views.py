@@ -504,6 +504,8 @@ class BakeryDetailView(QWidget):
     def set_name(self, name: str) -> None:
         self.menu_name.setText(name)
 
+    
+
     def set_cancel_button_listener(self, function) -> None:
         self.cancel_button.clicked.connect(function)
 

@@ -204,7 +204,7 @@ class DrinkDetail(Controller):
         self.view.set_add_button_listener(lambda: self.add_order())
 
     def cancel_order(self) -> None:
-        self.parent.view.move_to_index(0)
+        self.parent.view.stacked_widget.removeWidget(self.view)
 
     def add_order(self) -> None:
         curr_price = 0.0
@@ -217,7 +217,7 @@ class DrinkDetail(Controller):
 
         order_item = OrderItem(self.view.get_detail(), curr_price)
         self.parent.view.vBox.addWidget(order_item.view)
-        self.parent.view.move_to_index(0)
+        self.parent.view.stacked_widget.removeWidget(self.view)
 
 
 class BakeryDetail(Controller):
@@ -236,10 +236,12 @@ class BakeryDetail(Controller):
         self.view.set_add_button_listener(lambda: self.add_order())
 
     def cancel_order(self) -> None:
-        self.parent.move_to_order()
+        self.parent.view.stacked_widget.removeWidget(self.view)
 
     def add_order(self) -> None:
-        pass
+        order_item = OrderItem(self.item.get_name(), self.item.get_price())
+        self.parent.view.vBox.addWidget(order_item.view)
+        self.parent.view.stacked_widget.removeWidget(self.view)
 
 
 class OrderItem(Controller):
@@ -286,7 +288,7 @@ class LogPage(Controller):
             self.view.add_log_to_scrollarea(self.__create_log_widget(log))
 
     def __create_log_widget(self, log: Log) -> LogItem:
-        return LogItem(log.get_date(), log.get_time(), log.get_desc()[0:45])
+        return LogItem(log.get_date(), log.get_time(), log.get_desc()[0:51])
 
 
 class ReceiptPage(Controller):
@@ -305,7 +307,7 @@ class ReceiptPage(Controller):
                 self.__create_receipt_widget(receipt))
 
     def __create_receipt_widget(self, receipt: Receipt) -> LogItem:
-        return LogItem(receipt.get_date(), receipt.get_time(), receipt.get_desc())
+        return LogItem(receipt.get_date(), receipt.get_time(), receipt.get_desc()[0:51])
 
 
 class AccountPage(Controller):
