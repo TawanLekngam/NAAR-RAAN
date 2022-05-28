@@ -10,7 +10,7 @@ class LoginView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(1920, 1080)
-
+    
         label_logo = QLabel(self)
         label_logo.setObjectName("label_logo")
         label_logo.setGeometry(QRect(846, 158, 252, 252))
@@ -411,68 +411,99 @@ class BakeryDetailView(QWidget):
         self.setStyleSheet(Theme.get_stylesheet())
 
 
+# class RevenueView(QWidget):
+#     def __init__(self, parent: QWidget = None):
+#         QWidget.__init__(self, parent)
+#         self.setFixedSize(1920, 1080)
+
+#         self.widget_date = QWidget(self)
+#         self.widget_date.setObjectName("widget_date")
+#         self.widget_date.setGeometry(QRect(85, 115, 625, 850))
+
+#         self.listWidget_date = QListWidget(self.widget_date)
+#         self.listWidget_date.setObjectName("listWidget_date")
+#         self.listWidget_date.setGeometry(QRect(13, 130, 600, 640))
+#         # self.listWidget_date.setStyleSheet("background: black")
+
+#         self.label_month = QLabel("Month", self.widget_date)
+#         self.label_month.setObjectName("label_date_target")
+#         self.label_month.setGeometry(QRect(60, 40, 171, 61))
+#         self.label_month.setFont(Theme.DONGLE_BOLD_65)
+
+#         self.label_revenue = QLabel("Revenue", self.widget_date)
+#         self.label_revenue.setObjectName("label_date_target")
+#         self.label_revenue.setGeometry(QRect(390, 40, 211, 61))
+#         self.label_revenue.setFont(Theme.DONGLE_BOLD_65)
+
+#         self.widget_report = QWidget(self)
+#         self.widget_report.setObjectName("widget_report")
+#         self.widget_report.setGeometry(QRect(840, 115, 1000, 720))
+
+#         self.label_target = QLabel("Target", self.widget_report)
+#         self.label_target.setObjectName("label_target")
+#         self.label_target.setGeometry(QRect(200, 470, 171, 61))
+#         self.label_target.setFont(Theme.DONGLE_BOLD_65)
+
+#         self.label_revenue_pie = QLabel("Revenue", self.widget_report)
+#         self.label_revenue_pie.setObjectName("label_target")
+#         self.label_revenue_pie.setGeometry(QRect(200, 565, 221, 51))
+#         self.label_revenue_pie.setFont(Theme.DONGLE_BOLD_65)
+
+#         self.label_amount_left = QLabel("Amount Left", self.widget_report)
+#         self.label_amount_left.setObjectName("label_target")
+#         self.label_amount_left.setGeometry(QRect(200, 650, 341, 61))
+#         self.label_amount_left.setFont(Theme.DONGLE_BOLD_65)
+
+#         self.label_money_target = QLabel("9000", self.widget_report)
+#         self.label_money_target.setObjectName("label_target")
+#         self.label_money_target.setGeometry(QRect(670, 470, 131, 61))
+#         self.label_money_target.setFont(Theme.DONGLE_REGULAR_65)
+
+#         self.label_money_revenue = QLabel("5000", self.widget_report)
+#         self.label_money_revenue.setObjectName("label_target")
+#         self.label_money_revenue.setGeometry(QRect(670, 565, 131, 51))
+#         self.label_money_revenue.setFont(Theme.DONGLE_REGULAR_65)
+
+#         self.label_money_left = QLabel("4000", self.widget_report)
+#         self.label_money_left.setObjectName("label_target")
+#         self.label_money_left.setGeometry(QRect(670, 650, 131, 51))
+#         self.label_money_left.setFont(Theme.DONGLE_REGULAR_65)
+
+#         self.pushButton_edit = QPushButton("Edit", self)
+#         self.pushButton_edit.setObjectName("cancel_add_button")
+#         self.pushButton_edit.setGeometry(QRect(1620, 885, 220, 80))
+#         self.pushButton_edit.setFont(Theme.DONGLE_BOLD_65)
+
+#         self.setStyleSheet(Theme.get_stylesheet())
+
+
 class ReceiptView(QWidget):
-    def __init__(self, parent: QWidget = None):
-        QWidget.__init__(self, parent)
+    def __init__(self):
+        QWidget.__init__(self, None)
         self.setFixedSize(1920, 1080)
 
-        self.widget_date = QWidget(self)
-        self.widget_date.setObjectName("widget_date")
-        self.widget_date.setGeometry(QRect(85, 115, 625, 850))
+        self.widget_auditlog = QWidget(self)
+        self.widget_auditlog.setObjectName("widget_auditlog")
+        self.widget_auditlog.setGeometry(QRect(60, 100, 1800, 980))
 
-        self.listWidget_date = QListWidget(self.widget_date)
-        self.listWidget_date.setObjectName("listWidget_date")
-        self.listWidget_date.setGeometry(QRect(13, 130, 600, 640))
-        # self.listWidget_date.setStyleSheet("background: black")
+        self.label_date = QLabel("Date", self.widget_auditlog)
+        self.label_date.setObjectName("label_details")
+        self.label_date.setGeometry(QRect(100, 70, 151, 61))
+        self.label_date.setFont(Theme.DONGLE_BOLD_70)
 
-        self.label_month = QLabel("Month", self.widget_date)
-        self.label_month.setObjectName("label_date_target")
-        self.label_month.setGeometry(QRect(60, 40, 171, 61))
-        self.label_month.setFont(Theme.DONGLE_BOLD_65)
+        self.label_time = QLabel("Time", self.widget_auditlog)
+        self.label_time.setObjectName("label_details")
+        self.label_time.setGeometry(QRect(400, 70, 151, 61))
+        self.label_time.setFont(Theme.DONGLE_BOLD_70)
 
-        self.label_revenue = QLabel("Revenue", self.widget_date)
-        self.label_revenue.setObjectName("label_date_target")
-        self.label_revenue.setGeometry(QRect(390, 40, 211, 61))
-        self.label_revenue.setFont(Theme.DONGLE_BOLD_65)
+        self.label_name = QLabel("Description", self.widget_auditlog)
+        self.label_name.setObjectName("label_details")
+        self.label_name.setGeometry(QRect(640, 70, 250, 61))
+        self.label_name.setFont(Theme.DONGLE_BOLD_70)
 
-        self.widget_report = QWidget(self)
-        self.widget_report.setObjectName("widget_report")
-        self.widget_report.setGeometry(QRect(840, 115, 1000, 720))
-
-        self.label_target = QLabel("Target", self.widget_report)
-        self.label_target.setObjectName("label_target")
-        self.label_target.setGeometry(QRect(200, 470, 171, 61))
-        self.label_target.setFont(Theme.DONGLE_BOLD_65)
-
-        self.label_revenue_pie = QLabel("Revenue", self.widget_report)
-        self.label_revenue_pie.setObjectName("label_target")
-        self.label_revenue_pie.setGeometry(QRect(200, 565, 221, 51))
-        self.label_revenue_pie.setFont(Theme.DONGLE_BOLD_65)
-
-        self.label_amount_left = QLabel("Amount Left", self.widget_report)
-        self.label_amount_left.setObjectName("label_target")
-        self.label_amount_left.setGeometry(QRect(200, 650, 341, 61))
-        self.label_amount_left.setFont(Theme.DONGLE_BOLD_65)
-
-        self.label_money_target = QLabel("9000", self.widget_report)
-        self.label_money_target.setObjectName("label_target")
-        self.label_money_target.setGeometry(QRect(670, 470, 131, 61))
-        self.label_money_target.setFont(Theme.DONGLE_REGULAR_65)
-
-        self.label_money_revenue = QLabel("5000", self.widget_report)
-        self.label_money_revenue.setObjectName("label_target")
-        self.label_money_revenue.setGeometry(QRect(670, 565, 131, 51))
-        self.label_money_revenue.setFont(Theme.DONGLE_REGULAR_65)
-
-        self.label_money_left = QLabel("4000", self.widget_report)
-        self.label_money_left.setObjectName("label_target")
-        self.label_money_left.setGeometry(QRect(670, 650, 131, 51))
-        self.label_money_left.setFont(Theme.DONGLE_REGULAR_65)
-
-        self.pushButton_edit = QPushButton("Edit", self)
-        self.pushButton_edit.setObjectName("cancel_add_button")
-        self.pushButton_edit.setGeometry(QRect(1620, 885, 220, 80))
-        self.pushButton_edit.setFont(Theme.DONGLE_BOLD_65)
+        self.listWidget_auditlog = QListWidget(self.widget_auditlog)
+        self.listWidget_auditlog.setObjectName("listWidget_auditlog")
+        self.listWidget_auditlog.setGeometry(QRect(39, 150, 1722, 810))
 
         self.setStyleSheet(Theme.get_stylesheet())
 
@@ -496,15 +527,10 @@ class LogView(QWidget):
         self.label_time.setGeometry(QRect(400, 70, 151, 61))
         self.label_time.setFont(Theme.DONGLE_BOLD_70)
 
-        self.label_name = QLabel("Name", self.widget_auditlog)
+        self.label_name = QLabel("Activity", self.widget_auditlog)
         self.label_name.setObjectName("label_details")
-        self.label_name.setGeometry(QRect(640, 70, 171, 61))
+        self.label_name.setGeometry(QRect(640, 70, 231, 61))
         self.label_name.setFont(Theme.DONGLE_BOLD_70)
-
-        self.label_activity = QLabel("Activity", self.widget_auditlog)
-        self.label_activity.setObjectName("label_details")
-        self.label_activity.setGeometry(QRect(1080, 70, 231, 61))
-        self.label_activity.setFont(Theme.DONGLE_BOLD_70)
 
         self.listWidget_auditlog = QListWidget(self.widget_auditlog)
         self.listWidget_auditlog.setObjectName("listWidget_auditlog")
