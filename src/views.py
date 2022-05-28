@@ -535,12 +535,14 @@ class LogView(QWidget):
         self.listWidget_auditlog = QListWidget(self.widget_auditlog)
         self.listWidget_auditlog.setObjectName("listWidget_auditlog")
         self.listWidget_auditlog.setGeometry(QRect(39, 150, 1722, 810))
+        self.listWidget_auditlog.setFont(Theme.DONGLE_BOLD_65)
 
         self.setStyleSheet(Theme.get_stylesheet())
     
     def add_view(self,items: list):
         for element in items:
-            self.listWidget_auditlog.addItems(str(element))
+            self.listWidget_auditlog.addItems(element)
+        
 
 
 class LogItem(QWidget):

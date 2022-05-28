@@ -7,8 +7,8 @@ from models import *
 
 def test_widget() -> int:
     app = QApplication(sys.argv)
-    w = AdminEmptyView()  # change widget here
-    w.show()
+    w = LogPage(LogView(),LogModel())  # change widget here
+    w.view.showFullScreen()
     return app.exec()
 
 
