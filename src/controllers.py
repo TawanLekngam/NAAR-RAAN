@@ -218,7 +218,7 @@ class DrinkDetail(Controller):
             curr_price = self.item.get_hprice()
         elif self.view.get_drink_type() == "Cold":
             curr_price = self.item.get_cprice()
-        elif self.view.get_drink_type() == "Bleanded":
+        elif self.view.get_drink_type() == "Blended":
             curr_price = self.item.get_bprice()
 
         order_item = OrderItem(self.view.get_detail(),
