@@ -42,11 +42,6 @@ class LoginView(QWidget):
         self.lineEdit_password.setEchoMode(QLineEdit.Password)
         self.lineEdit_password.setGeometry(QRect(806, 685, 600, 80))
 
-        # self.password_error = QLabel("Error2 nah nah nah nah nah", self)
-        # self.password_error.setObjectName("default_label")
-        # self.password_error.setFont(Theme.DONGLE_REGULAR_50)
-        # self.password_error.setGeometry(QRect(836, 765, 600, 50))
-
         self.login_button = QPushButton(self)
         self.login_button.setObjectName("logIn_button")
         self.login_button.setGeometry(QRect(860, 860, 200, 80))
@@ -115,11 +110,11 @@ class HomeView(QWidget):
 
         self.stacked_frame = QFrame(self)
         self.stacked_frame.setObjectName("stacked_frame")
-        self.stacked_frame.setGeometry(QRect(0, 100, 1920, 980))
+        self.stacked_frame.setGeometry(QRect(0, 100, 1920, 1060))
 
         self.stacked_widget = QStackedWidget(self.stacked_frame)
         self.stacked_widget.setObjectName("stacked_widget")
-        self.stacked_widget.setGeometry(QRect(0, -50, 1920, 980))
+        self.stacked_widget.setGeometry(QRect(0, -50, 1920, 1060))
 
         self.setStyleSheet(Theme.get_stylesheet())
 
@@ -197,6 +192,11 @@ class OrderView(QWidget):
         self.order_button.setObjectName("cancel_add_button")
         self.order_button.setFont(Theme.DONGLE_BOLD_65)
         self.order_button.setGeometry(QRect(1145, 885, 700, 80))
+
+        self.stacked_frame = QFrame(self)
+        self.stacked_frame.setObjectName("stacked_frame")
+        self.stacked_frame.setGeometry(QRect(75, 115, 1000, 850))
+        # self.stacked_frame.setStyleSheet("background: black")
 
         self.setStyleSheet(Theme.get_stylesheet())
 
@@ -414,16 +414,16 @@ class BakeryDetailView(QWidget):
 class ReceiptView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
-
-        self.resize(1920, 1080)
+        self.setFixedSize(1920, 1080)
 
         self.widget_date = QWidget(self)
         self.widget_date.setObjectName("widget_date")
-        self.widget_date.setGeometry(QRect(80, 65, 625, 900))
+        self.widget_date.setGeometry(QRect(85, 115, 625, 850))
 
         self.listWidget_date = QListWidget(self.widget_date)
         self.listWidget_date.setObjectName("listWidget_date")
-        self.listWidget_date.setGeometry(QRect(13, 130, 600, 750))
+        self.listWidget_date.setGeometry(QRect(13, 130, 600, 640))
+        # self.listWidget_date.setStyleSheet("background: black")
 
         self.label_month = QLabel("Month", self.widget_date)
         self.label_month.setObjectName("label_date_target")
@@ -437,7 +437,7 @@ class ReceiptView(QWidget):
 
         self.widget_report = QWidget(self)
         self.widget_report.setObjectName("widget_report")
-        self.widget_report.setGeometry(QRect(840, 100, 1000, 720))
+        self.widget_report.setGeometry(QRect(840, 115, 1000, 720))
 
         self.label_target = QLabel("Target", self.widget_report)
         self.label_target.setObjectName("label_target")
@@ -470,8 +470,8 @@ class ReceiptView(QWidget):
         self.label_money_left.setFont(Theme.DONGLE_REGULAR_65)
 
         self.pushButton_edit = QPushButton("Edit", self)
-        self.pushButton_edit.setObjectName("pushButton_edit")
-        self.pushButton_edit.setGeometry(QRect(1620, 870, 220, 80))
+        self.pushButton_edit.setObjectName("cancel_add_button")
+        self.pushButton_edit.setGeometry(QRect(1620, 885, 220, 80))
         self.pushButton_edit.setFont(Theme.DONGLE_BOLD_65)
 
         self.setStyleSheet(Theme.get_stylesheet())
