@@ -739,15 +739,10 @@ class MenuView(QWidget):
         self.add_button.setFont(Theme.DONGLE_REGULAR_65)
         self.add_button.setGeometry(QRect(915, 820, 100, 100))
 
-        stacked_frame = QFrame(self)
-        stacked_frame.setObjectName("stacked_frame")
-        stacked_frame.setGeometry(QRect(1130, 115, 720, 850))
-        # self.stacked_frame.setStyleSheet("background: black")
-
-        self.stacked_widget = QStackedWidget(stacked_frame)
+        self.stacked_widget = QStackedWidget(self)
         self.stacked_widget.setObjectName("stacked_widget")
-        self.stacked_widget.setGeometry(QRect(0, 0, 720, 850))
-        self.stacked_widget.setStyleSheet("background: black")
+        self.stacked_widget.setGeometry(QRect(1130, 115, 720, 850))
+        # self.stacked_widget.setStyleSheet("background: black")
 
         self.setStyleSheet(Theme.get_stylesheet())
 
@@ -987,15 +982,10 @@ class AccountView(QWidget):
         add_button.setFont(Theme.DONGLE_REGULAR_65)
         add_button.setGeometry(QRect(915, 820, 100, 100))
 
-        stacked_frame = QFrame(self)
-        stacked_frame.setObjectName("stacked_frame")
-        stacked_frame.setGeometry(QRect(1130, 115, 720, 850))
-        # self.stacked_frame.setStyleSheet("background: black")
-
-        self.stacked_widget = QStackedWidget(stacked_frame)
+        self.stacked_widget = QStackedWidget(self)
         self.stacked_widget.setObjectName("stacked_widget")
-        self.stacked_widget.setGeometry(QRect(0, 0, 720, 850))
-        self.stacked_widget.setStyleSheet("background: black")
+        self.stacked_widget.setGeometry(QRect(1130, 115, 720, 850))
+        # self.stacked_widget.setStyleSheet("background: black")
 
         self.setStyleSheet(Theme.get_stylesheet())
 
