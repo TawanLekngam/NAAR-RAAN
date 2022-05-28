@@ -165,11 +165,11 @@ class OrderView(QWidget):
         order_frame.setObjectName("brown_border_frame")
         order_frame.setGeometry(QRect(1143, 115, 700, 720))
 
-        order_scrollArea = QScrollArea(order_frame)
-        order_scrollArea.setObjectName("order_scrollArea")
-        order_scrollArea.setGeometry(QRect(25, 40, 650, 580))
+        self.order_scrollArea = QScrollArea(order_frame)
+        self.order_scrollArea.setObjectName("order_scrollArea")
+        self.order_scrollArea.setGeometry(QRect(25, 40, 650, 580))
 
-        self.order_scrollAreaContents = QWidget(order_scrollArea)
+        self.order_scrollAreaContents = QWidget(self.order_scrollArea)
         self.order_scrollAreaContents.setObjectName("order_scrollAreaContents")
         self.order_scrollAreaContents.setGeometry(QRect(0, 0, 648, 578))
         vBox = QVBoxLayout()
