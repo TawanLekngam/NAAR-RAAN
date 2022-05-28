@@ -166,12 +166,16 @@ class OrderView(QWidget):
         order_frame.setGeometry(QRect(1143, 115, 700, 720))
 
         self.order_scrollArea = QScrollArea(order_frame)
-        self.order_scrollArea.setObjectName("order_scrollArea")
+        self.order_scrollArea.setObjectName("default_scrollArea")
         self.order_scrollArea.setGeometry(QRect(25, 40, 650, 580))
+        self.order_scrollArea.setWidgetResizable(True)
+        self.order_scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.order_scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
         self.order_scrollAreaContents = QWidget(self.order_scrollArea)
-        self.order_scrollAreaContents.setObjectName("order_scrollAreaContents")
+        self.order_scrollAreaContents.setObjectName("default_scrollAreaContents")
         self.order_scrollAreaContents.setGeometry(QRect(0, 0, 648, 578))
+
         vBox = QVBoxLayout()
         self.order_scrollAreaContents.setLayout(vBox)
         self.order_scrollArea.setWidget(self.order_scrollAreaContents)
@@ -294,14 +298,14 @@ class OrderListView(QWidget):
         self.search_bar.setGeometry(QRect(272, 40, 677, 80))
 
         self.menu_scrollArea = QScrollArea(self)
-        self.menu_scrollArea.setObjectName("menu_scrollArea")
+        self.menu_scrollArea.setObjectName("default_scrollArea")
         self.menu_scrollArea.setGeometry(QRect(57, 169, 885, 630))
         self.menu_scrollArea.setWidgetResizable(True)
         self.menu_scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.menu_scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
         self.menu_scrollAreaContents = QWidget(self.menu_scrollArea)
-        self.menu_scrollAreaContents.setObjectName("menu_scrollAreaContents")
+        self.menu_scrollAreaContents.setObjectName("default_scrollAreaContents")
         self.menu_scrollAreaContents.setGeometry(QRect(0, 0, 883, 628))
 
         self.vBox = QVBoxLayout()
@@ -512,13 +516,17 @@ class ReceiptView(QWidget):
         brown_line.setGeometry(QRect(40, 103, 1722, 3))
 
         self.receipt_scrollArea = QScrollArea(receipt_frame)
-        self.receipt_scrollArea.setObjectName("menu_scrollArea")
+        self.receipt_scrollArea.setObjectName("default_scrollArea")
         self.receipt_scrollArea.setGeometry(QRect(45, 129, 1712, 750))
-
+        self.receipt_scrollArea.setWidgetResizable(True)
+        self.receipt_scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.receipt_scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        
         self.receipt_scrollAreaContents = QWidget(self.receipt_scrollArea)
         self.receipt_scrollAreaContents.setObjectName(
-            "menu_scrollAreaContents")
+            "default_scrollAreaContents")
         self.receipt_scrollAreaContents.setGeometry(QRect(0, 0, 1710, 748))
+
         vBox = QVBoxLayout()
         self.receipt_scrollAreaContents.setLayout(vBox)
         self.receipt_scrollArea.setWidget(self.receipt_scrollAreaContents)
@@ -555,12 +563,16 @@ class LogView(QWidget):
         brown_line.setGeometry(QRect(40, 103, 1722, 3))
 
         self.log_scrollArea = QScrollArea(log_frame)
-        self.log_scrollArea.setObjectName("menu_scrollArea")
+        self.log_scrollArea.setObjectName("default_scrollArea")
         self.log_scrollArea.setGeometry(QRect(45, 129, 1712, 750))
+        self.log_scrollArea.setWidgetResizable(True)
+        self.log_scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.log_scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
         self.log_scrollAreaContents = QWidget(self.log_scrollArea)
-        self.log_scrollAreaContents.setObjectName("menu_scrollAreaContents")
+        self.log_scrollAreaContents.setObjectName("default_scrollAreaContents")
         self.log_scrollAreaContents.setGeometry(QRect(0, 0, 1710, 748))
+
         vBox = QVBoxLayout()
         self.log_scrollAreaContents.setLayout(vBox)
         self.log_scrollArea.setWidget(self.log_scrollAreaContents)
@@ -636,12 +648,16 @@ class MenuView(QWidget):
         self.search_bar.setGeometry(QRect(260, 53, 680, 80))
 
         self.admin_scrollArea = QScrollArea(admin_frame)
-        self.admin_scrollArea.setObjectName("admin_scrollArea")
+        self.admin_scrollArea.setObjectName("default_scrollArea")
         self.admin_scrollArea.setGeometry(QRect(55, 182, 890, 480))
+        self.admin_scrollArea.setWidgetResizable(True)
+        self.admin_scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.admin_scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
         self.admin_scrollAreaContents = QWidget(self.admin_scrollArea)
-        self.admin_scrollAreaContents.setObjectName("admin_scrollAreaContents")
+        self.admin_scrollAreaContents.setObjectName("default_scrollAreaContents")
         self.admin_scrollAreaContents.setGeometry(QRect(0, 0, 888, 478))
+
         vBox = QVBoxLayout()
         self.admin_scrollAreaContents.setLayout(vBox)
         self.admin_scrollArea.setWidget(self.admin_scrollAreaContents)
@@ -872,12 +888,16 @@ class AccountView(QWidget):
         self.search_bar.setGeometry(QRect(260, 53, 680, 80))
 
         self.admin_scrollArea = QScrollArea(admin_frame)
-        self.admin_scrollArea.setObjectName("admin_scrollArea")
+        self.admin_scrollArea.setObjectName("default_scrollArea")
         self.admin_scrollArea.setGeometry(QRect(55, 182, 890, 480))
+        self.admin_scrollArea.setWidgetResizable(True)
+        self.admin_scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.admin_scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
         self.admin_scrollAreaContents = QWidget(self.admin_scrollArea)
-        self.admin_scrollAreaContents.setObjectName("admin_scrollAreaContents")
+        self.admin_scrollAreaContents.setObjectName("default_scrollAreaContents")
         self.admin_scrollAreaContents.setGeometry(QRect(0, 0, 888, 478))
+
         vBox = QVBoxLayout()
         self.admin_scrollAreaContents.setLayout(vBox)
         self.admin_scrollArea.setWidget(self.admin_scrollAreaContents)

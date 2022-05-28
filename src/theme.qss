@@ -164,6 +164,17 @@ QCheckBox#default_checkbox::indicator:checked {
     image: url(src/asset/Image/checkmark.png);
 }
 
+/* Scroll Area */
+QScrollArea#default_scrollArea {
+    background-color: transparent;
+    color: #4A321C;
+}
+
+QWidget#default_scrollAreaContents {
+    background-color: transparent;
+    color: #4A321C;
+}
+
 /* 
     Log In Page
 */
@@ -262,53 +273,3 @@ QPushButton#list_button:hover {
 QPushButton#list_button:pressed {
     color: #754926;
 }
-
-/* 
-    Menu List 
-*/
-
-QScrollArea#menu_scrollArea {
-    background-color: transparent;
-    color: #4A321C;
-}
-
-QWidget#menu_scrollAreaContents {
-    background-color: transparent;
-    color: #4A321C;
-}
-
-/* 
-    Order List
- */
-
-/* QScrollArea#order_scrollArea {
-    background-color: transparent;
-    font-family: "Dongle";
-    font-size: 65pt;
-    color: #4A321C;
-}
-
-QWidget#order_scrollAreaContents {
-    background-color: transparent;
-    font-family: "Dongle";
-    font-size: 65pt;
-    color: #4A321C;
-} */
-
-/* 
-    Order Detail 
-*/
-
-/* QScrollArea#admin_scrollArea {
-    background-color: transparent;
-    font-family: "Dongle";
-    font-size: 65pt;
-    color: #4A321C;
-}
-
-QWidget#admin_scrollAreaContents {
-    background-color: transparent;
-    font-family: "Dongle";
-    font-size: 65pt;
-    color: #4A321C;
-} */
