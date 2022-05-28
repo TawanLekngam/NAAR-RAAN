@@ -236,7 +236,12 @@ class OrderView(QWidget):
         self.stacked_widget.setCurrentIndex(index)
 
     def reset(self) -> None:
-        self.vBox = QVBoxLayout()
+        self.set_total(0)
+        self.clear_layout(self.vBox)
+
+    def clear_layout(self, layout):
+        for i in reversed(range(layout.count())): 
+            layout.itemAt(i).widget().setParent(None)
 
 # Order item (Sub view for order view)
 
