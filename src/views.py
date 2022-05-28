@@ -569,6 +569,9 @@ class ReceiptView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+    def add_receipt_to_scrollarea(self, widget: QWidget) -> None:
+        self.vBox.addWidget(widget)
+
 
 """
 Audit Log Page

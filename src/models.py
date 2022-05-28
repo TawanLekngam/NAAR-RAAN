@@ -135,6 +135,10 @@ class OrderListModel(Model):
 
 
 class ReceiptModel(Model):
+    __receipt_dao: ReceiptDAO
 
     def __init__(self):
-        pass
+        self.__receipt_dao = AppDAO.get_dao("receipt")
+
+    def get_all_receipt(self) -> list[Receipt]:
+        return self.__receipt_dao.get_all_receipts()
