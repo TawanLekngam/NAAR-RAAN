@@ -169,10 +169,12 @@ class OrderView(QWidget):
         order_scrollArea.setObjectName("order_scrollArea")
         order_scrollArea.setGeometry(QRect(25, 40, 650, 580))
 
-        order_scrollAreaContents = QWidget(order_scrollArea)
-        order_scrollAreaContents.setObjectName("order_scrollAreaContents")
-        order_scrollAreaContents.setGeometry(QRect(0, 0, 648, 578))
-        order_scrollArea.setWidget(order_scrollAreaContents)
+        self.order_scrollAreaContents = QWidget(order_scrollArea)
+        self.order_scrollAreaContents.setObjectName("order_scrollAreaContents")
+        self.order_scrollAreaContents.setGeometry(QRect(0, 0, 648, 578))
+        vBox = QVBoxLayout()
+        self.order_scrollAreaContents.setLayout(vBox)
+        self.order_scrollArea.setWidget(self.order_scrollAreaContents)
 
         line = QFrame(order_frame)
         line.setObjectName("brown_line")
@@ -291,14 +293,16 @@ class OrderListView(QWidget):
         self.search_bar.setFont(Theme.DONGLE_BOLD_65)
         self.search_bar.setGeometry(QRect(272, 40, 677, 80))
 
-        menu_scrollArea = QScrollArea(self)
-        menu_scrollArea.setObjectName("menu_scrollArea")
-        menu_scrollArea.setGeometry(QRect(57, 169, 885, 630))
+        self.menu_scrollArea = QScrollArea(self)
+        self.menu_scrollArea.setObjectName("menu_scrollArea")
+        self.menu_scrollArea.setGeometry(QRect(57, 169, 885, 630))
 
-        menu_scrollAreaContents = QWidget(menu_scrollArea)
-        menu_scrollAreaContents.setObjectName("menu_scrollAreaContents")
-        menu_scrollAreaContents.setGeometry(QRect(0, 0, 883, 628))
-        menu_scrollArea.setWidget(menu_scrollAreaContents)
+        self.menu_scrollAreaContents = QWidget(self.menu_scrollArea)
+        self.menu_scrollAreaContents.setObjectName("menu_scrollAreaContents")
+        self.menu_scrollAreaContents.setGeometry(QRect(0, 0, 883, 628))
+        vBox = QVBoxLayout()
+        self.menu_scrollAreaContents.setLayout(vBox)
+        self.menu_scrollArea.setWidget(self.menu_scrollAreaContents)
 
         self.setStyleSheet(Theme.get_stylesheet())
 
@@ -481,6 +485,8 @@ class ReceiptView(QWidget):
         self.receipt_scrollAreaContents.setObjectName(
             "menu_scrollAreaContents")
         self.receipt_scrollAreaContents.setGeometry(QRect(0, 0, 1710, 748))
+        vBox = QVBoxLayout()
+        self.receipt_scrollAreaContents.setLayout(vBox)
         self.receipt_scrollArea.setWidget(self.receipt_scrollAreaContents)
 
         self.setStyleSheet(Theme.get_stylesheet())
@@ -521,9 +527,10 @@ class LogView(QWidget):
         self.log_scrollAreaContents = QWidget(self.log_scrollArea)
         self.log_scrollAreaContents.setObjectName("menu_scrollAreaContents")
         self.log_scrollAreaContents.setGeometry(QRect(0, 0, 1710, 748))
+        vBox = QVBoxLayout()
+        self.log_scrollAreaContents.setLayout(vBox)
         self.log_scrollArea.setWidget(self.log_scrollAreaContents)
 
-        self.setStyleSheet(Theme.get_stylesheet())
 
         self.setStyleSheet(Theme.get_stylesheet())
 
@@ -595,14 +602,16 @@ class MenuView(QWidget):
         self.search_bar.setFont(Theme.DONGLE_BOLD_65)
         self.search_bar.setGeometry(QRect(260, 53, 680, 80))
 
-        admin_scrollArea = QScrollArea(admin_frame)
-        admin_scrollArea.setObjectName("admin_scrollArea")
-        admin_scrollArea.setGeometry(QRect(55, 182, 890, 480))
+        self.admin_scrollArea = QScrollArea(admin_frame)
+        self.admin_scrollArea.setObjectName("admin_scrollArea")
+        self.admin_scrollArea.setGeometry(QRect(55, 182, 890, 480))
 
-        admin_scrollAreaContents = QWidget(admin_scrollArea)
-        admin_scrollAreaContents.setObjectName("admin_scrollAreaContents")
-        admin_scrollAreaContents.setGeometry(QRect(0, 0, 888, 478))
-        admin_scrollArea.setWidget(admin_scrollAreaContents)
+        self.admin_scrollAreaContents = QWidget(self.admin_scrollArea)
+        self.admin_scrollAreaContents.setObjectName("admin_scrollAreaContents")
+        self.admin_scrollAreaContents.setGeometry(QRect(0, 0, 888, 478))
+        vBox = QVBoxLayout()
+        self.admin_scrollAreaContents.setLayout(vBox)
+        self.admin_scrollArea.setWidget(self.admin_scrollAreaContents)
 
         add_button = QPushButton("+", self)
         add_button.setObjectName("default_button")
@@ -823,14 +832,16 @@ class AccountView(QWidget):
         self.search_bar.setFont(Theme.DONGLE_BOLD_65)
         self.search_bar.setGeometry(QRect(260, 53, 680, 80))
 
-        admin_scrollArea = QScrollArea(admin_frame)
-        admin_scrollArea.setObjectName("admin_scrollArea")
-        admin_scrollArea.setGeometry(QRect(55, 182, 890, 480))
+        self.admin_scrollArea = QScrollArea(admin_frame)
+        self.admin_scrollArea.setObjectName("admin_scrollArea")
+        self.admin_scrollArea.setGeometry(QRect(55, 182, 890, 480))
 
-        admin_scrollAreaContents = QWidget(admin_scrollArea)
-        admin_scrollAreaContents.setObjectName("admin_scrollAreaContents")
-        admin_scrollAreaContents.setGeometry(QRect(0, 0, 888, 478))
-        admin_scrollArea.setWidget(admin_scrollAreaContents)
+        self.admin_scrollAreaContents = QWidget(self.admin_scrollArea)
+        self.admin_scrollAreaContents.setObjectName("admin_scrollAreaContents")
+        self.admin_scrollAreaContents.setGeometry(QRect(0, 0, 888, 478))
+        vBox = QVBoxLayout()
+        self.admin_scrollAreaContents.setLayout(vBox)
+        self.admin_scrollArea.setWidget(self.admin_scrollAreaContents)
 
         add_button = QPushButton("+", self)
         add_button.setObjectName("default_button")
