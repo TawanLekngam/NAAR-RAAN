@@ -199,16 +199,25 @@ class DrinkDetail(Controller):
         self.parent = parent
         self.item = item
 
-        self.view.set_name(item.get_name())
+        self.view.set_name(self.item.get_name() + " " + self.item.get_price())
         self.view.set_cancel_button_listener(lambda: self.cancel_order())
         self.view.set_add_button_listener(lambda: self.add_order())
 
     def cancel_order(self) -> None:
-        self.parent.move_to_order()
+        self.parent.view.move_to_index(0)
 
     def add_order(self) -> None:
-        order_item = OrderItem(self.view.get_detail())
+        curr_price = 0.0
+        if self.view.get_drink_type() == "Hot":
+            curr_price = self.item.get_hprice()
+        elif self.view.get_drink_type() == "Cold":
+            curr_price = self.item.get_cprice()
+        elif self.view.get_drink_type() == "Bleanded":
+            curr_price = self.item.get_bprice()
+
+        order_item = OrderItem(self.view.get_detail(), curr_price)
         self.parent.view.vBox.addWidget(order_item.view)
+        self.parent.view.move_to_index(0)
 
 
 class BakeryDetail(Controller):
@@ -221,7 +230,8 @@ class BakeryDetail(Controller):
         self.parent = parent
         self.item = item
 
-        self.view.set_name(item.get_name())
+        self.view.set_name(self.item.get_name() + " " +
+                           str(self.item.get_price()))
         self.view.set_cancel_button_listener(lambda: self.cancel_order())
         self.view.set_add_button_listener(lambda: self.add_order())
 
@@ -235,23 +245,29 @@ class BakeryDetail(Controller):
 class OrderItem(Controller):
     view: OrderItemView
 
-    def __init__(self, item_name: str, quantity: int = 1):
+    def __init__(self, item_name: str, price: float = 0.0, quantity: int = 1):
         super().__init__(OrderItemView(), None)
         self.view.set_item_name(item_name)
-        self.price = None
+        self.price = price
         self.quantity = quantity
+
+        self.view.set_quantity(self.quantity)
+        self.view.set_price_label(self.price * self.quantity)
+        self.view.increase_button_listener(lambda: self.increase())
+        self.view.decrease_button_listener(lambda: self.decrease())
 
     def increase(self):
         self.quantity += 1
         self.view.set_quantity(self.quantity)
-        self.view.set_price_label(f"{self.price * self.quantity:.01f}")
+        self.view.set_price_label(self.price * self.quantity)
+
 
     def decrease(self):
+        if self.quantity <= 0:
+            return
         self.quantity -= 1
         self.view.set_quantity(self.quantity)
-        self.view.set_price_label(f"{self.price * self.quantity:.01f}")
-        if self.quantity <= 0:
-            self.view.hide()
+        self.view.set_price_label(self.price * self.quantity)
 
     def total_price(self) -> float:
         return self.price * self.quantity
