@@ -351,10 +351,10 @@ class DrinkDetailView(QWidget):
         order_frame.setObjectName("brown_border_frame")
         order_frame.setGeometry(0, 0, 1000, 850)
 
-        menu_name = QLabel("Name Test", order_frame)
-        menu_name.setObjectName("default_label")
-        menu_name.setFont(Theme.DONGLE_BOLD_80)
-        menu_name.setGeometry(QRect(100, 70, 830, 77))
+        self.menu_name = QLabel("Name Test", order_frame)
+        self.menu_name.setObjectName("default_label")
+        self.menu_name.setFont(Theme.DONGLE_BOLD_80)
+        self.menu_name.setGeometry(QRect(100, 70, 830, 77))
 
         self.hot_button = QPushButton("Hot", order_frame)
         self.hot_button.setObjectName("click_button")
@@ -374,11 +374,11 @@ class DrinkDetailView(QWidget):
         self.blended_button.setGeometry(QRect(730, 147, 200, 60))
         self.blended_button.setCheckable(True)
 
-        drinkType_buttonGroup = QButtonGroup(order_frame)
-        drinkType_buttonGroup.setObjectName("drinkType_ButtonGroup")
-        drinkType_buttonGroup.addButton(self.hot_button)
-        drinkType_buttonGroup.addButton(self.cold_button)
-        drinkType_buttonGroup.addButton(self.blended_button)
+        self.drinkType_buttonGroup = QButtonGroup(order_frame)
+        self.drinkType_buttonGroup.setObjectName("drinkType_ButtonGroup")
+        self.drinkType_buttonGroup.addButton(self.hot_button)
+        self.drinkType_buttonGroup.addButton(self.cold_button)
+        self.drinkType_buttonGroup.addButton(self.blended_button)
 
         sweetness_label = QLabel("Sweetness", order_frame)
         sweetness_label.setObjectName("brown_label")
@@ -409,12 +409,12 @@ class DrinkDetailView(QWidget):
         self.sweet100_button.setGeometry(QRect(830, 271, 100, 60))
         self.sweet100_button.setCheckable(True)
 
-        sweetness_buttonGroup = QButtonGroup(order_frame)
-        sweetness_buttonGroup.setObjectName("sweetness_buttonGroup")
-        sweetness_buttonGroup.addButton(self.sweet0_button)
-        sweetness_buttonGroup.addButton(self.sweet25_button)
-        sweetness_buttonGroup.addButton(self.sweet50_button)
-        sweetness_buttonGroup.addButton(self.sweet100_button)
+        self.sweetness_buttonGroup = QButtonGroup(order_frame)
+        self.sweetness_buttonGroup.setObjectName("sweetness_buttonGroup")
+        self.sweetness_buttonGroup.addButton(self.sweet0_button)
+        self.sweetness_buttonGroup.addButton(self.sweet25_button)
+        self.sweetness_buttonGroup.addButton(self.sweet50_button)
+        self.sweetness_buttonGroup.addButton(self.sweet100_button)
 
         self.cancel_button = QPushButton("Cancel", order_frame)
         self.cancel_button.setObjectName("default_button")
@@ -427,6 +427,21 @@ class DrinkDetailView(QWidget):
         self.add_button.setGeometry(QRect(558, 739, 200, 80))
 
         self.setStyleSheet(Theme.get_stylesheet())
+
+    def set_name(self, name: str) -> None:
+        self.menu_name.setText(name)
+    
+    def get_drink_type(self) -> str:
+        return self.drinkType_buttonGroup.checkedButton.text()
+
+    def get_sweetness(self) -> str:
+        return self.sweetness_buttonGroup.checkedButton.text()
+
+    def set_cancel_button_listener(self, function) -> None:
+        self.cancel_button.clicked.connect(function)
+
+    def set_add_button_listener(self, function) -> None:
+        self.add_button.clicked.connect(function)
 
 
 class BakeryDetailView(QWidget):
@@ -437,10 +452,10 @@ class BakeryDetailView(QWidget):
         order_frame.setObjectName("brown_border_frame")
         order_frame.setGeometry(0, 0, 1000, 850)
 
-        menu_name = QLabel("Name Test", order_frame)
-        menu_name.setObjectName("default_label")
-        menu_name.setFont(Theme.DONGLE_BOLD_80)
-        menu_name.setGeometry(QRect(100, 70, 830, 77))
+        self.menu_name = QLabel("Name Test", order_frame)
+        self.menu_name.setObjectName("default_label")
+        self.menu_name.setFont(Theme.DONGLE_BOLD_80)
+        self.menu_name.setGeometry(QRect(100, 70, 830, 77))
 
         self.cancel_button = QPushButton("Cancel", order_frame)
         self.cancel_button.setObjectName("default_button")
@@ -453,6 +468,9 @@ class BakeryDetailView(QWidget):
         self.add_button.setGeometry(QRect(558, 739, 200, 80))
 
         self.setStyleSheet(Theme.get_stylesheet())
+
+    def set_name(self, name: str) -> None:
+        self.menu_name.setText(name)
 
     def set_cancel_button_listener(self, function) -> None:
         self.cancel_button.clicked.connect(function)
