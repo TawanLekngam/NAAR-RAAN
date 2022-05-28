@@ -137,10 +137,13 @@ class OrderPage(Controller):
 
         self.view.insert_view(self.order_list.view, 0)
 
+    def move_to_order(self) -> None:
+        self.view.move_to_index(0)
+
 
 class OrderList(Controller):
     "sub controller"
-    parent: OrderPage
+    __parent: OrderPage
     view: OrderListView
     model: OrderListModel
 
@@ -161,7 +164,7 @@ class OrderList(Controller):
 
 
 class OrderListItem(Controller):
-    parent: OrderPage
+    __parent: OrderPage
     view: OrderListItemView
 
     def __init__(self, parent: Controller, view: QWidget, item: object):
@@ -174,7 +177,8 @@ class OrderListItem(Controller):
 
     def click_item(self) -> None:
         if isinstance(self.item, Drink):
-            self.__parent.view.insert_view(DrinkDetailView(), 1)
+            drink_detail = DrinkDetail(self.__parent,DrinkDetailView(),self.item)
+            self.__parent.view.insert_view(drink_detail.view, 1)
 
         else:
             self.__parent.view.insert_view(BakeryDetailView(), 1)
@@ -183,9 +187,60 @@ class OrderListItem(Controller):
 
 
 class DrinkDetail(Controller):
+    __parent: OrderPage
+    view: DrinkDetailView
+    item: Drink
 
     def __init__(self, parent: Controller, view: QWidget, item: object):
+        super().__init__(view, None)
+        self.__parent = parent
+        self.item = item
+
+    def cancel_order(self) -> None:
+        self.__parent.move_to_order()
+
+    def add_order(self) -> None:
         pass
+
+
+class BakeryDetail(Controller):
+    __parent: OrderPage
+    view: BakeryDetailView
+    item: Bakery
+
+    def __init__(self, parent: Controller, view: QWidget, item: object):
+        super().__init__(view, None)
+        self.__parent = parent
+        self.item = item
+
+    def cancel_order(self) -> None:
+        self.__parent.move_to_order()
+
+    def add_order(self) -> None:
+        pass
+
+
+class OrderItem(Controller):
+    view: OrderItemView
+
+    def __init__(self, item_name: str, quantity: int = 1):
+        super().__init__(OrderItemView(), None)
+        self.view.set_item_name(item_name)
+        self.price = None
+        self.quantity = quantity
+
+    def increase(self):
+        self.quantity += 1
+        self.view.set_price_label(self.price * self.quantity)
+
+    def decrease(self):
+        self.quantity -= 1
+        self.view.set_price_label(self.price * self.quantity)
+        if self.quantity <= 0:
+            self.view.destroy()
+
+    def total_price(self) -> float:
+        return self.price * self.quantity
 
 
 class LogPage(Controller):
@@ -194,7 +249,6 @@ class LogPage(Controller):
 
     def __init__(self, view: QWidget, model: Model):
         super().__init__(view, model)
-        # self.__root = root
         self.update_log()
 
     def update_log(self):
