@@ -158,3 +158,12 @@ class ReceiptModel(Model):
 
     def get_all_receipt(self) -> list[Receipt]:
         return self.__receipt_dao.get_all_receipts()
+
+
+class MenuEditModel(Model):
+    __drink_dao: DrinkDAO
+    __bakery_dao: BakeryDAO
+
+    def __init__(self):
+        self.__drink_dao = AppDAO.get_dao("drink")
+        self.__bakery_dao = AppDAO.get_dao("bakery")  

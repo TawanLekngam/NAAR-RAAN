@@ -748,6 +748,9 @@ class MenuView(QWidget):
     def add_view_to_scrollarea(self, view: QWidget) -> None:
         self.vBox.addWidget(view)
 
+    def add_view_to_stackedwidget(self, view: QWidget) -> None:
+        self.stacked_widget.insertWidget(0, view)
+
     def clear__scrollarea(self):
         for i in reversed(range(self.vBox.count())):
             self.vBox.itemAt(i).widget().setParent(None)
@@ -956,6 +959,9 @@ class MenuEditView(QWidget):
         self.delete_button.setGeometry(QRect(480, 730, 200, 80))
 
         self.setStyleSheet(Theme.get_stylesheet())
+
+    def set_name(self, name: str) -> None:
+        self.name_bar.setText(name)
 
 
 """

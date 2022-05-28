@@ -1,5 +1,6 @@
 from abc import ABC
 from datetime import date
+from tkinter import Menu
 from PySide6.QtWidgets import QWidget
 
 from models import *
@@ -380,5 +381,23 @@ class MenuItem(Controller):
         self.view.set_button_listener(self.on_click)
 
     def on_click(self) -> None:
+        menu_edit_form = MenuEdit(self.parent, self.item)
+        self.parent.view.add_view_to_stackedwidget(menu_edit_form.view)
+
+
+class MenuEdit(Controller):
+    parent: MenuPage
+    view: MenuEditView
+    model: MenuEditModel
+
+    def __init__(self, parent: QWidget, item: Drink | Bakery):
+        super().__init__(MenuEditView(), MenuEditModel())
+        self.parent = parent
+        self.item = item
+
+    def setup_form(self) -> None:
+        self.view.set_name(self.item.get_name())
         if isinstance(self.item, Drink):
-            "open edit menu"
+            self.view.drink_button.setChecked(True)
+        else:
+            self.view.bakery_button.setChecked(True)
