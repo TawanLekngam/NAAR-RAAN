@@ -133,7 +133,7 @@ class OrderPage(Controller):
         self.initialize()
 
     def initialize(self) -> None:
-        self.order_list = OrderList(self, OrderView(), OrderModel())
+        self.order_list = OrderList(self, OrderListView(), OrderListModel())
 
         self.view.insert_view(self.order_list.view, 0)
 
