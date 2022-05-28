@@ -230,7 +230,7 @@ class OrderView(QWidget):
     def move_to_index(self, index: int) -> None:
         self.stacked_widget.setCurrentIndex(index)
 
-
+# Order item (Sub view for order view)
 class OrderItemView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -323,7 +323,7 @@ class OrderListView(QWidget):
     def add_widget_to_scrollarea(self, widget: QWidget) -> None:
         self.vBox.addWidget(widget)
 
-# Order Item in Order List Panel (left side)
+# Order Item (Sub view for order list view)
 class OrderListItemView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
