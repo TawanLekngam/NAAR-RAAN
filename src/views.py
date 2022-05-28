@@ -268,6 +268,9 @@ class OrderItemView(QWidget):
     def set_item_name(self, item_name: str) -> None:
         self.name_label.setText(item_name)
 
+    def set_quantity(self,count:int) -> None:
+        self.quantity_label.setText(str(count))
+
     def set_price_label(self, price: float) -> None:
         self.price_label.setText(f"{price:.01f}")
 
