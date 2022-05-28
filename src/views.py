@@ -437,7 +437,7 @@ class DrinkDetailView(QWidget):
         self.menu_name.setText(name)
 
     def get_drink_type(self) -> str:
-        button = self.drinkType_buttonGroup.checkedButton().text()
+        return self.drinkType_buttonGroup.checkedButton().text()
 
     def get_sweetness(self) -> str:
         return self.sweetness_buttonGroup.checkedButton().text()
