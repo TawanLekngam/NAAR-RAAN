@@ -353,7 +353,6 @@ class MenuPage(Controller):
 
     def __init__(self, view: QWidget, model: Model):
         super().__init__(view, model)
-        self.view.stacked_widget.addWidget(AdminEmptyView())
         self.load_item()
 
     def load_item(self) -> None:
