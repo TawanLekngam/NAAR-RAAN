@@ -17,17 +17,17 @@ class LoginView(QWidget):
         label_logo.setPixmap(QPixmap("src/asset/Image/logo.png"))
 
         label_username = QLabel("Username", self)
-        label_username.setObjectName("label_username")
+        label_username.setObjectName("default_label")
         label_username.setFont(Theme.DONGLE_BOLD_65)
         label_username.setGeometry(QRect(583, 537, 321, 72))
 
         label_password = QLabel("Password", self)
-        label_password.setObjectName("label_password")
+        label_password.setObjectName("default_label")
         label_password.setFont(Theme.DONGLE_BOLD_65)
         label_password.setGeometry(QRect(583, 706, 291, 72))
 
         self.lineEdit_username = QLineEdit(self)
-        self.lineEdit_username.setObjectName("lineEdit_username")
+        self.lineEdit_username.setObjectName("logIn_bar")
         self.lineEdit_username.setFont(Theme.DONGLE_BOLD_65)
         self.lineEdit_username.setGeometry(QRect(806, 520, 600, 80))
 
@@ -37,7 +37,7 @@ class LoginView(QWidget):
         self.error.setGeometry(QRect(836, 600, 600, 50))
 
         self.lineEdit_password = QLineEdit(self)
-        self.lineEdit_password.setObjectName("lineEdit_password")
+        self.lineEdit_password.setObjectName("logIn_bar")
         self.lineEdit_password.setFont(Theme.DONGLE_REGULAR_50)
         self.lineEdit_password.setEchoMode(QLineEdit.Password)
         self.lineEdit_password.setGeometry(QRect(806, 685, 600, 80))
@@ -193,14 +193,14 @@ class OrderView(QWidget):
         self.order_button.setFont(Theme.DONGLE_BOLD_65)
         self.order_button.setGeometry(QRect(1145, 885, 700, 80))
 
-        self.stacked_frame = QFrame(self)
-        self.stacked_frame.setObjectName("stacked_frame")
-        self.stacked_frame.setGeometry(QRect(75, 115, 1000, 850))
+        # self.stacked_frame = QFrame(self)
+        # self.stacked_frame.setObjectName("stacked_frame")
+        # self.stacked_frame.setGeometry(QRect(75, 115, 1000, 850))
         # self.stacked_frame.setStyleSheet("background: black")
 
-        self.stacked_widget = QStackedWidget(self.stacked_frame)
+        self.stacked_widget = QStackedWidget(self)
         self.stacked_widget.setObjectName("stacked_widget")
-        self.stacked_widget.setGeometry(QRect(0, -50, 1920, 1060))
+        self.stacked_widget.setGeometry(QRect(75, 115, 1000, 850))
         #self.stacked_widget.setStyleSheet("background: black")
 
         self.setStyleSheet(Theme.get_stylesheet())
@@ -278,19 +278,19 @@ class OrderListView(QWidget):
 
         menu_frame = QFrame(self)
         menu_frame.setObjectName("menu_frame")
-        menu_frame.setGeometry(75, 115, 1000, 850)
+        menu_frame.setGeometry(0, 0, 1000, 850)
 
-        menu_label = QLabel("Menu", menu_frame)
+        menu_label = QLabel("Menu", self)
         menu_label.setObjectName("menu_label")
         menu_label.setFont(Theme.DONGLE_BOLD_80)
         menu_label.setGeometry(QRect(54, 26, 128, 116))
 
-        self.search_bar = QLineEdit(menu_frame)
+        self.search_bar = QLineEdit(self)
         self.search_bar.setObjectName("search_bar")
         self.search_bar.setFont(Theme.DONGLE_BOLD_65)
         self.search_bar.setGeometry(QRect(272, 40, 677, 80))
 
-        menu_scrollArea = QScrollArea(menu_frame)
+        menu_scrollArea = QScrollArea(self)
         menu_scrollArea.setObjectName("menu_scrollArea")
         menu_scrollArea.setGeometry(QRect(57, 169, 885, 630))
 
