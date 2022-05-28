@@ -146,7 +146,6 @@ class OrderPage(Controller):
         self.total -= value
         self.view.set_total(value)
 
-    
 
 class OrderList(Controller):
     "sub controller"
@@ -222,7 +221,8 @@ class DrinkDetail(Controller):
         elif self.view.get_drink_type() == "Bleanded":
             curr_price = self.item.get_bprice()
 
-        order_item = OrderItem(self.view.get_detail(), curr_price)
+        order_item = OrderItem(self.view.get_detail(),
+                               curr_price, parent=self.parent)
         self.parent.view.vBox.addWidget(order_item.view)
         self.parent.view.stacked_widget.removeWidget(self.view)
 
@@ -246,7 +246,8 @@ class BakeryDetail(Controller):
         self.parent.view.stacked_widget.removeWidget(self.view)
 
     def add_order(self) -> None:
-        order_item = OrderItem(self.item.get_name(), self.item.get_price())
+        order_item = OrderItem(self.item.get_name(),
+                               self.item.get_price(), parent=self.parent)
         self.parent.view.vBox.addWidget(order_item.view)
         self.parent.view.stacked_widget.removeWidget(self.view)
 
@@ -265,7 +266,7 @@ class OrderItem(Controller):
         self.view.set_quantity(self.quantity)
         self.view.set_price_label(self.price * self.quantity)
         self.parent.increase_total(self.price)
-        
+
         self.view.increase_button_listener(lambda: self.increase())
         self.view.decrease_button_listener(lambda: self.decrease())
 
