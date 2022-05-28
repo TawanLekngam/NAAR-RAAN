@@ -255,6 +255,14 @@ QPushButton#list_button {
     text-align:left;
 }
 
+QPushButton#list_button:hover {
+    color: #F9F5F0;
+}
+
+QPushButton#list_button:pressed {
+    color: #754926;
+}
+
 /* 
     Menu List 
 */
