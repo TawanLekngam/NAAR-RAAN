@@ -251,7 +251,7 @@ class OrderItemView(QWidget):
         self.name_label = QLabel("Menu Name", self)
         self.name_label.setObjectName("default_label")
         self.name_label.setFont(Theme.DONGLE_BOLD_65)
-        self.name_label.setGeometry(QRect(20, 25, 280, 40))
+        self.name_label.setGeometry(QRect(20, 25, 200, 40))
 
         self.minus_button = QPushButton("-", self)
         self.minus_button.setObjectName("default_button")
