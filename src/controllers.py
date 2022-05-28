@@ -163,8 +163,8 @@ class OrderListItem(Controller):
     parent: OrderPage
     view : OrderListItemView
 
-    def __init__(self, parent: Controller, view: QWidget, model: Model):
-        super().__init__(view, model)
+    def __init__(self, parent: Controller, view: QWidget, item:object):
+        super().__init__(view, None)
         self.__parent = parent
 
 
