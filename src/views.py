@@ -356,7 +356,7 @@ class OrderListItemView(QWidget):
         self.setObjectName("brown_item")
 
         self.name_button = QPushButton("Menu Name", self)
-        self.name_button.setObjectName("list_button")
+        self.name_button.setObjectName("brown_list_button")
         self.name_button.setFont(Theme.DONGLE_REGULAR_65)
         self.name_button.setGeometry(QRect(50, 10, 780, 50))
 
@@ -1243,7 +1243,7 @@ class AdminListItem(QWidget):
         self.setFixedSize(880, 80)
 
         self.name_button = QPushButton("List Name", self)
-        self.name_button.setObjectName("list_button")
+        self.name_button.setObjectName("white_list_button")
         self.name_button.setFont(Theme.DONGLE_REGULAR_65)
         self.name_button.setGeometry(QRect(50, 10, 780, 50))
 

@@ -260,16 +260,24 @@ QPushButton#account_button:hover {
 /* 
     List Item
 */
-QPushButton#list_button {
+QPushButton#brown_list_button, #white_list_button {
     color: #4A321C;
     background: transparent;
     text-align:left;
 }
 
-QPushButton#list_button:hover {
+QPushButton#brown_list_button:hover {
     color: #F9F5F0;
 }
 
-QPushButton#list_button:pressed {
+QPushButton#white_list_button:hover {
+    color: #D8B797;
+}
+
+QPushButton#brown_list_button:pressed,  {
+    color: #754926;
+}
+
+QPushButton#white_list_button:pressed {
     color: #754926;
 }
