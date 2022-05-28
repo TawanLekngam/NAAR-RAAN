@@ -10,7 +10,7 @@ class LoginView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(1920, 1080)
-    
+
         label_logo = QLabel(self)
         label_logo.setObjectName("label_logo")
         label_logo.setGeometry(QRect(846, 158, 252, 252))
@@ -183,10 +183,10 @@ class OrderView(QWidget):
         total_label.setFont(Theme.DONGLE_BOLD_65)
         total_label.setGeometry(QRect(420, 660, 110, 40))
 
-        number_label = QLabel("0", order_frame)
-        number_label.setObjectName("default_label")
-        number_label.setFont(Theme.DONGLE_BOLD_65)
-        number_label.setGeometry(QRect(540, 660, 115, 40))
+        self.number_label = QLabel("0", order_frame)
+        self.number_label.setObjectName("default_label")
+        self.number_label.setFont(Theme.DONGLE_BOLD_65)
+        self.number_label.setGeometry(QRect(540, 660, 115, 40))
 
         self.order_button = QPushButton("Order", self)
         self.order_button.setObjectName("cancel_add_button")
@@ -201,9 +201,21 @@ class OrderView(QWidget):
         self.stacked_widget = QStackedWidget(self.stacked_frame)
         self.stacked_widget.setObjectName("stacked_widget")
         self.stacked_widget.setGeometry(QRect(0, -50, 1920, 1060))
-        self.stacked_widget.setStyleSheet("background: black")
+        #self.stacked_widget.setStyleSheet("background: black")
 
         self.setStyleSheet(Theme.get_stylesheet())
+
+    def insert_view(self, view: QWidget, index: int = 0) -> None:
+        self.stacked_widget.insertWidget(0, view)
+
+    def set_total(self, total_price: float = 0) -> None:
+        self.number_label.setText(f"{total_price:.01f}")
+
+    def get_total(self) -> float:
+        return float(self.number_label.text())
+
+    def move_to_index(self, index: int) -> None:
+        self.stacked_widget.setCurrentIndex(index)
 
 
 class OrderItem(QWidget):
@@ -256,7 +268,8 @@ class OrderItem(QWidget):
         return float(self.price_label.text())
 
 
-class MenuListView(QWidget):
+class OrderListView(QWidget):
+    "left side view"
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
 
@@ -286,7 +299,9 @@ class MenuListView(QWidget):
         self.setStyleSheet(Theme.get_stylesheet())
 
 
-class MenuListItem(QWidget):
+
+class OrderListItem(QWidget):
+    "for order item view."
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(880, 80)
@@ -543,12 +558,11 @@ class LogView(QWidget):
         self.listWidget_auditlog.setFont(Theme.DONGLE_BOLD_65)
 
         self.setStyleSheet(Theme.get_stylesheet())
-    
-    def add_view(self,items: list):
+
+    def add_view(self, items: list):
         # for element in items:
         #     self.listWidget_auditlog.addItems(element)
         pass
-        
 
 
 class LogItem(QWidget):
@@ -642,6 +656,7 @@ class MenuView(QWidget):
 
 class MenuCreateView(QWidget):
     "sub view for menu view"
+
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(720, 850)
@@ -730,6 +745,7 @@ class MenuCreateView(QWidget):
 
 class MenuEditView(QWidget):
     "sub view for menu view"
+
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(720, 850)
