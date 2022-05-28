@@ -1,33 +1,72 @@
 /* 
-    application stylesheet
+    application deafult stylesheet
 */
 
 QWidget {
     background-color: #F9F5F0;
 }
 
-/* Log In */
-
-QLabel#label_username, #label_password {
-    background-color: transparent;
+QLabel#default_label {
     color: #4A321C;
+    background:transparent;
 }
 
-QLineEdit#lineEdit_username, #lineEdit_password {
-    padding-left: 30px;
-    padding-right: 30px;
+QPushButton#default_button {
     color: #4A321C;
     background: #D8B797;
     border-radius: 20px;
 }
 
-QPushButton#pushButton {
+QPushButton#default_button:checked {
     background-color: #754926;
-    width: 200px;
-    height: 80px;
+    border-radius: 20px;
+    color: #F9F5F0;
+}
+
+QRadioButton#default_radio {
+    color: #4A321C;
+    background:transparent;
+}
+
+QRadioButton#default_radio::indicator {
+    background: #F9F5F0;
+    width: 30px;
+    height: 30px;
+    border: 5px solid #754926;
+    border-radius: 20px;
+}
+
+QRadioButton#default_radio::indicator:checked {
+    background-color:  #754926;
+	height: 30px;
+	width: 30px;
+	border-radius: 20px;
+}
+
+QCheckBox#default_checkbox {
+    background: transparent;
+    color: #4A321C;
+}
+
+QCheckBox#default_checkbox::indicator {
+    width: 50px;
+    height: 50px;
+    background: #F9F5F0;
+    border: 5px solid #754926;
+    border-radius: 20px;
+}
+
+QCheckBox#default_checkbox::indicator:checked {
+    image: url(src/asset/Image/checkmark.png);
+}
+
+/* Log In */
+
+QLineEdit#logIn_bar {
     padding-left: 30px;
     padding-right: 30px;
-    border: 5px solid #754926;
+    color: #4A321C;
+    background: #D8B797;
     border-radius: 20px;
 }
 
@@ -209,11 +248,6 @@ QFrame#order_line {
     background-color: #D8B797;
 }
 
-QLabel#default_label {
-    color: #4A321C;
-    background:transparent;
-}
-
 QPushButton#order_button {
     background-color: #754926;
     color: #F9F5F0;
@@ -247,18 +281,6 @@ QFrame#order_frame {
 QLabel#menu_name {
     color: #4A321C;
     background: transparent;
-}
-
-QPushButton#default_button {
-    color: #4A321C;
-    background: #D8B797;
-    border-radius: 20px;
-}
-
-QPushButton#default_button:checked {
-    background-color: #754926;
-    border-radius: 20px;
-    color: #F9F5F0;
 }
 
 QLabel#sweetness_label {
@@ -323,49 +345,12 @@ QLineEdit#input_bar {
     border-radius: 20px;
 }
 
-QRadioButton#default_radio {
-    color: #4A321C;
-    background:transparent;
-}
-
-QRadioButton#default_radio::indicator {
-    background: #F9F5F0;
-    width: 30px;
-    height: 30px;
-    border: 5px solid #754926;
-    border-radius: 20px;
-}
-
-QRadioButton#default_radio::indicator:checked {
-    background-color:  #754926;
-	height: 30px;
-	width: 30px;
-	border-radius: 20px;
-}
-
 QLineEdit#price_bar {
     padding-left: 30px;
     padding-right: 30px;
     color: #4A321C;
     background: #F9F5F0;
     border-radius: 20px;
-}
-
-QCheckBox#default_checkbox {
-    background: transparent;
-    color: #4A321C;
-}
-
-QCheckBox#default_checkbox::indicator {
-    width: 50px;
-    height: 50px;
-    background: #F9F5F0;
-    border: 5px solid #754926;
-    border-radius: 20px;
-}
-
-QCheckBox#default_checkbox::indicator:checked {
-    image: url(src/asset/Image/checkmark.png);
 }
 
 /* Receipt and Log*/
