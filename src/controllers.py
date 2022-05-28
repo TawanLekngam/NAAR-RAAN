@@ -151,6 +151,7 @@ class OrderPage(Controller):
         receipt = Receipt(f"Income: {self.total} Bath.")
         self.model.create_new_receipt(receipt)
         self.view.reset()
+        self.total = 0.0
         
 
 class OrderList(Controller):
