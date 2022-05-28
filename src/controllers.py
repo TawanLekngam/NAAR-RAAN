@@ -155,7 +155,8 @@ class OrderList(Controller):
             self.view.add_widget_to_scrollarea(self.__create_item_widget(item))
 
     def __create_item_widget(self, item) -> OrderListItemView:
-        order_listitem = OrderListItem(self.__parent, OrderListItemView(), item)
+        order_listitem = OrderListItem(
+            self.__parent, OrderListItemView(), item)
         return order_listitem.view
 
 
@@ -174,7 +175,17 @@ class OrderListItem(Controller):
     def click_item(self) -> None:
         if isinstance(self.item, Drink):
             self.__parent.view.insert_view(DrinkDetailView(), 1)
-            self.__parent.view.move_to_index(1)
+
+        else:
+            self.__parent.view.insert_view(BakeryDetailView(), 1)
+
+        self.__parent.view.move_to_index(1)
+
+
+class DrinkDetail(Controller):
+
+    def __init__(self, parent: Controller, view: QWidget, item: object):
+        pass
 
 
 class LogPage(Controller):
