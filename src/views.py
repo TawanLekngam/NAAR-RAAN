@@ -677,6 +677,7 @@ Empty Page
 class AdminEmptyView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
+        self.setFixedSize(720, 850)
 
         admin_frame = QFrame(self)
         admin_frame.setObjectName("brown_frame")
