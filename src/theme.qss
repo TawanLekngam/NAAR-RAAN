@@ -274,7 +274,7 @@ QPushButton#white_list_button:hover {
     color: #D8B797;
 }
 
-QPushButton#brown_list_button:pressed,  {
+QPushButton#brown_list_button:pressed {
     color: #754926;
 }
 
