@@ -63,8 +63,8 @@ class HomePage(Controller):
     def __init__(self, root, view: QWidget, model: Model, user: User):
         super().__init__(view, model)
         self.__root = root
-        self.view.user_button.setText(user.get_username())
-        self.view.user_button.clicked.connect(self.__root.move_to_login)
+        self.view.set_username(user.get_username())
+        self.view.set_logout_button_listener(self.__root.move_to_login)
         self.__admin_access = (user.get_access_level() == "admin")
         self.initialize()
 

@@ -1,6 +1,7 @@
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
+from sqlalchemy import func
 
 from theme import Theme
 
@@ -141,6 +142,9 @@ class HomeView(QWidget):
 
     def set_username(self, username: str) -> None:
         self.user_button.setText(username)
+
+    def set_logout_button_listener(self, function) -> None:
+        self.user_button.clicked.connect(function)
 
     def set_home_button_listener(self, function) -> None:
         self.home_button.clicked.connect(function)
