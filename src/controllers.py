@@ -260,7 +260,7 @@ class BakeryDetail(Controller):
         self.parent.view.stacked_widget.removeWidget(self.view)
 
     def add_order(self) -> None:
-        order_item = OrderItem(self.item.get_name()[0:12],
+        order_item = OrderItem(self.item.get_name()[0:11],
                                self.item.get_price(), parent=self.parent)
         self.parent.view.vBox.addWidget(order_item.view)
         self.parent.view.stacked_widget.removeWidget(self.view)
