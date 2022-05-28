@@ -261,7 +261,6 @@ class OrderItem(Controller):
         self.view.set_quantity(self.quantity)
         self.view.set_price_label(self.price * self.quantity)
 
-
     def decrease(self):
         if self.quantity <= 0:
             return
@@ -279,10 +278,15 @@ class LogPage(Controller):
 
     def __init__(self, view: QWidget, model: Model):
         super().__init__(view, model)
-        self.update_log()
+        self.initialize()
 
-    def update_log(self):
-        self.view.add_view(self.model.get_all_logs())
+    def initialize(self) -> None:
+        log_list:list[Log] = self.model.get_all_logs()
+        for log in log_list:
+            self.view.add_log_to_scrollarea(self.__create_log_widget(log))
+
+    def __create_log_widget(self, log: Log) -> LogItem:
+        return LogItem(log.get_date(), log.get_time(), log.get_desc())
 
 
 class ReceiptPage(Controller):
