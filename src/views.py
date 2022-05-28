@@ -221,7 +221,7 @@ class OrderView(QWidget):
         self.setStyleSheet(Theme.get_stylesheet())
 
     def set_order_button_listener(self, function) -> None:
-        self.user_button.clicked.connect(function)
+        self.order_button.clicked.connect(function)
 
     def insert_view(self, view: QWidget, index: int = 0) -> None:
         self.stacked_widget.insertWidget(0, view)
