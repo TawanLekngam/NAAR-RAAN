@@ -129,6 +129,9 @@ class OrderModel(Model):
         self.__receipt_dao.add_receipt(receipt)
 
 
+class OrderListModel(Model):
+    pass
+
 class ReceiptModel(Model):
 
     def __init__(self):
