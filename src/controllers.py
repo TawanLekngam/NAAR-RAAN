@@ -177,11 +177,14 @@ class OrderListItem(Controller):
 
     def click_item(self) -> None:
         if isinstance(self.item, Drink):
-            drink_detail = DrinkDetail(self.__parent,DrinkDetailView(),self.item)
+            drink_detail = DrinkDetail(
+                self.__parent, DrinkDetailView(), self.item)
             self.__parent.view.insert_view(drink_detail.view, 1)
 
         else:
-            self.__parent.view.insert_view(BakeryDetailView(), 1)
+            bakery_detail = BakeryDetail(
+                self.__parent, BakeryDetailView(), self.item)
+            self.__parent.view.insert_view(bakery_detail.view, 1)
 
         self.__parent.view.move_to_index(1)
 
@@ -196,7 +199,11 @@ class DrinkDetail(Controller):
         self.__parent = parent
         self.item = item
 
+        self.view.set_name(item.get_name())
+        self.view.set_cancel_button_listener(lambda: self.cancel_order())
+
     def cancel_order(self) -> None:
+        print("hi")
         self.__parent.move_to_order()
 
     def add_order(self) -> None:
@@ -212,6 +219,8 @@ class BakeryDetail(Controller):
         super().__init__(view, None)
         self.__parent = parent
         self.item = item
+
+        self.view.set_name(item.get_name())
 
     def cancel_order(self) -> None:
         self.__parent.move_to_order()
