@@ -132,6 +132,9 @@ class LogPage(Controller):
     def __init__(self, view: QWidget, model: Model):
         super().__init__(view, model)
 
+    def update_log(self) -> None:
+        pass
+
 
 class ReceiptPage(Controller):
 

@@ -125,6 +125,9 @@ class OrderModel(Model):
         products.sort(key=lambda x: x.name)
         return products
 
+    def create_new_receipt(self, receipt: Receipt) -> None:
+        self.__receipt_dao.add_receipt(receipt)
+
 
 class ReceiptModel(Model):
 
