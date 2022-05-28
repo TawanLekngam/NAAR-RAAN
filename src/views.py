@@ -468,7 +468,7 @@ class DrinkDetailView(QWidget):
         return self.sweetness_buttonGroup.checkedButton().text()
 
     def get_detail(self) -> str:
-        return f"{self.menu_name.text()[0:6]} {self.get_drink_type()[0].upper()}{int(self.get_sweetness()):02d}"
+        return f"{self.menu_name.text()[0:8]} {self.get_drink_type()[0].upper()}{int(self.get_sweetness()):02d}"
 
     def set_cancel_button_listener(self, function) -> None:
         self.cancel_button.clicked.connect(function)

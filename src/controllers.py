@@ -140,11 +140,11 @@ class OrderPage(Controller):
 
     def increase_total(self, value: float):
         self.total += value
-        self.view.set_total(value)
+        self.view.set_total(self.total)
 
     def decrease_total(self, value: float):
         self.total -= value
-        self.view.set_total(value)
+        self.view.set_total(self.total)
 
 
 class OrderList(Controller):
@@ -246,7 +246,7 @@ class BakeryDetail(Controller):
         self.parent.view.stacked_widget.removeWidget(self.view)
 
     def add_order(self) -> None:
-        order_item = OrderItem(self.item.get_name(),
+        order_item = OrderItem(self.item.get_name()[0:12],
                                self.item.get_price(), parent=self.parent)
         self.parent.view.vBox.addWidget(order_item.view)
         self.parent.view.stacked_widget.removeWidget(self.view)
