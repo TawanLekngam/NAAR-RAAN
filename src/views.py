@@ -1,18 +1,8 @@
-"""
-    contain all views and utility widgets.
-"""
-
-import sys
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
 from theme import Theme
-
-
-"""
-    application view.
-"""
 
 
 class LoginView(QWidget):
@@ -44,7 +34,6 @@ class LoginView(QWidget):
         self.error.setObjectName("default_label")
         self.error.setFont(Theme.DONGLE_REGULAR_50)
         self.error.setGeometry(QRect(836, 600, 600, 50))
-        
 
         self.lineEdit_password = QLineEdit(self)
         self.lineEdit_password.setObjectName("lineEdit_password")
@@ -107,9 +96,9 @@ class HomeView(QWidget):
         self.home_button.setObjectName("home_button_base_page")
         self.home_button.setGeometry(QRect(36, 0, 100, 100))
 
-        self.auditLog_button = QPushButton(self.tab_frame)
-        self.auditLog_button.setObjectName("history_button_base_page")
-        self.auditLog_button.setGeometry(QRect(136, 0, 100, 100))
+        self.log_button = QPushButton(self.tab_frame)
+        self.log_button.setObjectName("history_button_base_page")
+        self.log_button.setGeometry(QRect(136, 0, 100, 100))
 
         self.receipt_button = QPushButton(self.tab_frame)
         self.receipt_button.setObjectName("receipt_button_base_page")
@@ -119,9 +108,9 @@ class HomeView(QWidget):
         self.menu_button.setObjectName("menu_button_base_page")
         self.menu_button.setGeometry(QRect(336, 0, 100, 100))
 
-        self.employee_button = QPushButton(self.tab_frame)
-        self.employee_button.setObjectName("employee_button_base_page")
-        self.employee_button.setGeometry(QRect(436, 0, 100, 100))
+        self.account_button = QPushButton(self.tab_frame)
+        self.account_button.setObjectName("account_button_base_page")
+        self.account_button.setGeometry(QRect(436, 0, 100, 100))
 
         self.stacked_frame = QFrame(self)
         self.stacked_frame.setObjectName("stacked_frame")
@@ -131,28 +120,42 @@ class HomeView(QWidget):
         self.stacked_widget.setObjectName("stacked_widget")
         self.stacked_widget.setGeometry(QRect(0, -50, 1920, 980))
 
-        # self.drink_detail = DrinkDetailView()
-        # self.drink_detail.setObjectName("drink_detail_page")
-        # self.stacked_widget.addWidget(self.drink_detail)
-
-        # self.bakery_detail = BakeryDetailView()
-        # self.bakery_detail.setObjectName("bakery_detail_page")
-        # self.stacked_widget.addWidget(self.bakery_detail)
-
-        # self.menu_list_page = OrderView()
-        # self.menu_list_page.setObjectName("menu_list_page")
-        # self.stacked_widget.addWidget(self.menu_list_page)
-
         self.setStyleSheet(Theme.get_stylesheet())
 
     def add_view(self, view: QWidget) -> None:
-        self.stackedWidget.addWidget(view)
+        self.stacked_widget.addWidget(view)
 
-    def show_admin_menu(self) -> None:
-        pass
+    def show_admin_button(self) -> None:
+        self.home_button.show()
+        self.log_button.show()
+        self.receipt_button.show()
+        self.menu_button.show()
+        self.account_button.show()
+
+    def hide_admin_button(self) -> None:
+        self.home_button.hide()
+        self.log_button.hide()
+        self.receipt_button.hide()
+        self.menu_button.hide()
+        self.account_button.hide()
 
     def set_username(self, username: str) -> None:
         self.user_button.setText(username)
+
+    def set_home_button_listener(self, function) -> None:
+        self.home_button.clicked.connect(function)
+
+    def set_log_button_listener(self, function) -> None:
+        self.log_button.clicked.connect(function)
+
+    def set_receipt_button_listener(self, function) -> None:
+        self.receipt_button.clicked.connect(function)
+
+    def set_menu_button_listener(self, function) -> None:
+        self.menu_button.clicked.connect(function)
+
+    def set_account_button_listener(self, function) -> None:
+        self.account_button.clicked.connect(function)
 
 
 class OrderView(QWidget):
@@ -210,7 +213,7 @@ class OrderList(QWidget):
         self.minus_button = QPushButton("-", self)
         self.minus_button.setObjectName("cancel_add_button")
         self.minus_button.setFont(Theme.DONGLE_REGULAR_65)
-        self.minus_button.setGeometry(QRect(290, 15, 50 , 50))
+        self.minus_button.setGeometry(QRect(290, 15, 50, 50))
 
         self.quantity_label = QLabel("1", self)
         self.quantity_label.setObjectName("default_label")
@@ -220,7 +223,7 @@ class OrderList(QWidget):
         self.plus_button = QPushButton("+", self)
         self.plus_button.setObjectName("cancel_add_button")
         self.plus_button.setFont(Theme.DONGLE_REGULAR_65)
-        self.plus_button.setGeometry(QRect(460, 15, 50 , 50))
+        self.plus_button.setGeometry(QRect(460, 15, 50, 50))
 
         self.price_label = QLabel("00", self)
         self.price_label.setObjectName("default_label")
@@ -363,6 +366,7 @@ class DrinkDetailView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+
 class BakeryDetailView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -501,7 +505,7 @@ class LogItem(QWidget):
         self.date.setObjectName("default_label")
         self.date.setFont(Theme.DONGLE_REGULAR_65)
         self.date.setGeometry(QRect(100, 10, 211, 41))
-        
+
         self.time = QLabel("00:00", self)
         self.time.setObjectName("default_label")
         self.time.setFont(Theme.DONGLE_REGULAR_65)
@@ -535,7 +539,7 @@ class AdminEmptyView(QWidget):
         self.setStyleSheet(Theme.get_stylesheet())
 
 
-class MenuAdminView(QWidget):
+class MenuView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
 
@@ -749,7 +753,7 @@ class MenuEdit(QWidget):
         self.setStyleSheet(Theme.get_stylesheet())
 
 
-class EmployeeAdminView(QWidget):
+class AccountView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
 
@@ -782,7 +786,6 @@ class EmployeeAdminView(QWidget):
         add_button.setGeometry(QRect(915, 820, 100, 100))
 
         self.setStyleSheet(Theme.get_stylesheet())
-
 
 
 class EmployeeEdit(QWidget):

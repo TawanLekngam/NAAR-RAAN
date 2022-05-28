@@ -62,7 +62,7 @@ QPushButton#menu_button_base_page {
     image: url(src/asset/Image/menu);
 }
 
-QPushButton#employee_button_base_page {
+QPushButton#account_button_base_page {
    background: transparent;
     image: url(src/asset/Image/user);
 }
@@ -83,7 +83,7 @@ QPushButton#menu_button_base_page:hover {
     image: url(src/asset/Image/menu_hover);
 }
 
-QPushButton#employee_button_base_page:hover {
+QPushButton#account_button_base_page:hover {
     image: url(src/asset/Image/user_hover);
 }
 
