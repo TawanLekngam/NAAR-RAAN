@@ -300,11 +300,16 @@ class OrderListView(QWidget):
         self.menu_scrollAreaContents = QWidget(self.menu_scrollArea)
         self.menu_scrollAreaContents.setObjectName("menu_scrollAreaContents")
         self.menu_scrollAreaContents.setGeometry(QRect(0, 0, 883, 628))
-        vBox = QVBoxLayout()
-        self.menu_scrollAreaContents.setLayout(vBox)
+
+        self.vBox = QVBoxLayout()
+        self.menu_scrollAreaContents.setLayout(self.vBox)
         self.menu_scrollArea.setWidget(self.menu_scrollAreaContents)
 
         self.setStyleSheet(Theme.get_stylesheet())
+
+    def add_widget_to_scrollarea(self, widget: QWidget) -> None:
+        self.vBox.addWidget(widget)
+
 
 
 class OrderListItemView(QWidget):
@@ -530,7 +535,6 @@ class LogView(QWidget):
         vBox = QVBoxLayout()
         self.log_scrollAreaContents.setLayout(vBox)
         self.log_scrollArea.setWidget(self.log_scrollAreaContents)
-
 
         self.setStyleSheet(Theme.get_stylesheet())
 
