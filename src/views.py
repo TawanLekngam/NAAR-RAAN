@@ -461,6 +461,15 @@ class DrinkDetailView(QWidget):
     def get_sweetness(self) -> str:
         return self.sweetness_buttonGroup.checkedButton().text()
 
+    def set_hbtn_able(self, able: bool) -> None:
+        self.hot_button.setEnabled(able)
+
+    def set_cbtn_able(self, able: bool) -> None:
+        self.cold_button.setEnabled(able)
+
+    def set_bbtn_able(self, able: bool) -> None:
+        self.blended_button.setEnabled(able)
+
     def get_detail(self) -> str:
         return f"{self.menu_name.text()[0:6]} {self.get_drink_type()[0].upper()}{int(self.get_sweetness()):02d}"
 

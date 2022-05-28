@@ -209,6 +209,13 @@ class DrinkDetail(Controller):
         self.view.set_cancel_button_listener(lambda: self.cancel_order())
         self.view.set_add_button_listener(lambda: self.add_order())
 
+        if self.item.get_hprice() == 0.0:
+            self.view.set_hbtn_able(False)
+        if self.item.get_cprice() == 0.0:
+            self.view.set_cbtn_able(False)
+        if self.item.get_bprice() == 0.0:
+            self.view.set_bbtn_able(False)
+
     def cancel_order(self) -> None:
         self.parent.view.stacked_widget.removeWidget(self.view)
 
