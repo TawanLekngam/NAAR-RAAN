@@ -310,9 +310,11 @@ class OrderListView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+    def get_searched_item(self) -> str:
+        return self.search_bar.text()
+
     def add_widget_to_scrollarea(self, widget: QWidget) -> None:
         self.vBox.addWidget(widget)
-
 
 
 class OrderListItemView(QWidget):
@@ -637,6 +639,9 @@ class MenuView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+    def get_searched_item(self) -> str:
+        return self.search_bar.text()
+
 
 class MenuCreateView(QWidget):
     "sub view for menu view"
@@ -830,7 +835,7 @@ class AccountView(QWidget):
         admin_frame.setGeometry(75, 115, 1000, 850)
 
         user_label = QLabel("User", admin_frame)
-        user_label.setObjectName("menu_label")
+        user_label.setObjectName("default_label")
         user_label.setFont(Theme.DONGLE_BOLD_80)
         user_label.setGeometry(QRect(55, 70, 130, 51))
 
@@ -866,6 +871,9 @@ class AccountView(QWidget):
         self.stacked_widget.setStyleSheet("background: black")
 
         self.setStyleSheet(Theme.get_stylesheet())
+    
+    def get_searched_item(self) -> str:
+        return self.search_bar.text()
 
 
 class AccountCreateView(QWidget):
