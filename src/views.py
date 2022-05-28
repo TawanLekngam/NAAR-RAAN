@@ -273,6 +273,7 @@ class OrderItem(QWidget):
 
 class OrderListView(QWidget):
     "left side view"
+
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
 
@@ -302,9 +303,9 @@ class OrderListView(QWidget):
         self.setStyleSheet(Theme.get_stylesheet())
 
 
-
-class OrderListItem(QWidget):
+class OrderListItemView(QWidget):
     "for order item view."
+
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(880, 80)
@@ -320,6 +321,12 @@ class OrderListItem(QWidget):
         white_line.setGeometry(QRect(30, 70, 820, 3))
 
         self.setStyleSheet(Theme.get_stylesheet())
+
+    def set_itemname(self, item_name: str) -> None:
+        self.name_button.setText(item_name)
+
+    def set_button_listener(self, function) -> None:
+        self.name_button.clicked.connect(function)
 
 
 class DrinkDetailView(QWidget):
@@ -537,7 +544,8 @@ class ReceiptView(QWidget):
         self.receipt_scrollArea.setGeometry(QRect(45, 129, 1712, 750))
 
         self.receipt_scrollAreaContents = QWidget(self.receipt_scrollArea)
-        self.receipt_scrollAreaContents.setObjectName("menu_scrollAreaContents")
+        self.receipt_scrollAreaContents.setObjectName(
+            "menu_scrollAreaContents")
         self.receipt_scrollAreaContents.setGeometry(QRect(0, 0, 1710, 748))
         self.receipt_scrollArea.setWidget(self.receipt_scrollAreaContents)
 

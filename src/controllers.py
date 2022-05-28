@@ -155,6 +155,19 @@ class OrderList(Controller):
         self.__parent = parent
 
 
+    def load_item(self, filter:str = None):
+        item_list = list()
+
+
+class OrderListItem(Controller):
+    parent: OrderPage
+    view : OrderListItemView
+
+    def __init__(self, parent: Controller, view: QWidget, model: Model):
+        super().__init__(view, model)
+        self.__parent = parent
+
+
 class LogPage(Controller):
     view: LogView
     model: LogModel
