@@ -251,7 +251,8 @@ class OrderItemView(QWidget):
         self.quantity_label.setEnabled(False)
         self.quantity_label.setObjectName("default_label")
         self.quantity_label.setFont(Theme.DONGLE_REGULAR_65)
-        self.quantity_label.setGeometry(QRect(370, 25, 230, 40))
+        self.quantity_label.setAlignment(Qt.AlignCenter)
+        self.quantity_label.setGeometry(QRect(365, 25, 50, 40))
 
         self.plus_button = QPushButton("+", self)
         self.plus_button.setObjectName("default_button")
@@ -262,7 +263,8 @@ class OrderItemView(QWidget):
         self.price_label.setEnabled(False)
         self.price_label.setObjectName("default_label")
         self.price_label.setFont(Theme.DONGLE_REGULAR_65)
-        self.price_label.setGeometry(QRect(510, 25, 230, 40))
+        self.price_label.setAlignment(Qt.AlignCenter)
+        self.price_label.setGeometry(QRect(485, 25, 150, 40))
 
         self.setStyleSheet(Theme.get_stylesheet())
 
