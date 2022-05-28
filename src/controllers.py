@@ -249,7 +249,7 @@ class OrderItem(Controller):
     def decrease(self):
         self.quantity -= 1
         self.view.set_quantity(self.quantity)
-        self.view.set_price_label(f"{self.price * self.quantity:.01f"")
+        self.view.set_price_label(f"{self.price * self.quantity:.01f}")
         if self.quantity <= 0:
             self.view.hide()
 
