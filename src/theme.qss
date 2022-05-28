@@ -259,19 +259,15 @@ QPushButton#list_button {
     Menu List 
 */
 
-/* QScrollArea#menu_scrollArea {
+QScrollArea#menu_scrollArea {
     background-color: transparent;
-    font-family: "Dongle";
-    font-size: 65pt;
     color: #4A321C;
 }
 
 QWidget#menu_scrollAreaContents {
     background-color: transparent;
-    font-family: "Dongle";
-    font-size: 65pt;
     color: #4A321C;
-} */
+}
 
 /* 
     Order List

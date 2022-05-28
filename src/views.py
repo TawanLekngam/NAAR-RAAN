@@ -290,12 +290,15 @@ class OrderListView(QWidget):
 
         self.search_bar = QLineEdit(self)
         self.search_bar.setObjectName("search_bar")
-        self.search_bar.setFont(Theme.DONGLE_BOLD_65)
+        self.search_bar.setFont(Theme.DONGLE_REGULAR_65)
         self.search_bar.setGeometry(QRect(272, 40, 677, 80))
 
         self.menu_scrollArea = QScrollArea(self)
         self.menu_scrollArea.setObjectName("menu_scrollArea")
         self.menu_scrollArea.setGeometry(QRect(57, 169, 885, 630))
+        self.menu_scrollArea.setWidgetResizable(True)
+        self.menu_scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.menu_scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
         self.menu_scrollAreaContents = QWidget(self.menu_scrollArea)
         self.menu_scrollAreaContents.setObjectName("menu_scrollAreaContents")
@@ -603,7 +606,7 @@ class MenuView(QWidget):
 
         self.search_bar = QLineEdit(admin_frame)
         self.search_bar.setObjectName("search_bar")
-        self.search_bar.setFont(Theme.DONGLE_BOLD_65)
+        self.search_bar.setFont(Theme.DONGLE_REGULAR_65)
         self.search_bar.setGeometry(QRect(260, 53, 680, 80))
 
         self.admin_scrollArea = QScrollArea(admin_frame)
@@ -833,7 +836,7 @@ class AccountView(QWidget):
 
         self.search_bar = QLineEdit(admin_frame)
         self.search_bar.setObjectName("search_bar")
-        self.search_bar.setFont(Theme.DONGLE_BOLD_65)
+        self.search_bar.setFont(Theme.DONGLE_REGULAR_65)
         self.search_bar.setGeometry(QRect(260, 53, 680, 80))
 
         self.admin_scrollArea = QScrollArea(admin_frame)
