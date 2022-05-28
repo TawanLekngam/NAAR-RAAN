@@ -554,10 +554,6 @@ class ReceiptView(QWidget):
         self.label_name.setGeometry(QRect(688, 31, 250, 61))
         self.label_name.setFont(Theme.DONGLE_BOLD_70)
 
-        # self.listWidget_auditlog = QListWidget(self.log_frame)
-        # self.listWidget_auditlog.setObjectName("listWidget_auditlog")
-        # self.listWidget_auditlog.setGeometry(QRect(39, 150, 1722, 810))
-
         brown_line = QFrame(receipt_frame)
         brown_line.setObjectName("dark_brown_line")
         brown_line.setGeometry(QRect(40, 103, 1722, 3))
@@ -829,6 +825,12 @@ class MenuCreateView(QWidget):
         self.blended_price.setGeometry(QRect(480, 459, 200, 60))
         self.blended_price.setAlignment(Qt.AlignCenter)
 
+        self.bakery_price = QLineEdit(self)
+        self.bakery_price.setObjectName("input_bar")
+        self.bakery_price.setFont(Theme.DONGLE_REGULAR_65)
+        self.bakery_price.setGeometry(QRect(210, 281, 200, 60))
+        self.bakery_price.setAlignment(Qt.AlignCenter)
+
         self.cancel_button = QPushButton("Cancel", self)
         self.cancel_button.setObjectName("default_button")
         self.cancel_button.setFont(Theme.DONGLE_REGULAR_65)
@@ -918,6 +920,12 @@ class MenuEditView(QWidget):
         self.blended_price.setFont(Theme.DONGLE_REGULAR_65)
         self.blended_price.setGeometry(QRect(480, 459, 200, 60))
         self.blended_price.setAlignment(Qt.AlignCenter)
+
+        self.bakery_price = QLineEdit(self)
+        self.bakery_price.setObjectName("input_bar")
+        self.bakery_price.setFont(Theme.DONGLE_REGULAR_65)
+        self.bakery_price.setGeometry(QRect(210, 281, 200, 60))
+        self.bakery_price.setAlignment(Qt.AlignCenter)
 
         self.cancel_button = QPushButton("Cancel", self)
         self.cancel_button.setObjectName("default_button")
