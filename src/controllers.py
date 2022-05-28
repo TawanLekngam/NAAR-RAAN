@@ -132,6 +132,7 @@ class OrderPage(Controller):
         self.total = 0.0
 
         self.initialize()
+        self.view.set_order_button_listener(self.confirm_order)
 
     def initialize(self) -> None:
         self.order_list = OrderList(self, OrderListView(), OrderListModel())
@@ -146,6 +147,11 @@ class OrderPage(Controller):
         self.total -= value
         self.view.set_total(self.total)
 
+    def confirm_order(self) -> None:
+        receipt = Receipt(f"Income: {self.total} Bath.")
+        self.model.create_new_receipt(receipt)
+        self.view.reset()
+        
 
 class OrderList(Controller):
     "sub controller"

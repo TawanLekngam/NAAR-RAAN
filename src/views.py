@@ -241,6 +241,9 @@ class OrderView(QWidget):
     def move_to_index(self, index: int) -> None:
         self.stacked_widget.setCurrentIndex(index)
 
+    def reset(self) -> None:
+        self.vBox = QVBoxLayout()
+
 # Order item (Sub view for order view)
 
 
