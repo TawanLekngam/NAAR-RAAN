@@ -592,7 +592,8 @@ class MenuView(QWidget):
         self.setStyleSheet(Theme.get_stylesheet())
 
 
-class AddMenuAdmin(QWidget):
+class MenuCreateView(QWidget):
+    "sub view for menu view"
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(720, 850)
@@ -679,7 +680,8 @@ class AddMenuAdmin(QWidget):
         self.setStyleSheet(Theme.get_stylesheet())
 
 
-class MenuEdit(QWidget):
+class MenuEditView(QWidget):
+    "sub view for menu view"
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(720, 850)
