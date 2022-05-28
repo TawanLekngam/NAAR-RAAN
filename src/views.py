@@ -198,6 +198,11 @@ class OrderView(QWidget):
         self.stacked_frame.setGeometry(QRect(75, 115, 1000, 850))
         # self.stacked_frame.setStyleSheet("background: black")
 
+        self.stacked_widget = QStackedWidget(self.stacked_frame)
+        self.stacked_widget.setObjectName("stacked_widget")
+        self.stacked_widget.setGeometry(QRect(0, -50, 1920, 1060))
+        self.stacked_widget.setStyleSheet("background: black")
+
         self.setStyleSheet(Theme.get_stylesheet())
 
 
@@ -540,8 +545,9 @@ class LogView(QWidget):
         self.setStyleSheet(Theme.get_stylesheet())
     
     def add_view(self,items: list):
-        for element in items:
-            self.listWidget_auditlog.addItems(element)
+        # for element in items:
+        #     self.listWidget_auditlog.addItems(element)
+        pass
         
 
 
@@ -620,6 +626,16 @@ class MenuView(QWidget):
         add_button.setObjectName("cancel_add_button")
         add_button.setFont(Theme.DONGLE_REGULAR_65)
         add_button.setGeometry(QRect(915, 820, 100, 100))
+
+        self.stacked_frame = QFrame(self)
+        self.stacked_frame.setObjectName("stacked_frame")
+        self.stacked_frame.setGeometry(QRect(1130, 115, 720, 850))
+        # self.stacked_frame.setStyleSheet("background: black")
+
+        self.stacked_widget = QStackedWidget(self.stacked_frame)
+        self.stacked_widget.setObjectName("stacked_widget")
+        self.stacked_widget.setGeometry(QRect(0, 0, 720, 850))
+        self.stacked_widget.setStyleSheet("background: black")
 
         self.setStyleSheet(Theme.get_stylesheet())
 
@@ -836,6 +852,16 @@ class AccountView(QWidget):
         add_button.setObjectName("cancel_add_button")
         add_button.setFont(Theme.DONGLE_REGULAR_65)
         add_button.setGeometry(QRect(915, 820, 100, 100))
+
+        self.stacked_frame = QFrame(self)
+        self.stacked_frame.setObjectName("stacked_frame")
+        self.stacked_frame.setGeometry(QRect(1130, 115, 720, 850))
+        # self.stacked_frame.setStyleSheet("background: black")
+
+        self.stacked_widget = QStackedWidget(self.stacked_frame)
+        self.stacked_widget.setObjectName("stacked_widget")
+        self.stacked_widget.setGeometry(QRect(0, 0, 720, 850))
+        self.stacked_widget.setStyleSheet("background: black")
 
         self.setStyleSheet(Theme.get_stylesheet())
 
