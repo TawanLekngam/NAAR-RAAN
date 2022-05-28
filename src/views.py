@@ -1246,7 +1246,7 @@ class AccountEditView(QWidget):
 class AdminListItem(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
-        self.setFixedSize(880, 80)
+        self.setFixedSize(860, 80)
 
         self.name_button = QPushButton("List Name", self)
         self.name_button.setObjectName("white_list_button")
