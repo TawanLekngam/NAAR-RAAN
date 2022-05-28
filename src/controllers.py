@@ -72,29 +72,37 @@ class HomePage(Controller):
         self.order_page = None
         self.log_page = None
         self.receipt_page = None
-        self.menu_edit_page = None
+        self.menu_page = None
         self.user_edit_page = None
 
     def initialize(self) -> None:
         self.order_page = OrderPage(OrderView(), OrderModel())
         self.view.stacked_widget.addWidget(self.order_page.view)
+        self.view.set_home_button_listener(self.move_to_order_page)
 
-        self.log_page = LogPage(LogView(), LogModel())
-        self.view.stacked_widget.addWidget(self.log_page.view)
-
-        self.receipt_page = Rec
-
-    def initialize_button(self) -> None:
-        admin_btn_group: list[QPushButton] = [self.view.auditLog_button,
-                                              self.view.receipt_button,
-                                              self.view.menu_button,
-                                              self.view.employee_button]
         if self.__admin_access:
-            for btn in admin_btn_group:
-                btn.show()
+            self.view.show_admin_button()
+
+            self.log_page = LogPage(LogView(), LogModel())
+            self.receipt_page = ReceiptPage(ReceiptView(), ReceiptModel)
+            self.menu_page = MenuPage(MenuView(),MenuModel())
+            self.account_page = AccountPage(AccountView(),AccountModel())
+
+            self.view.add_view(self.log_page.view)
+            self.view.add_view(self.receipt_page.view)
+            self.view.add_view(self.menu_page.view)
+            self.view.add_view(self.account_page.view)
+
+            self.view.set_home_button_listener(self.move_to_order_page)
+            self.view.set_log_button_listener(self.move_to_log_page)
+            self.view.set_receipt_button_listener(self.move_to_receipt_page)
+            self.view.set_menu_button_listener(self.move_to_menu_page)
+            self.view.set_account_button_listener(self.move_to_account_page)
+
+
         else:
-            for btn in admin_btn_group:
-                btn.hide()
+            self.view.hide_admin_button()
+
 
     def move_to_order_page(self) -> None:
         self.view.stacked_widget.setCurrentIndex(0)
@@ -107,11 +115,11 @@ class HomePage(Controller):
         if self.__admin_access and self.receipt_page is not None:
             self.view.stacked_widget.setCurrentIndex(2)
 
-    def move_to_menu_edit_page(self) -> None:
-        if self.__admin_access and self.menu_edit_page is not None:
+    def move_to_menu_page(self) -> None:
+        if self.__admin_access and self.menu_page is not None:
             self.view.stacked_widget.setCurrentIndex(3)
 
-    def move_to_user_edit_page(self) -> None:
+    def move_to_account_page(self) -> None:
         if self.__admin_access and self.user_edit_page is not None:
             self.view.stacked_widget.setCurrentIndex(4)
 
@@ -135,6 +143,12 @@ class ReceiptPage(Controller):
 
 
 class AccountPage(Controller):
+
+    def __init__(self, view: QWidget, model: Model):
+        super().__init__(view, model)
+
+
+class MenuPage(Controller):
 
     def __init__(self, view: QWidget, model: Model):
         super().__init__(view, model)
