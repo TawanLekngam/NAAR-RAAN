@@ -395,6 +395,8 @@ class MenuEdit(Controller):
         self.parent = parent
         self.item = item
 
+        self.setup_form()
+
     def setup_form(self) -> None:
         self.view.set_name(self.item.get_name())
         if isinstance(self.item, Drink):
