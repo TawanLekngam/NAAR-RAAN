@@ -85,42 +85,39 @@ class HomePage(Controller):
 
             self.log_page = LogPage(LogView(), LogModel())
             self.receipt_page = ReceiptPage(ReceiptView(), ReceiptModel)
-            self.menu_page = MenuPage(MenuView(),MenuModel())
-            self.account_page = AccountPage(AccountView(),AccountModel())
+            self.menu_page = MenuPage(MenuView(), MenuModel())
+            self.account_page = AccountPage(AccountView(), AccountModel())
 
             self.view.add_view(self.log_page.view)
             self.view.add_view(self.receipt_page.view)
             self.view.add_view(self.menu_page.view)
             self.view.add_view(self.account_page.view)
 
-            self.view.set_home_button_listener(self.move_to_order_page)
             self.view.set_log_button_listener(self.move_to_log_page)
             self.view.set_receipt_button_listener(self.move_to_receipt_page)
             self.view.set_menu_button_listener(self.move_to_menu_page)
             self.view.set_account_button_listener(self.move_to_account_page)
 
-
         else:
             self.view.hide_admin_button()
-
 
     def move_to_order_page(self) -> None:
         self.view.stacked_widget.setCurrentIndex(0)
 
     def move_to_log_page(self) -> None:
-        if self.__admin_access and self.log_page is not None:
+        if self.__admin_access:
             self.view.stacked_widget.setCurrentIndex(1)
 
     def move_to_receipt_page(self) -> None:
-        if self.__admin_access and self.receipt_page is not None:
+        if self.__admin_access:
             self.view.stacked_widget.setCurrentIndex(2)
 
     def move_to_menu_page(self) -> None:
-        if self.__admin_access and self.menu_page is not None:
+        if self.__admin_access:
             self.view.stacked_widget.setCurrentIndex(3)
 
     def move_to_account_page(self) -> None:
-        if self.__admin_access and self.user_edit_page is not None:
+        if self.__admin_access:
             self.view.stacked_widget.setCurrentIndex(4)
 
 
