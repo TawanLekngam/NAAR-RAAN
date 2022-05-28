@@ -286,7 +286,7 @@ class LogPage(Controller):
             self.view.add_log_to_scrollarea(self.__create_log_widget(log))
 
     def __create_log_widget(self, log: Log) -> LogItem:
-        return LogItem(log.get_date(), log.get_time(), log.get_desc()[0:45])
+        return LogItem(log.get_date(), log.get_time(), log.get_desc()[0:51])
 
 
 class ReceiptPage(Controller):
@@ -305,7 +305,7 @@ class ReceiptPage(Controller):
                 self.__create_receipt_widget(receipt))
 
     def __create_receipt_widget(self, receipt: Receipt) -> LogItem:
-        return LogItem(receipt.get_date(), receipt.get_time(), receipt.get_desc())
+        return LogItem(receipt.get_date(), receipt.get_time(), receipt.get_desc()[0:51])
 
 
 class AccountPage(Controller):
