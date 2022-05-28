@@ -354,6 +354,7 @@ class MenuPage(Controller):
     def __init__(self, view: QWidget, model: Model):
         super().__init__(view, model)
         self.load_item()
+        self.view.stacked_widget.addWidget(AdminEmptyView())
 
     def load_item(self) -> None:
         self.view.clear__scrollarea()
