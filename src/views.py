@@ -8,6 +8,8 @@ from theme import Theme
 """
 Log In page
 """
+
+
 class LoginView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -74,9 +76,12 @@ class LoginView(QWidget):
     def set_login_button_listener(self, function) -> None:
         self.login_button.clicked.connect(function)
 
+
 """
 Home Page
 """
+
+
 class HomeView(QWidget):
 
     def __init__(self, parent: QWidget = None):
@@ -161,6 +166,8 @@ class HomeView(QWidget):
         self.account_button.clicked.connect(function)
 
 # Order Panel (right side)
+
+
 class OrderView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -174,10 +181,12 @@ class OrderView(QWidget):
         self.order_scrollArea.setGeometry(QRect(25, 40, 650, 580))
         self.order_scrollArea.setWidgetResizable(True)
         self.order_scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.order_scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.order_scrollArea.setHorizontalScrollBarPolicy(
+            Qt.ScrollBarAlwaysOff)
 
         self.order_scrollAreaContents = QWidget(self.order_scrollArea)
-        self.order_scrollAreaContents.setObjectName("default_scrollAreaContents")
+        self.order_scrollAreaContents.setObjectName(
+            "default_scrollAreaContents")
         self.order_scrollAreaContents.setGeometry(QRect(0, 0, 648, 578))
 
         self.vBox = QVBoxLayout()
@@ -232,6 +241,8 @@ class OrderView(QWidget):
         self.stacked_widget.setCurrentIndex(index)
 
 # Order item (Sub view for order view)
+
+
 class OrderItemView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -269,7 +280,7 @@ class OrderItemView(QWidget):
     def set_item_name(self, item_name: str) -> None:
         self.name_label.setText(item_name)
 
-    def set_quantity(self,count:int) -> None:
+    def set_quantity(self, count: int) -> None:
         self.quantity_label.setText(str(count))
 
     def set_price_label(self, price: float) -> None:
@@ -285,6 +296,8 @@ class OrderItemView(QWidget):
         return float(self.price_label.text())
 
 # Order List Panel (left side)
+
+
 class OrderListView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -312,7 +325,8 @@ class OrderListView(QWidget):
             Qt.ScrollBarAlwaysOff)
 
         self.menu_scrollAreaContents = QWidget(self.menu_scrollArea)
-        self.menu_scrollAreaContents.setObjectName("default_scrollAreaContents")
+        self.menu_scrollAreaContents.setObjectName(
+            "default_scrollAreaContents")
         self.menu_scrollAreaContents.setGeometry(QRect(0, 0, 883, 628))
 
         self.vBox = QVBoxLayout()
@@ -328,6 +342,8 @@ class OrderListView(QWidget):
         self.vBox.addWidget(widget)
 
 # Order Item (Sub view for order list view)
+
+
 class OrderListItemView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -352,6 +368,8 @@ class OrderListItemView(QWidget):
         self.name_button.clicked.connect(function)
 
 # Drink Menu Details
+
+
 class DrinkDetailView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -455,7 +473,9 @@ class DrinkDetailView(QWidget):
     def set_add_button_listener(self, function) -> None:
         self.add_button.clicked.connect(function)
 
-# Bakery Menu Details 
+# Bakery Menu Details
+
+
 class BakeryDetailView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -490,9 +510,12 @@ class BakeryDetailView(QWidget):
     def set_add_button_listener(self, function) -> None:
         self.add_button.clicked.connect(function)
 
+
 """
 Receipt Page
 """
+
+
 class ReceiptView(QWidget):
     def __init__(self):
         QWidget.__init__(self, None)
@@ -529,9 +552,11 @@ class ReceiptView(QWidget):
         self.receipt_scrollArea.setObjectName("default_scrollArea")
         self.receipt_scrollArea.setGeometry(QRect(45, 129, 1712, 750))
         self.receipt_scrollArea.setWidgetResizable(True)
-        self.receipt_scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.receipt_scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        
+        self.receipt_scrollArea.setVerticalScrollBarPolicy(
+            Qt.ScrollBarAlwaysOff)
+        self.receipt_scrollArea.setHorizontalScrollBarPolicy(
+            Qt.ScrollBarAlwaysOff)
+
         self.receipt_scrollAreaContents = QWidget(self.receipt_scrollArea)
         self.receipt_scrollAreaContents.setObjectName(
             "default_scrollAreaContents")
@@ -543,9 +568,12 @@ class ReceiptView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+
 """
 Audit Log Page
 """
+
+
 class LogView(QWidget):
     def __init__(self):
         QWidget.__init__(self, None)
@@ -585,35 +613,36 @@ class LogView(QWidget):
         self.log_scrollAreaContents.setObjectName("default_scrollAreaContents")
         self.log_scrollAreaContents.setGeometry(QRect(0, 0, 1710, 748))
 
-        vBox = QVBoxLayout()
-        self.log_scrollAreaContents.setLayout(vBox)
+        self.vBox = QVBoxLayout()
+        self.log_scrollAreaContents.setLayout(self.vBox)
         self.log_scrollArea.setWidget(self.log_scrollAreaContents)
 
         self.setStyleSheet(Theme.get_stylesheet())
 
-    def add_view(self, items: list):
-        # for element in items:
-        #     self.listWidget_auditlog.addItems(element)
-        pass
+    def add_log_to_scrollarea(self, widget: QWidget) -> None:
+        self.vBox.addWidget(widget)
+
 
 # Log Item (Sub view for log view and receipt view)
+
+
 class LogItem(QWidget):
-    def __init__(self):
+    def __init__(self, date: str = None, time: str = None, desc: str = None):
         QWidget.__init__(self, None)
         self.setFixedSize(1725, 80)
         self.setObjectName("brown_item")
 
-        self.date = QLabel("01/01/2022", self)
+        self.date = QLabel(date, self)
         self.date.setObjectName("default_label")
         self.date.setFont(Theme.DONGLE_REGULAR_65)
         self.date.setGeometry(QRect(100, 10, 211, 41))
 
-        self.time = QLabel("00:00", self)
+        self.time = QLabel(time, self)
         self.time.setObjectName("default_label")
         self.time.setFont(Theme.DONGLE_REGULAR_65)
         self.time.setGeometry(QRect(400, 10, 111, 41))
 
-        self.name_act = QLabel("Name Act", self)
+        self.name_act = QLabel(desc, self)
         self.name_act.setObjectName("default_label")
         self.name_act.setFont(Theme.DONGLE_REGULAR_65)
         self.name_act.setGeometry(QRect(640, 10, 961, 41))
@@ -624,9 +653,12 @@ class LogItem(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+
 """
 Empty Page
 """
+
+
 class AdminEmptyView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -642,9 +674,12 @@ class AdminEmptyView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+
 """
 Menu Management for Admin
 """
+
+
 class MenuView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -668,10 +703,12 @@ class MenuView(QWidget):
         self.admin_scrollArea.setGeometry(QRect(55, 182, 890, 480))
         self.admin_scrollArea.setWidgetResizable(True)
         self.admin_scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.admin_scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.admin_scrollArea.setHorizontalScrollBarPolicy(
+            Qt.ScrollBarAlwaysOff)
 
         self.admin_scrollAreaContents = QWidget(self.admin_scrollArea)
-        self.admin_scrollAreaContents.setObjectName("default_scrollAreaContents")
+        self.admin_scrollAreaContents.setObjectName(
+            "default_scrollAreaContents")
         self.admin_scrollAreaContents.setGeometry(QRect(0, 0, 888, 478))
 
         vBox = QVBoxLayout()
@@ -702,6 +739,8 @@ class MenuView(QWidget):
         self.add_button.clicked.connect(function)
 
 # Create new menu (Sub view for menu view)
+
+
 class MenuCreateView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -789,6 +828,8 @@ class MenuCreateView(QWidget):
         self.setStyleSheet(Theme.get_stylesheet())
 
 # Edit menu (Sub view for menu view)
+
+
 class MenuEditView(QWidget):
 
     def __init__(self, parent: QWidget = None):
@@ -881,9 +922,12 @@ class MenuEditView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+
 """
 Account management for admin
 """
+
+
 class AccountView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -907,10 +951,12 @@ class AccountView(QWidget):
         self.admin_scrollArea.setGeometry(QRect(55, 182, 890, 480))
         self.admin_scrollArea.setWidgetResizable(True)
         self.admin_scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.admin_scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.admin_scrollArea.setHorizontalScrollBarPolicy(
+            Qt.ScrollBarAlwaysOff)
 
         self.admin_scrollAreaContents = QWidget(self.admin_scrollArea)
-        self.admin_scrollAreaContents.setObjectName("default_scrollAreaContents")
+        self.admin_scrollAreaContents.setObjectName(
+            "default_scrollAreaContents")
         self.admin_scrollAreaContents.setGeometry(QRect(0, 0, 888, 478))
 
         vBox = QVBoxLayout()
@@ -938,6 +984,8 @@ class AccountView(QWidget):
         return self.search_bar.text()
 
 # Create account (Sub view for account view)
+
+
 class AccountCreateView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -1071,6 +1119,8 @@ class AccountCreateView(QWidget):
         self.cancel_button.clicked.connect(function)
 
 # Edit account (Sub view for account view)
+
+
 class AccountEditView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -1155,6 +1205,8 @@ class AccountEditView(QWidget):
         self.setStyleSheet(Theme.get_stylesheet())
 
 # List item (Sub view for menu view and account view)
+
+
 class AdminListItem(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
