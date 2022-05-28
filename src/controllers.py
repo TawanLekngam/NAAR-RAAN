@@ -143,13 +143,13 @@ class OrderPage(Controller):
 
 class OrderList(Controller):
     "sub controller"
-    __parent: OrderPage
+    parent: OrderPage
     view: OrderListView
     model: OrderListModel
 
     def __init__(self, parent: Controller, view: QWidget, model: Model):
         super().__init__(view, model)
-        self.__parent = parent
+        self.parent = parent
         self.load_item()
 
     def load_item(self, filter: str = None) -> None:
@@ -159,71 +159,74 @@ class OrderList(Controller):
 
     def __create_item_widget(self, item) -> OrderListItemView:
         order_listitem = OrderListItem(
-            self.__parent, OrderListItemView(), item)
+            self.parent, OrderListItemView(), item)
         return order_listitem.view
 
 
 class OrderListItem(Controller):
-    __parent: OrderPage
+    parent: OrderPage
     view: OrderListItemView
 
     def __init__(self, parent: Controller, view: QWidget, item: object):
         super().__init__(view, None)
-        self.__parent = parent
+        self.parent = parent
         self.item = item
 
         self.view.set_itemname(self.item.get_name())
-        self.view.set_button_listener(lambda: self.click_item())
+        self.view.set_button_listener(lambda: self.on_click())
 
-    def click_item(self) -> None:
+    def on_click(self) -> None:
         if isinstance(self.item, Drink):
             drink_detail = DrinkDetail(
-                self.__parent, DrinkDetailView(), self.item)
-            self.__parent.view.insert_view(drink_detail.view, 1)
+                self.parent, DrinkDetailView(), self.item)
+            self.parent.view.insert_view(drink_detail.view, 1)
 
         else:
             bakery_detail = BakeryDetail(
-                self.__parent, BakeryDetailView(), self.item)
-            self.__parent.view.insert_view(bakery_detail.view, 1)
+                self.parent, BakeryDetailView(), self.item)
+            self.parent.view.insert_view(bakery_detail.view, 1)
 
-        self.__parent.view.move_to_index(1)
+        self.parent.view.move_to_index(1)
 
 
 class DrinkDetail(Controller):
-    __parent: OrderPage
+    parent: OrderPage
     view: DrinkDetailView
     item: Drink
 
     def __init__(self, parent: Controller, view: QWidget, item: object):
         super().__init__(view, None)
-        self.__parent = parent
+        self.parent = parent
         self.item = item
 
         self.view.set_name(item.get_name())
         self.view.set_cancel_button_listener(lambda: self.cancel_order())
+        self.view.set_add_button_listener(lambda: self.add_order())
 
     def cancel_order(self) -> None:
-        print("hi")
-        self.__parent.move_to_order()
+        self.parent.move_to_order()
 
     def add_order(self) -> None:
-        pass
+        order_item = OrderItem(self.view.get_detail())
+        self.parent.view.vBox.addWidget(order_item.view)
 
 
 class BakeryDetail(Controller):
-    __parent: OrderPage
+    parent: OrderPage
     view: BakeryDetailView
     item: Bakery
 
     def __init__(self, parent: Controller, view: QWidget, item: object):
         super().__init__(view, None)
-        self.__parent = parent
+        self.parent = parent
         self.item = item
 
         self.view.set_name(item.get_name())
+        self.view.set_cancel_button_listener(lambda: self.cancel_order())
+        self.view.set_add_button_listener(lambda: self.add_order())
 
     def cancel_order(self) -> None:
-        self.__parent.move_to_order()
+        self.parent.move_to_order()
 
     def add_order(self) -> None:
         pass
@@ -246,7 +249,7 @@ class OrderItem(Controller):
         self.quantity -= 1
         self.view.set_price_label(self.price * self.quantity)
         if self.quantity <= 0:
-            self.view.destroy()
+            self.view.hide()
 
     def total_price(self) -> float:
         return self.price * self.quantity
