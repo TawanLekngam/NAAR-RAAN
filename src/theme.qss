@@ -139,6 +139,7 @@ QWidget#scrollAreaWidgetContents, #widget_date, #widget_auditlog {
 QListWidget#listWidget_date, #listWidget_auditlog {
     background-color: #D8B797;
     border-top: 5px solid #4A321C;
+    color: #754926;
 }
 
 QWidget#widget_report {
