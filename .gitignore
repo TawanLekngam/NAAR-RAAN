@@ -1,5 +1,5 @@
 .qt_for_python
 __pycache__
-test.py
+tester.py
 .vscode
 naar_raan.db-journal
