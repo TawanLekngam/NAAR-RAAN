@@ -344,12 +344,10 @@ class OrderListView(QWidget):
         self.vBox.addWidget(widget)
 
 # Order Item (Sub view for order list view)
-
-
 class OrderListItemView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
-        self.setFixedSize(880, 80)
+        self.setFixedSize(800, 80)
         self.setObjectName("brown_item")
 
         self.name_button = QPushButton("Menu Name", self)
@@ -564,8 +562,9 @@ class ReceiptView(QWidget):
             "default_scrollAreaContents")
         self.receipt_scrollAreaContents.setGeometry(QRect(0, 0, 1710, 748))
 
-        vBox = QVBoxLayout()
-        self.receipt_scrollAreaContents.setLayout(vBox)
+        self.vBox = QVBoxLayout()
+        self.vBox.setAlignment(Qt.AlignTop)
+        self.receipt_scrollAreaContents.setLayout(self.vBox)
         self.receipt_scrollArea.setWidget(self.receipt_scrollAreaContents)
 
         self.setStyleSheet(Theme.get_stylesheet())
@@ -609,13 +608,14 @@ class LogView(QWidget):
         self.log_scrollArea.setGeometry(QRect(45, 129, 1712, 750))
         self.log_scrollArea.setWidgetResizable(True)
         self.log_scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.log_scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        # self.log_scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
         self.log_scrollAreaContents = QWidget(self.log_scrollArea)
         self.log_scrollAreaContents.setObjectName("default_scrollAreaContents")
         self.log_scrollAreaContents.setGeometry(QRect(0, 0, 1710, 748))
 
         self.vBox = QVBoxLayout()
+        self.vBox.setAlignment(Qt.AlignTop)
         self.log_scrollAreaContents.setLayout(self.vBox)
         self.log_scrollArea.setWidget(self.log_scrollAreaContents)
 
@@ -631,27 +631,27 @@ class LogView(QWidget):
 class LogItem(QWidget):
     def __init__(self, date: str = None, time: str = None, desc: str = None):
         QWidget.__init__(self, None)
-        self.setFixedSize(1725, 80)
+        self.setFixedSize(1680, 80)
         self.setObjectName("brown_item")
 
         self.date = QLabel(date, self)
         self.date.setObjectName("default_label")
         self.date.setFont(Theme.DONGLE_REGULAR_65)
-        self.date.setGeometry(QRect(100, 10, 211, 41))
+        self.date.setGeometry(QRect(0, 10, 211, 41))
 
         self.time = QLabel(time, self)
         self.time.setObjectName("default_label")
         self.time.setFont(Theme.DONGLE_REGULAR_65)
-        self.time.setGeometry(QRect(400, 10, 111, 41))
+        self.time.setGeometry(QRect(385, 10, 111, 41))
 
         self.name_act = QLabel(desc, self)
         self.name_act.setObjectName("default_label")
         self.name_act.setFont(Theme.DONGLE_REGULAR_65)
-        self.name_act.setGeometry(QRect(640, 10, 961, 41))
+        self.name_act.setGeometry(QRect(630, 10, 1020, 41))
 
         line = QFrame(self)
         line.setObjectName("white_line")
-        line.setGeometry(QRect(80, 70, 1550, 3))
+        line.setGeometry(QRect(0, 70, 1670, 3))
 
         self.setStyleSheet(Theme.get_stylesheet())
 
