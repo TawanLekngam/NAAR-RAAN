@@ -103,9 +103,25 @@ class LogModel(Model):
 
 
 class MenuModel(Model):
+    __drink_dao: DrinkDAO
+    __bakery_dao: BakeryDAO
 
     def __init__(self):
-        pass
+        self.__drink_dao = AppDAO.get_dao("drink")
+        self.__bakery_dao = AppDAO.get_dao("bakery")
+
+    def get_all_products(self) -> list[Drink | Bakery]:
+        products = list()
+        products.extend(self.__drink_dao.get_all_drinks())
+        products.extend(self.__bakery_dao.get_all_bakeries())
+        products.sort(key=lambda x: x.name)
+        return products
+
+    def update_drink(self, id: int, name: str = None, hprice: float = None, cprice: float = None, bprice: float = None) -> None:
+        self.__drink_dao.update_drink(id, name, hprice, cprice, bprice)
+
+    def update_bakery(self, id: int, name: str = None, price: float = None) -> None:
+        self.__bakery_dao.update_bakery(id, name, price)
 
 
 class OrderModel(Model):

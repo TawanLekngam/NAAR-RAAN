@@ -240,7 +240,7 @@ class OrderView(QWidget):
         self.clear_layout(self.vBox)
 
     def clear_layout(self, layout):
-        for i in reversed(range(layout.count())): 
+        for i in reversed(range(layout.count())):
             layout.itemAt(i).widget().setParent(None)
 
 # Order item (Sub view for order view)
@@ -726,8 +726,8 @@ class MenuView(QWidget):
             "default_scrollAreaContents")
         self.admin_scrollAreaContents.setGeometry(QRect(0, 0, 888, 478))
 
-        vBox = QVBoxLayout()
-        self.admin_scrollAreaContents.setLayout(vBox)
+        self.vBox = QVBoxLayout()
+        self.admin_scrollAreaContents.setLayout(self.vBox)
         self.admin_scrollArea.setWidget(self.admin_scrollAreaContents)
 
         self.add_button = QPushButton("+", self)
@@ -744,6 +744,13 @@ class MenuView(QWidget):
 
     # def get_searched_item(self) -> str:
     #     return self.search_bar.text()
+
+    def add_view_to_scrollarea(self, view: QWidget) -> None:
+        self.vBox.addWidget(view)
+
+    def clear__scrollarea(self):
+        for i in reversed(range(self.vBox.count())):
+            self.vBox.itemAt(i).widget().setParent(None)
 
     def set_add_button_listener(self, function) -> None:
         self.add_button.clicked.connect(function)
@@ -1245,3 +1252,9 @@ class AdminListItem(QWidget):
         brown_line.setGeometry(QRect(30, 70, 820, 3))
 
         self.setStyleSheet(Theme.get_stylesheet())
+
+    def set_itemname(self, item_name: str) -> None:
+        self.name_button.setText(item_name)
+
+    def set_button_listener(self, function) -> None:
+        self.name_button.clicked.connect(function)

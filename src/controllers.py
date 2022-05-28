@@ -152,7 +152,7 @@ class OrderPage(Controller):
         self.model.create_new_receipt(receipt)
         self.view.reset()
         self.total = 0.0
-        
+
 
 class OrderList(Controller):
     "sub controller"
@@ -347,6 +347,38 @@ class AccountPage(Controller):
 
 
 class MenuPage(Controller):
+    view: MenuView
+    model: MenuModel
 
     def __init__(self, view: QWidget, model: Model):
         super().__init__(view, model)
+        self.load_item()
+
+    def load_item(self) -> None:
+        self.view.clear__scrollarea()
+
+        item_list = self.model.get_all_products()
+        for item in item_list:
+            self.view.add_view_to_scrollarea(self.create_widget(item))
+
+    def create_widget(self, item: Drink | Bakery) -> QWidget:
+        menu_item = MenuItem(self, item)
+        return menu_item.view
+
+
+class MenuItem(Controller):
+    parent: MenuPage
+    view: AdminListItem
+
+    def __init__(self, parent: QWidget, item: Drink | Bakery):
+        super().__init__(AdminListItem(), None)
+        self.parent = parent
+        self.item = item
+
+        # initialize
+        self.view.set_itemname(self.item.get_name())
+        self.view.set_button_listener(self.on_click)
+
+    def on_click(self) -> None:
+        if isinstance(self.item, Drink):
+            "open edit menu"
