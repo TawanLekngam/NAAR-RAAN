@@ -5,7 +5,9 @@ from sqlalchemy import func
 
 from theme import Theme
 
-
+"""
+Log In page
+"""
 class LoginView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -72,7 +74,9 @@ class LoginView(QWidget):
     def set_login_button_listener(self, function) -> None:
         self.login_button.clicked.connect(function)
 
-
+"""
+Home Page
+"""
 class HomeView(QWidget):
 
     def __init__(self, parent: QWidget = None):
@@ -156,7 +160,7 @@ class HomeView(QWidget):
     def set_account_button_listener(self, function) -> None:
         self.account_button.clicked.connect(function)
 
-
+# Order Panel (right side)
 class OrderView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -226,7 +230,7 @@ class OrderView(QWidget):
     def move_to_index(self, index: int) -> None:
         self.stacked_widget.setCurrentIndex(index)
 
-
+# Order Item in Order Panel
 class OrderItem(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -276,10 +280,8 @@ class OrderItem(QWidget):
     def get_total_price(self) -> float:
         return float(self.price_label.text())
 
-
+# Order List Panel (left side)
 class OrderListView(QWidget):
-    "left side view"
-
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
 
@@ -320,10 +322,8 @@ class OrderListView(QWidget):
     def add_widget_to_scrollarea(self, widget: QWidget) -> None:
         self.vBox.addWidget(widget)
 
-
+# Order Item in Order List Panel (left side)
 class OrderListItemView(QWidget):
-    "for order item view."
-
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(880, 80)
@@ -346,7 +346,7 @@ class OrderListItemView(QWidget):
     def set_button_listener(self, function) -> None:
         self.name_button.clicked.connect(function)
 
-
+# Drink Menu Details
 class DrinkDetailView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -447,7 +447,7 @@ class DrinkDetailView(QWidget):
     def set_add_button_listener(self, function) -> None:
         self.add_button.clicked.connect(function)
 
-
+# Bakery Menu Details 
 class BakeryDetailView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -482,7 +482,9 @@ class BakeryDetailView(QWidget):
     def set_add_button_listener(self, function) -> None:
         self.add_button.clicked.connect(function)
 
-
+"""
+Receipt Page
+"""
 class ReceiptView(QWidget):
     def __init__(self):
         QWidget.__init__(self, None)
@@ -533,7 +535,9 @@ class ReceiptView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
-
+"""
+Audit Log Page
+"""
 class LogView(QWidget):
     def __init__(self):
         QWidget.__init__(self, None)
@@ -584,7 +588,7 @@ class LogView(QWidget):
         #     self.listWidget_auditlog.addItems(element)
         pass
 
-
+# Log Item (Sub view for log view and receipt view)
 class LogItem(QWidget):
     def __init__(self):
         QWidget.__init__(self, None)
@@ -612,7 +616,9 @@ class LogItem(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
-
+"""
+Empty Page
+"""
 class AdminEmptyView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -628,7 +634,9 @@ class AdminEmptyView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
-
+"""
+Menu Management for Admin
+"""
 class MenuView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -685,10 +693,8 @@ class MenuView(QWidget):
     def set_add_button_listener(self, function) -> None:
         self.add_button.clicked.connect(function)
 
-
+# Create new menu (Sub view for menu view)
 class MenuCreateView(QWidget):
-    "sub view for menu view"
-
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(720, 850)
@@ -774,9 +780,8 @@ class MenuCreateView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
-
+# Edit menu (Sub view for menu view)
 class MenuEditView(QWidget):
-    "sub view for menu view"
 
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -868,7 +873,9 @@ class MenuEditView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
-
+"""
+Account management for admin
+"""
 class AccountView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -922,7 +929,7 @@ class AccountView(QWidget):
     def get_searched_item(self) -> str:
         return self.search_bar.text()
 
-
+# Create account (Sub view for account view)
 class AccountCreateView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -1055,7 +1062,7 @@ class AccountCreateView(QWidget):
     def set_cancel_button_listener(self, function) -> None:
         self.cancel_button.clicked.connect(function)
 
-
+# Edit account (Sub view for account view)
 class AccountEditView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -1139,7 +1146,7 @@ class AccountEditView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
-
+# List item (Sub view for menu view and account view)
 class AdminListItem(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
