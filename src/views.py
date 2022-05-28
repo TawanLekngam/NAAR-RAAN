@@ -252,7 +252,7 @@ class OrderItemView(QWidget):
         self.name_label = QLabel("Menu Name", self)
         self.name_label.setObjectName("default_label")
         self.name_label.setFont(Theme.DONGLE_BOLD_65)
-        self.name_label.setGeometry(QRect(20, 25, 230, 40))
+        self.name_label.setGeometry(QRect(20, 25, 240, 40))
 
         self.minus_button = QPushButton("-", self)
         self.minus_button.setObjectName("default_button")
@@ -345,6 +345,8 @@ class OrderListView(QWidget):
         self.vBox.addWidget(widget)
 
 # Order Item (Sub view for order list view)
+
+
 class OrderListItemView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -504,8 +506,6 @@ class BakeryDetailView(QWidget):
 
     def set_name(self, name: str) -> None:
         self.menu_name.setText(name)
-
-    
 
     def set_cancel_button_listener(self, function) -> None:
         self.cancel_button.clicked.connect(function)
