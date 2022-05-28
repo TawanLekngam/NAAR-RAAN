@@ -83,7 +83,7 @@ class HomePage(Controller):
             self.view.show_admin_button()
 
             self.log_page = LogPage(LogView(), LogModel())
-            self.receipt_page = ReceiptPage(ReceiptView(), ReceiptModel)
+            self.receipt_page = ReceiptPage(ReceiptView(), ReceiptModel())
             self.menu_page = MenuPage(MenuView(), MenuModel())
             self.account_page = AccountPage(AccountView(), AccountModel())
 
@@ -281,18 +281,31 @@ class LogPage(Controller):
         self.initialize()
 
     def initialize(self) -> None:
-        log_list:list[Log] = self.model.get_all_logs()
+        log_list: list[Log] = self.model.get_all_logs()
         for log in log_list:
             self.view.add_log_to_scrollarea(self.__create_log_widget(log))
 
     def __create_log_widget(self, log: Log) -> LogItem:
-        return LogItem(log.get_date(), log.get_time(), log.get_desc())
+        return LogItem(log.get_date(), log.get_time(), log.get_desc()[0:45])
 
 
 class ReceiptPage(Controller):
+    view: ReceiptView
+    model: ReceiptModel
 
     def __init__(self, view: QWidget, model: Model):
         super().__init__(view, model)
+        self.initialize()
+
+    def initialize(self) -> None:
+        receipt_list: list[Receipt] = self.model.get_all_receipt()
+        for receipt in receipt_list:
+            print(receipt)
+            self.view.add_receipt_to_scrollarea(
+                self.__create_receipt_widget(receipt))
+
+    def __create_receipt_widget(self, receipt: Receipt) -> LogItem:
+        return LogItem(receipt.get_date(), receipt.get_time(), receipt.get_desc())
 
 
 class AccountPage(Controller):

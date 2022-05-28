@@ -564,11 +564,14 @@ class ReceiptView(QWidget):
             "default_scrollAreaContents")
         self.receipt_scrollAreaContents.setGeometry(QRect(0, 0, 1710, 748))
 
-        vBox = QVBoxLayout()
-        self.receipt_scrollAreaContents.setLayout(vBox)
+        self.vBox = QVBoxLayout()
+        self.receipt_scrollAreaContents.setLayout(self.vBox)
         self.receipt_scrollArea.setWidget(self.receipt_scrollAreaContents)
 
         self.setStyleSheet(Theme.get_stylesheet())
+
+    def add_receipt_to_scrollarea(self, widget: QWidget) -> None:
+        self.vBox.addWidget(widget)
 
 
 """
