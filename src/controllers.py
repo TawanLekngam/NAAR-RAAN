@@ -155,8 +155,7 @@ class OrderList(Controller):
             self.view.add_widget_to_scrollarea(self.__create_item_widget(item))
 
     def __create_item_widget(self, item) -> OrderListItemView:
-        order_listitem = OrderListItem(
-            self.__parent, OrderListItemView(), item)
+        order_listitem = OrderListItem(self.__parent, OrderListItemView(), item)
         return order_listitem.view
 
 
@@ -170,7 +169,7 @@ class OrderListItem(Controller):
         self.item = item
 
         self.view.set_itemname(self.item.get_name())
-        self.view.set_button_listener(self.click_item)
+        self.view.set_button_listener(lambda: self.click_item())
 
     def click_item(self) -> None:
         if isinstance(self.item, Drink):
