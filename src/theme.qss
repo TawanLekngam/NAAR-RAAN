@@ -83,14 +83,14 @@ QLineEdit#logIn_bar {
     border-radius: 20px;
 }
 
-QLineEdit#search_bar {
+/* QLineEdit#search_bar {
     padding-left: 30px;
     padding-right: 30px;
     color: #4A321C;
     background: #F9F5F0;
     border: 5px solid #754926;
     border-radius: 20px;
-}
+} */
 
 QLineEdit#input_bar {
     padding-left: 30px;

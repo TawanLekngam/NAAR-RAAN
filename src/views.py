@@ -316,10 +316,10 @@ class OrderListView(QWidget):
         menu_label.setFont(Theme.DONGLE_BOLD_80)
         menu_label.setGeometry(QRect(54, 26, 128, 116))
 
-        self.search_bar = QLineEdit(self)
-        self.search_bar.setObjectName("search_bar")
-        self.search_bar.setFont(Theme.DONGLE_REGULAR_65)
-        self.search_bar.setGeometry(QRect(272, 40, 677, 80))
+        # self.search_bar = QLineEdit(self)
+        # self.search_bar.setObjectName("search_bar")
+        # self.search_bar.setFont(Theme.DONGLE_REGULAR_65)
+        # self.search_bar.setGeometry(QRect(272, 40, 677, 80))
 
         self.menu_scrollArea = QScrollArea(self)
         self.menu_scrollArea.setObjectName("default_scrollArea")
@@ -340,8 +340,8 @@ class OrderListView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
-    def get_searched_item(self) -> str:
-        return self.search_bar.text()
+    # def get_searched_item(self) -> str:
+    #     return self.search_bar.text()
 
     def add_widget_to_scrollarea(self, widget: QWidget) -> None:
         self.vBox.addWidget(widget)
@@ -712,10 +712,10 @@ class MenuView(QWidget):
         menu_label.setFont(Theme.DONGLE_BOLD_80)
         menu_label.setGeometry(QRect(55, 70, 130, 51))
 
-        self.search_bar = QLineEdit(admin_frame)
-        self.search_bar.setObjectName("search_bar")
-        self.search_bar.setFont(Theme.DONGLE_REGULAR_65)
-        self.search_bar.setGeometry(QRect(260, 53, 680, 80))
+        # self.search_bar = QLineEdit(admin_frame)
+        # self.search_bar.setObjectName("search_bar")
+        # self.search_bar.setFont(Theme.DONGLE_REGULAR_65)
+        # self.search_bar.setGeometry(QRect(260, 53, 680, 80))
 
         self.admin_scrollArea = QScrollArea(admin_frame)
         self.admin_scrollArea.setObjectName("default_scrollArea")
@@ -751,8 +751,8 @@ class MenuView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
-    def get_searched_item(self) -> str:
-        return self.search_bar.text()
+    # def get_searched_item(self) -> str:
+    #     return self.search_bar.text()
 
     def set_add_button_listener(self, function) -> None:
         self.add_button.clicked.connect(function)
@@ -960,10 +960,10 @@ class AccountView(QWidget):
         user_label.setFont(Theme.DONGLE_BOLD_80)
         user_label.setGeometry(QRect(55, 70, 130, 51))
 
-        self.search_bar = QLineEdit(admin_frame)
-        self.search_bar.setObjectName("search_bar")
-        self.search_bar.setFont(Theme.DONGLE_REGULAR_65)
-        self.search_bar.setGeometry(QRect(260, 53, 680, 80))
+        # self.search_bar = QLineEdit(admin_frame)
+        # self.search_bar.setObjectName("search_bar")
+        # self.search_bar.setFont(Theme.DONGLE_REGULAR_65)
+        # self.search_bar.setGeometry(QRect(260, 53, 680, 80))
 
         self.admin_scrollArea = QScrollArea(admin_frame)
         self.admin_scrollArea.setObjectName("default_scrollArea")
@@ -999,8 +999,8 @@ class AccountView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
-    def get_searched_item(self) -> str:
-        return self.search_bar.text()
+    # def get_searched_item(self) -> str:
+    #     return self.search_bar.text()
 
 # Create account (Sub view for account view)
 
