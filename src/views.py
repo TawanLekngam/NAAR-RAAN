@@ -681,7 +681,7 @@ class AdminEmptyView(QWidget):
 
         admin_frame = QFrame(self)
         admin_frame.setObjectName("brown_frame")
-        admin_frame.setGeometry(1130, 115, 720, 850)
+        admin_frame.setGeometry(0,0, 720, 850)
 
         label_logo = QLabel(admin_frame)
         label_logo.setObjectName("default_label")
