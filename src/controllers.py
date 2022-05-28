@@ -353,12 +353,8 @@ class MenuPage(Controller):
 
     def __init__(self, view: QWidget, model: Model):
         super().__init__(view, model)
-
+        self.view.stacked_widget.addWidget(AdminEmptyView())
         self.load_item()
-
-
-    def setup(self) -> None:
-        self.view.add_view_to_stackedwidget(AdminEmptyView())
 
     def load_item(self) -> None:
         self.view.clear__scrollarea()
@@ -387,7 +383,7 @@ class MenuItem(Controller):
 
     def on_click(self) -> None:
         menu_edit_form = MenuEdit(self.parent, self.item)
-        self.parent.view.add_view_to_stackedwidget(menu_edit_form.view)
+        self.parent.view.stacked_widget.addWidget(menu_edit_form.view)
 
 
 class MenuEdit(Controller):
