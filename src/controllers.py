@@ -147,6 +147,7 @@ class OrderList(Controller):
     def __init__(self, parent: Controller, view: QWidget, model: Model):
         super().__init__(view, model)
         self.__parent = parent
+        self.load_item()
 
     def load_item(self, filter: str = None) -> None:
         item_list = self.model.get_all_products()
