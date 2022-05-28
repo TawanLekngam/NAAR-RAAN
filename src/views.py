@@ -812,18 +812,21 @@ class MenuCreateView(QWidget):
         self.hot_price.setFont(Theme.DONGLE_REGULAR_65)
         self.hot_price.setGeometry(QRect(480, 281, 200, 60))
         self.hot_price.setAlignment(Qt.AlignCenter)
+        self.hot_price.setEnabled(False)
 
         self.cold_price = QLineEdit(self)
         self.cold_price.setObjectName("input_bar")
         self.cold_price.setFont(Theme.DONGLE_REGULAR_65)
         self.cold_price.setGeometry(QRect(480, 370, 200, 60))
         self.cold_price.setAlignment(Qt.AlignCenter)
+        self.cold_price.setEnabled(False)
 
         self.blended_price = QLineEdit(self)
         self.blended_price.setObjectName("input_bar")
         self.blended_price.setFont(Theme.DONGLE_REGULAR_65)
         self.blended_price.setGeometry(QRect(480, 459, 200, 60))
         self.blended_price.setAlignment(Qt.AlignCenter)
+        self.blended_price.setEnabled(False)
 
         self.bakery_price = QLineEdit(self)
         self.bakery_price.setObjectName("input_bar")
@@ -908,18 +911,21 @@ class MenuEditView(QWidget):
         self.hot_price.setFont(Theme.DONGLE_REGULAR_65)
         self.hot_price.setGeometry(QRect(480, 281, 200, 60))
         self.hot_price.setAlignment(Qt.AlignCenter)
+        self.hot_price.setEnabled(False)
 
         self.cold_price = QLineEdit(self)
         self.cold_price.setObjectName("input_bar")
         self.cold_price.setFont(Theme.DONGLE_REGULAR_65)
         self.cold_price.setGeometry(QRect(480, 370, 200, 60))
         self.cold_price.setAlignment(Qt.AlignCenter)
+        self.cold_price.setEnabled(False)
 
         self.blended_price = QLineEdit(self)
         self.blended_price.setObjectName("input_bar")
         self.blended_price.setFont(Theme.DONGLE_REGULAR_65)
         self.blended_price.setGeometry(QRect(480, 459, 200, 60))
         self.blended_price.setAlignment(Qt.AlignCenter)
+        self.blended_price.setEnabled(False)
 
         self.bakery_price = QLineEdit(self)
         self.bakery_price.setObjectName("input_bar")
