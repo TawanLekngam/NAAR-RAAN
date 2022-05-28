@@ -168,11 +168,13 @@ QCheckBox#default_checkbox::indicator:checked {
 QScrollArea#default_scrollArea {
     background-color: transparent;
     color: #4A321C;
+    border: none;
 }
 
 QWidget#default_scrollAreaContents {
     background-color: transparent;
     color: #4A321C;
+    border;
 }
 
 /* 

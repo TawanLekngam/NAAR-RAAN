@@ -181,6 +181,7 @@ class OrderView(QWidget):
         self.order_scrollAreaContents.setGeometry(QRect(0, 0, 648, 578))
 
         vBox = QVBoxLayout()
+        vBox.setAlignment(Qt.AlignTop)
         self.order_scrollAreaContents.setLayout(vBox)
         self.order_scrollArea.setWidget(self.order_scrollAreaContents)
 
