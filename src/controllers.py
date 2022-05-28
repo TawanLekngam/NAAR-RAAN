@@ -56,7 +56,6 @@ class LoginPage(Controller):
 
 class HomePage(Controller):
     """master page"""
-
     view: HomeView
     model: HomeModel
 
@@ -122,15 +121,43 @@ class HomePage(Controller):
 
 
 class OrderPage(Controller):
+    view: OrderView
+    model: OrderModel
 
     def __init__(self, view: QWidget, model: Model):
         super().__init__(view, model)
 
+        # sub view
+        self.order_list = None
+
+        self.initialize()
+
+    def initialize(self) -> None:
+        self.order_list = OrderList(self, OrderView(), OrderModel())
+
+        self.view.insert_view(self.order_list.view, 0)
+
+    def move_to_drink_detail(self):
+        pass
+
+    def move_to_bakery_detail(self):
+        pass
+
+
+class OrderList(Controller):
+    "sub controller"
+    parent: OrderPage
+    view: OrderListView
+    model: OrderListModel
+
+    def __init__(self, parent: Controller, view: QWidget, model: Model):
+        super().__init__(view, model)
+        self.__parent = parent
+
 
 class LogPage(Controller):
-
-    view:LogView
-    model:LogModel
+    view: LogView
+    model: LogModel
 
     def __init__(self, view: QWidget, model: Model):
         super().__init__(view, model)
