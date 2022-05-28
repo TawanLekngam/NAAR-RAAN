@@ -117,11 +117,12 @@ QLineEdit#search_bar {
     border: 5px solid #754926;
     border-radius: 20px;
 }
-QScrollArea#scrollArea_order {
+
+/* QScrollArea#scrollArea_order {
     background-color: #D8B797;
     border-radius: 20px;
     padding: 0px;
-}
+} */
 
 QListView#listView_order {
     background-color: #754926;
@@ -133,7 +134,6 @@ QWidget#scrollAreaWidgetContents, #widget_date, #widget_auditlog {
     background-color: #D8B797;
     padding: 0px;
     border-radius: 20px;
-   
 }
 
 QListWidget#listWidget_date, #listWidget_auditlog {
@@ -367,6 +367,17 @@ QCheckBox#default_checkbox::indicator {
 QCheckBox#default_checkbox::indicator:checked {
     image: url(src/asset/Image/checkmark.png);
 }
+
+/* Receipt and Log*/
+QFrame#upper_curve_frame {
+    background: #D8B797;
+    border-radius: 20px 20px 0px 0px;
+}
+
+QWidget#dark_brown_line {
+    border: 3px solid #4A321C;
+}
+
 
 /* Admin Item */
 QWidget#admin_list_widget {

@@ -183,10 +183,10 @@ class OrderView(QWidget):
         total_label.setFont(Theme.DONGLE_BOLD_65)
         total_label.setGeometry(QRect(420, 660, 110, 40))
 
-        number_label = QLabel("0", order_frame)
-        number_label.setObjectName("default_label")
-        number_label.setFont(Theme.DONGLE_BOLD_65)
-        number_label.setGeometry(QRect(540, 660, 115, 40))
+        self.number_label = QLabel("0", order_frame)
+        self.number_label.setObjectName("default_label")
+        self.number_label.setFont(Theme.DONGLE_BOLD_65)
+        self.number_label.setGeometry(QRect(540, 660, 115, 40))
 
         self.order_button = QPushButton("Order", self)
         self.order_button.setObjectName("cancel_add_button")
@@ -204,6 +204,15 @@ class OrderView(QWidget):
         self.stacked_widget.setStyleSheet("background: black")
 
         self.setStyleSheet(Theme.get_stylesheet())
+
+    def set_total(self, total: str) -> None:
+        self.number_label.setText(total)
+
+    def set_order_button_listener(self, function) -> None:
+        self.user_button.clicked.connect(function)
+
+    def get_total_price(self) -> float:
+        return float(self.number_label.text())
 
 
 class OrderItem(QWidget):
@@ -487,28 +496,41 @@ class ReceiptView(QWidget):
         QWidget.__init__(self, None)
         self.setFixedSize(1920, 1080)
 
-        self.widget_auditlog = QWidget(self)
-        self.widget_auditlog.setObjectName("widget_auditlog")
-        self.widget_auditlog.setGeometry(QRect(60, 100, 1800, 980))
+        receipt_frame = QFrame(self)
+        receipt_frame.setObjectName("upper_curve_frame")
+        receipt_frame.setGeometry(QRect(60, 100, 1800, 980))
 
-        self.label_date = QLabel("Date", self.widget_auditlog)
+        self.label_date = QLabel("Date", receipt_frame)
         self.label_date.setObjectName("label_details")
-        self.label_date.setGeometry(QRect(100, 70, 151, 61))
+        self.label_date.setGeometry(QRect(89, 31, 151, 61))
         self.label_date.setFont(Theme.DONGLE_BOLD_70)
 
-        self.label_time = QLabel("Time", self.widget_auditlog)
+        self.label_time = QLabel("Time", receipt_frame)
         self.label_time.setObjectName("label_details")
-        self.label_time.setGeometry(QRect(400, 70, 151, 61))
+        self.label_time.setGeometry(QRect(439, 31, 151, 61))
         self.label_time.setFont(Theme.DONGLE_BOLD_70)
 
-        self.label_name = QLabel("Description", self.widget_auditlog)
+        self.label_name = QLabel("Description", receipt_frame)
         self.label_name.setObjectName("label_details")
-        self.label_name.setGeometry(QRect(640, 70, 250, 61))
+        self.label_name.setGeometry(QRect(688, 31, 250, 61))
         self.label_name.setFont(Theme.DONGLE_BOLD_70)
 
-        self.listWidget_auditlog = QListWidget(self.widget_auditlog)
-        self.listWidget_auditlog.setObjectName("listWidget_auditlog")
-        self.listWidget_auditlog.setGeometry(QRect(39, 150, 1722, 810))
+        # self.listWidget_auditlog = QListWidget(self.log_frame)
+        # self.listWidget_auditlog.setObjectName("listWidget_auditlog")
+        # self.listWidget_auditlog.setGeometry(QRect(39, 150, 1722, 810))
+
+        brown_line = QFrame(receipt_frame)
+        brown_line.setObjectName("dark_brown_line")
+        brown_line.setGeometry(QRect(40, 103, 1722, 3))
+
+        self.receipt_scrollArea = QScrollArea(receipt_frame)
+        self.receipt_scrollArea.setObjectName("menu_scrollArea")
+        self.receipt_scrollArea.setGeometry(QRect(45, 129, 1712, 750))
+
+        self.receipt_scrollAreaContents = QWidget(self.receipt_scrollArea)
+        self.receipt_scrollAreaContents.setObjectName("menu_scrollAreaContents")
+        self.receipt_scrollAreaContents.setGeometry(QRect(0, 0, 1710, 748))
+        self.receipt_scrollArea.setWidget(self.receipt_scrollAreaContents)
 
         self.setStyleSheet(Theme.get_stylesheet())
 
@@ -518,29 +540,39 @@ class LogView(QWidget):
         QWidget.__init__(self, None)
         self.setFixedSize(1920, 1080)
 
-        self.widget_auditlog = QWidget(self)
-        self.widget_auditlog.setObjectName("widget_auditlog")
-        self.widget_auditlog.setGeometry(QRect(60, 100, 1800, 980))
+        log_frame = QFrame(self)
+        log_frame.setObjectName("upper_curve_frame")
+        log_frame.setGeometry(QRect(60, 100, 1800, 980))
 
-        self.label_date = QLabel("Date", self.widget_auditlog)
+        self.label_date = QLabel("Date", log_frame)
         self.label_date.setObjectName("label_details")
-        self.label_date.setGeometry(QRect(100, 70, 151, 61))
+        self.label_date.setGeometry(QRect(89, 31, 151, 61))
         self.label_date.setFont(Theme.DONGLE_BOLD_70)
 
-        self.label_time = QLabel("Time", self.widget_auditlog)
+        self.label_time = QLabel("Time", log_frame)
         self.label_time.setObjectName("label_details")
-        self.label_time.setGeometry(QRect(400, 70, 151, 61))
+        self.label_time.setGeometry(QRect(439, 31, 151, 61))
         self.label_time.setFont(Theme.DONGLE_BOLD_70)
 
-        self.label_name = QLabel("Activity", self.widget_auditlog)
+        self.label_name = QLabel("Activity", log_frame)
         self.label_name.setObjectName("label_details")
-        self.label_name.setGeometry(QRect(640, 70, 231, 61))
+        self.label_name.setGeometry(QRect(688, 31, 231, 61))
         self.label_name.setFont(Theme.DONGLE_BOLD_70)
 
-        self.listWidget_auditlog = QListWidget(self.widget_auditlog)
-        self.listWidget_auditlog.setObjectName("listWidget_auditlog")
-        self.listWidget_auditlog.setGeometry(QRect(39, 150, 1722, 810))
-        self.listWidget_auditlog.setFont(Theme.DONGLE_BOLD_65)
+        brown_line = QFrame(log_frame)
+        brown_line.setObjectName("dark_brown_line")
+        brown_line.setGeometry(QRect(40, 103, 1722, 3))
+
+        self.log_scrollArea = QScrollArea(log_frame)
+        self.log_scrollArea.setObjectName("menu_scrollArea")
+        self.log_scrollArea.setGeometry(QRect(45, 129, 1712, 750))
+
+        self.log_scrollAreaContents = QWidget(self.log_scrollArea)
+        self.log_scrollAreaContents.setObjectName("menu_scrollAreaContents")
+        self.log_scrollAreaContents.setGeometry(QRect(0, 0, 1710, 748))
+        self.log_scrollArea.setWidget(self.log_scrollAreaContents)
+
+        self.setStyleSheet(Theme.get_stylesheet())
 
         self.setStyleSheet(Theme.get_stylesheet())
     
@@ -1089,13 +1121,13 @@ class AdminListItem(QWidget):
         self.setFixedSize(880, 80)
         self.setObjectName("admin_list_widget")
 
-        self.name_button = QPushButton("Menu Name", self)
+        self.name_button = QPushButton("List Name", self)
         self.name_button.setObjectName("list_button")
         self.name_button.setFont(Theme.DONGLE_REGULAR_65)
         self.name_button.setGeometry(QRect(50, 10, 780, 50))
 
-        white_line = QFrame(self)
-        white_line.setObjectName("brown_line")
-        white_line.setGeometry(QRect(30, 70, 820, 3))
+        brown_line = QFrame(self)
+        brown_line.setObjectName("brown_line")
+        brown_line.setGeometry(QRect(30, 70, 820, 3))
 
         self.setStyleSheet(Theme.get_stylesheet())
