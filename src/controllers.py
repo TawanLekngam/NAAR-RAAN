@@ -129,6 +129,7 @@ class OrderPage(Controller):
 
         # sub view
         self.order_list = None
+        self.total = 0.0
 
         self.initialize()
 
@@ -137,9 +138,15 @@ class OrderPage(Controller):
 
         self.view.insert_view(self.order_list.view, 0)
 
-    def move_to_order(self) -> None:
-        self.view.move_to_index(0)
+    def increase_total(self, value: float):
+        self.total += value
+        self.view.set_total(value)
 
+    def decrease_total(self, value: float):
+        self.total -= value
+        self.view.set_total(value)
+
+    
 
 class OrderList(Controller):
     "sub controller"
@@ -245,16 +252,20 @@ class BakeryDetail(Controller):
 
 
 class OrderItem(Controller):
+    parent: OrderPage
     view: OrderItemView
 
-    def __init__(self, item_name: str, price: float = 0.0, quantity: int = 1):
+    def __init__(self, item_name: str, price: float = 0.0, quantity: int = 1, parent: Controller = None):
         super().__init__(OrderItemView(), None)
+        self.parent = parent
         self.view.set_item_name(item_name)
         self.price = price
         self.quantity = quantity
 
         self.view.set_quantity(self.quantity)
         self.view.set_price_label(self.price * self.quantity)
+        self.parent.increase_total(self.price)
+        
         self.view.increase_button_listener(lambda: self.increase())
         self.view.decrease_button_listener(lambda: self.decrease())
 
@@ -262,6 +273,7 @@ class OrderItem(Controller):
         self.quantity += 1
         self.view.set_quantity(self.quantity)
         self.view.set_price_label(self.price * self.quantity)
+        self.parent.increase_total(self.price)
 
     def decrease(self):
         if self.quantity <= 0:
@@ -269,6 +281,9 @@ class OrderItem(Controller):
         self.quantity -= 1
         self.view.set_quantity(self.quantity)
         self.view.set_price_label(self.price * self.quantity)
+        self.parent.decrease_total(self.price)
+        if self.quantity <= 0:
+            pass
 
     def total_price(self) -> float:
         return self.price * self.quantity
