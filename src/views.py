@@ -230,8 +230,8 @@ class OrderView(QWidget):
     def move_to_index(self, index: int) -> None:
         self.stacked_widget.setCurrentIndex(index)
 
-# Order Item in Order Panel
-class OrderItem(QWidget):
+
+class OrderItemView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(620, 85)
@@ -304,7 +304,8 @@ class OrderListView(QWidget):
         self.menu_scrollArea.setGeometry(QRect(57, 169, 885, 630))
         self.menu_scrollArea.setWidgetResizable(True)
         self.menu_scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.menu_scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.menu_scrollArea.setHorizontalScrollBarPolicy(
+            Qt.ScrollBarAlwaysOff)
 
         self.menu_scrollAreaContents = QWidget(self.menu_scrollArea)
         self.menu_scrollAreaContents.setObjectName("default_scrollAreaContents")
@@ -434,12 +435,15 @@ class DrinkDetailView(QWidget):
 
     def set_name(self, name: str) -> None:
         self.menu_name.setText(name)
-    
+
     def get_drink_type(self) -> str:
         return self.drinkType_buttonGroup.checkedButton.text()
 
     def get_sweetness(self) -> str:
         return self.sweetness_buttonGroup.checkedButton.text()
+
+    def get_detail(self) -> str:
+        return f"{self.menu_name.text()[0:10]:<12}{self.get_drink_type()[0].upper()}{int(self.get_sweetness()):02d}"
 
     def set_cancel_button_listener(self, function) -> None:
         self.cancel_button.clicked.connect(function)
@@ -925,7 +929,7 @@ class AccountView(QWidget):
         self.stacked_widget.setStyleSheet("background: black")
 
         self.setStyleSheet(Theme.get_stylesheet())
-    
+
     def get_searched_item(self) -> str:
         return self.search_bar.text()
 
