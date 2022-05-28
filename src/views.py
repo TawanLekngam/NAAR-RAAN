@@ -240,7 +240,7 @@ class OrderItemView(QWidget):
         self.name_label = QLabel("Menu Name", self)
         self.name_label.setObjectName("default_label")
         self.name_label.setFont(Theme.DONGLE_BOLD_65)
-        self.name_label.setGeometry(QRect(20, 25, 230, 40))
+        self.name_label.setGeometry(QRect(20, 25, 280, 40))
 
         self.minus_button = QPushButton("-", self)
         self.minus_button.setObjectName("default_button")
@@ -251,18 +251,18 @@ class OrderItemView(QWidget):
         self.quantity_label.setEnabled(False)
         self.quantity_label.setObjectName("default_label")
         self.quantity_label.setFont(Theme.DONGLE_REGULAR_65)
-        self.quantity_label.setGeometry(QRect(390, 25, 230, 40))
+        self.quantity_label.setGeometry(QRect(370, 25, 230, 40))
 
         self.plus_button = QPushButton("+", self)
         self.plus_button.setObjectName("default_button")
         self.plus_button.setFont(Theme.DONGLE_REGULAR_65)
-        self.plus_button.setGeometry(QRect(460, 15, 50, 50))
+        self.plus_button.setGeometry(QRect(440, 15, 50, 50))
 
         self.price_label = QLabel("0.0", self)
         self.price_label.setEnabled(False)
         self.price_label.setObjectName("default_label")
         self.price_label.setFont(Theme.DONGLE_REGULAR_65)
-        self.price_label.setGeometry(QRect(550, 25, 230, 40))
+        self.price_label.setGeometry(QRect(510, 25, 230, 40))
 
         self.setStyleSheet(Theme.get_stylesheet())
 
