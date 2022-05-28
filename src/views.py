@@ -214,15 +214,9 @@ class OrderView(QWidget):
         self.order_button.setFont(Theme.DONGLE_BOLD_65)
         self.order_button.setGeometry(QRect(1145, 885, 700, 80))
 
-        # stacked_frame = QFrame(self)
-        # stacked_frame.setObjectName("stacked_frame")
-        # stacked_frame.setGeometry(QRect(75, 115, 1000, 850))
-        # stacked_frame.setStyleSheet("background: black")
-
         self.stacked_widget = QStackedWidget(self)
         self.stacked_widget.setObjectName("stacked_widget")
         self.stacked_widget.setGeometry(QRect(75, 115, 1000, 850))
-        #self.stacked_widget.setStyleSheet("background: black")
 
         self.setStyleSheet(Theme.get_stylesheet())
 
