@@ -378,7 +378,7 @@ class MenuItem(Controller):
 
         # initialize
         self.view.set_itemname(self.item.get_name())
-        self.view.set_button_listener(self.on_click)
+        self.view.set_button_listener(lambda: self.on_click())
 
     def on_click(self) -> None:
         menu_edit_form = MenuEdit(self.parent, self.item)
