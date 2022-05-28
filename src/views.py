@@ -200,7 +200,7 @@ class OrderView(QWidget):
             pass
 
 
-class OrderList(QWidget):
+class OrderItem(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(620, 85)
@@ -216,6 +216,7 @@ class OrderList(QWidget):
         self.minus_button.setGeometry(QRect(290, 15, 50, 50))
 
         self.quantity_label = QLabel("1", self)
+        self.quantity_label.setEnabled(False)
         self.quantity_label.setObjectName("default_label")
         self.quantity_label.setFont(Theme.DONGLE_REGULAR_65)
         self.quantity_label.setGeometry(QRect(390, 25, 230, 40))
@@ -225,12 +226,28 @@ class OrderList(QWidget):
         self.plus_button.setFont(Theme.DONGLE_REGULAR_65)
         self.plus_button.setGeometry(QRect(460, 15, 50, 50))
 
-        self.price_label = QLabel("00", self)
+        self.price_label = QLabel("0.0", self)
+        self.price_label.setEnabled(False)
         self.price_label.setObjectName("default_label")
         self.price_label.setFont(Theme.DONGLE_REGULAR_65)
         self.price_label.setGeometry(QRect(550, 25, 230, 40))
 
         self.setStyleSheet(Theme.get_stylesheet())
+
+    def set_item_name(self, item_name: str) -> None:
+        self.name_label.setText(item_name)
+
+    def set_price_label(self, price: float) -> None:
+        self.price_label.setText(f"{price:.01f}")
+
+    def increase_button_listener(self, function) -> None:
+        self.plus_button.clicked.connect(function)
+
+    def decrease_button_listener(self, function) -> None:
+        self.minus_button.clicked.connect(function)
+
+    def get_total_price(self) -> float:
+        return float(self.price_label.text())
 
 
 class MenuListView(QWidget):
