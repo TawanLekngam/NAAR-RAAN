@@ -109,14 +109,22 @@ class MenuModel(Model):
 
 
 class OrderModel(Model):
+    __receipt_dao: ReceiptDAO
+
+    def __init__(self):
+        self.__receipt_dao = AppDAO.get_dao("receipt")
+
+    def create_new_receipt(self, receipt: Receipt) -> None:
+        self.__receipt_dao.add_receipt(receipt)
+
+
+class OrderListModel(Model):
     __drink_dao: DrinkDAO
     __bakery_dao: BakeryDAO
-    __receipt_dao: ReceiptDAO
 
     def __init__(self):
         self.__drink_dao = AppDAO.get_dao("drink")
         self.__bakery_dao = AppDAO.get_dao("bakery")
-        self.__receipt_dao = AppDAO.get_dao("receipt")
 
     def get_all_products(self) -> list:
         products = list()
@@ -125,12 +133,6 @@ class OrderModel(Model):
         products.sort(key=lambda x: x.name)
         return products
 
-    def create_new_receipt(self, receipt: Receipt) -> None:
-        self.__receipt_dao.add_receipt(receipt)
-
-
-class OrderListModel(Model):
-    pass
 
 class ReceiptModel(Model):
 

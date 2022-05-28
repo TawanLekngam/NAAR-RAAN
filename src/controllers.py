@@ -137,12 +137,6 @@ class OrderPage(Controller):
 
         self.view.insert_view(self.order_list.view, 0)
 
-    def move_to_drink_detail(self):
-        pass
-
-    def move_to_bakery_detail(self):
-        pass
-
 
 class OrderList(Controller):
     "sub controller"
@@ -154,8 +148,15 @@ class OrderList(Controller):
         super().__init__(view, model)
         self.__parent = parent
 
-    def load_item(self, filter: str = None):
-        item_list = list()
+    def load_item(self, filter: str = None) -> None:
+        item_list = self.model.get_all_products()
+        for item in item_list:
+            self.view.add_widget_to_scrollarea(self.__create_item_widget(item))
+
+    def __create_item_widget(self, item) -> OrderListItemView:
+        order_listitem = OrderListItem(
+            self.__parent, OrderListItemView(), item)
+        return order_listitem.view
 
 
 class OrderListItem(Controller):
@@ -165,6 +166,15 @@ class OrderListItem(Controller):
     def __init__(self, parent: Controller, view: QWidget, item: object):
         super().__init__(view, None)
         self.__parent = parent
+        self.item = item
+
+        self.view.set_itemname(self.item.get_name())
+        self.view.set_button_listener(self.click_item)
+
+    def click_item(self) -> None:
+        if isinstance(self.item, Drink):
+            self.__parent.view.insert_view(DrinkDetailView(), 1)
+            self.__parent.view.move_to_index(1)
 
 
 class LogPage(Controller):
