@@ -93,6 +93,9 @@ class Drink(Schema):
         "return blend price."
         return self.bprice
 
+    def get_price(self) -> str:
+        return f"H{self.hprice} / C{self.cprice} / B{self.bprice}"
+
 
 class Bakery(Schema):
     __tablename__ = "BAKERIES"
