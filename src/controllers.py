@@ -383,7 +383,8 @@ class MenuItem(Controller):
 
     def on_click(self) -> None:
         menu_edit_form = MenuEdit(self.parent, self.item)
-        self.parent.view.stacked_widget.addWidget(menu_edit_form.view)
+        self.parent.view.stacked_widget.insertWidget(1, menu_edit_form.view)
+        self.parent.view.stacked_widget.setCurrentIndex(1)
 
 
 class MenuEdit(Controller):
@@ -402,5 +403,10 @@ class MenuEdit(Controller):
         self.view.set_name(self.item.get_name())
         if isinstance(self.item, Drink):
             self.view.drink_button.setChecked(True)
+            self.view.show_drink_info()
+            self.view.fill_drink_info(self.item.get_hprice(
+            ), self.item.get_cprice(), self.item.get_bprice())
         else:
             self.view.bakery_button.setChecked(True)
+            self.view.show_bakery_info()
+            self.view.fill_bakery_info(self.item.get_price())
