@@ -94,7 +94,7 @@ class HomePage(Controller):
             self.view.hide_admin_button()
 
     def move_to_order_page(self) -> None:
-        self.order_page.initialize()
+        self.order_page.order_list.load_item()
         self.view.stacked_widget.setCurrentIndex(0)
 
     def move_to_log_page(self) -> None:
@@ -123,7 +123,7 @@ class OrderPage(Controller):
         super().__init__(view, model)
 
         # sub view
-        self.order_list = None
+        self.order_list:OrderList = None
         self.total = 0.0
 
         self.initialize()
