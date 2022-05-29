@@ -867,11 +867,54 @@ class MenuCreateView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+        self.hot_checkBox.toggled.connect(self.set_price)
+        self.cold_checkBox.toggled.connect(self.set_price)
+        self.blended_checkBox.toggled.connect(self.set_price)
+
+    def set_price(self) -> None:
+        if self.hot_checkBox.isChecked():
+            self.hot_price.setEnabled(True)
+        else:
+            self.hot_price.setEnabled(False)
+
+        if self.cold_checkBox.isChecked():
+            self.cold_price.setEnabled(True)
+        else:
+            self.cold_price.setEnabled(False)
+
+        if self.blended_checkBox.isChecked():
+            self.blended_price.setEnabled(True)
+        else:
+            self.blended_price.setEnabled(False)
+    
     def set_add_button_listener(self, function) -> None:
         self.add_button.clicked.connect(function)
 
     def set_cancel_button_listener(self, function) -> None:
         self.cancel_button.clicked.connect(function)
+
+    def get_name(self) -> str:
+        return self.name_bar.text()
+
+    def get_hprice(self) -> float:
+        if self.hot_price.text() == "":
+            return 0.0
+        return float(self.hot_price.text())
+
+    def get_cprice(self) -> float:
+        if self.cold_price.text() == "":
+            return 0.0
+        return float(self.cold_price.text())
+
+    def get_bprice(self) -> float:
+        if self.blended_price.text() == "":
+            return 0.0
+        return float(self.blended_price.text())
+
+    def get_price(self) -> float:
+        if self.bakery_price.text() == "":
+            return 0.0
+        return float(self.bakery_price.text())
 
 
 
@@ -980,13 +1023,13 @@ class MenuEditView(QWidget):
         self.delete_button.setFont(Theme.DONGLE_REGULAR_65)
         self.delete_button.setGeometry(QRect(480, 730, 200, 80))
 
+        self.setStyleSheet(Theme.get_stylesheet())
+
         self.drink_button.clicked.connect(self.show_drink_info)
         self.bakery_button.clicked.connect(self.show_bakery_info)
         self.hot_checkBox.toggled.connect(self.set_price)
         self.cold_checkBox.toggled.connect(self.set_price)
         self.blended_checkBox.toggled.connect(self.set_price)
-
-        self.setStyleSheet(Theme.get_stylesheet())
 
     def set_name(self, name: str) -> None:
         self.name_bar.setText(name)
