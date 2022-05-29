@@ -263,7 +263,7 @@ class ReceiptDAO(DAO):
         super().__init__(session)
 
     def add_receipt(self, receipt: Receipt) -> None:
-        if receipt is not None:
+        if receipt is None:
             return
 
         self.session.add(receipt)

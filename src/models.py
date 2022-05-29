@@ -131,7 +131,8 @@ class OrderModel(Model):
     def __init__(self):
         self.__receipt_dao = AppDAO.get_dao("receipt")
 
-    def create_new_receipt(self, receipt: Receipt) -> None:
+    def make_new_receipt(self, receipt: Receipt) -> None:
+        print("Model ->" + str(receipt))
         self.__receipt_dao.add_receipt(receipt)
 
 

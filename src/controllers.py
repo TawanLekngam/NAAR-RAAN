@@ -145,7 +145,8 @@ class OrderPage(Controller):
         self.view.set_total(self.total)
 
     def confirm_order(self) -> None:
-        self.model.create_new_receipt(Receipt("Income: " + self.total))
+        receipt = Receipt(f"Income: {self.total:.02f}")
+        self.model.make_new_receipt(receipt)
         self.view.reset()
         self.total = 0.0
 
