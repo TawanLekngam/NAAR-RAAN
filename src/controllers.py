@@ -351,6 +351,7 @@ class MenuPage(Controller):
         super().__init__(view, model)
         self.load_item()
         self.view.stacked_widget.addWidget(AdminEmptyView())
+        self.view.set_add_button_listener(lambda: self.add_menu())
 
     def load_item(self) -> None:
         self.view.clear__scrollarea()
@@ -363,7 +364,9 @@ class MenuPage(Controller):
         return menu_item.view
 
     def add_menu(self) -> None:
-        pass
+        menu_add = MenuAdd(self)
+        self.view.stacked_widget.insertWidget(1, menu_add.view)
+        self.view.stacked_widget.setCurrentIndex(1)
 
 
 class MenuItem(Controller):
@@ -440,7 +443,17 @@ class MenuAdd(Controller):
     view: MenuCreateView
     model: MenuEditModel
 
-    def __init__(self, parent: QWidget, item: Drink | Bakery):
-        super().__init__(MenuEditView(), MenuEditModel())
+    def __init__(self, parent: QWidget):
+        super().__init__(MenuCreateView(), MenuEditModel())
         self.parent = parent
-        self.item = item
+        self.view.set_cancel_button_listener(lambda : self.cancel())
+
+    def add(self):
+        pass
+
+    def cancel(self):
+        self.back_to_page()
+
+    def back_to_page(self) -> None:
+        self.parent.view.stacked_widget.removeWidget(self.view)
+        self.parent.view.stacked_widget.setCurrentIndex(0)
