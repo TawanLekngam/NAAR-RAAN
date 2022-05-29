@@ -123,7 +123,7 @@ class OrderPage(Controller):
         super().__init__(view, model)
 
         # sub view
-        self.order_list:OrderList = None
+        self.order_list: OrderList = None
         self.total = 0.0
 
         self.initialize()
@@ -397,6 +397,7 @@ class MenuEdit(Controller):
 
         self.view.set_cancel_button_listener(lambda: self.cancel())
         self.view.set_delete_button_listener(lambda: self.delete())
+        self.view.set_save_button_listener(lambda: self.save())
 
     def setup_form(self) -> None:
         self.view.set_name(self.item.get_name())
@@ -411,6 +412,11 @@ class MenuEdit(Controller):
             self.view.fill_bakery_info(self.item.get_price())
 
     def save(self) -> None:
+        if isinstance(self.item, Drink):
+            self.model.save(self.item, self.view.get_name, self.view.get_hprice, self.view.get_cprice, self.view.get_bprice)
+        else:
+            self.model.save(self.item, self.view.get_name, self.view.get_price)
+        self.parent.load_item()
         self.back_to_page()
 
     def delete(self) -> None:
@@ -420,7 +426,6 @@ class MenuEdit(Controller):
 
     def cancel(self) -> None:
         self.back_to_page()
-
 
     def back_to_page(self) -> None:
         self.parent.view.stacked_widget.removeWidget(self.view)

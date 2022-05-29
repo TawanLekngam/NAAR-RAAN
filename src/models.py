@@ -177,3 +177,10 @@ class MenuEditModel(Model):
         else:
             self.__bakery_dao.delete_bakery_by_id(item.get_id())
         self.__log_dao.add_log(Log(f"Delete {item.get_name()} from system."))
+
+    def save(self, item: Drink|Bakery, name: str = None, hprice: float = None, cprice: float = None, bprice: float = None) -> None:
+        if isinstance(item, Drink):
+            self.__drink_dao.update_drink(item.get_id(), name, hprice, cprice, bprice)
+        else:
+            self.__bakery_dao.update_bakery(item.get_id(), name, hprice)
+        self.__log_dao.add_log(Log(f"Update {item.get_name()} from system."))

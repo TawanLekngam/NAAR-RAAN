@@ -974,6 +974,9 @@ class MenuEditView(QWidget):
 
         self.drink_button.clicked.connect(self.show_drink_info)
         self.bakery_button.clicked.connect(self.show_bakery_info)
+        self.hot_checkBox.toggled.connect(self.set_price)
+        self.cold_checkBox.toggled.connect(self.set_price)
+        self.blended_checkBox.toggled.connect(self.set_price)
 
         self.setStyleSheet(Theme.get_stylesheet())
 
@@ -1015,6 +1018,22 @@ class MenuEditView(QWidget):
         if price != 0:
             self.bakery_price.setText(f"{price:.02f}")
 
+    def set_price(self) -> None:
+         if self.hot_checkBox.isChecked():
+             self.hot_price.setEnabled(True)
+         else:
+             self.hot_price.setEnabled(False)
+
+         if self.cold_checkBox.isChecked():
+             self.cold_price.setEnabled(True)
+         else:
+             self.cold_price.setEnabled(False)
+
+         if self.blended_checkBox.isChecked():
+             self.blended_price.setEnabled(True)
+         else:
+             self.blended_price.setEnabled(False)
+
     def set_save_button_listener(self, function):
         self.save_button.clicked.connect(function)
 
@@ -1023,6 +1042,21 @@ class MenuEditView(QWidget):
 
     def set_delete_button_listener(self, function):
         self.delete_button.clicked.connect(function)
+
+    def get_name(self) -> str:
+        return self.name_bar.text()
+
+    def get_hprice(self) -> float:
+        return float(self.hot_price.text())
+
+    def get_cprice(self) -> float:
+        return float(self.cold_price.text())
+
+    def get_bprice(self) -> float:
+        return float(self.blended_price.text())
+
+    def get_price(self) -> float:
+        return float(self.bakery_price.text())
 
 # List item (Sub view for menu view and account view)
 
