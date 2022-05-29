@@ -105,6 +105,7 @@ class HomePage(Controller):
 
     def move_to_receipt_page(self) -> None:
         if self.__admin_access:
+            self.receipt_page.initialize()
             self.view.stacked_widget.setCurrentIndex(2)
 
     def move_to_menu_page(self) -> None:
@@ -144,8 +145,8 @@ class OrderPage(Controller):
         self.view.set_total(self.total)
 
     def confirm_order(self) -> None:
-        receipt = Receipt(f"Income: {self.total} Bath.")
-        self.model.create_new_receipt(receipt)
+        
+        self.model.create_new_receipt(Receipt("Income: " + self.total))
         self.view.reset()
         self.total = 0.0
 
@@ -328,6 +329,7 @@ class ReceiptPage(Controller):
         self.initialize()
 
     def initialize(self) -> None:
+        self.view.clear__scrollarea()
         receipt_list: list[Receipt] = self.model.get_all_receipt()
         for receipt in receipt_list:
             print(receipt)
