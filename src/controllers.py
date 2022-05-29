@@ -2,6 +2,7 @@ from abc import ABC
 from datetime import date
 from tkinter import Menu
 from PySide6.QtWidgets import QWidget
+from sqlalchemy import insert
 
 from models import *
 from views import *
@@ -417,11 +418,17 @@ class MenuEdit(Controller):
             self.view.fill_bakery_info(self.item.get_price())
 
     def save(self) -> None:
+        name = self.view.get_name()
+        hprice = self.view.get_hprice()
+        cprice = self.view.get_cprice()
+        bprice = self.view.get_bprice()
+        price = self.view.get_price()
+
         if isinstance(self.item, Drink):
-            self.model.save(self.item, self.view.get_name, self.view.get_hprice,
-                            self.view.get_cprice, self.view.get_bprice)
+            self.model.save(self.item, hprice, cprice, bprice)
         else:
-            self.model.save(self.item, self.view.get_name, self.view.get_price)
+            self.model.save(self.item, price)
+
         self.parent.load_item()
         self.back_to_page()
 
