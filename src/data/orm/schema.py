@@ -138,7 +138,7 @@ class Log(Schema):
         if None in [self.date, self.time]:
             now = datetime.now()
             self.date = f"{now.day:02d}-{now.month:02d}-{now.year}"
-            self.time = f"{now.hour:02d}:{now.minute:02d}:{now.second:02d}"
+            self.time = f"{now.hour:02d}:{now.minute:02d}"
 
     def __str__(self):
         return f"<Log date={self.date} time={self.time} description={self.desc}>"
