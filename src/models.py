@@ -1,6 +1,7 @@
 from abc import ABC
 from datetime import date
 from dateutil import relativedelta
+from shiboken6 import delete
 
 from data.orm.schema import *
 from data.orm.data_access_object import *
@@ -163,7 +164,16 @@ class ReceiptModel(Model):
 class MenuEditModel(Model):
     __drink_dao: DrinkDAO
     __bakery_dao: BakeryDAO
+    __log_dao: LogDAO
 
     def __init__(self):
         self.__drink_dao = AppDAO.get_dao("drink")
-        self.__bakery_dao = AppDAO.get_dao("bakery")  
+        self.__bakery_dao = AppDAO.get_dao("bakery")
+        self.__log_dao = AppDAO.get_dao("log")
+
+    def delete(self, item: Drink|Bakery) -> None:
+        if isinstance(item, Drink):
+            self.__drink_dao.delete_drink_by_id(item.get_id())
+        else:
+            self.__bakery_dao.delete_bakery_by_id(item.get_id())
+        self.__log_dao.add_log(Log(f"Delete {item.get_name()} from system."))

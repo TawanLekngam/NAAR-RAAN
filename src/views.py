@@ -116,6 +116,7 @@ class HomeView(QWidget):
         self.account_button = QPushButton(tab_frame)
         self.account_button.setObjectName("account_button")
         self.account_button.setGeometry(QRect(436, 0, 100, 100))
+        self.account_button.hide()
 
         stacked_frame = QFrame(self)
         stacked_frame.setObjectName("stacked_frame")
@@ -135,14 +136,12 @@ class HomeView(QWidget):
         self.log_button.show()
         self.receipt_button.show()
         self.menu_button.show()
-        self.account_button.show()
 
     def hide_admin_button(self) -> None:
         self.home_button.hide()
         self.log_button.hide()
         self.receipt_button.hide()
         self.menu_button.hide()
-        self.account_button.hide()
 
     def set_username(self, username: str) -> None:
         self.user_button.setText(username)
@@ -636,6 +635,10 @@ class LogView(QWidget):
 
     def add_log_to_scrollarea(self, widget: QWidget) -> None:
         self.vBox.addWidget(widget)
+
+    def clear__scrollarea(self):
+        for i in reversed(range(self.vBox.count())):
+            self.vBox.itemAt(i).widget().setParent(None)
 
 
 # Log Item (Sub view for log view and receipt view)
