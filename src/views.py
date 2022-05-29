@@ -585,7 +585,6 @@ class ReceiptView(QWidget):
     def add_receipt_to_scrollarea(self, widget: QWidget) -> None:
         self.vBox.addWidget(widget)
 
-
     def clear__scrollarea(self):
         for i in reversed(range(self.vBox.count())):
             self.vBox.itemAt(i).widget().setParent(None)
@@ -899,7 +898,7 @@ class MenuCreateView(QWidget):
             self.blended_price.setEnabled(True)
         else:
             self.blended_price.setEnabled(False)
-    
+
     def set_add_button_listener(self, function) -> None:
         self.add_button.clicked.connect(function)
 
@@ -923,6 +922,7 @@ class MenuCreateView(QWidget):
         self.cold_price.hide()
         self.blended_price.hide()
         self.bakery_price.show()
+
     def get_name(self) -> str:
         return self.name_bar.text()
 
@@ -945,7 +945,6 @@ class MenuCreateView(QWidget):
         if self.bakery_price.text() == "":
             return 0.0
         return float(self.bakery_price.text())
-
 
 
 # Edit menu (Sub view for menu view)
