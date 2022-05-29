@@ -858,7 +858,27 @@ class MenuCreateView(QWidget):
         self.add_button.setFont(Theme.DONGLE_REGULAR_65)
         self.add_button.setGeometry(QRect(394, 730, 200, 80))
 
+        self.hot_checkBox.toggled.connect(self.set_price)
+        self.cold_checkBox.toggled.connect(self.set_price)
+        self.blended_checkBox.toggled.connect(self.set_price)
+
         self.setStyleSheet(Theme.get_stylesheet())
+
+    def set_price(self) -> None:
+        if self.hot_checkBox.isChecked():
+            self.hot_price.setEnabled(True)
+        else:
+            self.hot_price.setEnabled(False)
+
+        if self.cold_checkBox.isChecked():
+            self.cold_price.setEnabled(True)
+        else:
+            self.cold_price.setEnabled(False)
+
+        if self.blended_checkBox.isChecked():
+            self.blended_price.setEnabled(True)
+        else:
+            self.blended_price.setEnabled(False)
 
 # Edit menu (Sub view for menu view)
 
@@ -967,6 +987,9 @@ class MenuEditView(QWidget):
 
         self.drink_button.clicked.connect(self.show_drink_info)
         self.bakery_button.clicked.connect(self.show_bakery_info)
+        self.hot_checkBox.toggled.connect(self.set_price)
+        self.cold_checkBox.toggled.connect(self.set_price)
+        self.blended_checkBox.toggled.connect(self.set_price)
 
         self.setStyleSheet(Theme.get_stylesheet())
 
@@ -1003,6 +1026,22 @@ class MenuEditView(QWidget):
         if bprice != 0:
             self.blended_checkBox.setChecked(True)
             self.blended_price.setText(f"{bprice:.02f}")
+
+    def set_price(self) -> None:
+        if self.hot_checkBox.isChecked():
+            self.hot_price.setEnabled(True)
+        else:
+            self.hot_price.setEnabled(False)
+
+        if self.cold_checkBox.isChecked():
+            self.cold_price.setEnabled(True)
+        else:
+            self.cold_price.setEnabled(False)
+
+        if self.blended_checkBox.isChecked():
+            self.blended_price.setEnabled(True)
+        else:
+            self.blended_price.setEnabled(False)
 
     def fill_bakery_info(self, price: float = 0) -> None:
         if price != 0:
