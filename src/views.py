@@ -766,91 +766,94 @@ class MenuCreateView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(720, 850)
-        self.setObjectName("brown_widget")
 
-        name_label = QLabel("Name", self)
+        menu_frame = QFrame(self)
+        menu_frame.setObjectName("brown_frame")
+        menu_frame.setGeometry(0, 0, 720, 850)
+
+        name_label = QLabel("Name", menu_frame)
         name_label.setObjectName("default_label")
         name_label.setFont(Theme.DONGLE_BOLD_65)
         name_label.setGeometry(QRect(33, 75, 111, 41))
 
-        self.name_bar = QLineEdit(self)
+        self.name_bar = QLineEdit(menu_frame)
         self.name_bar.setObjectName("input_bar")
         self.name_bar.setFont(Theme.DONGLE_REGULAR_65)
         self.name_bar.setGeometry(QRect(210, 49, 470, 60))
 
-        type_label = QLabel("Type", self)
+        type_label = QLabel("Type", menu_frame)
         type_label.setObjectName("default_label")
         type_label.setFont(Theme.DONGLE_BOLD_65)
         type_label.setGeometry(QRect(33, 185, 111, 41))
 
-        self.drink_button = QRadioButton("Drink", self)
+        self.drink_button = QRadioButton("Drink", menu_frame)
         self.drink_button.setObjectName("default_radio")
         self.drink_button.setFont(Theme.DONGLE_REGULAR_65)
         self.drink_button.setGeometry(QRect(210, 185, 151, 41))
 
-        self.bakery_button = QRadioButton("Bakery", self)
+        self.bakery_button = QRadioButton("Bakery", menu_frame)
         self.bakery_button.setObjectName("default_radio")
         self.bakery_button.setFont(Theme.DONGLE_REGULAR_65)
         self.bakery_button.setGeometry(QRect(500, 185, 171, 41))
 
-        type_buttonGroup = QButtonGroup(self)
+        type_buttonGroup = QButtonGroup(menu_frame)
         type_buttonGroup.setObjectName("type_buttonGroup")
         type_buttonGroup.addButton(self.drink_button)
         type_buttonGroup.addButton(self.bakery_button)
 
-        price_label = QLabel("Price", self)
+        price_label = QLabel("Price", menu_frame)
         price_label.setObjectName("default_label")
         price_label.setFont(Theme.DONGLE_BOLD_65)
         price_label.setGeometry(QRect(33, 301, 111, 41))
 
-        self.hot_checkBox = QCheckBox("Hot", self)
+        self.hot_checkBox = QCheckBox("Hot", menu_frame)
         self.hot_checkBox.setObjectName("default_checkbox")
         self.hot_checkBox.setFont(Theme.DONGLE_REGULAR_65)
         self.hot_checkBox.setGeometry(QRect(194, 281, 141, 71))
 
-        self.cold_checkBox = QCheckBox("Cold", self)
+        self.cold_checkBox = QCheckBox("Cold", menu_frame)
         self.cold_checkBox.setObjectName("default_checkbox")
         self.cold_checkBox.setFont(Theme.DONGLE_REGULAR_65)
         self.cold_checkBox.setGeometry(QRect(194, 370, 151, 61))
 
-        self.blended_checkBox = QCheckBox("Blended", self)
+        self.blended_checkBox = QCheckBox("Blended", menu_frame)
         self.blended_checkBox.setObjectName("default_checkbox")
         self.blended_checkBox.setFont(Theme.DONGLE_REGULAR_65)
         self.blended_checkBox.setGeometry(QRect(194, 459, 211, 61))
 
-        self.hot_price = QLineEdit(self)
+        self.hot_price = QLineEdit(menu_frame)
         self.hot_price.setObjectName("input_bar")
         self.hot_price.setFont(Theme.DONGLE_REGULAR_65)
         self.hot_price.setGeometry(QRect(480, 281, 200, 60))
         self.hot_price.setAlignment(Qt.AlignCenter)
         self.hot_price.setEnabled(False)
 
-        self.cold_price = QLineEdit(self)
+        self.cold_price = QLineEdit(menu_frame)
         self.cold_price.setObjectName("input_bar")
         self.cold_price.setFont(Theme.DONGLE_REGULAR_65)
         self.cold_price.setGeometry(QRect(480, 370, 200, 60))
         self.cold_price.setAlignment(Qt.AlignCenter)
         self.cold_price.setEnabled(False)
 
-        self.blended_price = QLineEdit(self)
+        self.blended_price = QLineEdit(menu_frame)
         self.blended_price.setObjectName("input_bar")
         self.blended_price.setFont(Theme.DONGLE_REGULAR_65)
         self.blended_price.setGeometry(QRect(480, 459, 200, 60))
         self.blended_price.setAlignment(Qt.AlignCenter)
         self.blended_price.setEnabled(False)
 
-        self.bakery_price = QLineEdit(self)
+        self.bakery_price = QLineEdit(menu_frame)
         self.bakery_price.setObjectName("input_bar")
         self.bakery_price.setFont(Theme.DONGLE_REGULAR_65)
         self.bakery_price.setGeometry(QRect(210, 281, 200, 60))
         self.bakery_price.setAlignment(Qt.AlignCenter)
 
-        self.cancel_button = QPushButton("Cancel", self)
+        self.cancel_button = QPushButton("Cancel", menu_frame)
         self.cancel_button.setObjectName("default_button")
         self.cancel_button.setFont(Theme.DONGLE_REGULAR_65)
         self.cancel_button.setGeometry(QRect(124, 730, 200, 80))
 
-        self.add_button = QPushButton("Add", self)
+        self.add_button = QPushButton("Add", menu_frame)
         self.add_button.setObjectName("default_button")
         self.add_button.setFont(Theme.DONGLE_REGULAR_65)
         self.add_button.setGeometry(QRect(394, 730, 200, 80))
@@ -865,96 +868,99 @@ class MenuEditView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(720, 850)
-        self.setObjectName("brown_widget")
 
-        name_label = QLabel("Name", self)
+        menu_frame = QFrame(self)
+        menu_frame.setObjectName("brown_frame")
+        menu_frame.setGeometry(0, 0, 720, 850)
+
+        name_label = QLabel("Name", menu_frame)
         name_label.setObjectName("default_label")
         name_label.setFont(Theme.DONGLE_BOLD_65)
         name_label.setGeometry(QRect(33, 75, 111, 41))
 
-        self.name_bar = QLineEdit(self)
+        self.name_bar = QLineEdit(menu_frame)
         self.name_bar.setObjectName("input_bar")
         self.name_bar.setFont(Theme.DONGLE_REGULAR_65)
         self.name_bar.setGeometry(QRect(210, 49, 470, 60))
 
-        type_label = QLabel("Type", self)
+        type_label = QLabel("Type", menu_frame)
         type_label.setObjectName("default_label")
         type_label.setFont(Theme.DONGLE_BOLD_65)
         type_label.setGeometry(QRect(33, 185, 111, 41))
 
-        self.drink_button = QRadioButton("Drink", self)
+        self.drink_button = QRadioButton("Drink", menu_frame)
         self.drink_button.setObjectName("default_radio")
         self.drink_button.setFont(Theme.DONGLE_REGULAR_65)
         self.drink_button.setGeometry(QRect(210, 185, 151, 41))
 
-        self.bakery_button = QRadioButton("Bakery", self)
+        self.bakery_button = QRadioButton("Bakery", menu_frame)
         self.bakery_button.setObjectName("default_radio")
         self.bakery_button.setFont(Theme.DONGLE_REGULAR_65)
         self.bakery_button.setGeometry(QRect(500, 185, 171, 41))
 
-        type_buttonGroup = QButtonGroup(self)
+        type_buttonGroup = QButtonGroup(menu_frame)
         type_buttonGroup.setObjectName("type_buttonGroup")
         type_buttonGroup.addButton(self.drink_button)
         type_buttonGroup.addButton(self.bakery_button)
 
-        price_label = QLabel("Price", self)
+        price_label = QLabel("Price", menu_frame)
         price_label.setObjectName("default_label")
         price_label.setFont(Theme.DONGLE_BOLD_65)
         price_label.setGeometry(QRect(33, 301, 111, 41))
 
-        self.hot_checkBox = QCheckBox("Hot", self)
+        self.hot_checkBox = QCheckBox("Hot", menu_frame)
         self.hot_checkBox.setObjectName("default_checkbox")
         self.hot_checkBox.setFont(Theme.DONGLE_REGULAR_65)
         self.hot_checkBox.setGeometry(QRect(194, 281, 141, 71))
 
-        self.cold_checkBox = QCheckBox("Cold", self)
+        self.cold_checkBox = QCheckBox("Cold", menu_frame)
         self.cold_checkBox.setObjectName("default_checkbox")
         self.cold_checkBox.setFont(Theme.DONGLE_REGULAR_65)
         self.cold_checkBox.setGeometry(QRect(194, 370, 151, 61))
 
-        self.blended_checkBox = QCheckBox("Blended", self)
+        self.blended_checkBox = QCheckBox("Blended", menu_frame)
         self.blended_checkBox.setObjectName("default_checkbox")
         self.blended_checkBox.setFont(Theme.DONGLE_REGULAR_65)
         self.blended_checkBox.setGeometry(QRect(194, 459, 211, 61))
 
-        self.hot_price = QLineEdit(self)
+        self.hot_price = QLineEdit(menu_frame)
         self.hot_price.setObjectName("input_bar")
         self.hot_price.setFont(Theme.DONGLE_REGULAR_65)
         self.hot_price.setGeometry(QRect(480, 281, 200, 60))
         self.hot_price.setAlignment(Qt.AlignCenter)
         self.hot_price.setEnabled(False)
 
-        self.cold_price = QLineEdit(self)
+        self.cold_price = QLineEdit(menu_frame)
         self.cold_price.setObjectName("input_bar")
         self.cold_price.setFont(Theme.DONGLE_REGULAR_65)
         self.cold_price.setGeometry(QRect(480, 370, 200, 60))
         self.cold_price.setAlignment(Qt.AlignCenter)
         self.cold_price.setEnabled(False)
 
-        self.blended_price = QLineEdit(self)
+        self.blended_price = QLineEdit(menu_frame)
         self.blended_price.setObjectName("input_bar")
         self.blended_price.setFont(Theme.DONGLE_REGULAR_65)
         self.blended_price.setGeometry(QRect(480, 459, 200, 60))
         self.blended_price.setAlignment(Qt.AlignCenter)
         self.blended_price.setEnabled(False)
 
-        self.bakery_price = QLineEdit(self)
+        self.bakery_price = QLineEdit(menu_frame)
         self.bakery_price.setObjectName("input_bar")
         self.bakery_price.setFont(Theme.DONGLE_REGULAR_65)
         self.bakery_price.setGeometry(QRect(210, 281, 200, 60))
         self.bakery_price.setAlignment(Qt.AlignCenter)
 
-        self.cancel_button = QPushButton("Cancel", self)
+        self.cancel_button = QPushButton("Cancel", menu_frame)
         self.cancel_button.setObjectName("default_button")
         self.cancel_button.setFont(Theme.DONGLE_REGULAR_65)
         self.cancel_button.setGeometry(QRect(33, 730, 200, 80))
 
-        self.save_button = QPushButton("Save", self)
+        self.save_button = QPushButton("Save", menu_frame)
         self.save_button.setObjectName("default_button")
         self.save_button.setFont(Theme.DONGLE_REGULAR_65)
         self.save_button.setGeometry(QRect(257, 730, 200, 80))
 
-        self.delete_button = QPushButton("Delete", self)
+        self.delete_button = QPushButton("Delete", menu_frame)
         self.delete_button.setObjectName("default_button")
         self.delete_button.setFont(Theme.DONGLE_REGULAR_65)
         self.delete_button.setGeometry(QRect(480, 730, 200, 80))
@@ -1011,12 +1017,37 @@ class MenuEditView(QWidget):
     def set_delete_button_listener(self, function):
         self.delete_button.clicked.connect(function)
 
+# List item (Sub view for menu view and account view)
+
+
+class AdminListItem(QWidget):
+    def __init__(self, parent: QWidget = None):
+        QWidget.__init__(self, parent)
+        self.setFixedSize(860, 80)
+
+        self.name_button = QPushButton("List Name", self)
+        self.name_button.setObjectName("white_list_button")
+        self.name_button.setFont(Theme.DONGLE_REGULAR_65)
+        self.name_button.setGeometry(QRect(50, 10, 780, 50))
+
+        brown_line = QFrame(self)
+        brown_line.setObjectName("brown_line")
+        brown_line.setGeometry(QRect(30, 70, 820, 3))
+
+        self.setStyleSheet(Theme.get_stylesheet())
+
+    def set_itemname(self, item_name: str) -> None:
+        self.name_button.setText(item_name)
+
+    def set_button_listener(self, function) -> None:
+        self.name_button.clicked.connect(function)
+
 
 """
 Account management for admin
 """
 
-
+"""
 class AccountView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
@@ -1074,74 +1105,77 @@ class AccountCreateView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(720, 850)
-        self.setObjectName("brown_widget")
 
-        name_label = QLabel("Name", self)
+        acc_frame = QFrame(self)
+        acc_frame.setObjectName("brown_frame")
+        acc_frame.setGeometry(0, 0, 720, 850)
+
+        name_label = QLabel("Name", acc_frame)
         name_label.setObjectName("default_label")
         name_label.setFont(Theme.DONGLE_BOLD_65)
         name_label.setGeometry(QRect(33, 75, 111, 41))
 
-        self.name = QLineEdit(self)
+        self.name = QLineEdit(acc_frame)
         self.name.setObjectName("input_bar")
         self.name.setFont(Theme.DONGLE_REGULAR_65)
         self.name.setGeometry(QRect(250, 50, 430, 60))
 
-        surname_label = QLabel("Surname", self)
+        surname_label = QLabel("Surname", acc_frame)
         surname_label.setObjectName("default_label")
         surname_label.setFont(Theme.DONGLE_BOLD_65)
         surname_label.setGeometry(QRect(33, 180, 171, 41))
 
-        self.surname = QLineEdit(self)
+        self.surname = QLineEdit(acc_frame)
         self.surname.setObjectName("input_bar")
         self.surname.setFont(Theme.DONGLE_REGULAR_65)
         self.surname.setGeometry(QRect(250, 155, 430, 60))
 
-        username_label = QLabel("Username", self)
+        username_label = QLabel("Username", acc_frame)
         username_label.setObjectName("default_label")
         username_label.setFont(Theme.DONGLE_BOLD_65)
         username_label.setGeometry(QRect(33, 390, 191, 41))
 
-        self.username = QLineEdit(self)
+        self.username = QLineEdit(acc_frame)
         self.username.setObjectName("input_bar")
         self.username.setFont(Theme.DONGLE_REGULAR_65)
         self.username.setGeometry(QRect(250, 365, 430, 60))
 
-        password_label = QLabel("Password", self)
+        password_label = QLabel("Password", acc_frame)
         password_label.setObjectName("default_label")
         password_label.setFont(Theme.DONGLE_BOLD_65)
         password_label.setGeometry(QRect(33, 285, 201, 41))
 
-        self.password = QLineEdit(self)
+        self.password = QLineEdit(acc_frame)
         self.password.setObjectName("input_bar")
         self.password.setFont(Theme.DONGLE_REGULAR_65)
         self.password.setGeometry(QRect(250, 260, 430, 60))
 
-        position_label = QLabel("Position", self)
+        position_label = QLabel("Position", acc_frame)
         position_label.setObjectName("default_label")
         position_label.setFont(Theme.DONGLE_BOLD_65)
         position_label.setGeometry(QRect(33, 495, 191, 41))
 
-        self.admin_button = QRadioButton("Admin", self)
+        self.admin_button = QRadioButton("Admin", acc_frame)
         self.admin_button.setObjectName("default_radio")
         self.admin_button.setFont(Theme.DONGLE_REGULAR_65)
         self.admin_button.setGeometry(QRect(250, 495, 161, 41))
 
-        self.staff_button = QRadioButton("Staff", self)
+        self.staff_button = QRadioButton("Staff", acc_frame)
         self.staff_button.setObjectName("default_radio")
         self.staff_button.setFont(Theme.DONGLE_REGULAR_65)
         self.staff_button.setGeometry(QRect(540, 495, 141, 41))
 
-        position_buttonGroup = QButtonGroup(self)
+        position_buttonGroup = QButtonGroup(acc_frame)
         position_buttonGroup.setObjectName("position_buttonGroup")
         position_buttonGroup.addButton(self.admin_button)
         position_buttonGroup.addButton(self.staff_button)
 
-        self.cancel_button = QPushButton("Cancel", self)
+        self.cancel_button = QPushButton("Cancel", acc_frame)
         self.cancel_button.setObjectName("default_button")
         self.cancel_button.setFont(Theme.DONGLE_REGULAR_65)
         self.cancel_button.setGeometry(QRect(124, 730, 200, 80))
 
-        self.add_button = QPushButton("Add", self)
+        self.add_button = QPushButton("Add", acc_frame)
         self.add_button.setObjectName("default_button")
         self.add_button.setFont(Theme.DONGLE_REGULAR_65)
         self.add_button.setGeometry(QRect(394, 730, 200, 80))
@@ -1209,106 +1243,85 @@ class AccountEditView(QWidget):
     def __init__(self, parent: QWidget = None):
         QWidget.__init__(self, parent)
         self.setFixedSize(720, 850)
-        self.setObjectName("brown_widget")
+        
+        acc_frame = QFrame(self)
+        acc_frame.setObjectName("brown_frame")
+        acc_frame.setGeometry(0, 0, 720, 850)
 
-        name_label = QLabel("Name", self)
+        name_label = QLabel("Name", acc_frame)
         name_label.setObjectName("default_label")
         name_label.setFont(Theme.DONGLE_BOLD_65)
         name_label.setGeometry(QRect(33, 75, 111, 41))
 
-        self.name = QLineEdit(self)
+        self.name = QLineEdit(acc_frame)
         self.name.setObjectName("input_bar")
         self.name.setFont(Theme.DONGLE_REGULAR_65)
         self.name.setGeometry(QRect(250, 50, 430, 60))
 
-        surname_label = QLabel("Surname", self)
+        surname_label = QLabel("Surname", acc_frame)
         surname_label.setObjectName("default_label")
         surname_label.setFont(Theme.DONGLE_BOLD_65)
         surname_label.setGeometry(QRect(33, 180, 171, 41))
 
-        self.surname = QLineEdit(self)
+        self.surname = QLineEdit(acc_frame)
         self.surname.setObjectName("input_bar")
         self.surname.setFont(Theme.DONGLE_REGULAR_65)
         self.surname.setGeometry(QRect(250, 155, 430, 60))
 
-        username_label = QLabel("Username", self)
+        username_label = QLabel("Username", acc_frame)
         username_label.setObjectName("default_label")
         username_label.setFont(Theme.DONGLE_BOLD_65)
         username_label.setGeometry(QRect(33, 390, 191, 41))
 
-        self.username = QLineEdit(self)
+        self.username = QLineEdit(acc_frame)
         self.username.setObjectName("input_bar")
         self.username.setFont(Theme.DONGLE_REGULAR_65)
         self.username.setGeometry(QRect(250, 365, 430, 60))
 
-        password_label = QLabel("Password", self)
+        password_label = QLabel("Password", acc_frame)
         password_label.setObjectName("default_label")
         password_label.setFont(Theme.DONGLE_BOLD_65)
         password_label.setGeometry(QRect(33, 285, 201, 41))
 
-        self.password = QLineEdit(self)
+        self.password = QLineEdit(acc_frame)
         self.password.setObjectName("input_bar")
         self.password.setFont(Theme.DONGLE_REGULAR_65)
         self.password.setGeometry(QRect(250, 260, 430, 60))
 
-        position_label = QLabel("Position", self)
+        position_label = QLabel("Position", acc_frame)
         position_label.setObjectName("default_label")
         position_label.setFont(Theme.DONGLE_BOLD_65)
         position_label.setGeometry(QRect(33, 495, 191, 41))
 
-        self.admin_button = QRadioButton("Admin", self)
+        self.admin_button = QRadioButton("Admin", acc_frame)
         self.admin_button.setObjectName("default_radio")
         self.admin_button.setFont(Theme.DONGLE_REGULAR_65)
         self.admin_button.setGeometry(QRect(250, 495, 161, 41))
 
-        self.staff_button = QRadioButton("Staff", self)
+        self.staff_button = QRadioButton("Staff", acc_frame)
         self.staff_button.setObjectName("default_radio")
         self.staff_button.setFont(Theme.DONGLE_REGULAR_65)
         self.staff_button.setGeometry(QRect(540, 495, 141, 41))
 
-        position_buttonGroup = QButtonGroup(self)
+        position_buttonGroup = QButtonGroup(acc_frame)
         position_buttonGroup.setObjectName("position_buttonGroup")
         position_buttonGroup.addButton(self.admin_button)
         position_buttonGroup.addButton(self.staff_button)
 
-        self.cancel_button = QPushButton("Cancel", self)
+        self.cancel_button = QPushButton("Cancel", acc_frame)
         self.cancel_button.setObjectName("default_button")
         self.cancel_button.setFont(Theme.DONGLE_REGULAR_65)
         self.cancel_button.setGeometry(QRect(33, 730, 200, 80))
 
-        self.save_button = QPushButton("Save", self)
+        self.save_button = QPushButton("Save", acc_frame)
         self.save_button.setObjectName("default_button")
         self.save_button.setFont(Theme.DONGLE_REGULAR_65)
         self.save_button.setGeometry(QRect(257, 730, 200, 80))
 
-        self.delete_button = QPushButton("Delete", self)
+        self.delete_button = QPushButton("Delete", acc_frame)
         self.delete_button.setObjectName("default_button")
         self.delete_button.setFont(Theme.DONGLE_REGULAR_65)
         self.delete_button.setGeometry(QRect(480, 730, 200, 80))
 
         self.setStyleSheet(Theme.get_stylesheet())
-
-# List item (Sub view for menu view and account view)
-
-
-class AdminListItem(QWidget):
-    def __init__(self, parent: QWidget = None):
-        QWidget.__init__(self, parent)
-        self.setFixedSize(860, 80)
-
-        self.name_button = QPushButton("List Name", self)
-        self.name_button.setObjectName("white_list_button")
-        self.name_button.setFont(Theme.DONGLE_REGULAR_65)
-        self.name_button.setGeometry(QRect(50, 10, 780, 50))
-
-        brown_line = QFrame(self)
-        brown_line.setObjectName("brown_line")
-        brown_line.setGeometry(QRect(30, 70, 820, 3))
-
-        self.setStyleSheet(Theme.get_stylesheet())
-
-    def set_itemname(self, item_name: str) -> None:
-        self.name_button.setText(item_name)
-
-    def set_button_listener(self, function) -> None:
-        self.name_button.clicked.connect(function)
+"""

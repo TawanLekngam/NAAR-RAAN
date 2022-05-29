@@ -86,17 +86,17 @@ class HomePage(Controller):
             self.log_page = LogPage(LogView(), LogModel())
             self.receipt_page = ReceiptPage(ReceiptView(), ReceiptModel())
             self.menu_page = MenuPage(MenuView(), MenuModel())
-            self.account_page = AccountPage(AccountView(), AccountModel())
+            # self.account_page = AccountPage(AccountView(), AccountModel())
 
             self.view.add_view(self.log_page.view)
             self.view.add_view(self.receipt_page.view)
             self.view.add_view(self.menu_page.view)
-            self.view.add_view(self.account_page.view)
+            # self.view.add_view(self.account_page.view)
 
             self.view.set_log_button_listener(self.move_to_log_page)
             self.view.set_receipt_button_listener(self.move_to_receipt_page)
             self.view.set_menu_button_listener(self.move_to_menu_page)
-            self.view.set_account_button_listener(self.move_to_account_page)
+            # self.view.set_account_button_listener(self.move_to_account_page)
 
         else:
             self.view.hide_admin_button()
@@ -116,9 +116,9 @@ class HomePage(Controller):
         if self.__admin_access:
             self.view.stacked_widget.setCurrentIndex(3)
 
-    def move_to_account_page(self) -> None:
-        if self.__admin_access:
-            self.view.stacked_widget.setCurrentIndex(4)
+    # def move_to_account_page(self) -> None:
+    #     if self.__admin_access:
+    #         self.view.stacked_widget.setCurrentIndex(4)
 
 
 class OrderPage(Controller):
@@ -341,10 +341,10 @@ class ReceiptPage(Controller):
         return LogItem(receipt.get_date(), receipt.get_time(), receipt.get_desc()[0:51])
 
 
-class AccountPage(Controller):
+# class AccountPage(Controller):
 
-    def __init__(self, view: QWidget, model: Model):
-        super().__init__(view, model)
+#     def __init__(self, view: QWidget, model: Model):
+#         super().__init__(view, model)
 
 
 class MenuPage(Controller):
