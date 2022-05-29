@@ -171,7 +171,13 @@ class MenuEditModel(Model):
         self.__bakery_dao = AppDAO.get_dao("bakery")
         self.__log_dao = AppDAO.get_dao("log")
 
-    def delete(self, item: Drink|Bakery) -> None:
+    def add(self, item: Drink | Bakery) -> None:
+        if isinstance(item, Drink):
+            self.__drink_dao.add_drink(item)
+        else:
+            self.__bakery_dao.add_bakery(item)
+
+    def delete(self, item: Drink | Bakery) -> None:
         if isinstance(item, Drink):
             self.__drink_dao.delete_drink_by_id(item.get_id())
         else:

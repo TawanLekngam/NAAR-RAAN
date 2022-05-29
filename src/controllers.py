@@ -354,7 +354,6 @@ class MenuPage(Controller):
 
     def load_item(self) -> None:
         self.view.clear__scrollarea()
-
         item_list = self.model.get_all_products()
         for item in item_list:
             self.view.add_view_to_scrollarea(self.create_widget(item))
@@ -362,6 +361,9 @@ class MenuPage(Controller):
     def create_widget(self, item: Drink | Bakery) -> QWidget:
         menu_item = MenuItem(self, item)
         return menu_item.view
+
+    def add_menu(self) -> None:
+        pass
 
 
 class MenuItem(Controller):
@@ -430,3 +432,15 @@ class MenuEdit(Controller):
     def back_to_page(self) -> None:
         self.parent.view.stacked_widget.removeWidget(self.view)
         self.parent.view.stacked_widget.setCurrentIndex(0)
+
+class MenuAdd(Controller):
+    parent: MenuPage
+    view: MenuCreateView
+    model: MenuEditModel
+
+    def __init__(self, parent: QWidget, item: Drink | Bakery):
+        super().__init__(MenuEditView(), MenuEditModel())
+        self.parent = parent
+        self.item = item
+
+        
