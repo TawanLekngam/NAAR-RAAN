@@ -166,7 +166,7 @@ class OrderList(Controller):
         self.parent = parent
         self.load_item()
 
-    def load_item(self, filter: str = None) -> None:
+    def load_item(self) -> None:
         item_list = self.model.get_all_products()
         for item in item_list:
             self.view.add_widget_to_scrollarea(self.__create_item_widget(item))
@@ -399,6 +399,9 @@ class MenuEdit(Controller):
 
         self.setup_form()
 
+        self.view.set_cancel_button_listener(lambda: self.cancel())
+        self.view.set_delete_button_listener(lambda: self.delete())
+
     def setup_form(self) -> None:
         self.view.set_name(self.item.get_name())
         if isinstance(self.item, Drink):
@@ -410,3 +413,19 @@ class MenuEdit(Controller):
             self.view.bakery_button.setChecked(True)
             self.view.show_bakery_info()
             self.view.fill_bakery_info(self.item.get_price())
+
+    def save(self) -> None:
+        self.back_to_page()
+
+    def delete(self) -> None:
+        self.model.delete(self.item)
+        self.parent.load_item()
+        self.back_to_page()
+
+    def cancel(self) -> None:
+        self.back_to_page()
+
+
+    def back_to_page(self) -> None:
+        self.parent.view.stacked_widget.removeWidget(self.view)
+        self.parent.view.stacked_widget.setCurrentIndex(0)

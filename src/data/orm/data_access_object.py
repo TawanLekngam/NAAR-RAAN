@@ -201,7 +201,7 @@ class BakeryDAO(DAO):
 
     def delete_bakery_by_id(self, id: int) -> None:
         bakery: Bakery = self.session.query(
-            Bakery).filter(User.id == id).first()
+            Bakery).filter(Bakery.id == id).first()
         if bakery is None:
             return
 
@@ -214,7 +214,7 @@ class BakeryDAO(DAO):
             name: str = None,
             price: float = None) -> bool:
         bakery: Bakery = self.session.query(
-            Bakery).filter(User.id == id).first()
+            Bakery).filter(Bakery.id == id).first()
 
         if bakery is None:
             return False
