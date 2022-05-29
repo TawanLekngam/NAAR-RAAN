@@ -446,10 +446,25 @@ class MenuAdd(Controller):
     def __init__(self, parent: QWidget):
         super().__init__(MenuCreateView(), MenuEditModel())
         self.parent = parent
-        self.view.set_cancel_button_listener(lambda : self.cancel())
+
+        self.view.set_add_button_listener(lambda: self.add())
+        self.view.set_cancel_button_listener(lambda: self.cancel())
 
     def add(self):
-        pass
+        name = self.view.get_name()
+        hprice = self.view.get_hprice()
+        cprice = self.view.get_cprice()
+        bprice = self.view.get_bprice()
+        price = self.view.get_price()
+        item: Drink | Bakery = None
+
+        if self.view.drink_button.isChecked():
+            item = Drink(name, hprice, cprice, bprice)
+        else:
+            item = Bakery(name, price)
+        self.model.add(item)
+        self.parent.load_item()
+        self.back_to_page()
 
     def cancel(self):
         self.back_to_page()

@@ -176,6 +176,8 @@ class MenuEditModel(Model):
             self.__drink_dao.add_drink(item)
         else:
             self.__bakery_dao.add_bakery(item)
+            
+        self.__log_dao.add_log(Log(f"Add {item.get_name()} to system."))
 
     def delete(self, item: Drink | Bakery) -> None:
         if isinstance(item, Drink):

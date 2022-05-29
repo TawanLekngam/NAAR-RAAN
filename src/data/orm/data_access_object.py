@@ -186,7 +186,7 @@ class BakeryDAO(DAO):
     def __init__(self, session: Session):
         self.session = session
 
-    def add_bakery(self, bakery, Bakery) -> None:
+    def add_bakery(self, bakery: Bakery) -> None:
         if bakery is None or self.__exist(bakery):
             return
 
