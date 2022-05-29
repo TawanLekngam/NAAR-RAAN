@@ -10,5 +10,6 @@ def main() -> int:
     app.start()
     return root.exec()
 
+
 if __name__ == "__main__":
     sys.exit(main())

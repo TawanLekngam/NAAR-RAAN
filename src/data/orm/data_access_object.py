@@ -39,6 +39,7 @@ class AppDAO:
         else:
             return None
 
+
 class UserDAO(DAO):
 
     def __init__(self, session: Session):
