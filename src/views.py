@@ -867,6 +867,14 @@ class MenuCreateView(QWidget):
 
         self.setStyleSheet(Theme.get_stylesheet())
 
+    def set_add_button_listener(self, function) -> None:
+        self.add_button.clicked.connect(function)
+
+    def set_cancel_button_listener(self, function) -> None:
+        self.cancel_button.clicked.connect(function)
+
+
+
 # Edit menu (Sub view for menu view)
 
 

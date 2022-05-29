@@ -415,7 +415,8 @@ class MenuEdit(Controller):
 
     def save(self) -> None:
         if isinstance(self.item, Drink):
-            self.model.save(self.item, self.view.get_name, self.view.get_hprice, self.view.get_cprice, self.view.get_bprice)
+            self.model.save(self.item, self.view.get_name, self.view.get_hprice,
+                            self.view.get_cprice, self.view.get_bprice)
         else:
             self.model.save(self.item, self.view.get_name, self.view.get_price)
         self.parent.load_item()
@@ -433,6 +434,7 @@ class MenuEdit(Controller):
         self.parent.view.stacked_widget.removeWidget(self.view)
         self.parent.view.stacked_widget.setCurrentIndex(0)
 
+
 class MenuAdd(Controller):
     parent: MenuPage
     view: MenuCreateView
@@ -442,5 +444,3 @@ class MenuAdd(Controller):
         super().__init__(MenuEditView(), MenuEditModel())
         self.parent = parent
         self.item = item
-
-        
