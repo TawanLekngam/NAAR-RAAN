@@ -425,9 +425,9 @@ class MenuEdit(Controller):
         price = self.view.get_price()
 
         if isinstance(self.item, Drink):
-            self.model.save(self.item, hprice, cprice, bprice)
+            self.model.save(self.item, name, hprice, cprice, bprice)
         else:
-            self.model.save(self.item, price)
+            self.model.save(self.item, name, price)
 
         self.parent.load_item()
         self.back_to_page()
