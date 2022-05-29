@@ -94,6 +94,7 @@ class HomePage(Controller):
             self.view.hide_admin_button()
 
     def move_to_order_page(self) -> None:
+        self.order_page.initialize()
         self.view.stacked_widget.setCurrentIndex(0)
 
     def move_to_log_page(self) -> None:
@@ -160,6 +161,7 @@ class OrderList(Controller):
         self.load_item()
 
     def load_item(self) -> None:
+        self.view.clear__scrollarea()
         item_list = self.model.get_all_products()
         for item in item_list:
             self.view.add_widget_to_scrollarea(self.__create_item_widget(item))
