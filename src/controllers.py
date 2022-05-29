@@ -66,26 +66,18 @@ class HomePage(Controller):
         self.view.set_username(user.get_username())
         self.view.set_logout_button_listener(self.__root.move_to_login)
         self.__admin_access = (user.get_access_level() == "admin")
-        self.initialize()
 
         # sub page
-        self.order_page = None
-        self.log_page = None
-        self.receipt_page = None
-        self.menu_page = None
-        self.user_edit_page = None
-
-    def initialize(self) -> None:
         self.order_page = OrderPage(OrderView(), OrderModel())
+        self.log_page = LogPage(LogView(), LogModel())
+        self.receipt_page = ReceiptPage(ReceiptView(), ReceiptModel())
+        self.menu_page = MenuPage(MenuView(), MenuModel())
+
         self.view.stacked_widget.addWidget(self.order_page.view)
         self.view.set_home_button_listener(self.move_to_order_page)
 
         if self.__admin_access:
             self.view.show_admin_button()
-
-            self.log_page = LogPage(LogView(), LogModel())
-            self.receipt_page = ReceiptPage(ReceiptView(), ReceiptModel())
-            self.menu_page = MenuPage(MenuView(), MenuModel())
             # self.account_page = AccountPage(AccountView(), AccountModel())
 
             self.view.add_view(self.log_page.view)
@@ -106,6 +98,7 @@ class HomePage(Controller):
 
     def move_to_log_page(self) -> None:
         if self.__admin_access:
+            self.log_page.initialize()
             self.view.stacked_widget.setCurrentIndex(1)
 
     def move_to_receipt_page(self) -> None:
@@ -314,6 +307,7 @@ class LogPage(Controller):
         self.initialize()
 
     def initialize(self) -> None:
+        self.view.clear__scrollarea()
         log_list: list[Log] = self.model.get_all_logs()
         for log in log_list:
             self.view.add_log_to_scrollarea(self.__create_log_widget(log))

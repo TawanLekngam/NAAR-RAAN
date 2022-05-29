@@ -636,6 +636,10 @@ class LogView(QWidget):
     def add_log_to_scrollarea(self, widget: QWidget) -> None:
         self.vBox.addWidget(widget)
 
+    def clear__scrollarea(self):
+        for i in reversed(range(self.vBox.count())):
+            self.vBox.itemAt(i).widget().setParent(None)
+
 
 # Log Item (Sub view for log view and receipt view)
 
