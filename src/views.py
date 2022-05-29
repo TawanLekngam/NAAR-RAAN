@@ -865,13 +865,39 @@ class MenuCreateView(QWidget):
         self.add_button.setFont(Theme.DONGLE_REGULAR_65)
         self.add_button.setGeometry(QRect(394, 730, 200, 80))
 
+        self.drink_button.setChecked(True)
+        self.show_drink_info()
+
         self.setStyleSheet(Theme.get_stylesheet())
+
+        self.drink_button.setChecked(True)
+        self.show_drink_info()
+        self.drink_button.clicked.connect(self.show_drink_info)
+        self.bakery_button.clicked.connect(self.show_bakery_info)
 
     def set_add_button_listener(self, function) -> None:
         self.add_button.clicked.connect(function)
 
     def set_cancel_button_listener(self, function) -> None:
         self.cancel_button.clicked.connect(function)
+
+    def show_drink_info(self) -> None:
+        self.hot_checkBox.show()
+        self.cold_checkBox.show()
+        self.blended_checkBox.show()
+        self.hot_price.show()
+        self.cold_price.show()
+        self.blended_price.show()
+        self.bakery_price.hide()
+
+    def show_bakery_info(self) -> None:
+        self.hot_checkBox.hide()
+        self.cold_checkBox.hide()
+        self.blended_checkBox.hide()
+        self.hot_price.hide()
+        self.cold_price.hide()
+        self.blended_price.hide()
+        self.bakery_price.show()
 
 
 

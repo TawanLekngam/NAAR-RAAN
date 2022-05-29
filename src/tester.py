@@ -7,7 +7,7 @@ from models import *
 
 def test_widget() -> int:
     app = QApplication(sys.argv)
-    w = MenuEditView()  # change widget here
+    w = MenuCreateView()  # change widget here
     w.show()
     return app.exec()
 
