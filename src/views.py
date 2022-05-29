@@ -681,7 +681,7 @@ class AdminEmptyView(QWidget):
 
         admin_frame = QFrame(self)
         admin_frame.setObjectName("brown_frame")
-        admin_frame.setGeometry(0,0, 720, 850)
+        admin_frame.setGeometry(0, 0, 720, 850)
 
         label_logo = QLabel(admin_frame)
         label_logo.setObjectName("default_label")
@@ -959,10 +959,57 @@ class MenuEditView(QWidget):
         self.delete_button.setFont(Theme.DONGLE_REGULAR_65)
         self.delete_button.setGeometry(QRect(480, 730, 200, 80))
 
+        self.drink_button.clicked.connect(self.show_drink_info)
+        self.bakery_button.clicked.connect(self.show_bakery_info)
+
         self.setStyleSheet(Theme.get_stylesheet())
 
     def set_name(self, name: str) -> None:
         self.name_bar.setText(name)
+
+    def show_drink_info(self) -> None:
+        self.hot_checkBox.show()
+        self.cold_checkBox.show()
+        self.blended_checkBox.show()
+        self.hot_price.show()
+        self.cold_price.show()
+        self.blended_price.show()
+        self.bakery_price.hide()
+
+    def show_bakery_info(self) -> None:
+        self.hot_checkBox.hide()
+        self.cold_checkBox.hide()
+        self.blended_checkBox.hide()
+        self.hot_price.hide()
+        self.cold_price.hide()
+        self.blended_price.hide()
+        self.bakery_price.show()
+
+    def fill_drink_info(self, hprice: float = 0, cprice: float = 0, bprice: float = 0) -> None:
+        if hprice != 0:
+            self.hot_checkBox.setChecked(True)
+            self.hot_price.setText(f"{hprice:.02f}")
+
+        if cprice != 0:
+            self.cold_checkBox.setChecked(True)
+            self.cold_price.setText(f"{cprice:.02f}")
+
+        if bprice != 0:
+            self.blended_checkBox.setChecked(True)
+            self.blended_price.setText(f"{bprice:.02f}")
+
+    def fill_bakery_info(self, price: float = 0) -> None:
+        if price != 0:
+            self.bakery_price.setText(f"{price:.02f}")
+
+    def set_save_button_listener(self, function):
+        self.save_button.clicked.connect(function)
+
+    def set_cancel_button_listener(self, function):
+        self.cancel_button.clicked.connect(function)
+
+    def set_delete_button_listener(self, function):
+        self.delete_button.clicked.connect(function)
 
 
 """
