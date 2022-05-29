@@ -344,7 +344,7 @@ class OrderListView(QWidget):
 
     def add_widget_to_scrollarea(self, widget: QWidget) -> None:
         self.vBox.addWidget(widget)
-    
+
     def clear__scrollarea(self):
         for i in reversed(range(self.vBox.count())):
             self.vBox.itemAt(i).widget().setParent(None)
@@ -1019,20 +1019,20 @@ class MenuEditView(QWidget):
             self.bakery_price.setText(f"{price:.02f}")
 
     def set_price(self) -> None:
-         if self.hot_checkBox.isChecked():
-             self.hot_price.setEnabled(True)
-         else:
-             self.hot_price.setEnabled(False)
+        if self.hot_checkBox.isChecked():
+            self.hot_price.setEnabled(True)
+        else:
+            self.hot_price.setEnabled(False)
 
-         if self.cold_checkBox.isChecked():
-             self.cold_price.setEnabled(True)
-         else:
-             self.cold_price.setEnabled(False)
+        if self.cold_checkBox.isChecked():
+            self.cold_price.setEnabled(True)
+        else:
+            self.cold_price.setEnabled(False)
 
-         if self.blended_checkBox.isChecked():
-             self.blended_price.setEnabled(True)
-         else:
-             self.blended_price.setEnabled(False)
+        if self.blended_checkBox.isChecked():
+            self.blended_price.setEnabled(True)
+        else:
+            self.blended_price.setEnabled(False)
 
     def set_save_button_listener(self, function):
         self.save_button.clicked.connect(function)
@@ -1047,15 +1047,23 @@ class MenuEditView(QWidget):
         return self.name_bar.text()
 
     def get_hprice(self) -> float:
+        if self.hot_price.text() == "":
+            return 0.0
         return float(self.hot_price.text())
 
     def get_cprice(self) -> float:
+        if self.cold_price.text() == "":
+            return 0.0
         return float(self.cold_price.text())
 
     def get_bprice(self) -> float:
+        if self.blended_price.text() == "":
+            return 0.0
         return float(self.blended_price.text())
 
     def get_price(self) -> float:
+        if self.bakery_price.text() == "":
+            return 0.0
         return float(self.bakery_price.text())
 
 # List item (Sub view for menu view and account view)
